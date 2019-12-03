@@ -37,13 +37,23 @@ Decks up individual contents into summary view. E.g. one can setup a summarizer 
 
 Software stack - With many thanks to the providers:
 	jdk 1.8
+	
 	SWT - Standard Windows Toolkit, a lightweight framework for desktop UI
-	SQLITE - A serverless self-contained database engine used to track the drafts one creates, to publish the available catalog of artifacts to all participants, to track the subscriptions at subscriber's desktop and  to hold the content type configurations
-	Google APIs - For accessing a Google Drive based doc central
+	
+	SQLITE - A serverless self-contained database engine used to track the drafts one creates, to publish the available catalog of
+	artifacts to all participants, to track the subscriptions at subscriber's desktop and  to hold the content type configurations
+	
 	Sardine - For accessing WebDAV enabled doc central
+	
 	Apache POI - For rolling up excel artifacts
+	
 	Log4J - Logging function
+	
 	Maven - For version control of external repositories.
+	
 	izpack - For packaging and installation
+	
 	Eclipse Neon - IDE
+	
 	and many more useful free software.
+	
