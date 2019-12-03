@@ -58,4 +58,3 @@ Software stack - With many thanks to the providers:
 	
 	and many more useful free software.
 	
-
