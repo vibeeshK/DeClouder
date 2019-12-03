@@ -46,5 +46,5 @@ Software stack - With many thanks to the providers
 	Maven - For version control of external repositories.
 	izpack - For packaging and installation
 	Eclipse Neon - IDE
-
 	and many more useful free software.
+
