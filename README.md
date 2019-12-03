@@ -40,7 +40,7 @@ Software stack - With many thanks to the providers:
 	
 	SWT - Standard Windows Toolkit, a lightweight framework for desktop UI
 	
-	SQLITE - A serverless self-contained database engine used to track the drafts one creates, to publish the available catalog of artifacts to all participants, to track the subscriptions at subscriberâ€™s desktop and  to hold the content type configurations
+	SQLITE - A serverless self-contained database engine used to track the drafts one creates, to publish the available catalog of artifacts to all participants, to track the subscriptions at subscriber's desktop and  to hold the content type configurations
 	
 	Google APIs - For accessing a Google Drive based doc central
 	
