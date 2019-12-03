@@ -35,7 +35,7 @@ Enables project managers with a All-in-One Dashboard that tracks effort, defects
 Decker Grouper:
 Decks up individual contents into summary view. E.g. one can setup a summarizer of all project trackers to provide a high-level view to the leadership.
 
-Software stack - With many thanks to the providers
+Software stack - With many thanks to the providers:
 	jdk 1.8
 	SWT - Standard Windows Toolkit, a lightweight framework for desktop UI
 	SQLITE - A serverless self-contained database engine used to track the drafts one creates, to publish the available catalog of artifacts to all participants, to track the subscriptions at subscriberâ€™s desktop and  to hold the content type configurations
