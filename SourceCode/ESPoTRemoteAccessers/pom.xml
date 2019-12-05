@@ -1,0 +1,121 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>OpenDeClouder</groupId>
+    <artifactId>OpenDeClouder</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>ESPoTRemoteAccessers</artifactId>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+	<!-- https://mvnrepository.com/artifact/org.junit/org.junit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+	<!-- https://mvnrepository.com/artifact/com.googlecode.sardine/sardine -->
+	<dependency>
+	    <groupId> com.googlecode.sardine</groupId>
+	    <artifactId>sardine</artifactId>
+	    <version>146</version>
+	    <!-- <scope>test</scope>  -->	    
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.google.http-client/google-http-client -->	      
+	<dependency>
+	    <groupId>com.google.http-client</groupId>
+	    <artifactId>google-http-client</artifactId>
+	    <version>1.28.0</version>
+	</dependency>		
+	<!-- https://mvnrepository.com/artifact/com.google.http-client/google-http-client-jackson2 -->
+	<dependency>
+	    <groupId>com.google.http-client</groupId>
+	    <artifactId>google-http-client-jackson2</artifactId>
+	    <version>1.28.0</version>
+	</dependency>	
+	<!-- https://mvnrepository.com/artifact/com.google.oauth-client/google-oauth-client-java6 -->
+	<dependency>
+	    <groupId>com.google.oauth-client</groupId>
+	    <artifactId>google-oauth-client-java6</artifactId>
+	    <version>1.28.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.google.oauth-client/google-oauth-client-jetty -->
+	<dependency>
+	    <groupId>com.google.oauth-client</groupId>
+	    <artifactId>google-oauth-client-jetty</artifactId>
+	    <version>1.28.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.google.api-client/google-api-client -->
+	<dependency>
+	    <groupId>com.google.api-client</groupId>
+	    <artifactId>google-api-client</artifactId>
+	    <version>1.28.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.google.api.client/google-api-client-googleapis -->
+	<dependency>
+	    <groupId>com.google.api.client</groupId>
+	    <artifactId>google-api-client-googleapis</artifactId>
+	    <version>1.4.0-alpha</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-drive -->
+	<dependency>
+	    <groupId>com.google.apis</groupId>
+	    <artifactId>google-api-services-drive</artifactId>
+	    <version>v3-rev136-1.25.0</version>
+	</dependency>	
+
+	<!--   
+    <dependency>
+	  <groupId>ESPoT</groupId>
+	  <artifactId>ESPoT</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+	  <scope>system</scope>	  
+	  <systemPath>C:/Kannan/Java/ESPoT/mainJar64Bit/ESPoT_CatalogDisplay.jar</systemPath>
+    </dependency>
+	-->
+	<dependency>
+		<groupId>OpenDeClouder</groupId>
+		<artifactId>ESPoT</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+	       
+      	<groupId>org.apache.maven.plugins</groupId>
+    	<artifactId>maven-dependency-plugin</artifactId>
+    	<version>3.1.1</version>  
+            
+        <executions>
+          <execution>
+            <id>copy-installed</id>
+            <phase>install</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>${project.artifactId}</artifactId>
+                  <version>${project.version}</version>
+                  <type>${project.packaging}</type>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${dynamicJarsFolder}</outputDirectory>
+              <stripVersion>true</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>  
+  
+</project>
