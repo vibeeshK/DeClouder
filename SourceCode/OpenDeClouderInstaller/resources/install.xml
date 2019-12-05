@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<installation version="1.0">
+ 
+  <info>
+    <appname>OpenDeClouder Installer</appname>
+    <appversion>0.0</appversion>
+    <appsubpath>ESPOT</appsubpath>
+    <javaversion>1.6</javaversion>
+    <pack200 />
+  </info>
+
+  <guiprefs resizable="yes" width="480" height="360">
+    <laf name="looks">
+      <param name="variant" value="windows" />
+      <os family="windows" />
+    </laf>
+  </guiprefs>
+ 
+  <locale>
+    <langpack iso3="eng" />
+  </locale>
+
+	<resources>
+	    <res id="userInputSpec.xml" src="user_input_spec.xml" parse="yes" type="xml"/>
+       	<!--  <res id="installer.langsel.img" src="LangSelImage.png" />
+		      <res id="Installer.image" src="installerImage.png" />  -->
+        <res id="LicencePanel.licence" src="Licence.txt"/>
+        <res id="InfoPanel.info" src="Readme.txt"/>
+   
+	</resources> 
+ 
+  <panels>
+    <panel classname="TargetPanel"/>
+    <panel classname="LicencePanel"/>
+    <panel classname="InfoPanel"/>
+	<panel classname="UserInputPanel" id="inputpanel"/>
+    <panel classname="PacksPanel"/>
+    <panel classname="InstallPanel"/>
+    <panel classname="FinishPanel"/>
+  </panels>
+ 
+  <packs>
+    <pack name="OpenSource DeClouder Installation" required="yes">
+      <description> 
+      	Installing OpenSource DeClouder software
+      </description>
+	  <file src="Readme.txt" targetdir="$INSTALL_PATH"/>
+	  <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
+
+  	  <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\BaseContentsFromFolder" targetdir="${INSTALL_PATH}\${DesktopUserName}" override="true"/>
+      <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\ExcecuteModulesFromFolder" targetdir="${INSTALL_PATH}" override="true"/>
+      <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\PlatformSample" targetdir="${INSTALL_PATH}\PlatformSample" override="true"/>
+      <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\WindowsRoots" targetdir="${INSTALL_PATH}\WindowsRoots" override="true"/>
+      <parsable targetfile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\PulishedRoots.xml"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\commons.properties" type="javaprop"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\client.properties" type="javaprop"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvr.properties" type="javaprop"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForExtendedGrouper.properties" type="javaprop"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForStdProcessor.properties" type="javaprop"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForTmShProcessor.properties" type="javaprop"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_CatalogDisplay.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_ClientOrchestrator.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_ServerOrchestrator.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdProjTrackingSrvrOrchestrator.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdDeckerProcOrchestrator.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\(admin)NeverCallMeESPoT_DB_Rec_Delete.bat"/>
+    </pack>    
+  </packs>
+ 
+  <logging>
+	<log-file pattern="${logging.file}" append="true"/>
+  </logging>
+
+</installation>
