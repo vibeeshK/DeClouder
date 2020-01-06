@@ -165,8 +165,29 @@ public class CommonTechs {
 	public void copyFolderUsingApache(File srcDir, File destDir) throws IOException {
 		FileUtils.copyDirectory(srcDir, destDir);
 	}
+
+	public void moveFolderViaName(String srcDirString, String destDirString) throws IOException {
+		if (!destDirString.equalsIgnoreCase(srcDirString)) {
+			moveFolderUsingApache(new File(srcDirString), new File(destDirString));
+		}
+	}
 	
-	public boolean deleteFile(String inFileName) {
+	public void moveFolderUsingApache(File srcDir, File destDir) throws IOException {
+		FileUtils.moveDirectory(srcDir, destDir);
+	}	
+
+	public void moveFileViaName(String srcFileString, String destFileString) throws IOException {
+		if (!destFileString.equalsIgnoreCase(srcFileString)) {
+			moveFileUsingApache(new File(srcFileString), new File(destFileString));
+		}
+	}
+	
+	public void moveFileUsingApache(File srcFile, File destFile) throws IOException {
+		FileUtils.moveFile(srcFile, destFile);
+	}	
+
+	
+	public boolean deleteFileORFolder(String inFileName) {
 		System.out.println("At deleteFile inFileName is " + inFileName);
 		return FileUtils.deleteQuietly(new File(inFileName));
 	}
