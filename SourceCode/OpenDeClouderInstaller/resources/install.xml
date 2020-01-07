@@ -48,15 +48,15 @@
 	  <file src="Readme.txt" targetdir="$INSTALL_PATH"/>
 	  <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
 
-  	  <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\BaseContentsFromFolder" targetdir="${INSTALL_PATH}\${DesktopUserName}" override="true"/>
+  	  <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\BaseContentsFromFolder" targetdir="${INSTALL_PATH}\${ApplicationUserName}" override="true"/>
       <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\ExcecuteModulesFromFolder" targetdir="${INSTALL_PATH}" override="true"/>
-      <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\PlatformSample" targetdir="${INSTALL_PATH}\PlatformSample" override="true"/>
+      <!-- <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\PlatformSample" targetdir="${INSTALL_PATH}\PlatformSample" override="true"/>  -->
       <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\WindowsRoots" targetdir="${INSTALL_PATH}\WindowsRoots" override="true"/>
-      <parsable targetfile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\PulishedRoots.xml"/>
+      <parsable targetfile="${INSTALL_PATH}\${ApplicationUserName}\ConfigData\PulishedRoots.xml"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\commons.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\client.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvr.properties" type="javaprop"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForExtendedGrouper.properties" type="javaprop"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForExtendedDecker.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForStdProcessor.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForTmShProcessor.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_CatalogDisplay.bat"/>
