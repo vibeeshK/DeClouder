@@ -13,11 +13,11 @@ echo ********************************************
 
 pause
 
-java -Dlog4j.configurationFile=config\uiAndCtlgDbDeletionslog4j2.xml -cp ${INSTALL_PATH}\mainJar64Bit\ESPoT_CatalogDisplay.jar espot.ClearDBsAtDecktopSide
+java -Dlog4j.configurationFile=${INSTALL_PATH}\mainJar64Bit\config\uiAndCtlgDbDeletionslog4j2.xml -cp ${INSTALL_PATH}\mainJar64Bit\ESPoT_CatalogDisplay.jar espot.ClearDBsAtDecktopSide
 
 pause
 
-java -Dlog4j.configurationFile=config\xtdDbDeletionslog4j2.xml -cp ${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdProjTrackingSrvrOrchestrator.jar xtdSrvrComp.NeverInvokeMe_DeleteAllXtdDbRecs
+java -Dlog4j.configurationFile=${INSTALL_PATH}\mainJar64Bit\config\xtdDbDeletionslog4j2.xml -cp ${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdProjTrackingSrvrOrchestrator.jar xtdSrvrComp.NeverInvokeMe_DeleteAllXtdDbRecs
 
 @echo off
 echo ********************************************

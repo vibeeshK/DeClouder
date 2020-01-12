@@ -3,9 +3,9 @@
 <installation version="1.0">
  
   <info>
-    <appname>OpenDeClouder Installer</appname>
+    <appname>OpenDeClouder Installer for Windows</appname>
     <appversion>0.0</appversion>
-    <appsubpath>ESPOT</appsubpath>
+    <appsubpath>ODeClouder\bin\${USER_NAME}\DemoInstall</appsubpath>
     <javaversion>1.6</javaversion>
     <pack200 />
   </info>
@@ -27,8 +27,10 @@
 		      <res id="Installer.image" src="installerImage.png" />  -->
         <res id="LicencePanel.licence" src="Licence.txt"/>
         <res id="InfoPanel.info" src="Readme.txt"/>
-   
+		<res src="shortcutSpec.xml" id="shortcutSpec.xml"  parse="yes" type="xml"/>   
 	</resources> 
+	<native type="izpack" name="ShellLink.dll"/>
+	<native type="izpack" name="ShellLink_x64.dll"/>
  
   <panels>
     <panel classname="TargetPanel"/>
@@ -37,22 +39,21 @@
 	<panel classname="UserInputPanel" id="inputpanel"/>
     <panel classname="PacksPanel"/>
     <panel classname="InstallPanel"/>
+	<panel classname="ShortcutPanel"/>
     <panel classname="FinishPanel"/>
   </panels>
  
   <packs>
-    <pack name="OpenSource DeClouder Installation" required="yes">
+    <pack name="OpenSource DeClouder Installation on Windows" required="yes">
       <description> 
       	Installing OpenSource DeClouder software
       </description>
 	  <file src="Readme.txt" targetdir="$INSTALL_PATH"/>
 	  <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
-
-  	  <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\BaseContentsFromFolder" targetdir="${INSTALL_PATH}\${ApplicationUserName}" override="true"/>
+  	  <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\BaseContentsFromFolder" targetdir="${INSTALL_PATH}\${DesktopUserName}" override="true"/>
       <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\ExcecuteModulesFromFolder" targetdir="${INSTALL_PATH}" override="true"/>
-      <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\PlatformSample" targetdir="${INSTALL_PATH}\PlatformSample" override="true"/>
       <fileset dir="C:\Kannan\Java\ESPoT\InstallationPackaging\WindowsRoots" targetdir="${INSTALL_PATH}\WindowsRoots" override="true"/>
-      <parsable targetfile="${INSTALL_PATH}\${ApplicationUserName}\ConfigData\PulishedRoots.xml"/>
+      <parsable targetfile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\PulishedRoots.xml"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\commons.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\client.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvr.properties" type="javaprop"/>
@@ -71,5 +72,5 @@
   <logging>
 	<log-file pattern="${logging.file}" append="true"/>
   </logging>
-
+  
 </installation>

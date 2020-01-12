@@ -63,9 +63,6 @@
 									<directory>src/main/resources</directory>
 								</resource>
 							</resources>
-							<archive>
-								<addMavenDescriptor>false</addMavenDescriptor>
-							</archive>
 						</configuration>
 					</execution>
 				</executions>

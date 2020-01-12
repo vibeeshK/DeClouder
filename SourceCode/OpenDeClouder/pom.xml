@@ -36,6 +36,14 @@
 					<executable>C:\Program Files\Java\jdk1.8.0_162\bin\javac</executable>
 				</configuration>
 			</plugin>
+		    <plugin>
+			       <artifactId>maven-jar-plugin</artifactId>
+			       <configuration>
+			         <archive>
+			            <addMavenDescriptor>false</addMavenDescriptor>
+			         </archive>
+			       </configuration>
+		    </plugin>
 		</plugins>
 	</build>	
   
