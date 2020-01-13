@@ -38,7 +38,8 @@ public class CatalogDownloader {
 
 		System.out.println("catalogPublishURL= " + catalogPublishURL);
 
-		publishFileNameURLs.addAll(remoteAccesser.getList(catalogPublishURL));
+		//publishFileNameURLs.addAll(remoteAccesser.getList(catalogPublishURL));
+		publishFileNameURLs.addAll(remoteAccesser.getRemoteList(catalogPublishURL));
 
 		System.out.println("listing done");
 		

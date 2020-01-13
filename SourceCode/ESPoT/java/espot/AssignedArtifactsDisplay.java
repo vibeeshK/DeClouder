@@ -18,7 +18,7 @@ public class AssignedArtifactsDisplay extends ArtifactsDisplay{
 	 * Displays all ERL artifacts assigned to the user as the author
 	 */
 	
-	static String catalogDisplayTitle = "ESPoT: Catalog";
+	private String catalogDisplayTitle = "Assigned Artifacts";
 	
 	public AssignedArtifactsDisplay(CommonUIData inCommonUIData) {
 		super(inCommonUIData);

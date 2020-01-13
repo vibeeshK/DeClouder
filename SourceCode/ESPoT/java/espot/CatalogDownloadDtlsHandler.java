@@ -53,7 +53,7 @@ public class CatalogDownloadDtlsHandler {
 			catalogDownloadsDetailsDoc = commons.getDocumentFromXMLFile(commons.downloadedCatalogDetailsFile);
 		} catch (SAXException | IOException | ParserConfigurationException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatalogDownloadDtlsHandler getCatalogDownloadsDetailsDoc", e);
 		}
 		return catalogDownloadsDetailsDoc;
@@ -101,8 +101,9 @@ public class CatalogDownloadDtlsHandler {
 			catalogDownLoadedFileName = commons.getFullLocalPathFileNameOfDownloadedDbFile(inRootNick,
 												catalogDownloadDetailsMap.get(inRootNick).downloadedFileName);
 		} else {
-			Commons.logger.error("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downlaoded yet");
+			//Commons.logger.error("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downlaoded yet");
 			System.out.println("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downlaoded yet");
+			ErrorHandler.showErrorAndQuit(commons, "At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downlaoded yet");
 		}
 		return catalogDownLoadedFileName;
 	}
@@ -122,7 +123,7 @@ public class CatalogDownloadDtlsHandler {
 				return true;
 			}
 		} catch (ParseException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatalogDownloadDtlsHandler isFreshDownLoadAllowed " + inRootNick, e);
 		}
 		System.out.println("Gap is too short for a new Catalog download");
@@ -157,7 +158,7 @@ public class CatalogDownloadDtlsHandler {
 			System.out.println("at updateCatalogDownloadDetail saved file to " + commons.downloadedCatalogDetailsFile);
 			catalogDownloadDetailsMap.put(inRootNick,new CatalogDownloadDetailsPojo(inRootNick,inDownloadedFileName,inDownloadedTime));
 		} catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatalogDownloadDtlsHandler updateCatalogDownloadDetail " + inRootNick + " " + inDownloadedFileName + " " + inDownloadedTime, e);
 		}
 	}

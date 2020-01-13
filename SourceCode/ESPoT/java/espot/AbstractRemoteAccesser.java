@@ -26,9 +26,9 @@ public abstract class AbstractRemoteAccesser implements espot.RemoteAccesser {
 				inputStream.close();
 				System.out.println("@@AbstractRemoteAccesser inputStream closed" + inRemoteFileName);
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				ErrorHandler.showErrorAndQuit(commons, "Error in downloadFile of AbstractRemoteAccesser " + inRemoteFileName + " into " + inLocalFileName +  commons.processMode, e);
-				System.exit(8);
+				//System.exit(8);
 			}
 		}
 		System.out.println("@@AbstractRemoteAccesser download complete:::");

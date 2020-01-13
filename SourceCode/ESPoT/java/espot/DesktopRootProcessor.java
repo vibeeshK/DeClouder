@@ -37,9 +37,9 @@ public class DesktopRootProcessor implements Runnable {
 		commons = Commons.getInstance(Commons.CLIENT_MACHINE,rootPojo.rootNick);
 		System.out.println("in DesktopRootProcessor commons : " +  commons);
 
-		commonUIData = 	CommonUIData.getUIInstance(commons);
-		catelogPersistenceManager = commonUIData.getCatelogPersistenceManager();
-		orchestrationData = inOrchestrationData;
+		//commonUIData = 	CommonUIData.getUIInstance(commons);
+		//catelogPersistenceManager = commonUIData.getCatelogPersistenceManager();
+		//orchestrationData = inOrchestrationData;
 
 		System.out.println("initiating RootProcessor at 11x1 rootNick11a: " +  inRootPojo.rootNick);
 		System.out.println("commons 123: " +  commons);
@@ -50,14 +50,23 @@ public class DesktopRootProcessor implements Runnable {
 		System.out.println("at 222221 remoteAccesser = " + remoteAccesser);
 
 		catalogDownloader = new CatalogDownloader(commons, rootPojo, remoteAccesser);
+		catalogDownloader.downloadCatalog();	
 
 		System.out.println("at 222221 1 catalogDownloader " + catalogDownloader);
-		
-		System.out.println("catalogDBAlias232323cd123: " + catelogPersistenceManager.catalogDBAlias);
+
+		commonUIData = 	CommonUIData.getUIInstance(commons);
 
 		if (commonUIData.onlyCatalogDownloadAllowed){
+			System.out.println("at 222221 x returning as onlyCatalogDownloadAllowed ");
 			return;
 		}
+		System.out.println("at 222221 xy crossed Beyond the step of onlyCatalogDownloadAllowed");
+		//System.exit(8);
+
+		catelogPersistenceManager = commonUIData.getCatelogPersistenceManager();
+		orchestrationData = inOrchestrationData;
+
+		System.out.println("catalogDBAlias232323cd123: " + catelogPersistenceManager.catalogDBAlias);
 
 		uploader = new Uploader(commonUIData, remoteAccesser);
 		System.out.println("at 222221.2" );
@@ -101,7 +110,7 @@ public class DesktopRootProcessor implements Runnable {
 			try {
 				System.out.println("catalogDBAlias123123abab: " + catelogPersistenceManager.catalogDBAlias);
 
-				catalogDownloader.downloadCatalog();
+				//catalogDownloader.downloadCatalog();
 				
 				catelogPersistenceManager.refreshForLatestCatalog();
 				if (commonUIData.onlyCatalogDownloadAllowed){

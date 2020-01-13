@@ -63,8 +63,10 @@ public class CatelogPersistenceManager {
 			System.out.println("tobeConnectedCatalogDbFile1 : " + tobeConnectedCatalogDbFile );
 
 		} else {
-			commons.logger.error("undefined processMode: " + processMode);
+			//commons.logger.error("undefined processMode: " + processMode);
 			System.out.println("undefined processMode: " + processMode);
+			ErrorHandler.showErrorAndQuit(commons, "undefined processMode: " + processMode);
+			
 		}
 
  		createConnectionAndStatment();
@@ -98,7 +100,7 @@ public class CatelogPersistenceManager {
 			}
 			connectToSysDb();
 		} catch (SQLException | ClassNotFoundException e) {
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager createConnectionAndStatment", e);
 		}
 	}
@@ -124,7 +126,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager connectToSysDb", e);
 		}
 		return;		
@@ -165,7 +167,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager connectToToBECataloged", e);
 		}
 		return;
@@ -180,7 +182,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager detachCatalogFile", e);
 		}
 		return;
@@ -240,7 +242,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager getContentHandlerSpecsMap", e);
 		}
 		return contentHandlerSpecsMap;
@@ -271,7 +273,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager getNonRollingContentTypes", e);
 		}		
 		String[] nonrollingContentTypes = nonrollingContentTypeList.toArray(
@@ -301,7 +303,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager getNonRollingContentTypes", e);
 		}		
 		String[] nonrollingContentTypes = nonrollingContentTypeList.toArray(
@@ -360,7 +362,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager getContentHandlerSpecs inContentType " + inContentType, e);
 		}
 		return contentHandlerSpecs;
@@ -419,7 +421,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readERL " + inArtifactKeyPojo.artifactName, e);
 		}
 		return dbERLpojo;
@@ -578,7 +580,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readERLDownLoadsOfRootWithConstraint inConstraintString " + inConstraintString, e);			
 		}
 		System.out.println("rs returning");
@@ -669,7 +671,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readERLDownLoad ArtifactKeyPojo " + inArtifactKeyPojo.artifactName, e);
 		}
 		return dbERLDownload;
@@ -762,7 +764,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readERLForRemarksDownload " + inRootNick, e);
 		}
 		System.out.println("finished while post mistery query readERLForRemarksDownloadaaaaaaa dbERLDownloadsList size is " + dbERLDownloadsList.size());
@@ -863,7 +865,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readArtfictsWithGivenStatusForOneRoot "+ inRootNick + " " + inStatusToRead, e);
 		}
 		return selfAuthoredArtifactsOnStatusList;
@@ -964,7 +966,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readDrafts4RootWithConstraints " + inRootNick + " inConstraintString " + inConstraintString, e);
 		}
 		return selfAuthoredArtifactsOnStatusList;
@@ -1044,13 +1046,47 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readSelfAuthoredArtifact " + inArtifactKeyPojo.artifactName, e);
 		}
 		System.out.println("after reading one readSelfAuthoredArtifactWithRootPojo");
 
 		return selfAuthoredArtifactspojo;
 	}
+
+	public synchronized void deleteSelfAuthoredArtifactpojo(
+			SelfAuthoredArtifactpojo inSelfAuthoredArtifactpojo) {
+
+		try {
+			if (connection == null || statement == null) {
+				createConnectionAndStatment();
+			}
+
+			String deleteDMLString = "DELETE FROM SelfAuthoredArtifacts where  "
+				+ " RootNick = '" + inSelfAuthoredArtifactpojo.artifactKeyPojo.rootNick + "' "
+				+ " and Relevance = '" + inSelfAuthoredArtifactpojo.artifactKeyPojo.relevance + "' "
+				+ " and ArtifactName = '" + inSelfAuthoredArtifactpojo.artifactKeyPojo.artifactName + "' "
+				+ " and ContentType = '" + inSelfAuthoredArtifactpojo.artifactKeyPojo.contentType + "' "
+				+ " and UnpulishedVerNum = " + inSelfAuthoredArtifactpojo.unpulishedVerNum
+				;
+
+			System.out.println("QUERY for deleteSelfAuthoredArtifactDraftVersions = "
+					+ deleteDMLString);
+
+			System.out.println("before query 1111del.1");
+
+			statement.executeUpdate(deleteDMLString);
+			
+		} catch (SQLException e) {
+			// if the error message is "out of memory",
+			// it probably means no database file is found
+			//System.err.println(e.getMessage());
+			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager deleteSelfAuthoredArtifactDraftVersions " + inSelfAuthoredArtifactpojo.artifactKeyPojo.artifactName, e);
+		}
+		System.out.println("after deleteSelfAuthoredArtifactDraftVersions");
+
+		return;
+	}	
 	
 	public synchronized  int getMaxDBVersionNumberOfSelfAuthoredArtifact(
 			ArtifactKeyPojo inArtifactKeyPojo) {
@@ -1084,7 +1120,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager getMaxDBVersionNumberOfSelfAuthoredArtifact " + inArtifactKeyPojo.artifactName, e);
 		}
 		System.out.println("after reading maxDBVersionNumberOfSelfAuthoredArtifact");
@@ -1170,7 +1206,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readAllVersionsSelfAuthoredArtifacts " + inArtifactKeyPojo.artifactName, e);
 		}
 		return prevVerSelfAuthoredArtifactsList;
@@ -1213,7 +1249,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readContentType " + inContentType, e);
 		}
 		return ContentTypePojo;
@@ -1238,7 +1274,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readAllRelevanceStrings" + inRootNick, e);
 		}
 		String[] relevance = new String[relevanceList.size()];
@@ -1262,7 +1298,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readPickedRelevance" + inRootNick, e);
 		}
 		String[] relevance = new String[relevanceList.size()];
@@ -1297,7 +1333,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager getERLContentTypesInRelevance " + inRootNick + " " + inRelevance, e);
 		}
 		String[] contentTypes = new String[contentTypeList.size()];
@@ -1330,7 +1366,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager getERLRelevances " + inRootNick, e);
 		}
 		String[] relevances = new String[relevanceList.size()];
@@ -1367,7 +1403,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager getERLArtifactsInRelevanceAndContentType " +  inRootNick + " " + inRelevance + " " + inContentType, e);
 		}
 		String[] artifacts = new String[artifactsList.size()];
@@ -1401,7 +1437,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readRelevances " + inRootNick, e);
 		}
 		return relevancePojoList;
@@ -1417,7 +1453,7 @@ public class CatelogPersistenceManager {
 			System.out.println(queryString);
 			statement.executeUpdate(queryString);
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager pickRelevance " + inRelevancePojo.relevance, e);
 		}
 	}
@@ -1433,7 +1469,7 @@ public class CatelogPersistenceManager {
 			System.out.println(queryString);
 			statement.executeUpdate(queryString);
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager unPickRelevance " + inRelevancePojo.relevance, e);
 		}
 	}
@@ -1455,7 +1491,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readContentTypes ", e);
 		}
 		String[] ContentTypes = new String[ContentTypesList.size()];
@@ -1470,7 +1506,7 @@ public class CatelogPersistenceManager {
 				connection.close();
 			System.out.println("connection closed ok");
 		} catch (SQLException e) { // connection close failed.
-			System.err.println(e);
+			//System.err.println(e);
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager closeup ", e);
 		}
 	}
@@ -1495,7 +1531,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager updateSubscriptionRemarksDownloadTS ERLDownload " + inERLDownload.artifactKeyPojo.artifactName, e);
 		}
 	}
@@ -1533,7 +1569,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager replaceSubscription for " + inERLDownload.artifactKeyPojo.artifactName + " " + newStatus, e);
 		}
 	}
@@ -1605,7 +1641,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			System.out.println("At aaeerr readAllAutoTriggers");
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readAllAutoTriggers " , e);
 		}
@@ -1648,7 +1684,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readAutoTrigger " + inArtifactKeyPojo.artifactName, e);
 		}
 		return autoTrigger;
@@ -1683,7 +1719,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager insertAutoTrigger " + inAutoTriggerPojo.artifactKeyPojo.artifactName, e);
 		}
 	}
@@ -1707,7 +1743,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager updateAutoTrigger " + inAutoTriggerPojo.artifactKeyPojo.artifactName, e);
 		}
 	}
@@ -1746,7 +1782,7 @@ public class CatelogPersistenceManager {
 				System.out.println("@@6");
 			}
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readReviewsPendingResponseOfOneRoot ", e);
 		}
 		return itemPojoList;
@@ -1788,7 +1824,7 @@ public class CatelogPersistenceManager {
 				System.out.println("@@5rr");
 			}
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager ClientSideNew_ReviewPojo " + inArtifactKeyPojo.artifactName + " " + inItemName, e);
 		}
 		return reviewPojo;
@@ -1819,7 +1855,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager insertReview " + inReviewPojo.itemName, e);
 		}
 	}
@@ -1845,7 +1881,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager updateReviewProcessStatus " + inReviewPojo.itemName, e);
 		}
 	}
@@ -1890,7 +1926,7 @@ public class CatelogPersistenceManager {
 				System.out.println("artifactKeyPojo.revier" + reviewPojo.reviewer);				
 			}
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readItemsWithReviewToBeUploaded " + inRootNick, e);
 		}
 		return itemsWithReviewToBeUploaded;
@@ -1919,7 +1955,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager updateArtifactStatus " 
 			+ inSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName + " " + newStatus, e);
 		}
@@ -1944,7 +1980,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager deleteAllSelfAuthoredArtifacts " 
 			+ inArtifactKeyPojo.artifactName, e);
 		}
@@ -1973,7 +2009,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager updateOlderArtifact " 
 			+ inArtifactKeyPojo.artifactName + " " + newStatus + " " + targetLocalVersion, e);
 		}
@@ -2010,7 +2046,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager updateArtifact " + 
 			inSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName, e);
 		}
@@ -2043,7 +2079,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager updateArtifactStatusAndReqRespFileName " +
 			inSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName + " " 
 			+ inReqRespFileName + " " + newStatus, e);
@@ -2100,7 +2136,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager insertArtifactUI " +
 			inSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName, e);
 		}
@@ -2248,7 +2284,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager insertERL " + erlPojo.artifactKeyPojo.artifactName, e);
 		}
 	}
@@ -2283,7 +2319,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readUsersList ", e);
 		}
 		return usersList;
@@ -2303,7 +2339,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager neverCallMe_DeleteAllSelfAuthoredArtifacts ", e);
 		}
 	}
@@ -2321,7 +2357,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager neverCallMe_DeleteAllReviews ", e);
 		}
 	}
@@ -2339,7 +2375,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager neverCallMe_DeleteAllTriggers ", e);
 		}
 	}
@@ -2357,7 +2393,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager neverCallMe_DeleteSubscriptions ", e);
 		}
 	}
@@ -2376,7 +2412,7 @@ public class CatelogPersistenceManager {
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager neverCallMe_DeleteERLs ", e);
 		}
 		return;

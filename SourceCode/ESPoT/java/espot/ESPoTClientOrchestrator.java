@@ -2,6 +2,7 @@ package espot;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import commonTechs.OrchestrationData;
@@ -46,14 +47,67 @@ public class ESPoTClientOrchestrator {
 				rootPojosFromDBmap = PublishedRootsHandler.getPublishedRoots(commons);
 
 				System.out.println("At ESPoTClientOrchestrator commons = " + commons);
+				System.out.println("At ESPoTClientOrchestrator rootPojosFromDBmap size = " + rootPojosFromDBmap.size());
+				System.out.println("At ESPoTClientOrchestrator rootPojosFromDBmap key set  = " + rootPojosFromDBmap.keySet());
 
 				SubscribedRootsPojo subscribedRootsPojo = new SubscribedRootsPojo(commons);
+				
+				//*********************************************//
+				// Initial check for default root check Starts
+				//*********************************************//
+				// To handle initial process immediately install:
+				// If the default root is subscribed already, force subscribe.
+				//*********************************************//
+				String[] rootsNicks;
+				{
+					//String[] rootsNicks = new String[subscribedRootsPojo.getRootNickList().size()];
 
-				String[] rootsNicks = new String[subscribedRootsPojo.getRootNickList().size()];
-				subscribedRootsPojo.getRootNickList().toArray(rootsNicks);
+					String currentRoot = commons.getCurrentRootNick();
+
+					if (subscribedRootsPojo.getRootNickList().size() == 0 || subscribedRootsPojo.getRootNickList().contains(currentRoot)){
+						System.out.println("At ESPoTClientOrchestrator Subscribed roots size is = " + subscribedRootsPojo.getRootNickList().size());
+						System.out.println("At ESPoTClientOrchestrator missing currentRoot is = " + currentRoot);
+						
+//						Commons tempCommons = Commons.getInstance(Commons.CLIENT_MACHINE,currentRoot);
+//						CommonData tempCommonData = CommonData.getInstance(tempCommons);
+//						SubscribedRootsPojo tempSubscribedRootsPojo = new SubscribedRootsPojo(tempCommonData);
+//
+//						tempSubscribedRootsPojo.addSubscription(currentRoot);
+						System.out.println("At ESPoTClientOrchestrator Subscribed roots size after adding currentRoot is = " + subscribedRootsPojo.getRootNickList().size());
+				
+						
+						rootsNicks = new String[subscribedRootsPojo.getRootNickList().size() + 1];
+						subscribedRootsPojo.getRootNickList().toArray(rootsNicks);
+						rootsNicks[subscribedRootsPojo.getRootNickList().size()] = currentRoot;
+						System.out.println("AAA At ESPoTClientOrchestrator subscribedRootsPojo.getRootNickList().size() is = " + subscribedRootsPojo.getRootNickList().size());
+						System.out.println("AAA At ESPoTClientOrchestrator Subscribed roots rootsNicks[subscribedRootsPojo.getRootNickList().size()] is = " + rootsNicks[subscribedRootsPojo.getRootNickList().size()]);
+						System.out.println("AAA At ESPoTClientOrchestrator Subscribed roots rootsNicks[0] is = " + rootsNicks[0]);
+
+					} else {
+						rootsNicks = new String[subscribedRootsPojo.getRootNickList().size()];						
+						subscribedRootsPojo.getRootNickList().toArray(rootsNicks);
+						System.out.println("BBB At ESPoTClientOrchestrator subscribedRootsPojo.getRootNickList().size() is = " + subscribedRootsPojo.getRootNickList().size());
+						System.out.println("BBB At ESPoTClientOrchestrator Subscribed roots rootsNicks[subscribedRootsPojo.getRootNickList().size()] is = " + rootsNicks[subscribedRootsPojo.getRootNickList().size()]);
+					}
+				}
+				System.out.println("CCC At ESPoTClientOrchestrator Subscribed roots rootsNicks[0] is = " + rootsNicks[0]);
+
+				//System.exit(8);
+
+				// Initial check for default root check Ends
+				//*********************************************//
+
+				//String[] rootsNicks = new String[subscribedRootsPojo.getRootNickList().size()];
+				//subscribedRootsPojo.getRootNickList().toArray(rootsNicks);
 				
 				DesktopRootProcessor rootProcessor = null;
 				for (int rootCount = 0; rootCount < rootsNicks.length; rootCount++) {
+					
+					System.out.println("At ESPoTClientOrchestrator rootCount = " + rootCount);
+					System.out.println("At ESPoTClientOrchestrator rootsNicks[rootCount] = " + rootsNicks[rootCount]);
+					System.out.println("At ESPoTClientOrchestrator rootPojosFromDBmap = " + rootPojosFromDBmap);
+					System.out.println("At ESPoTClientOrchestrator rootPojosFromDBmap.get(rootsNicks[rootCount]) = " + rootPojosFromDBmap.get(rootsNicks[rootCount]));
+					System.out.println("At ESPoTClientOrchestrator rootPojosFromDBmap.get(rootsNicks[rootCount]).rootType = " + rootPojosFromDBmap.get(rootsNicks[rootCount]).rootType);
 					
 					if (!rootPojosFromDBmap.get(rootsNicks[rootCount]).rootType.equalsIgnoreCase(RootPojo.RegRootType)) {
 						continue;

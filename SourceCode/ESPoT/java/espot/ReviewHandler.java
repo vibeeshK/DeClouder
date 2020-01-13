@@ -91,6 +91,7 @@ public class ReviewHandler {
 
 		Button hideReviewButton = new Button(hideReviewGrp, SWT.PUSH);
 		hideReviewButton.setText("Hide");
+		hideReviewButton.setToolTipText("Hide this review pane to make room in screen");
 		hideReviewButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				if (reviewVisible) {
@@ -317,7 +318,9 @@ public class ReviewHandler {
 		///////////////// New ERL status ends
 
 		Button submitReviewButton = new Button(reviewActionsGrp, SWT.PUSH);
-		submitReviewButton.setText("submitReview");
+		submitReviewButton.setText("SubmitReview");
+		submitReviewButton.setToolTipText("Submit the review and any change to ownership and status.");
+		
 		if (reviewPojo != null) {
 			submitReviewButton.setEnabled(false);
 			submitReviewButton.setText("Submitted already");

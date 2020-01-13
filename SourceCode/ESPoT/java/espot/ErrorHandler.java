@@ -83,6 +83,7 @@ public class ErrorHandler {
 		String exceptionString = "";
 		if (inException!=null) {
 			exceptionString = " --- " + inException.toString();
+			System.err.println(inException.getMessage());
 		}
 
 		final StackTraceElement[] ste = Thread.currentThread().getStackTrace();

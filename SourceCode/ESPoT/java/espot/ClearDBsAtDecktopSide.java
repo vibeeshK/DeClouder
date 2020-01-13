@@ -24,7 +24,7 @@ public class ClearDBsAtDecktopSide {
 		catelogPersistenceManager = commonUIData.getCatelogPersistenceManager();
 		
 		catelogPersistenceManager.neverCallMe_DeleteAllSelfAuthoredArtifacts();
-		catelogPersistenceManager.neverCallMe_DeleteERLs();;
+		//catelogPersistenceManager.neverCallMe_DeleteERLs(); **ERLs are at server side
 		catelogPersistenceManager.neverCallMe_DeleteSubscriptions();
 		catelogPersistenceManager.neverCallMe_DeleteAllReviews();		
 		catelogPersistenceManager.neverCallMe_DeleteAllTriggers();		

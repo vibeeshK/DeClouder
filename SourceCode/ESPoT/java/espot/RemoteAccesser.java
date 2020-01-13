@@ -12,7 +12,7 @@ public interface RemoteAccesser {
 	public void intiateCommunications(RootPojo inRootPojo,Commons inCommons);
 	public boolean exists(String inRemoteURL) throws IOException;
 	public InputStream getRemoteFileStream(String inRemoteFileName);
-	public List<String> getList(String inRemoteURL);	
+	//public List<String> getList(String inRemoteURL);	
 	public ArrayList<String> getRemoteList(String inRemoteDropBox);
 	public void put(String inRemoteURL, byte[] inBytes);
 	public void putInStreamIntoRemoteLocation(String inNewContentRemoteLocation, InputStream inUpdatedContentByteArray);

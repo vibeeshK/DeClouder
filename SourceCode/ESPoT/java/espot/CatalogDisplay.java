@@ -9,6 +9,7 @@ import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
@@ -17,7 +18,7 @@ public class CatalogDisplay extends ArtifactsDisplay{
 	/*
 	 * Diplays catalogs where the relevance is marked as interested
 	 */	
-	static String catalogDisplayTitle = "ESPoT: Catalog";
+	private String catalogDisplayTitle = "Catalog Display";
 
 	public CatalogDisplay(CommonUIData inCommonUIData) {
 		super(inCommonUIData);
@@ -58,6 +59,7 @@ public class CatalogDisplay extends ArtifactsDisplay{
 		});
 		btnCreateArtifact.setBounds(10, 10, 120, 25);
 		btnCreateArtifact.setText("My Drafting");
+		btnCreateArtifact.setToolTipText("Navigate to view or create drafts");
 
 		Button btnAssignedArtifact = new Button(buttonRibbon, SWT.NONE);
 		
@@ -85,6 +87,7 @@ public class CatalogDisplay extends ArtifactsDisplay{
 		});
 		btnAssignedArtifact.setBounds(10, 10, 120, 25);
 		btnAssignedArtifact.setText("Assigned Tasks");
+		btnAssignedArtifact.setToolTipText("Navigate to view assigned simple artifacts to author");
 		
 		//Assigned Work button end
 		
@@ -111,6 +114,59 @@ public class CatalogDisplay extends ArtifactsDisplay{
 		});
 		btnRootMaintenance.setBounds(10, 10, 120, 25);
 		btnRootMaintenance.setText("Root Maintenance");
+		btnRootMaintenance.setToolTipText("Navigate to choose roots and relevances");
+
+		//Delete ALL ESPoT Artifacts starts
+		Button btnDeleteArtifacts = new Button(buttonRibbon, SWT.NONE);
+		btnDeleteArtifacts.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				System.out.println("getting into the DeleteArtifacts");
+
+				MessageBox usefulArtifactCheckMsgBox = new MessageBox(mainShell,
+						SWT.ICON_WARNING | SWT.YES | SWT.NO);
+				usefulArtifactCheckMsgBox.setMessage("CAUTION: Do you have any local artifact which you need in future?");
+				int usefulArtifactCheckRc = usefulArtifactCheckMsgBox.open();
+
+				if (usefulArtifactCheckRc != SWT.NO) {	// this question is purposely kept negative, since -
+										// the default YES button might be pressed inadvertently
+					MessageBox noDeleteMsgBox = new MessageBox(mainShell,
+							SWT.ICON_INFORMATION);
+					noDeleteMsgBox.setMessage("Its not a good idea to archive as you need them. Archivnig cancelled.");
+					noDeleteMsgBox.open();
+					return;
+				}
+				
+				//get confirmation for delete
+				
+				
+				MessageBox delConfirmMsgBox = new MessageBox(mainShell,
+						SWT.ICON_WARNING | SWT.YES | SWT.NO);
+				delConfirmMsgBox.setMessage("CAUTION: Are you 100% SURE to DELETE all local drafts and artifacts of all roots???");
+				int delConfirmRc1 = delConfirmMsgBox.open();
+				if (delConfirmRc1 != SWT.YES) {
+					return;
+				}
+				
+				ArchiverOfLocalESPoTArtifacts archiverOfLocalESPoTArtifacts = new ArchiverOfLocalESPoTArtifacts(commonUIData);
+				archiverOfLocalESPoTArtifacts.archiveLocalESPoTArtifacts();
+
+				System.out.println("after local artifacts moved to " + commonUIData.getCommons().getlocalArhiveFolder());
+				refreshScreen();
+				
+				MessageBox postDelMsgBox = new MessageBox(mainShell,
+						SWT.ICON_INFORMATION);
+				postDelMsgBox.setMessage("All local artifacts archived into " + commonUIData.getCommons().getlocalArhiveFolder());
+				postDelMsgBox.open();						
+			}
+		});
+		btnDeleteArtifacts.setBounds(10, 10, 120, 25);
+		//btnDeleteArtifacts.setForeground(commonUIData.getESPoTDisplay().getSystemColor(SWT.COLOR_RED)); *OS wont allow to set color
+
+		btnDeleteArtifacts.setText("Delete Artifacts");
+		btnDeleteArtifacts.setToolTipText("Deletes all local drafts and artifacts of all roots");
+		//Delete ALL ESPoT Artifacts ends
+		
 	}
 		
 	@Override
@@ -184,8 +240,10 @@ public class CatalogDisplay extends ArtifactsDisplay{
 			
 			if (displayERL.localCopyStatus.equalsIgnoreCase(ERLDownload.LOCAL_COPY_TOBERENEWED)) {
 				subscribeButton.setText("Renew");
+				subscribeButton.setToolTipText("Renew downloaded artifact: " + displayERL.artifactKeyPojo.artifactName);
 			} else {
 				subscribeButton.setText("Subscribe");
+				subscribeButton.setToolTipText("Subscribe to artifact: " + displayERL.artifactKeyPojo.artifactName);
 			}
 			
 			subscribeButton.setData("CURRNTROWNUMBER", inRowNumber);
@@ -265,6 +323,7 @@ public class CatalogDisplay extends ArtifactsDisplay{
 					
 					System.out.println("after triggering ArtifactWrapperUI");
 
+					mainShell.forceActive();
 					lblMessageToUser.setText("Welcome Back");
 					lblMessageToUser.setForeground(commonUIData.getESPoTDisplay().getSystemColor(SWT.COLOR_DARK_GREEN));
 					lblMessageToUser.redraw();
@@ -302,6 +361,10 @@ public class CatalogDisplay extends ArtifactsDisplay{
 										selectedERLpojoD,
 										commonUIData,null);
 					artifactWrapperUI.displayArtifactWrapperUI();
+					mainShell.forceActive();
+					lblMessageToUser.setText("Welcome Back");
+					lblMessageToUser.setForeground(commonUIData.getESPoTDisplay().getSystemColor(SWT.COLOR_DARK_GREEN));
+					lblMessageToUser.redraw();
 				}
 
 			});

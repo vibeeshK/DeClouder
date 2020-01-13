@@ -158,5 +158,6 @@ public class SubscribedRootsPojo {
 			e.printStackTrace();
 			ErrorHandler.showErrorAndQuit(commons, "Error in SubscribedRootsPojo addSubscription " + " " + inRootNick, e);			
 		}
+		System.out.println("@ addSubscription completed for inRootNick = " + inRootNick);
 	}
 }

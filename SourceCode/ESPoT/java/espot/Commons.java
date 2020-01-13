@@ -49,6 +49,8 @@ public class Commons extends CommonTechs {
 	public final static String STR_YES = "YES";
 	public final static String STR_NO = "NO";
 	public boolean suppressSysCompRefresh = false;
+	public String platformRoot = null;
+	public final static String platformRootLIT = "platformRoot";
 
 
 	public final static String ARTIFACT_PRIME_FILE = "primeFile.json";
@@ -80,10 +82,21 @@ public class Commons extends CommonTechs {
 	public String localFileSeparator = null;
 	public String installFileFolder = null;
 	public String configDataFolder = null;
-	private String certificatFile = null;
+	//private String certificatFile = null;
 	public String certificatesFolder = null;
+
+	private String localArchive = null;
+	private int archiveDupeMax; // this gets overridden from the property file
+	
 	private String newArtifactsFolder = null;
+	private String newReviewsFolder = null;	
+	private String responsesfolderlocal = null;
+	private String contentDownLoadFolder = null;
+	private String downloadedReviewsFolder = null;
+
 	private String templatesFolder = null;
+	private String clientDbFilePath = null;
+	private String clientDbFileName = null;
 
 	public String contentHandlersFolder = null;
 	public String osHandlersFolder = null;
@@ -92,12 +105,10 @@ public class Commons extends CommonTechs {
 	public String backgroundImagePathFileName = null;
 	public String rootConfigFolder = null;
 	public String artifactsFolder = null;
-	private String responsesfolderlocal = null;
 	private String tempFolder = null;
-	private String localArhive = null;
 	
-	private String backupRootNick = null;
-	private String remoteBackupFolder = null;
+	//private String backupRootNick = null;
+	//private String remoteBackupFolder = null;
 	private String contentdropbox = null;
 	private String requestdropbox = null;
 	private String responsepickbox = null;
@@ -115,15 +126,10 @@ public class Commons extends CommonTechs {
 
 	public String downloadedCatalogDetailsFile=null;
 
-	private String clientDbFilePath = null;
-	private String clientDbFileName = null;
 	public String sysDbFileLocation = null;
-	private String newReviewsFolder = null;	
 	private String reqTrackersFolderLocal = null;
 	private String versioningFilesFolderLocal = null;
 	private String remoteReviewsFolder = null;
-	private String contentDownLoadFolder = null;
-	private String downloadedReviewsFolder = null;
 	public String publishedRootsFileName = null;
 	public String subscribedRootNicksFileName = null;
 	public String userName = null;
@@ -153,13 +159,12 @@ public class Commons extends CommonTechs {
 		Properties commonPropObject = new Properties();
 
 		commonPropertiesInStream = new FileInputStream(commonPropertiesFILENAME);
-		//commonPropertiesInStream = getClass().getResourceAsStream(commonPropertiesFileName);
-		// load a properties file
 		commonPropObject.load(commonPropertiesInStream);
+		commonPropertiesInStream.close();
 
 		localFileSeparator = Character.toString(File.separatorChar);
 
-		installFileFolder = commonPropObject.getProperty("installFileFolder") + File.separatorChar + System.getProperty("user.name");
+		installFileFolder = commonPropObject.getProperty("installFileFolder") + localFileSeparator + System.getProperty("user.name");
 		
 		String folderStub = "xx";
 		System.out.println("going somewhere " + folderStub);
@@ -201,12 +206,13 @@ public class Commons extends CommonTechs {
 		////////////////////////////////////////////////////////////////////////
 		//folders and content that sit within Artifacts path starts/////////////
 		tempFolder = artifactsFolder + localFileSeparator + commonPropObject.getProperty("tempfolder");
+		newArtifactsFolder = artifactsFolder + localFileSeparator + commonPropObject.getProperty("newArtifactsFolder");
 		newReviewsFolder = artifactsFolder + localFileSeparator + commonPropObject.getProperty("newReviewsFolder");
 		responsesfolderlocal = artifactsFolder + localFileSeparator + commonPropObject.getProperty("responsesfolderlocal");
 		contentDownLoadFolder = artifactsFolder + localFileSeparator + commonPropObject.getProperty("ContentDownLoadFolder");
-		newArtifactsFolder = artifactsFolder + localFileSeparator + commonPropObject.getProperty("newArtifactsFolder");
 		downloadedReviewsFolder = artifactsFolder + localFileSeparator + commonPropObject.getProperty("downloadedReviewsFolder");
-		localArhive = artifactsFolder + localFileSeparator + commonPropObject.getProperty("localArhive");
+		localArchive = artifactsFolder + localFileSeparator + commonPropObject.getProperty("localArchive");
+		archiveDupeMax = Integer.parseInt(commonPropObject.getProperty("archiveDupeMax"));
 		//folders and content that sit within Artifacts path ends///////////////
 		////////////////////////////////////////////////////////////////////////
 
@@ -309,10 +315,11 @@ public class Commons extends CommonTechs {
 
 	private void readServerSideProperties() throws IOException {
 		Properties serverPropObject = new Properties();
-		InputStream propertiesStream = null;
-		propertiesStream = new FileInputStream(serverPropertiesFILENAME);
-		// load a properties file
+
+		InputStream propertiesStream = new FileInputStream(serverPropertiesFILENAME);
 		serverPropObject.load(propertiesStream);
+		propertiesStream.close();
+
 		BASE_CATLOG_SERVER_FOLDER = serverPropObject.getProperty("bsSrverFolder");
 		
 		String serverRootNicksText = serverPropObject.getProperty("serverrootNicks");
@@ -338,12 +345,14 @@ public class Commons extends CommonTechs {
 
 	private void readCommonSysCompProperties() throws IOException, ParseException {
 		Properties commonSysCompPropObject = new Properties();
-		InputStream sysPropertiesStream = null;
-			sysPropertiesStream = new FileInputStream(commonSyspropertiesFILENAME);
-		//sysPropertiesStream = getClass().getResourceAsStream(commonSyspropertiesFileName);
-		// load a properties file
+		
+		InputStream sysPropertiesStream = new FileInputStream(commonSyspropertiesFILENAME);
 		commonSysCompPropObject.load(sysPropertiesStream);
+		sysPropertiesStream.close();
+
 		String sysCompCurrLocalLogUpdateTmString = commonSysCompPropObject.getProperty(sysCompCurrLocalLogUpdateTmLIT);
+		platformRoot = commonSysCompPropObject.getProperty(platformRootLIT);
+		
 		sysCompCurrLocalLogUpdateTm = getDateFromString(sysCompCurrLocalLogUpdateTmString);
 		System.out.println("sysCompDownloadedAtString = " + sysCompCurrLocalLogUpdateTmString);
 		System.out.println("sysCompDownloadedAt = " + sysCompCurrLocalLogUpdateTm);
@@ -353,36 +362,86 @@ public class Commons extends CommonTechs {
 	
 	private void readClienSideProperties() throws IOException {
 		Properties clientPropObject = new Properties();
-		InputStream clientSidePropertiesStream = null;
-		clientSidePropertiesStream = new FileInputStream(clientPropertiesFILENAME);
-		//clientSidePropertiesStream = getClass().getResourceAsStream(clientPropertiesFileName);
-		// load a properties file
-		clientPropObject.load(clientSidePropertiesStream);
 
-		CLIENT_MACHNE_FOLDER = clientPropObject.getProperty("clientMcFolder");
+		InputStream clientSidePropertiesStream = new FileInputStream(clientPropertiesFILENAME);
+		clientPropObject.load(clientSidePropertiesStream);
+		clientSidePropertiesStream.close();
+
+		//CLIENT_MACHNE_FOLDER = clientPropObject.getProperty("clientMcFolder");	why this is required???
 		userName = clientPropObject.getProperty("userName");
 
 		osHandlerName = clientPropObject.getProperty("OSHandler");
-		backupRootNick = clientPropObject.getProperty("backupRootNick");
-		remoteBackupFolder = clientPropObject.getProperty("remoteBackupFolder");
+		//backupRootNick = clientPropObject.getProperty("backupRootNick");
+		//remoteBackupFolder = clientPropObject.getProperty("remoteBackupFolder");
 	}
 
 
 	public String getClientDbFileLocation(){
-		String clientDbFileLocation = clientDbFilePath + File.separatorChar + clientDbFileName;
+		String clientDbFileLocation = clientDbFilePath + localFileSeparator + clientDbFileName;
 		System.out.println("clientDbFileLocation = " + clientDbFileLocation);
 		return clientDbFileLocation;
 	}
 
 	public String getClientSideCatalogDbReceiveFolderOfRoot(String inRootNick){
 
-		String catalogDbReceiveFolderOfRoot = clientSideCatalogDbReceiveFolder + File.separatorChar + inRootNick;
+		String catalogDbReceiveFolderOfRoot = clientSideCatalogDbReceiveFolder + localFileSeparator + inRootNick;
 		
 		System.out.println("inRootNick = " + inRootNick);
 		System.out.println("clientSideCatalogDbReceiveFolder = " + clientSideCatalogDbReceiveFolder);
 		System.out.println("catalogDbReceiveFolderOfRoot = " + catalogDbReceiveFolderOfRoot);
 		return catalogDbReceiveFolderOfRoot;
 	}
+
+//	private String newArtifactsFolder = null;
+//	private String newReviewsFolder = null;	
+//	private String responsesfolderlocal = null;
+//	private String contentDownLoadFolder = null;
+//	private String downloadedReviewsFolder = null;
+//	private String clientSideCatalogDbReceiveFolder=null;
+
+	public String getNewArtifactsFolder(String inRootNick){
+		return getNewArtifactsFolder() + localFileSeparator + inRootNick;
+	}
+	public String getNewArtifactsFolder(){
+		return newArtifactsFolder;
+	}
+
+	public String getNewReviewsFolder(String inRootNick){
+		return getNewReviewsFolder() + localFileSeparator + inRootNick;
+	}
+
+	public String getNewReviewsFolder(){
+		return newReviewsFolder;
+	}
+
+	public String getResponsesfolderlocal(String inRootNick){
+		return getResponsesfolderlocal() + localFileSeparator + inRootNick;
+	}
+
+	public String getResponsesfolderlocal(){
+		return responsesfolderlocal;
+	}
+
+	public String getContentDownLoadFolder(String inRootNick){
+		return getContentDownLoadFolder() + localFileSeparator + inRootNick;
+	}
+
+	public String getContentDownLoadFolder(){
+		return contentDownLoadFolder;
+	}
+
+	public String getDownloadedReviewsFolder(String inRootNick){
+		return getDownloadedReviewsFolder() + localFileSeparator + inRootNick;
+	}
+
+	public String getDownloadedReviewsFolder(){
+		return downloadedReviewsFolder;
+	}
+	
+	public String getlocalArhiveFolder(){
+		return localArchive;
+	}
+
 	
 	public String getNewCatalogDbPublishFileName(String inRootNick) {
 		String catalogDbPublishFilePrefixWithRoot = catalogDbPublishFilePrefix + inRootNick + getCurrentTimeStamp();
@@ -396,7 +455,7 @@ public class Commons extends CommonTechs {
 					 
 	public String getServersMasterCopyofCatalogDbLocalFileOfRoot(String inRootNick){
 		System.out.println("inRootNick = " + inRootNick);
-		String serversMasterCopyofCatalogDbLocalFolderOfRoot = serversMasterCopyofCatalogDbLocalFolder + File.separatorChar + serversMasterCopyofCatalogDbPrefix + inRootNick;
+		String serversMasterCopyofCatalogDbLocalFolderOfRoot = serversMasterCopyofCatalogDbLocalFolder + localFileSeparator + serversMasterCopyofCatalogDbPrefix + inRootNick;
 		System.out.println("serversOwnCopyofCatalogDbLocalFolder = " + serversMasterCopyofCatalogDbLocalFolder);
 		System.out.println("serversOwnCopyofCatalogDbPrefix = " + serversMasterCopyofCatalogDbPrefix);
 		System.out.println("serversOwnCopyofCatalogDbLocalFolderOfRoot = " + serversMasterCopyofCatalogDbLocalFolderOfRoot);
@@ -429,7 +488,8 @@ public class Commons extends CommonTechs {
 			readExtendedCatalogServerPrimaryProperties(inXtdArg);
 		}
 
-	    readCommonPropForAllMachines();
+	    readCommonPropForAllMachines(); // Its important to call this method only after readExtendedCatalogServerPrimaryProperties
+	    								// as it needs xtdCatalogSrvrFolder name
 
 		readCommonSysCompProperties();
 
@@ -489,8 +549,7 @@ public class Commons extends CommonTechs {
 
 	public String getFullLocalPathFileNameOfNewArtifact(String inRootNick, String inRelevance, String inLocalFileName) {
 		System.out.println("getFullLocalPathFileNameOfNewArtifact inRootNick=" + inRootNick + "::" + "inRelevance=" + inRelevance + "::inLocalFileName=" + inLocalFileName);
-		String fullLocalPathFileNameOfNewArtifact = newArtifactsFolder
-				+ localFileSeparator + inRootNick + localFileSeparator + inRelevance + localFileSeparator + inLocalFileName;
+		String fullLocalPathFileNameOfNewArtifact = getNewArtifactsFolder(inRootNick) + localFileSeparator + inRelevance + localFileSeparator + inLocalFileName;
 		System.out.println("FullPathFromRelevancePath:"
 				+ fullLocalPathFileNameOfNewArtifact);
 		return fullLocalPathFileNameOfNewArtifact;
@@ -498,8 +557,7 @@ public class Commons extends CommonTechs {
 	
 	public String getFullLocalPathFileNameOfDownloadedArtifact(String inRootNick, String inRelevance, String inLocalFileName) {
 		System.out.println("getFullLocalPathFileNameOfDownloadedArtifact inRootNick=" + inRootNick + "::" + "inRelevance=" + inRelevance + "::inLocalFileName=" + inLocalFileName);
-		String fullLocalPathFileNameOfDownloadedArtifact = contentDownLoadFolder
-				+ localFileSeparator + inRootNick + localFileSeparator + inRelevance + localFileSeparator + inLocalFileName;
+		String fullLocalPathFileNameOfDownloadedArtifact = getContentDownLoadFolder(inRootNick) + localFileSeparator + inRelevance + localFileSeparator + inLocalFileName;
 		System.out.println("FullPathFromRelevancePath:"
 				+ fullLocalPathFileNameOfDownloadedArtifact);
 		return fullLocalPathFileNameOfDownloadedArtifact;
@@ -526,7 +584,7 @@ public class Commons extends CommonTechs {
 	public String getFullLocalPathFileNameOfCatalogdbdownloadfolder(String inRootNick, String inLocalFileName) {
 		System.out.println("inRootNick=" + inRootNick + "::inLocalFileName=" + inLocalFileName);
 		String fullLocalPathFileNameOfCatalogdbdownloadfolder = getClientSideCatalogDbReceiveFolderOfRoot(inRootNick)
-				+ localFileSeparator + getFileNameFromFullPath(inLocalFileName,File.separator);
+				+ localFileSeparator + getFileNameFromFullPath(inLocalFileName,localFileSeparator);
 		System.out.println("FullPathFromRelevancePath:"
 				+ fullLocalPathFileNameOfCatalogdbdownloadfolder);
 		return fullLocalPathFileNameOfCatalogdbdownloadfolder;
@@ -534,8 +592,7 @@ public class Commons extends CommonTechs {
 		
 	public String getFullLocalPathFileNameOfNewReview(String inRootNick, String inRelevance, String inReviewFileName) {
 		System.out.println("inRootNick=" + inRootNick + "::" + "inRelevance=" + inRelevance + "::inReviewFileName=" + inReviewFileName);
-		String fullLocalPathFileNameOfReview = newReviewsFolder
-				+ localFileSeparator + inRootNick + localFileSeparator + inRelevance + localFileSeparator + inReviewFileName;
+		String fullLocalPathFileNameOfReview = getNewReviewsFolder(inRootNick) + localFileSeparator + inRelevance + localFileSeparator + inReviewFileName;
 		System.out.println("FullPathFromRelevancePath:"
 				+ fullLocalPathFileNameOfReview);
 		return fullLocalPathFileNameOfReview;
@@ -543,8 +600,7 @@ public class Commons extends CommonTechs {
 	
 	public String getFullLocalPathFileNameOfDownloadedReview(String inRootNick, String inRelevance, String inReviewFileName) {
 		System.out.println("inRootNick=" + inRootNick + "::" + "inRelevance=" + inRelevance + "::inReviewFileName=" + inReviewFileName);
-		String fullLocalPathFileNameOfReview = downloadedReviewsFolder
-				+ localFileSeparator + inRootNick + localFileSeparator + inRelevance + localFileSeparator + inReviewFileName;
+		String fullLocalPathFileNameOfReview = getDownloadedReviewsFolder(inRootNick) + localFileSeparator + inRelevance + localFileSeparator + inReviewFileName;
 		System.out.println("FullPathFromRelevancePath:"
 				+ fullLocalPathFileNameOfReview);
 		return fullLocalPathFileNameOfReview;
@@ -552,8 +608,7 @@ public class Commons extends CommonTechs {
 
 	public String getFullLocalPathFileNameOfResponseFile(String inRootNick, String inLocalFileName) {
 		System.out.println("inRootNick=" + inRootNick + "::inLocalFileName=" + inLocalFileName);
-		String fullLocalPathFileNameOfResponseFile = responsesfolderlocal
-				+ localFileSeparator + inRootNick + localFileSeparator + inLocalFileName;
+		String fullLocalPathFileNameOfResponseFile = getResponsesfolderlocal(inRootNick) + localFileSeparator + inLocalFileName;
 		System.out.println("FullPathFromRelevancePath:"
 				+ fullLocalPathFileNameOfResponseFile);
 		return fullLocalPathFileNameOfResponseFile;
@@ -561,8 +616,7 @@ public class Commons extends CommonTechs {
 	
 	public String getFullPathFromRelativeDownloadPath(String inRootNick, String inRelativeDownloadFilePath) {
 		System.out.println("ContentDownLoadFolder::inRelativeDownloadFilePath is " + contentDownLoadFolder + "::" + inRootNick + "::" + inRelativeDownloadFilePath);
-		String fullPathFromRelativeDownloadPath = contentDownLoadFolder
-				+ localFileSeparator + inRootNick + localFileSeparator + inRelativeDownloadFilePath;
+		String fullPathFromRelativeDownloadPath = getContentDownLoadFolder(inRootNick) + localFileSeparator + inRelativeDownloadFilePath;
 		System.out.println("fullPathFromRelativeDownloadPath is "
 				+ fullPathFromRelativeDownloadPath);
 		return fullPathFromRelativeDownloadPath;
@@ -642,6 +696,14 @@ public class Commons extends CommonTechs {
 		if (fileToRead.exists()) {
 			fileInputStream = new FileInputStream(fileToRead);
 			jsonDocObj = sysGetJsonDocObjFromInputStream(fileInputStream,inClass);
+			try {
+				fileInputStream.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				logger.error("Error in Commons getJsonDocFromFile while closing FileName = " + inFileName);
+				System.exit(Commons.FATALEXITCODE);
+			}
 		}
 		return jsonDocObj;
 	}
@@ -820,7 +882,7 @@ public class Commons extends CommonTechs {
 	public String storeRemoteFile(InputStream inRemoteInputStream,
 			String inFileNameFromURL) throws IOException {
 
-		OutputStream outputStream = null;
+		//OutputStream outputStream = null;
 		String outPutFileName = tempFolder + localFileSeparator
 				+ inFileNameFromURL;
 		storeInStream(inRemoteInputStream, outPutFileName);
@@ -828,17 +890,59 @@ public class Commons extends CommonTechs {
 		return outPutFileName;
 	}
 
+	private String prepDupeArchiveName(File sourcelocalFile) {
+	// sets up a nondupe archive name prior to actual archive of a source file/folder
+
+		String archiveFileName = localArchive + localFileSeparator + sourcelocalFile.getName() + "_Tm" + getCurrentTimeStamp();
+
+		System.out.println("At Commons before archiveLocalFolder from " + sourcelocalFile.getName() + " into " + archiveFileName);
+		
+		if (doesFileExist(archiveFileName)) {
+		// in case a file already exists prior to archiving - maybe due to multiple calls in the same run,
+		// try to append with a dupe counter to find a unique name
+			int versionNum = 1;
+			for (int dupeCount = 0; dupeCount < archiveDupeMax; dupeCount++) {
+				String checkName = archiveFileName + "_" + versionNum;
+				if (!doesFileExist(checkName)) {
+					logger.info("in Commons prepDupeArchiveName found a unique name for archiving " + checkName);
+					System.out.println("in Commons prepDupeArchiveName found a unique name for archiving " + checkName);
+					archiveFileName = checkName;
+					break;
+				}
+			}
+			if (doesFileExist(archiveFileName)) {
+			// in case a folder/file still exists in spite of appending with dupeCount, no other choice but to delete it.
+				deleteFileORFolder(archiveFileName);
+				logger.info("archiving " + archiveFileName + " already existed hence deleted prior to the new archival" );
+				System.out.println("archiving " + archiveFileName + " already existed hence deleted prior to the new archival");
+			}			
+		}
+		return archiveFileName;
+	}
+
 	public void archiveLocalFile(String inLocalFileLocation) throws IOException {
 		File sourcelocalFile = new File(inLocalFileLocation);
-		if (!sourcelocalFile.exists()) {
+		if (!doesFileExist(inLocalFileLocation)) {
 			logger.info("Nothing to archive as the source file " + inLocalFileLocation + " doesn't exist");
 			return;
 		}
-		String archiveFileName = localArhive + File.separator + sourcelocalFile.getName() + "_ArchivedAt_" + getCurrentTimeStamp();
-		File archiveFile = new File(archiveFileName);
-		FileUtils.moveFile(sourcelocalFile, archiveFile);
-		logger.info("Archived the file " + inLocalFileLocation + " into " + archiveFileName);
-	}	
+		String archiveFileName = prepDupeArchiveName(sourcelocalFile);
+		moveFileViaName(inLocalFileLocation, archiveFileName);
+		logger.info("At Commons after Archiving the file " + inLocalFileLocation + " into " + archiveFileName);
+		System.out.println("At Commons after Archiving the file " + inLocalFileLocation + " into " + archiveFileName);
+	}
+	
+	public void archiveLocalFolder(String inLocalFolderLocation) throws IOException {
+		File sourcelocalFile = new File(inLocalFolderLocation);
+		if (!doesFileExist(inLocalFolderLocation) && !sourcelocalFile.isDirectory()) {
+			logger.info("Nothing to archive as the source Folder " + inLocalFolderLocation + " doesn't exist or Not a Folder" );
+			return;
+		}
+		String archiveFolderName = prepDupeArchiveName(sourcelocalFile);
+		moveFolderViaName(inLocalFolderLocation, archiveFolderName);
+		logger.info("At Commons after Archiving the folder " + inLocalFolderLocation + " into " + archiveFolderName);
+		System.out.println("At Commons after archiveLocalFolder from " + inLocalFolderLocation + " into " + archiveFolderName);
+	}
 	
 	public String getRemoteContentDropFileName(String inRootString, String inFileName, String inRemoteFileSeparator, String inAuthor) {
 		System.out.println("At getRemoteContentDropFileName ");
@@ -875,5 +979,86 @@ public class Commons extends CommonTechs {
 			System.out.println("getRolledUpRelevance : rejointString:" + rejointString);
 		}
 		return rejointString;
-	}	
+	}
+
+	//Column sorting not implemented
+	////////// table sorting starts
+	//public void setComparator(TableColumn inTableColumn) {
+	//	inTableColumn.setData(new Comparator<TableItem>() {
+	//		// public int compare(TableItem t1, TableItem t2) {
+	//		// int i1 = Integer.parseInt(t1.getText(0));
+	//		// int i2 = Integer.parseInt(t2.getText(0));
+	//		// if (i1 < i2) return -1;
+	//		// if (i1 > i2) return 1;
+	//		// return 0;
+	//		// }
+	//		// keeping it simple to sort only as text
+	//		public int compare(TableItem t1, TableItem t2) {
+	//			System.out.println("comparator called t1.getText(1) is " + t1.getText(1));
+	//			System.out.println("comparator called t2.getText(1) is " + t2.getText(1));
+	//			System.out.println("comparator called t1.getText(1).compareTo(t2.getText(1) is " + t1.getText(1).compareTo(t2.getText(1)));
+	//			return t1.getText(1).compareTo(t2.getText(1));
+	//		}
+	//		//// @Override
+	//		// public int compare(TableItem t1, TableItem t2) {
+	//		// return
+	//		//// Date.parse(t1.getText(2)).compareTo(Date.parse(t2.getText(2)));
+	//		// }
+	//	});
+	//}
+	//
+	//public Listener setTableSortListener(Table table) {
+	//	TableColumn sortColumn = table.getSortColumn();
+	//
+	//	Listener sortListener = new Listener() {
+	//		@Override
+	//		public void handleEvent(Event e) {
+	//			System.out.println("table sorter called 1");
+	//
+	//			TableColumn selectedColumn = (TableColumn) e.widget;
+	//			int dir = table.getSortDirection();
+	//			if (sortColumn == selectedColumn) {
+	//				System.out.println("table sorter called 2");
+	//				dir = dir == SWT.UP ? SWT.DOWN : SWT.UP;
+	//			} else {
+	//				System.out.println("table sorter called 3");
+	//				table.setSortColumn(selectedColumn);
+	//				dir = SWT.UP;
+	//			}
+	//			TableItem[] items = table.getItems();
+	//			final Comparator<TableItem> comparator = (Comparator<TableItem>) selectedColumn.getData();
+	//			System.out.println("table sorter called 4.  items.length is " + items.length);
+	//			for (int i = 1; i < items.length; i++) {
+	//				System.out.println("table sorter called 5.  i is " + i);
+	//				for (int j = 0; j < i; j++) {
+	//					System.out.println("table sorter called 6.  j is " + j);
+	//					System.out.println("table sorter called 6.1.  items[j].0 is " + items[j].getText(0));
+	//					System.out.println("table sorter called 6.1.  items[j].1 is " + items[j].getText(1));
+	//
+	//					
+	//					if ((comparator.compare(items[i], items[j]) < 0 && dir == SWT.UP)
+	//							|| (comparator.compare(items[i], items[j]) > 0 && dir == SWT.DOWN)) {
+	//						String[] oldItem = new String[table.getColumnCount()];
+	//						System.out.println("table sorter called 7. table.getColumnCount() is " + table.getColumnCount());
+	//						for (int h = 0; h < table.getColumnCount(); h++) {
+	//							System.out.println("table sorter called 8. h is " + h);
+	//							oldItem[h] = items[i].getText(h);
+	//						}
+	//						//ERROR ERROR ERROR
+	//						//HAVEN'T IMPLEMENTED SCREENROWNUMLIT or CURRNTROWNUMBER SWAPPING!!!!
+	//						items[i].dispose();
+	//						TableItem newItem = new TableItem(table, SWT.NONE, j);
+	//						newItem.setText(oldItem);
+	//						items = table.getItems();
+	//						break;
+	//					}
+	//				}
+	//			}
+	//			table.setSortDirection(dir);
+	//		}
+	//
+	//	};
+	//	return sortListener;
+	//}
+	////////// table sorting ends
 }

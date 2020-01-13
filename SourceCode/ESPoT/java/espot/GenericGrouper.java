@@ -956,7 +956,6 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	}
 	
 	public void createNewStartupPrimer(String inNewPrimerFilePath, String inContentType) {
-		//Dummy method not applicable for groupers
 		System.out.println("At createNewStartupPrimer json file name passed : " + inNewPrimerFilePath);
 		GenericGrouperDocPojo newPrimerDoc = getNewPrimerDoc();
 		try {

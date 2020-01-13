@@ -36,9 +36,18 @@ public class SysCompRefresh {
 			System.out.println("SysCompRefresh skipped as  commons.suppressSysCompRefresh is set to " + commons.suppressSysCompRefresh);
 			return;
 		}
+
 		
 		HashMap<String,RootPojo> rootPojoMap = PublishedRootsHandler.getPublishedRoots(commons);
-		sysRootPojo = rootPojoMap.get("PlatformRoot");
+		//sysRootPojo = rootPojoMap.get("PlatformRoot");
+		
+		System.out.println("commons.platformRoot is = " + commons.platformRoot);
+		
+		sysRootPojo = rootPojoMap.get(commons.platformRoot);
+
+		System.out.println("sysRootPojo is = " + sysRootPojo);
+		System.out.println("sysRootPojo.rootNick is = " + sysRootPojo.rootNick);
+		
 		remoteAccesser = RemoteAccessManager.getInstance(commons, sysRootPojo.rootNick);
 		String updateLogDocFileName = sysRootPojo.rootString + sysRootPojo.fileSeparator + commons.sysUpdateLogDoc;
 		System.out.println("updateLogDocFileName = " + updateLogDocFileName);

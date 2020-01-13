@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -37,10 +38,13 @@ public class ArtifactWrapperUI {
 	final public static String CALLED_ForCloning = "CALLED_For_Cloning";
 	final public static String CALLED_After_DraftCreation = "CALLED_For_Returning";
 	final public static String CALLED_For_DisplayItemFocused = "CALLED_For_DisplayItemFocused";
-	
+
 	CommonUIData commonUIData = null;
 	Commons commons = null;
 
+	CCombo relevanceList;	
+	Text artifactNameText;
+	
 	private Shell mainShell = null;
 	ScrolledComposite scrolledComposite_1 = null;
 	ArtifactKeyPojo processingArtifactKeyPojo = null;
@@ -108,10 +112,10 @@ public class ArtifactWrapperUI {
 	}
 
 	/* Constructor for new draft set up (from CreateArtifact) */
-	public ArtifactWrapperUI(ArtifactKeyPojo inCloneToArtifactKeyPojo, CommonUIData inCommonUIData) {
+	public ArtifactWrapperUI(ArtifactKeyPojo inCreateArtifactKeyPojo, CommonUIData inCommonUIData) {
 		System.out.println("At xx1 ArtifactWrapperUI invoke ArtifactKeyPojo inCloneToArtifactKeyPojo, CommonUIData inCommonUIData");
 		calledFor = CALLED_For_NewDraftSetup;
-		doCommonInit(inCommonUIData,null, inCloneToArtifactKeyPojo);
+		doCommonInit(inCommonUIData,null, inCreateArtifactKeyPojo);
 	}
 
 	/* Constructor for cloning (from Catalog Display) */
@@ -354,7 +358,7 @@ public class ArtifactWrapperUI {
 		final Group artifactNameGroup = new Group(artifactDetailGroup, SWT.LEFT);
 		artifactNameGroup.setLayout(new FillLayout());
 		artifactNameGroup.setText("ArtifactName");
-		final Text artifactNameText = new Text(artifactNameGroup, SWT.NONE);
+		artifactNameText = new Text(artifactNameGroup, SWT.NONE);
 		if (calledFor.equalsIgnoreCase(CALLED_For_NewDraftSetup) || calledFor.equalsIgnoreCase(CALLED_ForCloning)) {
 			if (cloneToArtifactKeyPojo!=null) {
 				artifactNameText
@@ -399,7 +403,7 @@ public class ArtifactWrapperUI {
 		final Group relevanceGroup = new Group(artifactDetailGroup, SWT.LEFT);
 		relevanceGroup.setLayout(new FillLayout());
 		relevanceGroup.setText("Relevance");
-		final CCombo relevanceList = new CCombo(relevanceGroup, SWT.DROP_DOWN | SWT.READ_ONLY);
+		relevanceList = new CCombo(relevanceGroup, SWT.DROP_DOWN | SWT.READ_ONLY);
 		if (calledFor.equalsIgnoreCase(CALLED_For_NewDraftSetup) || calledFor.equalsIgnoreCase(CALLED_ForCloning)) {
 			if (cloneToArtifactKeyPojo!=null) {
 				relevanceList
@@ -480,6 +484,8 @@ public class ArtifactWrapperUI {
 
 			Button btnViewButton = new Button(actionsGrp, SWT.CENTER);
 			btnViewButton.setText("View");
+			btnViewButton.setToolTipText("View the artifact details");
+			
 			btnViewButton.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
@@ -526,7 +532,7 @@ public class ArtifactWrapperUI {
 						} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 								| IOException e1) {
 
-							e1.printStackTrace();
+							//e1.printStackTrace();
 							ErrorHandler.showErrorAndQuit(commons, "Error in ARtifactWrapperUI displayContent ", e1);
 						}
 					} else {
@@ -577,7 +583,7 @@ public class ArtifactWrapperUI {
 								}
 							}
 						} catch (IOException e2) {
-							e2.printStackTrace();
+							//e2.printStackTrace();
 							ErrorHandler.showErrorAndQuit(commons, "Error in ARtifactWrapperUI displayContent ", e2);							
 						}
 					}
@@ -591,12 +597,24 @@ public class ArtifactWrapperUI {
 		// Edit and upload allowed only on special conditions
 			Button btnCreateButton = new Button(actionsGrp, SWT.CENTER);
 			btnCreateButton.setText("Create");
+			btnCreateButton.setToolTipText("Create this artifact");			
 			btnCreateButton.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					if (rootsMap == null) {
+
+					if (StringUtils.isBlank(artifactNameText
+							.getText())) {
+						MessageBox editMessage2Box = new MessageBox(mainShell,
+								SWT.ICON_ERROR | SWT.OK);
+						editMessage2Box.setMessage("Artifact Name cannot be empty");
+						int rc1 = editMessage2Box.open();
+						return;
+					}
+
+					if (rootsMap == null) {	// not sure if this is required at all. TO BE CHECKED
 						PublishedRootsHandler.getPublishedRoots(commonUIData.getCommons());
 					}
+					
 					processingArtifactKeyPojo = new ArtifactKeyPojo(commonUIData.getCurrentRootNick(),
 								relevanceList.getItem(relevanceList
 								.getSelectionIndex()), artifactNameText
@@ -605,6 +623,34 @@ public class ArtifactWrapperUI {
 										.getSelectionIndex()));
 
 					contentHandlerSpecs = commonUIData.getContentHandlerSpecsMap().get(processingArtifactKeyPojo.contentType);
+					// Create button validation starts
+					String childRelevanceForSplits = relevanceList.getItem(relevanceList
+																			.getSelectionIndex());
+					
+					StringUtils.replace(childRelevanceForSplits,commonUIData.getCurrentRootPojo().fileSeparator,commons.localFileSeparator);
+					String[] splitStrings = StringUtils.split(childRelevanceForSplits,commons.localFileSeparator);
+					if (splitStrings.length < contentHandlerSpecs.rollupLevel ) {
+						MessageBox editMessage1Box = new MessageBox(mainShell,
+								SWT.ICON_ERROR | SWT.OK);
+						editMessage1Box.setMessage("Relevance branching should NOT be less than " + contentHandlerSpecs.rollupLevel
+								+ " for content Type " + contentHandlerSpecs.contentType);
+						int rc1 = editMessage1Box.open();
+						return;
+					}
+
+					SelfAuthoredArtifactpojo checkDraftArtifactpojo = commonUIData.getCatelogPersistenceManager().readSelfAuthoredArtifact(
+							processingArtifactKeyPojo);
+					ERLDownload checkERLDownload = commonUIData.getCatelogPersistenceManager().readERLDownLoad(processingArtifactKeyPojo);
+
+					if (checkERLDownload != null || checkDraftArtifactpojo != null) {
+						MessageBox editMessage2Box = new MessageBox(mainShell,
+								SWT.ICON_ERROR | SWT.OK);
+						editMessage2Box.setMessage("Duplicate Artifact");
+						int rc1 = editMessage2Box.open();
+						return;
+					}
+
+					// Create button validation ends
 					
 					System.out.println("contentHandlerSpecs="
 							+ contentHandlerSpecs);
@@ -691,6 +737,7 @@ public class ArtifactWrapperUI {
 			// Edit and upload allowed only on special conditions
 			Button btnEditButton = new Button(actionsGrp, SWT.CENTER);
 			btnEditButton.setText("Edit");
+			btnEditButton.setToolTipText("Edit this artifact");
 			btnEditButton.addSelectionListener(new SelectionAdapter() {
 
 				public void widgetSelected(SelectionEvent e) {
@@ -845,6 +892,7 @@ public class ArtifactWrapperUI {
 				}
 			});
 			btnUploadButton.setText("Upload Latest");
+			btnUploadButton.setToolTipText("Upload the latest version onto the Doc central");
 		}
 		// displayContent() - Upload button ends
 
@@ -895,7 +943,7 @@ public class ArtifactWrapperUI {
 			try {
 				commonUIData.getCommons().openFileToView(inFileName);
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				ErrorHandler.showErrorAndQuit(commons, "Error in ARtifactWrapperUI openArtifactForEdit " + inFileName, e);				
 			}
 		} else {
@@ -909,7 +957,7 @@ public class ArtifactWrapperUI {
 			try {
 				contentHandlerObjectInterface.editContentAtDesk();
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				ErrorHandler.showErrorAndQuit(commons, "Error in ARtifactWrapperUI openArtifactForEdit ", e);
 			}
 			System.out.println("kkkk at 8");

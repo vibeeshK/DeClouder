@@ -19,7 +19,8 @@ public class ArtifactMover {
 	public CommonData commonData;
 	Commons commons;
 
-	private static ArtifactMover artifactMover = null;
+	//incorrect reuse prevented as the commons data would differ for each root.
+	//private static ArtifactMover artifactMover = null;
 	
 	private ArtifactMover(CommonData inCommonData) {
 		commonData = inCommonData;
@@ -29,9 +30,10 @@ public class ArtifactMover {
 		destPath = null;
 	}
 	public static ArtifactMover getInstance(CommonData inCommonData) {
-		if (artifactMover == null) {
-			artifactMover = new ArtifactMover(inCommonData);
-		}
+		//if (artifactMover == null) {
+		//	artifactMover = new ArtifactMover(inCommonData);
+		//}
+		ArtifactMover artifactMover = new ArtifactMover(inCommonData);
 		return artifactMover;
 	}
 
@@ -70,7 +72,7 @@ public class ArtifactMover {
 			try {
 				commons.saveBytesIntoNamedFile(inBaseDocBytes,destPath);
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				ErrorHandler.showErrorAndQuit(commons, "Error ArtifactMover createDraftFromBaseContent " + inDestArtifactPojo.artifactKeyPojo.artifactName, e);
 			}
 		}
@@ -122,7 +124,7 @@ public class ArtifactMover {
 					commons.copyFolderViaName(createFileChecker.folderNamePostZipStrip, targetCreateDirName);
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				ErrorHandler.showErrorAndQuit(commons, "Error ArtifactMover moveArtifact " + inSrcArtifactPojo.artifactKeyPojo.artifactName + " " + inDestArtifactPojo.artifactKeyPojo.artifactName, e);
 			}
 		}
@@ -170,7 +172,9 @@ public class ArtifactMover {
 				contentHandlerInterfaceForNewPrimeFileCreation.initializeContentHandlerWithMinimumSetup(commonData);
 				System.out.println("At moveFromTemplate 7 lastProcessStatus = " + lastProcessStatus);
 				
-				contentHandlerInterfaceForNewPrimeFileCreation.createNewStartupPrimer(artifactMover.getPrimeFilePath(inDestSelfAuthoredArtifactpojo),
+				//contentHandlerInterfaceForNewPrimeFileCreation.createNewStartupPrimer(artifactMover.getPrimeFilePath(inDestSelfAuthoredArtifactpojo),
+				//		inDestSelfAuthoredArtifactpojo.artifactKeyPojo.contentType);
+				contentHandlerInterfaceForNewPrimeFileCreation.createNewStartupPrimer(getPrimeFilePath(inDestSelfAuthoredArtifactpojo),
 						inDestSelfAuthoredArtifactpojo.artifactKeyPojo.contentType);
 				System.out.println("At moveFromTemplate 8 lastProcessStatus = " + lastProcessStatus);
 				if (lastProcessStatus == NO_SOURCE_FILE) {
@@ -202,7 +206,7 @@ public class ArtifactMover {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			ErrorHandler.showErrorAndQuit(commons, "Error ArtifactMover moveFromTemplate " + 
 					inTemplateFileName + " " + inDestSelfAuthoredArtifactpojo.artifactKeyPojo.artifactName, e);
 		}
@@ -231,7 +235,7 @@ public class ArtifactMover {
 			try {
 				commons.UnZip(inSourceFilePath,unZippedFilePathString);
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				ErrorHandler.showErrorAndQuit(commons, "Error ArtifactMover downloadTo " + inSourceFilePath + " " + inDestERLDownload.artifactKeyPojo.artifactName, e);				
 			}
 			
@@ -273,7 +277,7 @@ public class ArtifactMover {
 			try {
 				commons.Zip(uploadFileChecker.folderNamePostZipStrip, fullPathUploadFileNameString);
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				ErrorHandler.showErrorAndQuit(commons, "Error ArtifactMover prepForUpload " + inDestSelfAuthoredArtifactpojo.artifactKeyPojo.artifactName + " " + inFileExtn, e);
 			}
 			System.out.println("Uploading dir zippped");
@@ -281,6 +285,48 @@ public class ArtifactMover {
 			System.out.println("fullPathUploadFileNameString = " + fullPathUploadFileNameString);
 		}
 	}
+
+	public void archiveDraft(ArtifactPojo inSrcArtifactPojo) {
+		lastProcessStatus = PROCESSED_OK;
+
+		sourcePath = getFullFilePath(inSrcArtifactPojo);
+		System.out.println("At moveArtifact sourcePath is " + sourcePath);
+
+		if (lastProcessStatus == PROCESSED_OK) {
+
+			//ZIP processor required 2 of 4 starts. create a new folder for unzip
+			FileChecker createFileChecker = FileChecker.getFileChecker(commons, sourcePath);
+			try {
+				if (!createFileChecker.fileOrDirExists && !createFileChecker.isZipFile) {
+		
+					System.out.println("ERROR3 File Not Available/Not downloaded yet");
+					lastProcessStatus = NO_SOURCE_FILE;
+					return;
+				}
+				if (!createFileChecker.isZipFile) {
+					System.out.println("At moveArtifact Not a Zip file");
+					if (createFileChecker.isDirectory) {
+						System.out.println("At moveArtifact is a directory");
+						commons.archiveLocalFolder(sourcePath);
+					} else {
+						System.out.println("At moveArtifact not a directory");
+						commons.archiveLocalFile(sourcePath);
+					}
+				} else {
+					//Though it is a zip artifact, it would have been unzipped already into its folder
+					// either during initial set up or during subscription download
+					System.out.println("At moveArtifact Is a Zip file");
+					System.out.println("check unzip");
+					System.out.println("source : " + sourcePath);
+					System.out.println("Archiving " + createFileChecker.folderNamePostZipStrip);
+					commons.archiveLocalFolder(createFileChecker.folderNamePostZipStrip);
+				}
+			} catch (IOException e) {
+				ErrorHandler.showErrorAndQuit(commons, "Error ArtifactMover archiveArtifact " + inSrcArtifactPojo.artifactKeyPojo.artifactName, e);
+			}
+		}
+	}
+	
 	
 	public String getPrimeFilePath(ArtifactPojo inSrcArtifactPojo) {
 		System.out.println("At getPrimeFilePath ");

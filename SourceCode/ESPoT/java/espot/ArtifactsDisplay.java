@@ -80,7 +80,7 @@ public abstract class ArtifactsDisplay {
 		
 		System.out.println("at ArtifactDisplay DisplayContent Startxxx");
 
-		mainShell.setText("OpenDeClouder: Catalog" + displayTitle);
+		mainShell.setText("OpenDeClouder " + displayTitle + ". Your login: " + commonUIData.getCommons().userName);
 		mainShell.setLayout(new GridLayout(1, false));
 		mainShell.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
@@ -88,7 +88,7 @@ public abstract class ArtifactsDisplay {
 		buttonRibbon.setLayout(new FillLayout(SWT.HORIZONTAL));
 
 		lblMessageToUser = new Label(buttonRibbon, SWT.CENTER | SWT.BORDER_SOLID);
-		lblMessageToUser.setText("Wecome To ESPoT");
+		lblMessageToUser.setText("Welcome!");
 		lblMessageToUser.setForeground(commonUIData.getESPoTDisplay().getSystemColor(SWT.COLOR_DARK_GREEN));
 
 		setAddlRibbonButtons();
@@ -103,6 +103,7 @@ public abstract class ArtifactsDisplay {
 		});
 		btnRefresh.setBounds(10, 10, 120, 25);
 		btnRefresh.setText("Refresh");
+		btnRefresh.setToolTipText("Refresh screen");
 
 		final Composite composite = new Composite(mainShell, SWT.NONE);
 		//composite.setLayout(new GridLayout());
@@ -140,6 +141,10 @@ public abstract class ArtifactsDisplay {
 			column.setText(columnHeaders[i]);
 			column.setWidth(100);
 			System.out.println("columnHeaders col(" + i + ") " + columnHeaders[i]);
+
+			//Column sorting not implemented
+			//commonUIData.getCommons().setComparator(column);
+			//column.addListener(SWT.Selection,commonUIData.getCommons().setTableSortListener(table));			
 		}
 		System.out.println("screen rows filling starts");
 		//////////
@@ -193,10 +198,17 @@ public abstract class ArtifactsDisplay {
 			setDisplayItemsThirdAddlColFieldsOfRow(editor,table,tableItem,displayArtifact,screenRowNo);
 		}
 		//table.pack();
+
+		//Column sorting not implemented
+	    //table.setSortColumn(null);
+	    //table.setSortDirection(SWT.UP);		
+		
+		
 		composite.pack();
 		mainShell.pack();
 		mainShell.layout(true);
-		mainShell.open();
+		mainShell.open();		
+		//table.addListener(SWT.Selection,commonUIData.getCommons().setTableSortListener(table));
 //		mainShell.addListener(SWT.Resize, new Listener () {
 //			@Override
 //			public void handleEvent(Event arg0) {

@@ -1,6 +1,8 @@
 package espot;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -13,6 +15,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -94,6 +97,7 @@ public class CreateArtifactUI {
 		});
 		btnNewDraft.setBounds(10, 10, 120, 25);
 		btnNewDraft.setText("+ Build New Draft");
+		btnNewDraft.setToolTipText("Navigate for creating a fresh draft");
 		//NewDraft Ends
 		
 		Button btnRefresh = new Button(buttonRibbon, SWT.NONE);
@@ -106,6 +110,7 @@ public class CreateArtifactUI {
 		});
 		btnRefresh.setBounds(10, 10, 120, 25);
 		btnRefresh.setText("Refresh");
+		btnRefresh.setToolTipText("Refresh screen");
 		buttonRibbon.pack();
 
 		ArrayList<SelfAuthoredArtifactpojo> selfAuthoredArtifactLists = null;
@@ -124,7 +129,7 @@ public class CreateArtifactUI {
 		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		String[] columnHeaders = new String[] { "ArtifactName", "ContentType",
-				"Root", "Relevance", "Status"};
+				"Root", "Relevance", "Status", "Delete?"};
 
 		for (int i = 0; i < columnHeaders.length; i++) {
 			TableColumn column = new TableColumn(table, SWT.NONE);
@@ -405,15 +410,15 @@ public class CreateArtifactUI {
 			TableEditor maintainButtoneditor = new TableEditor(table);
 			Button maintainButton = new Button(table, SWT.PUSH);
 
-			maintainButton
-			.setText(dbSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName);
+			maintainButton.setText(dbSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName);
+			maintainButton.setToolTipText("Navigate to view " + dbSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName);
 			
 			maintainButton.setData(SCREENROWNUMLIT, ScreenRowNum);
 			//maintainButton.setData("inProgressArtifactNum",
 			//		ScreenRowNum);
 
 			System.out.println("set data = "
-					+ maintainButton.getData("ScreenRowNum"));
+					+ maintainButton.getData(SCREENROWNUMLIT));
 
 			maintainButton.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -434,7 +439,7 @@ public class CreateArtifactUI {
 					ArtifactWrapperUI(commonUIData,
 										selectedSelfAuthoredArtifactspojoB);
 					artifactWrapperUI.displayArtifactWrapperUI();
-					
+					refreshScreen();					
 				}
 			});
 
@@ -446,13 +451,146 @@ public class CreateArtifactUI {
 			//		5);
 			maintainButtoneditor.setEditor(maintainButton, items[ScreenRowNum],
 			0);
+			
+			//Delete button process starts
+			{
+				TableEditor deleteBtneditor = new TableEditor(table);
+				Button delButn = new Button(table, SWT.PUSH);
+	
+				delButn
+				.setText("Delete");
+				delButn
+				.setToolTipText("Delete " + dbSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName);
+
+				delButn.setData(SCREENROWNUMLIT, ScreenRowNum);
+				//delButn.setData("inProgressArtifactNum",
+				//		ScreenRowNum);
+	
+				System.out.println("set data = "
+						+ delButn.getData(SCREENROWNUMLIT));
+	
+				delButn.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						Button eventButton = (Button) e.getSource();
+						System.out.println("eventButton = " + eventButton);
+						//Integer i = (Integer) eventButton
+						//		.getData("inProgressArtifactNum");
+						Integer i = (Integer) eventButton
+								.getData(SCREENROWNUMLIT);
+						
+						System.out.println("selected inProgressArtifactNum = "
+								+ i);
+						SelfAuthoredArtifactpojo selectedSelfAuthoredArtifactspojoB = selfAuthoredArtifactListsFinal
+								.get(i);
+
+
+						//get confirmation for delete
+						MessageBox usefulArtifactCheckMsgBox = new MessageBox(mainShell,
+								SWT.ICON_WARNING | SWT.YES | SWT.NO);
+						usefulArtifactCheckMsgBox.setMessage("CAUTION: Will you require this artifact anytime in future?");
+
+						int usefulArtifactCheckRc = usefulArtifactCheckMsgBox.open();
+						if (usefulArtifactCheckRc != SWT.NO) {	// this question is purposely kept negative, since -
+												// the default YES button might be pressed inadvertently
+							MessageBox noDeleteMsgBox = new MessageBox(mainShell,
+									SWT.ICON_INFORMATION);
+							noDeleteMsgBox.setMessage("Its not a good idea to archive as you need it. Archiving cancelled.");
+							noDeleteMsgBox.open();
+							return;
+						}
+
+						MessageBox delConfirmMsgBox = new MessageBox(mainShell,
+								SWT.ICON_WARNING | SWT.YES | SWT.NO);
+						delConfirmMsgBox.setMessage("Are you sure to DELETE all drafts of " 
+									+ selectedSelfAuthoredArtifactspojoB.artifactKeyPojo.artifactName + " ?");
+						int delConfirmRc1 = delConfirmMsgBox.open();						
+						if (delConfirmRc1 != SWT.YES) {
+							return;
+						}						
+						//read all versions of drafts from db
+						ArrayList<SelfAuthoredArtifactpojo> allVersionsSelfAuthoredArtifacts 
+							= commonUIData.getCatelogPersistenceManager().readAllVersionsSelfAuthoredArtifacts(selectedSelfAuthoredArtifactspojoB.artifactKeyPojo);
+
+						//scroll thru allVersions, form the file name and archive
+						for (SelfAuthoredArtifactpojo oneVersionOfSelfAuthoredArtifact : allVersionsSelfAuthoredArtifacts) {
+							
+							if (!oneVersionOfSelfAuthoredArtifact.draftingState.equalsIgnoreCase(SelfAuthoredArtifactpojo.ArtifactStatusDraft)
+									&& !oneVersionOfSelfAuthoredArtifact.draftingState.equalsIgnoreCase(SelfAuthoredArtifactpojo.ArtifactStatusOutdated)
+									&& !oneVersionOfSelfAuthoredArtifact.draftingState.equalsIgnoreCase(SelfAuthoredArtifactpojo.ArtifactStatusProcessed)
+								//drafts in other states may still be e.g. midst of publications
+									
+									){
+								System.out.println("skipped archiving "
+										+ " root: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.rootNick
+										+ ". relevance: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.relevance
+										+ ". artifact: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.artifactName
+										+ ". versionNum: " + oneVersionOfSelfAuthoredArtifact.unpulishedVerNum
+										+ ". since the drafting state is: " + oneVersionOfSelfAuthoredArtifact.draftingState
+								);
+								continue; // skip this version as it is not in right state to delete
+							}
+														
+							//delete the draft in db
+							commonUIData.getCatelogPersistenceManager().deleteSelfAuthoredArtifactpojo(
+									oneVersionOfSelfAuthoredArtifact);
+
+							ArtifactMover artifactMover = ArtifactMover.getInstance(commonUIData);
+							artifactMover.archiveDraft(oneVersionOfSelfAuthoredArtifact);
+
+							//String physicalFileName = commonUIData.getCommons().getFullLocalPathFileNameOfNewArtifact(
+							//		//String inRootNick, String inRelevance, String inLocalFileName
+							//		oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.rootNick,
+							//		oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.relevance,
+							//		oneVersionOfSelfAuthoredArtifact.LocalFileName
+							//		);							
+							//try {
+							//	commonUIData.getCommons().archiveLocalFile(physicalFileName);
+							//} catch (IOException e1) {
+							//	// TODO Auto-generated catch block
+							//	ErrorHandler.showErrorAndQuit(commons, "Error in CreateArtifactUI displayContent while deleting draft " + physicalFileName
+							//			+ ". root: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.rootNick
+							//			+ ". relevance: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.relevance
+							//			+ ". artifact: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.artifactName
+							//			+ ". versionNum: " + oneVersionOfSelfAuthoredArtifact.unpulishedVerNum
+							//			, e1);
+							//}
+
+							System.out.println("draft archived successful."
+									+ " root: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.rootNick
+									+ "; relevance: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.relevance
+									+ "; artifact: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.artifactName
+									+ "; versionNum: " + oneVersionOfSelfAuthoredArtifact.unpulishedVerNum
+									+ ". draftingState: " + oneVersionOfSelfAuthoredArtifact.draftingState
+							);
+						}
+						refreshScreen();
+					}
+				});
+	
+				delButn.pack();
+				deleteBtneditor.minimumWidth = delButn.getSize().x;
+				deleteBtneditor.horizontalAlignment = SWT.CENTER;
+				deleteBtneditor.setEditor(delButn, items[ScreenRowNum],
+				5);	
+			}
+			//Delete button process ends
+			
+			
 
 		}
 		composite.pack();
 		mainShell.pack();
 		mainShell.layout(true);
 		mainShell.open();
-
+		
+///////////////// screen sorting starts
+//		ArrayList<String>  mylist = 
+//                new ArrayList<String>(); 
+//		Collections.swap(mylist, 0,1);
+///////////////// screen sorting ends
+		
+		
 		while (!mainShell.isDisposed()) {
 			if (!commonUIData.getESPoTDisplay().readAndDispatch())
 				commonUIData.getESPoTDisplay().sleep();

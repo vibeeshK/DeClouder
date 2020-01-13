@@ -426,11 +426,36 @@ public class RequestProcessor {
 		}
 		System.out.println("@@dbRenewed check2 RequestProcesser dbRenewed =" + reqProcTracking.dbTobeRenewed);
 
+		String catalogpublishFolder = rootPojo.rootString
+				+ rootPojo.fileSeparator
+				+ commons.getServerSideSideCatalogDbPublishFolderOfRoot();
+
+		System.out.println("AA At RequestProcessor Check first time run for forceSetting reqProcTracking.dbTobeRenewed = " + reqProcTracking.dbTobeRenewed);
+
+		if (!reqProcTracking.dbTobeRenewed) {
+			// if it is first time after go live of an installation, publish a copy of catalog db any way,
+			// so that the client users can start their drafting
+
+			System.out.println("AB At RequestProcessor Check first time run for forceSetting reqProcTracking.dbTobeRenewed = " + reqProcTracking.dbTobeRenewed);
+
+			if (remoteAccesser.getRemoteList(catalogpublishFolder).isEmpty()) {
+				reqProcTracking.dbTobeRenewed = true;
+				// Force setting the 
+				System.out.println("AC At RequestProcessor Check first time run for forceSetting reqProcTracking.dbTobeRenewed = " + reqProcTracking.dbTobeRenewed);
+
+			}
+			System.out.println("AD At RequestProcessor Check first time run for forceSetting reqProcTracking.dbTobeRenewed = " + reqProcTracking.dbTobeRenewed);
+		}
+		System.out.println("AE At RequestProcessor Check first time run for forceSetting reqProcTracking.dbTobeRenewed = " + reqProcTracking.dbTobeRenewed);
+
 		if (reqProcTracking.dbTobeRenewed) {
 			// publish the new catalog database
-			String catalogpublishFile = rootPojo.rootString
-										+ rootPojo.fileSeparator
-										+ commons.getServerSideSideCatalogDbPublishFolderOfRoot()
+			//String catalogpublishFile = rootPojo.rootString
+			//							+ rootPojo.fileSeparator
+			//							+ commons.getServerSideSideCatalogDbPublishFolderOfRoot()
+			//							+ rootPojo.fileSeparator
+			//							+ commons.getNewCatalogDbPublishFileName(rootPojo.rootNick);
+			String catalogpublishFile = catalogpublishFolder
 										+ rootPojo.fileSeparator
 										+ commons.getNewCatalogDbPublishFileName(rootPojo.rootNick);
 			

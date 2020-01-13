@@ -1,5 +1,6 @@
 package espot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ArtifactPrepper {
@@ -234,7 +235,33 @@ public class ArtifactPrepper {
 				targetArtifactKeyPojo);
 		if (commons.processMode == Commons.EXTENDED_CATALOG_SERVER && maxLocalVerionNumber >  -1) {
 			// for extended servers, no need to maintain multiple versions
-			catelogPersistenceManager.deleteAllSelfAuthoredArtifacts(targetArtifactKeyPojo);
+			//catelogPersistenceManager.deleteAllSelfAuthoredArtifacts(targetArtifactKeyPojo);
+			// clear old drafts starts
+			//read all versions of drafts from db
+			ArrayList<SelfAuthoredArtifactpojo> allVersionsSelfAuthoredArtifacts 
+				= catelogPersistenceManager.readAllVersionsSelfAuthoredArtifacts(targetArtifactKeyPojo);
+
+			//scroll thru allVersions, form the file name and archive
+			for (SelfAuthoredArtifactpojo oneVersionOfSelfAuthoredArtifact : allVersionsSelfAuthoredArtifacts) {
+				
+				//delete the draft in db
+				catelogPersistenceManager.deleteSelfAuthoredArtifactpojo(
+						oneVersionOfSelfAuthoredArtifact);
+
+				//ArtifactMover artifactMover = ArtifactMover.getInstance(commonData);
+				artifactMover.archiveDraft(oneVersionOfSelfAuthoredArtifact);
+
+				System.out.println("At ArtifactPrepper createDraft old draft archived successfully."
+						+ " root: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.rootNick
+						+ "; relevance: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.relevance
+						+ "; artifact: " + oneVersionOfSelfAuthoredArtifact.artifactKeyPojo.artifactName
+						+ "; versionNum: " + oneVersionOfSelfAuthoredArtifact.unpulishedVerNum
+						+ ". draftingState: " + oneVersionOfSelfAuthoredArtifact.draftingState
+				);
+			}
+			// clear old drafts ends
+
+			setFlags(); // need reset flags again since the drafts just got deleted.
 			maxLocalVerionNumber = -1;
 		}
 		maxLocalVerionNumber = maxLocalVerionNumber + 1;
