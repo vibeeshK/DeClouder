@@ -13,6 +13,10 @@ public class ESPoTServerOrchestrator {
 	 * Server side Orchestrator that processes the incoming requests for content updates and publishes new catalog
 	 */			
 	public static void main(String[] args) throws IOException, ParseException {
+		
+		Commons.logger.info("ESPoTServerOrchestrator started - logging set to info");
+		System.out.println("ESPoTServerOrchestrator started printing directly via sysout");
+		
 		Commons commons = Commons.getInstance(Commons.BASE_CATALOG_SERVER);
 		
 		HashMap<String, RootPojo> publishedRootsMap = PublishedRootsHandler.getPublishedRoots(commons);

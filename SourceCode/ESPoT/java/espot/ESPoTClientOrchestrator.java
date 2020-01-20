@@ -19,13 +19,6 @@ public class ESPoTClientOrchestrator {
 		Commons commons = Commons.getInstance(Commons.CLIENT_MACHINE);
 		SysCompRefresh.compRefresh(commons);
 
-		Commons.logger.trace("Entering application...");
-
-		Commons.logger.info("Hello Log4j2...");
-
-		Commons.logger.warn("Exiting application...");
-
-	      
 		Commons.logger.info("ESPoTClientOrchestrator started - logging set to info");
 		System.out.println("ESPoTClientOrchestrator started printing directly via sysout");
 
