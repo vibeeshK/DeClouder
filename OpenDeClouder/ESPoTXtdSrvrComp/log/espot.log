@@ -1,0 +1,618 @@
+2019-Aug-18 15:38:25 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-18 15:38:29 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-18 15:38:29 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-18 15:38:29 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-18 15:38:37 PM [main] INFO  ESPoTLogger - Error in ExtdDeckrGroupr processItemDetail ProjA from method orchestration --- java.lang.IllegalArgumentException: object is not an instance of declaring class
+2019-Aug-18 19:12:15 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-18 19:12:16 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-18 19:12:20 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-18 19:12:20 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-18 19:12:20 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-18 19:12:26 PM [main] INFO  ESPoTLogger - Error in ExtdDeckrGroupr processItemDetail ProjA from method orchestration --- java.lang.NoSuchMethodException: org.apache.poi.xssf.usermodel.XSSFWorkbook.removeRelation(org.apache.poi.POIXMLDocumentPart)
+2019-Aug-18 19:20:58 PM [main] ERROR ESPoTLogger - Error in ExtdDeckrGroupr processItemDetail ProjA
+java.lang.NoSuchMethodException: org.apache.poi.xssf.usermodel.XSSFWorkbook.removeRelation(org.apache.poi.POIXMLDocumentPart)
+	at java.lang.Class.getDeclaredMethod(Unknown Source) ~[?:1.8.0_171]
+	at xtdCommonTechs.ExcelHandler.removeCalcChain(ExcelHandler.java:1215) ~[classes/:?]
+	at xtdCommonTechs.ExcelHandler.removeAllFormulas(ExcelHandler.java:1232) ~[classes/:?]
+	at xtdCommonTechs.ExcelHandler.cloneSheetsToNewWB(ExcelHandler.java:1195) ~[classes/:?]
+	at xtndHandlers.XtdDeckrGroupr.processItemDetail(XtdDeckrGroupr.java:107) [xtndHandlers.jar!/:?]
+	at xtdSrvrComp.XtdDeckerProcessor.extendedContentProcessing(XtdDeckerProcessor.java:186) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcMaster.coreProcessOfRecords(XtdDeckerProcMaster.java:55) [classes/:?]
+	at xtdSrvrComp.AbstractRtCtOrchestrator.orchestration(AbstractRtCtOrchestrator.java:110) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcOrchestrator.main(XtdDeckerProcOrchestrator.java:59) [classes/:?]
+2019-Aug-18 19:24:12 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-18 19:24:12 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-18 19:24:16 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-18 19:24:16 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-18 19:24:16 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-18 19:24:23 PM [main] INFO  ESPoTLogger - Error in ExtdDeckrGroupr processItemDetail ProjA from method orchestration --- java.lang.IllegalAccessException: Class xtdCommonTechs.ExcelHandler can not access a member of class org.apache.poi.POIXMLDocumentPart with modifiers "protected final"
+2019-Aug-18 19:33:31 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-18 19:33:31 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-18 19:33:35 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-18 19:33:35 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-18 19:33:35 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-18 19:33:43 PM [main] INFO  ESPoTLogger - Error in ExtdDeckrGroupr processItemDetail ProjA from method orchestration --- java.lang.IllegalAccessException: Class xtdCommonTechs.ExcelHandler can not access a member of class org.apache.poi.POIXMLDocumentPart with modifiers "protected final"
+2019-Aug-18 19:34:19 PM [main] ERROR ESPoTLogger - Error in ExtdDeckrGroupr processItemDetail ProjA
+java.lang.IllegalAccessException: Class xtdCommonTechs.ExcelHandler can not access a member of class org.apache.poi.POIXMLDocumentPart with modifiers "protected final"
+	at sun.reflect.Reflection.ensureMemberAccess(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.AccessibleObject.checkAccess(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at xtdCommonTechs.ExcelHandler.removeCalcChain(ExcelHandler.java:1217) ~[classes/:?]
+	at xtdCommonTechs.ExcelHandler.removeAllFormulas(ExcelHandler.java:1232) ~[classes/:?]
+	at xtdCommonTechs.ExcelHandler.cloneSheetsToNewWB(ExcelHandler.java:1195) ~[classes/:?]
+	at xtndHandlers.XtdDeckrGroupr.processItemDetail(XtdDeckrGroupr.java:107) [xtndHandlers.jar!/:?]
+	at xtdSrvrComp.XtdDeckerProcessor.extendedContentProcessing(XtdDeckerProcessor.java:186) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcMaster.coreProcessOfRecords(XtdDeckerProcMaster.java:55) [classes/:?]
+	at xtdSrvrComp.AbstractRtCtOrchestrator.orchestration(AbstractRtCtOrchestrator.java:110) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcOrchestrator.main(XtdDeckerProcOrchestrator.java:59) [classes/:?]
+2019-Aug-18 23:53:47 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-18 23:53:47 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-18 23:53:52 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-18 23:53:52 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-18 23:53:52 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-18 23:56:30 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-18 23:56:30 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-18 23:56:33 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-18 23:56:33 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-18 23:56:33 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 00:21:11 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 00:21:11 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-19 00:21:14 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 00:21:14 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 00:21:14 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 01:11:21 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 01:11:21 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-19 01:11:24 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 01:11:24 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 01:11:24 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 01:28:28 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 01:28:28 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-19 01:28:33 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 01:28:33 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 01:28:33 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 01:38:48 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 01:38:48 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-19 01:39:33 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 01:39:33 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Aug-19 01:39:37 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 01:39:37 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 01:39:37 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 14:55:39 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 14:55:41 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Aug-19 14:55:41 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Aug-19 14:55:45 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 14:55:45 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 14:55:45 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 15:01:00 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 15:01:01 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Aug-19 15:01:01 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Aug-19 15:01:05 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 15:01:05 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 15:01:05 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 15:01:06 PM [main] INFO  ESPoTLogger - Error XtdDeckerProcCatlogPersistenceManager insertDeckerParent(ArtifactKeyPojo ProjDecker 0 19700101053000 NEW from method orchestration --- org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: GrouperParent.ParentRootNick, GrouperParent.ParentRelevance, GrouperParent.ParentArtifactName, GrouperParent.ParentContentType)
+2019-Aug-19 15:23:34 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 15:23:35 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Aug-19 15:23:35 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Aug-19 15:23:39 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 15:23:39 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 15:23:39 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 15:41:32 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 15:41:33 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Aug-19 15:41:33 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Aug-19 15:41:36 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 15:41:36 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 15:41:36 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 15:53:58 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 15:53:59 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Aug-19 15:53:59 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Aug-19 15:54:03 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 15:54:03 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 15:54:03 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 16:06:18 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 16:06:19 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Aug-19 16:06:19 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Aug-19 16:06:22 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 16:06:22 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 16:06:22 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Aug-19 18:52:51 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Aug-19 18:52:52 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Aug-19 18:52:52 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Aug-19 18:52:56 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Aug-19 18:52:56 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Aug-19 18:52:56 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-15 22:37:33 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-15 22:37:33 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-15 22:39:08 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-15 22:39:09 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-15 22:39:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-15 22:39:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-15 22:39:44 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-15 22:39:45 PM [main] INFO  ESPoTLogger - Error in CatelogPersistenceManager createConnectionAndStatment from method orchestration --- java.sql.SQLException: path to 'C:\Kannan\Java\ESPoT\kvasavaiah\extdSrvrDeckrLite\clientdbfileFolder\clientdbfile': 'C:\Kannan\Java\ESPoT\kvasavaiah\extdSrvrDeckrLite' does not exist
+2019-Oct-15 22:45:31 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-15 22:45:32 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-15 22:45:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-15 22:45:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-15 22:45:37 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-16 22:50:15 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-16 22:50:15 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-16 22:50:20 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-16 22:50:20 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-16 22:50:20 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-16 23:04:26 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-16 23:04:26 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-16 23:04:30 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-16 23:04:30 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-16 23:04:30 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-16 23:47:05 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-16 23:47:06 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-16 23:47:10 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-16 23:47:10 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-16 23:47:10 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-16 23:47:13 PM [main] INFO  ESPoTLogger - error in addlCommonInit of SimpleTracker while renaming C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\downloadedcontent\KKTestWinRoot\MyOrg\Divisions\Finance\simplTrkr1.xlsx from method orchestration --- java.io.FileNotFoundException: Source 'C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\downloadedcontent\KKTestWinRoot\MyOrg\Divisions\Finance\SimpleTrackerTemplate.xlsx' does not exist
+2019-Oct-17 00:19:59 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 00:19:59 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 00:20:04 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 00:20:04 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 00:20:04 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 01:03:07 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 01:03:07 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 01:03:12 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 01:03:12 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 01:03:12 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 01:14:31 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 01:14:32 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 01:14:37 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 01:14:37 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 01:14:37 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 01:14:39 AM [main] INFO  ESPoTLogger - Error at GenericGrouper artifactMover 5 while dealing with artifactName :simplTrkr1
+2019-Oct-17 01:25:45 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 01:25:46 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 01:25:50 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 01:25:50 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 01:25:50 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 01:25:53 AM [main] INFO  ESPoTLogger - Error at GenericGrouper artifactMover 5 while dealing with artifactName :simplTrkr1 from method orchestration
+2019-Oct-17 01:25:55 AM [main] ERROR ESPoTLogger - Error at GenericGrouper artifactMover 5 while dealing with artifactName :simplTrkr1
+2019-Oct-17 22:14:46 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 22:14:47 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 22:14:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 22:14:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 22:14:53 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 22:14:59 PM [main] INFO  ESPoTLogger - Error at GenericItemHandler doCommonInit artifactMover 5 while dealing with artifactName :simplTrkr1 from method orchestration
+2019-Oct-17 22:27:53 PM [main] ERROR ESPoTLogger - Error at GenericItemHandler doCommonInit artifactMover 5 while dealing with artifactName :simplTrkr1
+2019-Oct-17 23:00:51 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 23:00:51 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 23:00:56 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 23:00:56 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 23:00:56 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 23:09:47 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 23:09:48 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 23:09:52 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 23:09:52 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 23:09:52 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 23:11:24 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 23:11:24 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 23:11:28 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 23:11:28 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 23:11:28 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 23:21:39 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 23:21:40 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 23:21:45 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 23:21:45 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 23:21:45 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 23:33:13 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 23:33:14 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 23:33:18 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 23:33:18 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 23:33:18 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 23:41:45 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-17 23:41:46 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-17 23:41:51 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-17 23:41:51 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-17 23:41:51 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-17 23:41:57 PM [main] INFO  ESPoTLogger - Error in ExtdDeckrGroupr processItemSummary smplTrkr1 from method orchestration --- java.io.FileNotFoundException: C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\KKTestWinRoot\MyOrg\General\dkrLite2\dkrLite2_allCombined.xlsx (The system cannot find the file specified)
+2019-Oct-17 23:42:14 PM [main] ERROR ESPoTLogger - Error in ExtdDeckrGroupr processItemSummary smplTrkr1
+java.io.FileNotFoundException: C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\KKTestWinRoot\MyOrg\General\dkrLite2\dkrLite2_allCombined.xlsx (The system cannot find the file specified)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_171]
+	at java.io.FileInputStream.open(Unknown Source) ~[?:1.8.0_171]
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_171]
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_171]
+	at xtdCommonTechs.ExcelHandler.<init>(ExcelHandler.java:88) ~[classes/:?]
+	at xtdCommonTechs.ExcelHandler.getTargetXlObjForTwoColumns(ExcelHandler.java:243) ~[classes/:?]
+	at xtdCommonTechs.ExcelHandler.combineShByKeysAndConstraint(ExcelHandler.java:401) ~[classes/:?]
+	at xtndHandlers.XtdDeckrLite.processItemSummary(XtdDeckrLite.java:129) [xtndHandlers.jar!/:?]
+	at xtdSrvrComp.XtdDeckerProcessor.extendedContentProcessing(XtdDeckerProcessor.java:184) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcMaster.coreProcessOfRecords(XtdDeckerProcMaster.java:46) [classes/:?]
+	at xtdSrvrComp.AbstractRtCtOrchestrator.orchestration(AbstractRtCtOrchestrator.java:102) [classes/:?]
+	at xtdSrvrComp.XtdDeckrLiteProcOrchestrator.main(XtdDeckrLiteProcOrchestrator.java:59) [classes/:?]
+2019-Oct-18 00:06:38 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-18 00:06:38 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-18 00:06:43 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-18 00:06:43 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-18 00:06:43 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Oct-31 18:30:14 PM [main] INFO  ESPoTLogger - Error in AccessManager main getRemoteAccesser PlatformRoot from method <init> --- java.lang.ClassNotFoundException: remoteAccessers.GDriveShAccesser
+2019-Oct-31 23:53:03 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Oct-31 23:53:04 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Oct-31 23:53:08 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Oct-31 23:53:08 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Oct-31 23:53:08 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 00:04:38 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 00:04:39 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-01 00:04:43 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 00:04:43 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 00:04:43 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 00:04:45 AM [main] INFO  ESPoTLogger - Error at GenericItemHandler doCommonInit artifactMover 5 while dealing with artifactName :smplTrkr1 from method orchestration
+2019-Nov-01 00:04:52 AM [main] ERROR ESPoTLogger - Error at GenericItemHandler doCommonInit artifactMover 5 while dealing with artifactName :smplTrkr1
+2019-Nov-01 00:06:15 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 00:06:16 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-01 00:06:19 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 00:06:19 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 00:06:19 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 14:19:53 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 14:20:05 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-01 14:20:05 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-01 14:20:10 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 14:20:10 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 14:20:10 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 19:18:43 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 19:18:55 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-01 19:18:55 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-01 19:19:00 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 19:19:00 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 19:19:00 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 19:37:01 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 19:37:13 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-01 19:37:13 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-01 19:37:17 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 19:37:17 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 19:37:17 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 19:47:54 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 19:48:07 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-01 19:48:07 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-01 19:48:10 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 19:48:10 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 19:48:10 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 23:09:31 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 23:09:32 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-01 23:09:36 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 23:09:36 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 23:09:36 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 23:39:33 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 23:39:33 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-01 23:39:38 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 23:39:38 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 23:39:38 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 23:49:50 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 23:49:51 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-01 23:49:56 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 23:49:56 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 23:49:56 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-01 23:54:24 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-01 23:54:25 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-01 23:54:29 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-01 23:54:29 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-01 23:54:29 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 11:53:11 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 11:53:12 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 11:53:15 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 11:53:15 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 11:53:15 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 11:59:22 AM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 11:59:22 AM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 11:59:25 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 11:59:25 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 11:59:25 AM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 12:50:33 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 12:50:33 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 12:50:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 12:50:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 12:50:37 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 13:14:46 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 13:14:47 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 13:14:51 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 13:14:51 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 13:14:51 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 13:59:39 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 13:59:40 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 13:59:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 13:59:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 13:59:44 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 14:05:57 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 14:05:57 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 14:06:01 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 14:06:01 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 14:06:01 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 14:07:36 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 14:07:37 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 14:07:45 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 14:07:45 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 14:07:45 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 14:32:05 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 14:32:05 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 14:32:11 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 14:32:11 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 14:32:11 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 23:29:01 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 23:29:01 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 23:29:05 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 23:29:05 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 23:29:05 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 23:41:24 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 23:41:24 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 23:41:27 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 23:41:27 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 23:41:27 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-02 23:58:12 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-02 23:58:12 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-02 23:58:16 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-02 23:58:16 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-02 23:58:16 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-03 19:49:53 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-03 19:49:54 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-03 19:49:58 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-03 19:49:58 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-03 19:49:58 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-03 22:11:45 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-03 22:11:46 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-03 22:11:49 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-03 22:11:49 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-03 22:11:49 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-03 22:15:56 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-03 22:15:56 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-03 22:15:59 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-03 22:15:59 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-03 22:15:59 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-03 22:18:11 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-03 22:18:12 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-03 22:18:15 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-03 22:18:15 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-03 22:18:15 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-03 23:36:50 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-03 23:36:50 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-03 23:36:54 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-03 23:36:54 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-03 23:36:54 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 13:10:58 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 13:11:10 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 13:11:10 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 13:11:15 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 13:11:15 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 13:11:15 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 13:13:40 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 13:13:52 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 13:13:52 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 13:13:56 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 13:13:56 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 13:13:56 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 15:10:39 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 15:10:52 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 15:10:52 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 15:10:58 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 15:10:58 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 15:10:58 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 15:47:44 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 15:47:53 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 15:47:53 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 15:47:57 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 15:47:57 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 15:47:57 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 15:51:40 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 15:51:52 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 15:51:52 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 15:51:56 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 15:51:56 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 15:51:56 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 15:56:29 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 15:56:41 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 15:56:41 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 15:56:45 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 15:56:45 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 15:56:45 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 16:00:49 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 16:01:01 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 16:01:01 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 16:01:05 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 16:01:05 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 16:01:05 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 16:02:54 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 16:03:06 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 16:03:06 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 16:03:11 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 16:03:11 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 16:03:11 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 16:06:36 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 16:06:48 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 16:06:48 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 16:06:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 16:06:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 16:06:53 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 17:29:53 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 17:30:06 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 17:30:06 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 17:30:12 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 17:30:12 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 17:30:12 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 18:34:49 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 18:34:59 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 18:34:59 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 18:35:05 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 18:35:05 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 18:35:05 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-04 19:05:43 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-04 19:05:56 PM [main] INFO  ESPoTLogger - At checkSetProxy couldn't test connect with google
+2019-Nov-04 19:05:56 PM [main] INFO  ESPoTLogger - Proxy set
+2019-Nov-04 19:06:00 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-04 19:06:00 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-04 19:06:00 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-10 19:26:10 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-10 19:26:11 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-10 19:26:15 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-10 19:26:15 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-10 19:26:15 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-10 21:38:30 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-10 21:38:33 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-10 21:38:38 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-10 21:38:38 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-10 21:38:38 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Nov-17 23:26:57 PM [main] INFO  ESPoTLogger - At checkSetProxy proxy not yet set
+2019-Nov-17 23:26:57 PM [main] INFO  ESPoTLogger - Able to connect to google without proxy
+2019-Nov-17 23:27:01 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20190725030716
+2019-Nov-17 23:27:01 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Nov-17 23:27:01 PM [main] INFO  ESPoTLogger -  source location: Templates/DefaultDocTest.docx
+2019-Dec-17 23:23:05 PM [main] INFO  ESPoTLogger - Error XtdStdRtCtCatlogPersistenceManager neverCallMe_DeleteXtdStdProcessTbl from method clearXtdSrvrDbRecs --- org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (no such table: extdSrvrDBAlias.XtdStdProcessTbl)
+2019-Dec-17 23:23:33 PM [main] ERROR ESPoTLogger - Error XtdStdRtCtCatlogPersistenceManager neverCallMe_DeleteXtdStdProcessTbl
+org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (no such table: extdSrvrDBAlias.XtdStdProcessTbl)
+	at org.sqlite.core.DB.newSQLException(DB.java:941) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.DB.newSQLException(DB.java:953) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.DB.throwex(DB.java:918) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.NativeDB._exec_utf8(Native Method) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.NativeDB._exec(NativeDB.java:94) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.jdbc3.JDBC3Statement.executeUpdate(JDBC3Statement.java:109) ~[sqlite-jdbc-3.25.2.jar:?]
+	at xtdSrvrComp.XtdStdRtCtCatlogPersistenceManager.neverCallMe_DeleteXtdStdProcessTbl(XtdStdRtCtCatlogPersistenceManager.java:156) [classes/:?]
+	at xtdSrvrComp.NeverInvokeMe_DeleteAllXtdDbRecs.clearXtdSrvrDbRecs(NeverInvokeMe_DeleteAllXtdDbRecs.java:35) [classes/:?]
+	at xtdSrvrComp.NeverInvokeMe_DeleteAllXtdDbRecs.main(NeverInvokeMe_DeleteAllXtdDbRecs.java:76) [classes/:?]
+2019-Dec-25 16:08:41 PM [main] INFO  ESPoTLogger - Error at GenericItemHandler doCommonInit artifactMover 5 while dealing with artifactName :Tracker1 from method orchestration
+2019-Dec-25 16:09:08 PM [main] ERROR ESPoTLogger - Error at GenericItemHandler doCommonInit artifactMover 5 while dealing with artifactName :Tracker1
+2019-Dec-28 01:20:25 AM [main] INFO  ESPoTLogger - Error ArtifactMover moveArtifact deckerLite1 deckerLite1 from method orchestration --- java.io.FileNotFoundException: C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1\~$deckerLite1_allCombined.xlsx (The process cannot access the file because it is being used by another process)
+2019-Dec-28 01:20:49 AM [main] ERROR ESPoTLogger - Error ArtifactMover moveArtifact deckerLite1 deckerLite1
+java.io.FileNotFoundException: C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1\~$deckerLite1_allCombined.xlsx (The process cannot access the file because it is being used by another process)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_171]
+	at java.io.FileInputStream.open(Unknown Source) ~[?:1.8.0_171]
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_171]
+	at org.apache.commons.io.FileUtils.doCopyFile(FileUtils.java:1121) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.doCopyDirectory(FileUtils.java:1424) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.copyDirectory(FileUtils.java:1366) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.copyDirectory(FileUtils.java:1246) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.copyDirectory(FileUtils.java:1215) ~[commons-io-2.6.jar:2.6]
+	at commonTechs.CommonTechs.copyFolderUsingApache(CommonTechs.java:166) ~[classes/:?]
+	at commonTechs.CommonTechs.copyFolderViaName(CommonTechs.java:161) ~[classes/:?]
+	at espot.ArtifactMover.moveArtifact(ArtifactMover.java:124) [classes/:?]
+	at espot.ArtifactPrepper.createDraft(ArtifactPrepper.java:264) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcessor.setupDraftArtifact(XtdDeckerProcessor.java:221) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcessor.extendedContentProcessing(XtdDeckerProcessor.java:186) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcMaster.coreProcessOfRecords(XtdDeckerProcMaster.java:46) [classes/:?]
+	at xtdSrvrComp.AbstractRtCtOrchestrator.orchestration(AbstractRtCtOrchestrator.java:102) [classes/:?]
+	at xtdSrvrComp.XtdDeckrLiteProcOrchestrator.main(XtdDeckrLiteProcOrchestrator.java:59) [classes/:?]
+2019-Dec-28 22:32:55 PM [main] INFO  ESPoTLogger - Error at GenericGrouper doCommonInit artifactMover 4 while dealing with artifactName :deckerLite1 from method orchestration
+2019-Dec-28 22:33:25 PM [main] ERROR ESPoTLogger - Error at GenericGrouper doCommonInit artifactMover 4 while dealing with artifactName :deckerLite1
+2020-Jan-01 18:10:15 PM [main] INFO  ESPoTLogger - Error XtdDeckerProcCatlogPersistenceManager insertDeckerParent(ArtifactKeyPojo deckerLite1 0 19700101053000 NEW from method orchestration --- org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: GrouperParent.ParentRootNick, GrouperParent.ParentRelevance, GrouperParent.ParentArtifactName, GrouperParent.ParentContentType)
+2020-Jan-01 18:10:24 PM [main] ERROR ESPoTLogger - Error XtdDeckerProcCatlogPersistenceManager insertDeckerParent(ArtifactKeyPojo deckerLite1 0 19700101053000 NEW
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: GrouperParent.ParentRootNick, GrouperParent.ParentRelevance, GrouperParent.ParentArtifactName, GrouperParent.ParentContentType)
+	at org.sqlite.core.DB.newSQLException(DB.java:941) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.DB.newSQLException(DB.java:953) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.DB.throwex(DB.java:918) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.NativeDB._exec_utf8(Native Method) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.NativeDB._exec(NativeDB.java:94) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.jdbc3.JDBC3Statement.executeUpdate(JDBC3Statement.java:109) ~[sqlite-jdbc-3.25.2.jar:?]
+	at xtdSrvrComp.XtdDeckerProcCatlogPersistenceManager.insertDeckerParent(XtdDeckerProcCatlogPersistenceManager.java:273) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcessor.subscribeToDeckerParents(XtdDeckerProcessor.java:53) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcMaster.coreProcessOfRecords(XtdDeckerProcMaster.java:32) [classes/:?]
+	at xtdSrvrComp.AbstractRtCtOrchestrator.orchestration(AbstractRtCtOrchestrator.java:102) [classes/:?]
+	at xtdSrvrComp.XtdDeckrLiteProcOrchestrator.main(XtdDeckrLiteProcOrchestrator.java:59) [classes/:?]
+2020-Jan-01 19:36:44 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200101193644
+2020-Jan-01 19:36:45 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200101193645
+2020-Jan-01 19:36:45 PM [main] INFO  ESPoTLogger - Error at GenericGrouper doCommonInit artifactMover 4 while dealing with artifactName :deckerLite1 from method orchestration
+2020-Jan-01 19:37:07 PM [main] ERROR ESPoTLogger - Error at GenericGrouper doCommonInit artifactMover 4 while dealing with artifactName :deckerLite1
+2020-Jan-01 20:16:45 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200101201645
+2020-Jan-01 20:23:43 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200101202343
+2020-Jan-01 20:23:44 PM [main] INFO  ESPoTLogger - Error ArtifactMover archiveArtifact deckerLite1 from method orchestration --- org.apache.commons.io.FileExistsException: Destination 'C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200101202343' already exists
+2020-Jan-01 20:23:51 PM [main] ERROR ESPoTLogger - Error ArtifactMover archiveArtifact deckerLite1
+org.apache.commons.io.FileExistsException: Destination 'C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200101202343' already exists
+	at org.apache.commons.io.FileUtils.moveDirectory(FileUtils.java:2923) ~[commons-io-2.6.jar:2.6]
+	at commonTechs.CommonTechs.moveFolderUsingApache(CommonTechs.java:176) ~[classes/:?]
+	at commonTechs.CommonTechs.moveFolderViaName(CommonTechs.java:171) ~[classes/:?]
+	at espot.Commons.archiveLocalFolder(Commons.java:911) ~[classes/:?]
+	at espot.ArtifactMover.archiveDraft(ArtifactMover.java:310) [classes/:?]
+	at espot.ArtifactPrepper.createDraft(ArtifactPrepper.java:252) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcessor.setupDraftArtifact(XtdDeckerProcessor.java:221) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcessor.extendedContentProcessing(XtdDeckerProcessor.java:186) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcMaster.coreProcessOfRecords(XtdDeckerProcMaster.java:46) [classes/:?]
+	at xtdSrvrComp.AbstractRtCtOrchestrator.orchestration(AbstractRtCtOrchestrator.java:102) [classes/:?]
+	at xtdSrvrComp.XtdDeckrLiteProcOrchestrator.main(XtdDeckrLiteProcOrchestrator.java:59) [classes/:?]
+2020-Jan-01 23:57:16 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200101235716
+2020-Jan-02 00:00:01 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200102000001
+2020-Jan-02 00:00:01 AM [main] INFO  ESPoTLogger - archiving Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 already existed hence deleted prior to the new archival
+2020-Jan-02 00:00:01 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200102000001
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:12:57 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Jan-03 00:13:00 AM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200103001300
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:24:05 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Jan-03 00:24:08 AM [main] INFO  ESPoTLogger - Error XtdDeckerProcCatlogPersistenceManager insertDeckerParent(ArtifactKeyPojo deckerLite1 0 19700101053000 NEW from method orchestration --- org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: GrouperParent.ParentRootNick, GrouperParent.ParentRelevance, GrouperParent.ParentArtifactName, GrouperParent.ParentContentType)
+2020-Jan-03 00:24:25 AM [main] ERROR ESPoTLogger - Error XtdDeckerProcCatlogPersistenceManager insertDeckerParent(ArtifactKeyPojo deckerLite1 0 19700101053000 NEW
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: GrouperParent.ParentRootNick, GrouperParent.ParentRelevance, GrouperParent.ParentArtifactName, GrouperParent.ParentContentType)
+	at org.sqlite.core.DB.newSQLException(DB.java:941) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.DB.newSQLException(DB.java:953) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.DB.throwex(DB.java:918) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.NativeDB._exec_utf8(Native Method) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.core.NativeDB._exec(NativeDB.java:94) ~[sqlite-jdbc-3.25.2.jar:?]
+	at org.sqlite.jdbc3.JDBC3Statement.executeUpdate(JDBC3Statement.java:109) ~[sqlite-jdbc-3.25.2.jar:?]
+	at xtdSrvrComp.XtdDeckerProcCatlogPersistenceManager.insertDeckerParent(XtdDeckerProcCatlogPersistenceManager.java:273) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcessor.subscribeToDeckerParents(XtdDeckerProcessor.java:53) [classes/:?]
+	at xtdSrvrComp.XtdDeckerProcMaster.coreProcessOfRecords(XtdDeckerProcMaster.java:32) [classes/:?]
+	at xtdSrvrComp.AbstractRtCtOrchestrator.orchestration(AbstractRtCtOrchestrator.java:102) [classes/:?]
+	at xtdSrvrComp.XtdDeckrLiteProcOrchestrator.main(XtdDeckrLiteProcOrchestrator.java:59) [classes/:?]
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-03 00:25:46 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Jan-03 00:25:49 AM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200103002549
+2020-Jan-03 00:25:49 AM [main] INFO  ESPoTLogger - in Commons prepDupeArchiveName found a unique name for archiving C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200103002549_1
+2020-Jan-03 00:25:49 AM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200103002549_1
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-04 12:17:53 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Jan-04 12:17:55 PM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200104121755
+2020-Jan-04 12:17:56 PM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200104121756
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Jan-04 12:21:14 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Jan-04 12:21:16 PM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200104122116
+2020-Jan-04 12:21:16 PM [main] INFO  ESPoTLogger - archiving C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200104122116 already existed hence deleted prior to the new archival
+2020-Jan-04 12:21:16 PM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\extdSrvrDeckrLite\archive\deckerLite1_Tm20200104122116

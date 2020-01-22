@@ -1,0 +1,874 @@
+2019-Dec-24 01:03:07 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-24 01:03:33 AM [main] INFO  ESPoTLogger - Error ArtifactMover archiveArtifact dkr from method displayArtifact --- java.io.IOException: Unable to delete file: C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Finance\dkr\primeFile.json
+2019-Dec-24 01:04:02 AM [main] ERROR ESPoTLogger - Error ArtifactMover archiveArtifact dkr
+java.io.IOException: Unable to delete file: C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Finance\dkr\primeFile.json
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:2400) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1721) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1617) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.moveDirectory(FileUtils.java:2931) ~[commons-io-2.6.jar:2.6]
+	at commonTechs.CommonTechs.moveFolderUsingApache(CommonTechs.java:176) ~[classes/:?]
+	at commonTechs.CommonTechs.moveFolderViaName(CommonTechs.java:171) ~[classes/:?]
+	at espot.Commons.archiveLocalFolder(Commons.java:855) ~[classes/:?]
+	at espot.ArtifactMover.archiveDraft(ArtifactMover.java:310) [classes/:?]
+	at espot.CreateArtifactUI$4.widgetSelected(CreateArtifactUI.java:522) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:577) [classes/:?]
+	at espot.CreateArtifactUI.refreshScreen(CreateArtifactUI.java:54) [classes/:?]
+	at espot.CreateArtifactUI$1.widgetSelected(CreateArtifactUI.java:95) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:577) [classes/:?]
+	at espot.CreateArtifactUI.displayCreateArtifactUI(CreateArtifactUI.java:62) [classes/:?]
+	at espot.CatalogDisplay$1.widgetSelected(CatalogDisplay.java:50) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactsDisplay.shellDisposeHolder(ArtifactsDisplay.java:244) [classes/:?]
+	at espot.ArtifactsDisplay.displayArtifact(ArtifactsDisplay.java:73) [classes/:?]
+	at espot.CatalogDisplay.main(CatalogDisplay.java:330) [classes/:?]
+2019-Dec-24 01:05:07 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-24 01:09:00 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-24 01:09:50 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Finance\dkr2 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\dkr2_Tm20191224010950
+2019-Dec-24 01:10:45 AM [main] INFO  ESPoTLogger - Error ArtifactMover archiveArtifact dk3 from method displayArtifact --- java.io.IOException: Unable to delete file: C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\dk3\primeFile.json
+2019-Dec-24 01:10:48 AM [main] ERROR ESPoTLogger - Error ArtifactMover archiveArtifact dk3
+java.io.IOException: Unable to delete file: C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\dk3\primeFile.json
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:2400) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1721) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1617) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.moveDirectory(FileUtils.java:2931) ~[commons-io-2.6.jar:2.6]
+	at commonTechs.CommonTechs.moveFolderUsingApache(CommonTechs.java:176) ~[classes/:?]
+	at commonTechs.CommonTechs.moveFolderViaName(CommonTechs.java:171) ~[classes/:?]
+	at espot.Commons.archiveLocalFolder(Commons.java:855) ~[classes/:?]
+	at espot.ArtifactMover.archiveDraft(ArtifactMover.java:310) [classes/:?]
+	at espot.CreateArtifactUI$4.widgetSelected(CreateArtifactUI.java:522) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:577) [classes/:?]
+	at espot.CreateArtifactUI.refreshScreen(CreateArtifactUI.java:54) [classes/:?]
+	at espot.CreateArtifactUI$1.widgetSelected(CreateArtifactUI.java:95) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:577) [classes/:?]
+	at espot.CreateArtifactUI.refreshScreen(CreateArtifactUI.java:54) [classes/:?]
+	at espot.CreateArtifactUI$4.widgetSelected(CreateArtifactUI.java:550) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:577) [classes/:?]
+	at espot.CreateArtifactUI.displayCreateArtifactUI(CreateArtifactUI.java:62) [classes/:?]
+	at espot.CatalogDisplay$1.widgetSelected(CatalogDisplay.java:50) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactsDisplay.shellDisposeHolder(ArtifactsDisplay.java:244) [classes/:?]
+	at espot.ArtifactsDisplay.displayArtifact(ArtifactsDisplay.java:73) [classes/:?]
+	at espot.CatalogDisplay.main(CatalogDisplay.java:330) [classes/:?]
+2019-Dec-24 01:11:29 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-24 01:24:42 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-24 01:25:18 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\CustomerCare\dk4 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\dk4_Tm20191224012518
+2019-Dec-24 01:36:24 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-24 01:37:20 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\HR\dkr5 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\dkr5_Tm20191224013720
+2019-Dec-25 12:37:01 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-25 12:46:05 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-25 12:46:05 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-25 12:46:19 PM [main] ERROR ESPoTLogger - Error in Commons getInstance processMode = 1
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:51:13 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-25 12:51:25 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-25 12:51:25 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-25 13:09:33 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-25 13:09:33 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-25 13:09:45 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 13:15:42 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 13:16:04 PM [main] INFO  ESPoTLogger - Archived the file C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\test3idea.ideas into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\test3idea.ideas_Tm20191225131604
+2019-Dec-25 13:16:08 PM [main] INFO  ESPoTLogger - Archived the file C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\test2idea_2.ideas into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\test2idea_2.ideas_Tm20191225131608
+2019-Dec-25 13:16:08 PM [main] INFO  ESPoTLogger - Archived the file C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\test2idea_1.ideas into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\test2idea_1.ideas_Tm20191225131608
+2019-Dec-25 13:16:08 PM [main] INFO  ESPoTLogger - Archived the file C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\test2idea.ideas into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\test2idea.ideas_Tm20191225131608
+2019-Dec-25 16:08:06 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 18:16:34 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 18:17:41 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 18:26:24 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 18:26:56 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 18:59:47 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:06:00 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:07:07 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:08:50 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:10:04 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:10:40 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:14:54 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:16:30 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:21:03 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:23:29 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:30:25 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:38:39 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:41:48 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 19:58:24 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 20:01:04 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 20:06:02 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 20:06:15 PM [main] INFO  ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot from method displayArtifact --- java.io.IOException: Unable to delete directory C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot.
+2019-Dec-25 20:07:21 PM [main] ERROR ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot
+java.io.IOException: Unable to delete directory C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot.
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1623) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:2391) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1721) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1617) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.moveDirectory(FileUtils.java:2931) ~[commons-io-2.6.jar:2.6]
+	at commonTechs.CommonTechs.moveFolderUsingApache(CommonTechs.java:176) ~[classes/:?]
+	at commonTechs.CommonTechs.moveFolderViaName(CommonTechs.java:171) ~[classes/:?]
+	at espot.Commons.archiveLocalFolder(Commons.java:895) ~[classes/:?]
+	at espot.ArchiverOfLocalESPoTArtifacts.archiveLocalESPoTArtifacts(ArchiverOfLocalESPoTArtifacts.java:35) [classes/:?]
+	at espot.CatalogDisplay$4.widgetSelected(CatalogDisplay.java:135) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactsDisplay.shellDisposeHolder(ArtifactsDisplay.java:244) [classes/:?]
+	at espot.ArtifactsDisplay.displayArtifact(ArtifactsDisplay.java:73) [classes/:?]
+	at espot.CatalogDisplay.main(CatalogDisplay.java:371) [classes/:?]
+2019-Dec-25 20:07:32 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 20:11:37 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20191225201137
+2019-Dec-25 20:11:37 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newreviews_Tm20191225201137
+2019-Dec-25 20:11:38 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\responsesfolderlocal_Tm20191225201137
+2019-Dec-25 20:11:38 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedcontent_Tm20191225201138
+2019-Dec-25 20:11:38 PM [main] INFO  ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot from method displayArtifact --- java.io.IOException: Unable to delete directory C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews\KKTestWinRoot\MyOrg.
+2019-Dec-25 20:21:26 PM [main] ERROR ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot
+java.io.IOException: Unable to delete directory C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews\KKTestWinRoot\MyOrg.
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1623) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:2391) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1721) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1617) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:2391) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1721) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1617) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.moveDirectory(FileUtils.java:2931) ~[commons-io-2.6.jar:2.6]
+	at commonTechs.CommonTechs.moveFolderUsingApache(CommonTechs.java:176) ~[classes/:?]
+	at commonTechs.CommonTechs.moveFolderViaName(CommonTechs.java:171) ~[classes/:?]
+	at espot.Commons.archiveLocalFolder(Commons.java:895) ~[classes/:?]
+	at espot.ArchiverOfLocalESPoTArtifacts.archiveLocalESPoTArtifacts(ArchiverOfLocalESPoTArtifacts.java:39) [classes/:?]
+	at espot.CatalogDisplay$4.widgetSelected(CatalogDisplay.java:135) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactsDisplay.shellDisposeHolder(ArtifactsDisplay.java:244) [classes/:?]
+	at espot.ArtifactsDisplay.displayArtifact(ArtifactsDisplay.java:73) [classes/:?]
+	at espot.CatalogDisplay.main(CatalogDisplay.java:371) [classes/:?]
+2019-Dec-25 20:21:40 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 20:21:44 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-25 20:21:44 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-25 20:21:44 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-25 20:21:44 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-25 20:21:44 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedreviews_Tm20191225202144
+2019-Dec-25 20:21:50 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-25 20:21:50 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-25 20:21:50 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-25 20:21:50 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-25 20:21:50 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-25 20:43:47 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20191225204347
+2019-Dec-25 20:43:47 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-25 20:43:47 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-25 20:43:47 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-25 20:43:47 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-25 20:43:52 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-25 20:43:52 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-25 20:43:52 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-25 20:43:52 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-25 20:43:52 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-25 20:44:14 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20191225204414
+2019-Dec-25 20:44:14 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-25 20:44:14 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-25 20:44:14 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-25 20:44:14 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-25 20:47:47 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-25 20:47:47 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-25 20:47:47 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-25 20:47:47 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-25 20:47:47 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-25 20:50:20 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20191225205020
+2019-Dec-25 20:50:20 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newreviews_Tm20191225205020
+2019-Dec-25 20:50:20 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-25 20:50:20 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-25 20:50:21 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedreviews_Tm20191225205020
+2019-Dec-25 20:51:27 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20191225205127
+2019-Dec-25 20:51:27 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newreviews_Tm20191225205127
+2019-Dec-25 20:51:27 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-25 20:51:27 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-25 20:51:27 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedreviews_Tm20191225205127
+2019-Dec-25 22:10:39 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 22:10:45 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\DemoWinContentRoot_Tm20191225221045
+2019-Dec-25 22:10:45 PM [main] INFO  ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot from method displayArtifact --- org.apache.commons.io.FileExistsException: Destination 'C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\DemoWinContentRoot_Tm20191225221045' already exists
+2019-Dec-25 23:25:18 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 23:25:22 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot doesn't exist or Not a Folder
+2019-Dec-25 23:25:22 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews\DemoWinContentRoot into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\DemoWinContentRoot_Tm20191225232522
+2019-Dec-25 23:25:22 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal\DemoWinContentRoot doesn't exist or Not a Folder
+2019-Dec-25 23:25:22 PM [main] INFO  ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot from method displayArtifact --- org.apache.commons.io.FileExistsException: Destination 'C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\DemoWinContentRoot_Tm20191225232522' already exists
+2019-Dec-25 23:51:55 PM [main] ERROR ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot
+org.apache.commons.io.FileExistsException: Destination 'C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\DemoWinContentRoot_Tm20191225232522' already exists
+	at org.apache.commons.io.FileUtils.moveDirectory(FileUtils.java:2923) ~[commons-io-2.6.jar:2.6]
+	at commonTechs.CommonTechs.moveFolderUsingApache(CommonTechs.java:176) ~[classes/:?]
+	at commonTechs.CommonTechs.moveFolderViaName(CommonTechs.java:171) ~[classes/:?]
+	at espot.Commons.archiveLocalFolder(Commons.java:889) ~[classes/:?]
+	at espot.ArchiverOfLocalESPoTArtifacts.archiveLocalESPoTArtifacts(ArchiverOfLocalESPoTArtifacts.java:38) [classes/:?]
+	at espot.CatalogDisplay$4.widgetSelected(CatalogDisplay.java:135) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactsDisplay.shellDisposeHolder(ArtifactsDisplay.java:244) [classes/:?]
+	at espot.ArtifactsDisplay.displayArtifact(ArtifactsDisplay.java:73) [classes/:?]
+	at espot.CatalogDisplay.main(CatalogDisplay.java:371) [classes/:?]
+2019-Dec-25 23:54:41 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-25 23:54:49 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot doesn't exist or Not a Folder
+2019-Dec-25 23:54:49 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews\DemoWinContentRoot doesn't exist or Not a Folder
+2019-Dec-25 23:54:49 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal\DemoWinContentRoot doesn't exist or Not a Folder
+2019-Dec-25 23:54:49 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent\DemoWinContentRoot into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\DemoWinContentRoot_Tm20191225235449
+2019-Dec-25 23:54:49 PM [main] INFO  ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot from method displayArtifact --- org.apache.commons.io.FileExistsException: Destination 'C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\DemoWinContentRoot_Tm20191225235449' already exists
+2019-Dec-26 00:12:21 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 00:12:27 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20191226001227
+2019-Dec-26 00:12:27 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newreviews_Tm20191226001227
+2019-Dec-26 00:12:27 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 00:12:27 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedcontent_Tm20191226001227
+2019-Dec-26 00:12:27 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedreviews_Tm20191226001227
+2019-Dec-26 00:12:39 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 00:12:46 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-26 00:12:46 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-26 00:12:46 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 00:12:46 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-26 00:12:46 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-26 00:12:51 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-26 00:12:51 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-26 00:12:51 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 00:12:51 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-26 00:12:51 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-26 00:13:01 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-26 00:13:01 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-26 00:13:01 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 00:13:01 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-26 00:13:01 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-26 00:14:17 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 00:14:38 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-26 00:14:38 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-26 00:14:38 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 00:14:38 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-26 00:14:38 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-26 00:15:15 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20191226001515
+2019-Dec-26 00:15:15 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newreviews_Tm20191226001515
+2019-Dec-26 00:15:15 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 00:15:15 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedcontent_Tm20191226001515
+2019-Dec-26 00:15:15 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedreviews_Tm20191226001515
+2019-Dec-26 00:15:29 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20191226001529
+2019-Dec-26 00:15:29 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newreviews_Tm20191226001529
+2019-Dec-26 00:15:29 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 00:15:29 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedcontent_Tm20191226001529
+2019-Dec-26 00:15:29 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedreviews_Tm20191226001529
+2019-Dec-26 00:17:10 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-26 00:17:10 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-26 00:17:10 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 00:17:10 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-26 00:17:10 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-26 00:25:15 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 00:45:36 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 00:47:48 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 00:48:37 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 00:49:05 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 00:50:19 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 00:51:07 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-26 00:51:07 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-26 00:51:07 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 00:51:07 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-26 00:51:07 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-26 08:37:30 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 08:38:11 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2019-Dec-26 08:38:11 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2019-Dec-26 08:38:11 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2019-Dec-26 08:38:11 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent doesn't exist or Not a Folder
+2019-Dec-26 08:38:11 AM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2019-Dec-26 08:54:23 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 08:56:14 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 09:03:12 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 09:14:24 AM [main] INFO  ESPoTLogger - Archived the file C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\HR\testIdea.ideas into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\testIdea.ideas_Tm20191226091424
+2019-Dec-26 09:19:01 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 09:33:54 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 10:29:06 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-26 10:32:53 AM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Finance\simpleTracker into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\simpleTracker_Tm20191226103253
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-26 10:45:10 AM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-26 10:45:10 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-26 10:47:37 AM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-26 10:47:37 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:48:57 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-26 10:49:52 AM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-26 10:49:52 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-26 10:49:53 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-26 10:53:23 AM [main] INFO  ESPoTLogger - Archived the file C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1.pptx into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\deckerLite1.pptx_Tm20191226105323
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-26 10:59:17 AM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-26 10:59:17 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 10:59:25 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-26 11:12:11 AM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-26 11:12:11 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-26 13:54:30 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 16:28:10 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:31:58 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:23 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:47 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-27 23:37:59 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-27 23:37:59 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-27 23:38:13 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-27 23:44:47 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-27 23:44:47 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:00 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:31 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:45:46 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-27 23:45:46 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-27 23:45:47 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-27 23:45:47 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-27 23:46:02 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-27 23:46:25 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-27 23:56:25 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-27 23:56:25 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:56:44 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:58:09 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-27 23:58:22 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-27 23:58:22 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-28 00:20:12 AM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-28 00:20:12 AM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 00:20:36 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 14:57:56 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 14:58:22 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\deckerLite1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\deckerLite1_Tm20191228145822
+2019-Dec-28 14:58:28 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\simpleTrkr1_2 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\simpleTrkr1_2_Tm20191228145828
+2019-Dec-28 14:58:28 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\simpleTrkr1_1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\simpleTrkr1_1_Tm20191228145828
+2019-Dec-28 14:58:28 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\simpleTrkr1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\simpleTrkr1_Tm20191228145828
+2019-Dec-28 14:58:42 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\simpleTrkr2_2 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\simpleTrkr2_2_Tm20191228145842
+2019-Dec-28 14:58:42 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\simpleTrkr2_1 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\simpleTrkr2_1_Tm20191228145842
+2019-Dec-28 14:58:42 PM [main] INFO  ESPoTLogger - Archived the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\simpleTrkr2 into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\simpleTrkr2_Tm20191228145842
+2019-Dec-28 14:58:48 PM [main] INFO  ESPoTLogger - Archived the file C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts\DemoWinContentRoot\MyOrg\Divisions\Sales\testIdea1.ideas into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\testIdea1.ideas_Tm20191228145848
+2019-Dec-28 15:21:11 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-28 15:29:50 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-28 15:29:50 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:30:06 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-28 15:30:44 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-28 15:30:44 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-28 15:36:04 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-28 15:36:04 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:18 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-28 15:36:36 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-28 15:36:36 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-28 15:40:46 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-28 15:40:46 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:41:01 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-28 15:41:28 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-28 15:41:28 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-28 15:49:12 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:50:19 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:53:40 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:54:09 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:54:24 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:55:12 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:55:51 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:56:59 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:57:14 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:58:13 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:59:29 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger - Hello Log4j2...
+2019-Dec-28 15:59:44 PM [main] WARN  ESPoTLogger - Exiting application...
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started - logging set to info
+2019-Dec-28 15:59:44 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2019-Dec-28 19:26:40 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 19:34:18 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2019-Dec-28 19:35:46 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
