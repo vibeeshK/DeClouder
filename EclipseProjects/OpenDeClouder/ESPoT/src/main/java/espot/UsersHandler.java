@@ -54,6 +54,10 @@ public class UsersHandler {
 		return usersNamesStrings;
 	}
 	
+	public ArrayList<UserPojo> getUserDetails() {
+		return usersList;
+	}
+	
 	public void creategetUsersNamesStrings(){
 		System.out.println("at creategetUsersNamesStrings ");
 		

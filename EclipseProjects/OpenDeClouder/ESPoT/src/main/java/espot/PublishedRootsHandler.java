@@ -18,7 +18,7 @@ public class PublishedRootsHandler {
 	int rootsTotal = 0;
 	private static PublishedRootsHandler publishedRootsHandler = null;
 
-	public static synchronized HashMap<String, RootPojo> getPublishedRoots(Commons inCommons){
+	public static synchronized HashMap<String, RootPojo> getPublishedRoots(Commons inCommons) {
 		System.out.println("@ getPublishedRoots ");
 
 		if (publishedRootsHandler == null) {
@@ -27,8 +27,7 @@ public class PublishedRootsHandler {
 		return publishedRootsHandler.publishedRootsMap;		
 	}
 
-	private PublishedRootsHandler(Commons inCommons)
-	{
+	private PublishedRootsHandler(Commons inCommons) {
 		commons = inCommons;
 		try {
 			System.out.println("@ PublishedRootsHandler commons.pulishedRootsFile = " + commons.publishedRootsFileName);
@@ -43,7 +42,6 @@ public class PublishedRootsHandler {
 
 		publishedRootsMap = new HashMap<String,RootPojo>();
 
-		
 		for (int rootCount=0;rootCount < rootsTotal; rootCount++) {
 			RootPojo rootPojo = new RootPojo();			
 
@@ -60,6 +58,11 @@ public class PublishedRootsHandler {
 			rootPojo.remoteAccesserType = ((Element) pubishedRootsDoc.getElementsByTagName("Root").item(rootCount)).getAttribute("RemoteAccesserType");
 			rootPojo.fileSeparator = ((Element) pubishedRootsDoc.getElementsByTagName("Root").item(rootCount)).getAttribute("FileSeparator");
 
+			String requiresInternetAsTx = ((Element) pubishedRootsDoc.getElementsByTagName("Root").item(rootCount)).getAttribute("RequiresInternet");
+			if (requiresInternetAsTx.equalsIgnoreCase("Yes")) {
+				rootPojo.requiresInternet = true;
+			}
+			
 			System.out.println("@ PublishedRootsHandler Loop rootCount = " + rootCount);
 			System.out.println("@ PublishedRootsHandler rootPojo.rootNick = " + rootPojo.rootNick);
 			System.out.println("@ PublishedRootsHandler rootPojo.rootString = " + rootPojo.rootString);

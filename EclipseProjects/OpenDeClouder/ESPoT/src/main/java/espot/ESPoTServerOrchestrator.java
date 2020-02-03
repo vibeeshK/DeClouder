@@ -22,7 +22,7 @@ public class ESPoTServerOrchestrator {
 		HashMap<String, RootPojo> publishedRootsMap = PublishedRootsHandler.getPublishedRoots(commons);
 		SysCompRefresh.compRefresh(commons);
 
-		OrchestrationData orchestrationData = new OrchestrationData(commons.userName,"ESPoTServerOrchestrator",commons.applicationIcon); 
+		OrchestrationData orchestrationData = new OrchestrationData(commons.userName,"ESPoTServerOrchestrator",commons.applicationIcon);
 		OrchestrationUI orchestrationUI = new OrchestrationUI(orchestrationData);
 		Thread orchestrationUIThread = new Thread(orchestrationUI);
 		orchestrationUIThread.start();		

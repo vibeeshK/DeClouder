@@ -2298,9 +2298,9 @@ public class CatelogPersistenceManager {
 				createConnectionAndStatment();
 			}
 
-			String queryString = "SELECT ShortId, EmployeeName, EmailID, PrivilegeLevel from "
+			String queryString = "SELECT ShortId, UserName, RootSysLoginID, PrivilegeLevel, ActiveStatus from "
 					+ catalogDBAliasPrefix + "Users " 
-					+ " order by EmployeeName"
+					+ " order by UserName"
 					;
 
 			System.out.println("QUERY for readUsersList = "
@@ -2313,7 +2313,7 @@ public class CatelogPersistenceManager {
 			while (rs.next()) {
 				
 				UserPojo userPojo = new UserPojo (
-						rs.getString("ShortId"), rs.getString("EmployeeName"), rs.getString("EmailID"),rs.getInt("PrivilegeLevel"));
+						rs.getString("ShortId"), rs.getString("UserName"), rs.getString("RootSysLoginID"),rs.getInt("PrivilegeLevel"),rs.getString("ActiveStatus"));
 				usersList.add(userPojo);
 			}
 		} catch (SQLException e) {
@@ -2324,6 +2324,34 @@ public class CatelogPersistenceManager {
 		}
 		return usersList;
 	}
+
+	public synchronized void replaceUser(UserPojo inUserPojo) {
+		try {
+			if (connection == null || statement == null) {
+				createConnectionAndStatment();
+			}
+			String replaceString = " REPLACE INTO "
+					+ catalogDBAliasPrefix + "Users "
+					+ " ( ShortId, UserName, RootSysLoginID, PrivilegeLevel, ActiveStatus ) "
+					+ " VALUES ( "
+					+ "'" + inUserPojo.shortId + "', "
+					+ "'" + inUserPojo.userName + "', "
+					+ "'" + inUserPojo.rootSysLoginID + "', "
+					+ "'" + inUserPojo.privilegeLevel + "', "
+					+ "'" + inUserPojo.activeStatus + "')";
+
+			System.out.println(replaceString);
+
+			statement.executeUpdate(replaceString);
+
+		} catch (SQLException e) {
+			// if the error message is "out of memory",
+			// it probably means no database file is found
+			//System.err.println(e.getMessage());
+			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager replaceUser ", e);
+		}
+	}
+
 	
 	public synchronized void neverCallMe_DeleteAllSelfAuthoredArtifacts() {
 		try {

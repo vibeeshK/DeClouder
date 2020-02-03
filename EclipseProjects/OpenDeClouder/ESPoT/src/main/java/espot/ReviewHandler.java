@@ -29,6 +29,8 @@ public class ReviewHandler {
 	/*
 	 * Review handling UI for an artifact or an item within
 	 */
+	public static final int PREFERED_REVIEW_PANEL_WIDTH = 600;
+	public static final int PREFERED_REVIEW_HEIGHT = 100;
 
 	Composite wrappingExtlComposite;
 	Composite reviewFrameOutmostScroller;
@@ -182,7 +184,7 @@ public class ReviewHandler {
 			System.out.println("artifactPojo = " + artifactPojo);
 			System.out.println("itemName = " + itemName);
 			prevCommentText.setText(artifactAllReviewsPojo.itemsReviews.get(itemName));
-			prevCommentHeight = 100;
+			prevCommentHeight = PREFERED_REVIEW_HEIGHT;
 		} else {
 			prevCommentText.setText("-None-");
 		}
@@ -190,9 +192,9 @@ public class ReviewHandler {
 		
 		FormData formData = new FormData();
 		if (prevCommentHeight > 0) {
-			formData.height = 100;
+			formData.height = PREFERED_REVIEW_HEIGHT;
 		}
-		formData.width = 600;
+		formData.width = PREFERED_REVIEW_PANEL_WIDTH;
 		formData.top = new FormAttachment(reviewContntHolder, 0, SWT.TOP);;
 		prevCommentGrp.setLayoutData(formData);
 		prevCommentGrp.pack();
@@ -240,8 +242,8 @@ public class ReviewHandler {
 
 		formData = new FormData();
 		formData.top = new FormAttachment(lastReviewWdgtGrp,0,SWT.BOTTOM);
-		formData.height = 100;
-		formData.width = 600;
+		formData.height = PREFERED_REVIEW_HEIGHT;
+		formData.width = PREFERED_REVIEW_PANEL_WIDTH;
 		newCommentText.pack();
 		newCommentGrp.setLayoutData(formData);
 

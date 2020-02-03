@@ -43,9 +43,11 @@ public class Commons extends CommonTechs {
 	public final static String clientPropertiesFILENAME = CONFIGFOLDERPREFIX + "client.properties";
 	public final static String serverPropertiesFILENAME = CONFIGFOLDERPREFIX + "server.properties";
 	public final static String commonSyspropertiesFILENAME = CONFIGFOLDERPREFIX + "commonSysComponents.properties";
-	
+
+	public final static String siteToCheckInternetLIT = "siteToCheckInternet";
 	public final static String sysCompCurrLocalLogUpdateTmLIT = "sysCompCurrLocalLogUpdateTm";
 	public final static String suppressSysCompRefreshLIT = "suppressSysCompRefresh";
+	public final static String adminBranchRelevanceLIT = "adminBranchRelevance";
 	public final static String STR_YES = "YES";
 	public final static String STR_NO = "NO";
 	public boolean suppressSysCompRefresh = false;
@@ -74,7 +76,7 @@ public class Commons extends CommonTechs {
 	public static Commons clientMachineCommonsInstance = null;
 	public static Commons extendedCatalogServerCommonsInstance = null;
 	
-	private static Boolean PROXY_CHECKED = false;
+	private static boolean proxy_checked_already = false;
 
 	public Date sysCompCurrLocalLogUpdateTm = null;
 	public int catalogDownloadTimeGapSec = 0;
@@ -139,6 +141,8 @@ public class Commons extends CommonTechs {
 	private String processingRootNick = null;
 	boolean remoteCommunicationInitiated = false;
 
+	public String adminBranchRelevance;
+	private String siteToCheckInternet;
 	public String httpProxyHost;
 	public String httpProxyPort;
 	public String httpsProxyHost;
@@ -260,10 +264,22 @@ public class Commons extends CommonTechs {
 		catalogDownloadTimeGapSec = Integer.parseInt(commonPropObject.getProperty("catalogDownloadTimeGapSec"));
 		System.out.println("catalogDownloadTimeGapSec = " + catalogDownloadTimeGapSec);
 
+		adminBranchRelevance = commonPropObject.getProperty(adminBranchRelevanceLIT);		
+		System.out.println("adminBranchRelevance = " + adminBranchRelevance);
+
+		siteToCheckInternet=commonPropObject.getProperty(siteToCheckInternetLIT);
+		
 		httpProxyHost=commonPropObject.getProperty("httpProxyHost");
 		httpProxyPort=commonPropObject.getProperty("httpProxyPort");
 		httpsProxyHost=commonPropObject.getProperty("httpsProxyHost");
 		httpsProxyPort=commonPropObject.getProperty("httpsProxyPort");
+
+		System.out.println("siteToCheckInternet = " + siteToCheckInternet);
+		System.out.println("httpProxyHost = " + httpProxyHost);
+		System.out.println("httpProxyPort = " + httpProxyPort);
+		System.out.println("httpsProxyHost = " + httpsProxyHost);
+		System.out.println("httpsProxyPort = " + httpsProxyPort);
+
 	}
 	
 	public void setDefaultUIRootNick(String inRootNick) throws IOException {
@@ -271,27 +287,57 @@ public class Commons extends CommonTechs {
 		System.out.println(" At setDefaultUIRootNick DefaultUIRootNick is " + defaultUIRootNick); 
 		defaultUIRootNick = inRootNick;
 	}
+	
+	public boolean isInternetAvailable(){
+		boolean internetAvailable = false;
+	    try {
+	
+	    	checkSetProxy();
+	    	
+	    	System.out.println("At Commons isInternetAvailable about to check via " + siteToCheckInternet);
+			logger.info("At Commons isInternetAvailable about to check via " + siteToCheckInternet);
+	    	
+	        final URL url = new URL(siteToCheckInternet);
+	        final URLConnection conn = url.openConnection();
+	        conn.connect();
+	        conn.getInputStream().close();
+			internetAvailable = true;
 
-	public void checkSetProxy(){
-		if (!PROXY_CHECKED) {
+	        logger.info("At commons isInternetAvailable able to connect to " + siteToCheckInternet);
+			System.out.println("At commons isInternetAvailable able to connect to " + siteToCheckInternet);
+
+	    } catch (IOException e) {
+
+	    	logger.info("At commons isInternetAvailable couldn't test connect with " + siteToCheckInternet);
+			System.out.println("At commons isInternetAvailable couldn't test connect with " + siteToCheckInternet);
+	    }
+		
+		return internetAvailable;
+	}
+
+	public void checkSetProxy() {
+		if (!proxy_checked_already) {
 			logger.info("At checkSetProxy proxy not yet set");
     		System.out.println("Proxy not checked yet");
-			PROXY_CHECKED = true;
+			proxy_checked_already = true;
 		    try {
-		        final URL url = new URL("http://www.google.com");
+				System.out.println("At Commons checkSetProxy about to check via " + siteToCheckInternet);
+				logger.info("At Commons checkSetProxy about to check via " + siteToCheckInternet);
+		    	
+		        final URL url = new URL(siteToCheckInternet);
 		        final URLConnection conn = url.openConnection();
 		        conn.connect();
 		        conn.getInputStream().close();
-				logger.info("Able to connect to google without proxy");
-		    } catch (IOException e) {
-				logger.info("At checkSetProxy couldn't test connect with google");
 
+				logger.info("At commons checkSetProxy able to connect to " + siteToCheckInternet + " without proxy");
+		    } catch (IOException e) {
+				logger.info("At commons checkSetProxy couldn't test connect with " + siteToCheckInternet + " without proxy");
+		        
 		        System.setProperty("http.proxyHost", httpProxyHost);
 		        System.setProperty("http.proxyPort", httpProxyPort);        
 		        System.setProperty("https.proxyHost", httpsProxyHost);
 		        System.setProperty("https.proxyPort", httpsProxyPort);        
-				logger.info("Proxy set");
-				
+				logger.info("Proxy set");				
 		    }
 		} else {
     		System.out.println("Proxy already checked");
@@ -946,15 +992,15 @@ public class Commons extends CommonTechs {
 		System.out.println("At Commons after archiveLocalFolder from " + inLocalFolderLocation + " into " + archiveFolderName);
 	}
 	
-	public String getRemoteContentDropFileName(String inRootString, String inFileName, String inRemoteFileSeparator, String inAuthor) {
+	public String getRemoteContentDropFileName(String inRootString, String inFileName, String inRemoteFileSeparator, String inRequestor) {
 		System.out.println("At getRemoteContentDropFileName ");
 		System.out.println("contentdropbox is " + contentdropbox);
-		System.out.println("inAuthor is " + inAuthor);
+		System.out.println("inAuthor is " + inRequestor);
 		System.out.println("inFileName is " + inFileName);
 		
 		String remoteFileString = inRootString
 				+ inRemoteFileSeparator + contentdropbox + inRemoteFileSeparator
-				+ inAuthor + inRemoteFileSeparator
+				+ inRequestor + inRemoteFileSeparator
 				+ inFileName;
 		return remoteFileString;
 	}

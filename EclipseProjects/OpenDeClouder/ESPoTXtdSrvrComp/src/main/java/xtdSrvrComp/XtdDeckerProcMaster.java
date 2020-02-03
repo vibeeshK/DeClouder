@@ -25,6 +25,12 @@ public class XtdDeckerProcMaster extends XtdStdContentProcMaster {
 	@Override
 	public void coreProcessOfRecords() {
 		try {
+			if (rootPojo.requiresInternet && !commons.isInternetAvailable()){
+				commons.logger.warn(" Internet umavailable, hence skipping extendedrocess for " + rootPojo.rootNick);	
+				System.out.println(" Internet umavailable, hence skipping extendedrocess for " + rootPojo.rootNick);
+				return;
+			}
+
 			catalogDownloader.downloadCatalog();
 			System.out.println("at 222221 4bavasa" );
 			xtdCatlogPersistenceManager.refreshForLatestCatalog();

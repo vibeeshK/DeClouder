@@ -14,11 +14,15 @@ public class IdeaGenerator extends GenericItemHandler {
 	 * This content handler helps to let any team member to log the an idea
 	 * which will be collated into the grouping content type by the server.
 	 */
+	public static final int PREFERED_DESC_WIDTH = 600;
+	public static final int PREFERED_DESC_HEIGHT = 100;
+
 	Text applicationText;
 	Text statusText;
 	Text reviewerText;
 	Text descriptionText;
 
+	
 	public ItemPojo getItemPojo(int itemCount){
 		ItemPojo ideaPojo = new IdeaPojo(itemCount);
 		return ideaPojo;
@@ -59,6 +63,12 @@ public class IdeaGenerator extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
+		
+		if (ideaPojo.description == null || ideaPojo.description.equalsIgnoreCase("")) {
+			formData.height = PREFERED_DESC_HEIGHT;
+			formData.width = PREFERED_DESC_WIDTH;
+		}
+
 		descriptionInfo.setLayoutData(formData);
 		inPrevGroup = descriptionInfo;
 

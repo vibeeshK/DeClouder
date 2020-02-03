@@ -649,6 +649,16 @@ public class ArtifactWrapperUI {
 						int rc1 = editMessage2Box.open();
 						return;
 					}
+					
+					ContentHandlerInterface prevalidatingContentHandlerInterface = ContentHandlerManager.getInstance(commonUIData.getCommons(), commonUIData.getCatelogPersistenceManager(), processingArtifactKeyPojo.contentType);
+					String prevalidateString = prevalidatingContentHandlerInterface.prevalidate(commonUIData,processingArtifactKeyPojo);
+					if (!prevalidateString.equalsIgnoreCase("")) {
+						MessageBox editMessage3Box = new MessageBox(mainShell,
+								SWT.ICON_ERROR | SWT.OK);
+						editMessage3Box.setMessage(prevalidateString);
+						int rc3 = editMessage3Box.open();
+						return;
+					}
 
 					// Create button validation ends
 					

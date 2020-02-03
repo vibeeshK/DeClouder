@@ -101,6 +101,11 @@ public class DesktopRootProcessor implements Runnable {
 		System.out.println("catalogDBAlias676767: " + catelogPersistenceManager.catalogDBAlias);
 
 		while (orchestrationData.okToContinue) {
+			if (rootPojo.requiresInternet && !commons.isInternetAvailable()){
+				commons.logger.warn(" Internet umavailable, hence skipping DesktopRootProcess for " + rootPojo.rootNick);	
+				System.out.println(" Internet umavailable, hence skipping DesktopRootProcess for " + rootPojo.rootNick);
+				break;
+			}
 
 			rootProcessCount++;
 			System.out.println("ROOTPROCESSCOUNTAS=" + rootProcessCount);

@@ -36,7 +36,7 @@ public abstract class AbstractRtCtOrchestrator {
 		Commons.logger.info(this.getClass().getSimpleName() + " starting up - logging set to info");
 		System.out.println("Extended Orchestrator starting up; printing directly via sysout");
 
-		orchestrationData = new OrchestrationData(initialCommons.userName,this.getClass().getSimpleName(),initialCommons.applicationIcon); 
+		orchestrationData = new OrchestrationData(initialCommons.userName,this.getClass().getSimpleName(),initialCommons.applicationIcon);
 		OrchestrationUI orchestrationUI = new OrchestrationUI(orchestrationData);
 		Thread orchestrationUIThread = new Thread(orchestrationUI);
 		orchestrationUIThread.start();

@@ -19,8 +19,11 @@ public abstract class GenericGrouperDocPojo implements PrimerDocInterface{
 
 		if (getItemList()==null) {
 			createItemList();
+		//maxItemNumber = -1;
+		}
+		if (getItemList().size() == 0) {
 			maxItemNumber = -1;
-		}		
+		}
 		int itemLocation = getItemsCurrentLocation(inItemPojo);
 		if (itemLocation!=-1) {	// item location and itemNum can be different especially for DeckerProcessor
 								// where deletion is allowed resulting in gaps in itemNumbers

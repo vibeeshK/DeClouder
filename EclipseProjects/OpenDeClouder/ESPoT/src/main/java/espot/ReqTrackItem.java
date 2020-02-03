@@ -7,6 +7,7 @@ public class ReqTrackItem {
 	//reqFileName would be the key for this object maintained outside
 	public RequestProcesserPojo requestProcesserPojo;
 	public boolean artifactMoveComplete;
+	public boolean oldestContentVersionArchived;	
 	public boolean erlMasterDBUpdated;
 	public boolean reqRespFileUpdated;
 	public boolean reqArchived;
@@ -16,6 +17,7 @@ public class ReqTrackItem {
 	public ReqTrackItem(RequestProcesserPojo inRequestProcesserPojo) {
 		requestProcesserPojo = inRequestProcesserPojo;
 		artifactMoveComplete = false;
+		oldestContentVersionArchived = false;		
 		erlMasterDBUpdated = false;
 		reqRespFileUpdated = false;
 		reqArchived = false;

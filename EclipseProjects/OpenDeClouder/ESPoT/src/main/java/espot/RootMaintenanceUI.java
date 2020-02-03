@@ -12,6 +12,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -53,7 +54,9 @@ public class RootMaintenanceUI {
 		mainShell.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		System.out.println("RootMaintenanceUI.displayRootMaintenanceUI() bef");
-		publishedRootsMap = PublishedRootsHandler.getPublishedRoots(commonUIData.getCommons());
+		//publishedRootsMap = PublishedRootsHandler.getPublishedRoots(commonUIData.getCommons());
+		publishedRootsMap = commonUIData.getRootPojoMap();
+		
 		allRootNicksList = new ArrayList<String>();
 		allRootNicksList.addAll(publishedRootsMap.keySet());
 		System.out
@@ -165,6 +168,14 @@ public class RootMaintenanceUI {
 											.println("selected screenRowNum = "
 													+ screenRowNum);
 
+									if (allRootNicksList
+									.get(screenRowNum).equalsIgnoreCase(commonUIData.getCurrentRootNick())) {
+										MessageBox messageBox3 = new MessageBox(mainShell, SWT.ICON_WARNING | SWT.OK);
+										messageBox3.setMessage("Default root shall not be unsubscribed");
+										int rc3 = messageBox3.open();
+										return;										
+									}
+									
 									subscribedRootsPojo.removeSubscription(allRootNicksList
 											.get(screenRowNum));
 									refreshRootMaintenanceUI();
@@ -185,6 +196,17 @@ public class RootMaintenanceUI {
 									System.out
 											.println("selected screenRowNum = "
 													+ screenRowNum);
+									
+									if (publishedRootsMap.get(allRootNicksList
+									.get(screenRowNum)).requiresInternet){
+										if (!commonUIData.getCommons().isInternetAvailable()){
+											MessageBox messageBox1 = new MessageBox(mainShell, SWT.ICON_WARNING | SWT.OK);
+											messageBox1.setMessage("Internet access is required for this root, but you dont have");
+											int rc1 = messageBox1.open();
+											return;
+										}
+									}
+									
 									subscribedRootsPojo.addSubscription(allRootNicksList
 											.get(screenRowNum));
 									refreshRootMaintenanceUI();
@@ -232,6 +254,15 @@ public class RootMaintenanceUI {
 									.println("allRootNicksList.get(screenRowNum) is " 
 											+ allRootNicksList
 											.get(screenRowNum));
+									
+									if (!subscribedRootsPojo.doesRootNickExist(allRootNicksList
+											.get(screenRowNum))) {
+										MessageBox messageBox2 = new MessageBox(mainShell, SWT.ICON_WARNING | SWT.OK);
+										messageBox2.setMessage("You need to first subscribe to this root before making it default");
+										int rc2 = messageBox2.open();
+										return;										
+									}
+									
 									try {
 										commonUIData.getCommons().setDefaultUIRootNick(allRootNicksList
 												.get(screenRowNum));

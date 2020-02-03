@@ -8,6 +8,7 @@ public interface ContentHandlerInterface {
 	 * This interface describes the base functions each content handler shall adhere to
 	 */
 
+	public String prevalidate(CommonData inCommonData,ArtifactKeyPojo inArtifactKeyPojo);
 	public void initializeContentHandlerWithMinimumSetup(CommonData inCommonData);
 	public void createNewStartupPrimer(String inNewPrimerFilePath, String inContentType);
 	public void initializeContentHandlerForDraftArtifact(CommonUIData inCommonUIData, SelfAuthoredArtifactpojo inSelfAuthoredArtifactspoj);

@@ -35,6 +35,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 	 * Content handler abstraction for non-grouping types
 	 */
 
+	public static final int PREFERED_ITEM_PANEL_WIDTH = 600;
 	public ArtifactPojo invokedArtifactPojo = null;
 	public boolean invokedForEdit = false;
 
@@ -129,7 +130,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 				| SWT.TITLE | SWT.BORDER | SWT.RESIZE | SWT.MAX);
 		System.out.println("doCommonUIInit mainShell created " + mainShell);
 		mainShell.setLayout(new GridLayout(1, false));
-		mainShell.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		//mainShell.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
 		doCommonInit(inCommonUIData, inArtifactPojo);
 
@@ -303,6 +304,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		itemIDText.setText(primerDoc.getItem().itemID);
 
 		formData = new FormData();
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		itemIDInfo.setLayoutData(formData);
 		lastGroup = itemIDInfo;
 
@@ -571,6 +573,13 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		// Default dummy process as its not a required function for all contents
 		commonData.getCommons().logger.info(" default getTriggerInterval is called which is unexexpected. Invoked artifactname is " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 	}
+	
+	public String prevalidate(CommonData inCommonData,ArtifactKeyPojo inArtifactKeyPojo){
+		//dummy method; to be overridden where used
+		String validateString = "";
+		return validateString;
+	}
+
 }
 
 class ItemID2 {

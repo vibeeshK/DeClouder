@@ -232,6 +232,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 
 		System.out.println("GenericGrouper initiated for initializeContentHandlerWithMinimumSetup");
 		commonData = inCommonData;
+		catelogPersistenceManager = commonData.getCatelogPersistenceManager();
 	}
 
 	public void initializeContentHandlerForDraftArtifact(CommonUIData inCommonUIData, 
@@ -321,6 +322,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	}
 
 	public void setDisplayCoreLeftFieldsInMultiDisplay(TableEditor inEditor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojoScrolled, Button inMaintenanceButton, int inScreenRowNum) {
+		// the reason the maintenanceButton is kept as argument is it would be referred for setting focus on specific record.
+		
 		System.out.println("setDisplayCoreLeftFieldsInMultiDisplay");
 		TableEditor maintenanceButtonEditor = new TableEditor(inTable);
 		inMaintenanceButton
@@ -576,6 +579,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		System.out.println("GenericGrouper maintenanceButtonProcess");
 		System.out.println("Adding maintenanceButton event for Generic Grouper item");
 
+		
 		inMaintenanceButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -596,6 +600,16 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 						selectedItemPojo.relevance,
 						selectedItemPojo.artifactName,
 						selectedItemPojo.contentType);
+
+				String prevalidateString = prevalidate(commonData,selectedArtifactKeyPojo);				
+				if (!prevalidateString.equalsIgnoreCase("")) {
+					MessageBox editMessage1Box = new MessageBox(mainShell,
+							SWT.ICON_ERROR | SWT.OK);
+					editMessage1Box.setMessage(prevalidateString);
+					int rc1 = editMessage1Box.open();
+					return;
+				}
+
 				ArtifactPrepper artifactPrepper = new ArtifactPrepper(selectedArtifactKeyPojo,selectedItemPojo.itemID,commonData);
 
 				if (artifactPrepper.errorEncountered) { return;}
@@ -809,21 +823,21 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		
 		try {
 		
-			if (inRequestProcesserPojo.prevERLPojo == null) {
-				documentToUpdate = getNewPrimerDoc();
-			} else {
-				InputStream prevFileStream = null;
-				System.out.println("inRequestProcesserPojo.prevERLPojo is " + inRequestProcesserPojo.prevERLPojo);
-				System.out.println("inRequestProcesserPojo.prevERLPojo.artifactKeyPojo is " + inRequestProcesserPojo.prevERLPojo.artifactKeyPojo);
-				System.out.println("inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance is " + inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance);
-				System.out.println("inRequestProcesserPojo.prevERLPojo.contentFileName is " + inRequestProcesserPojo.prevERLPojo.contentFileName);
-	
-				prevFileStream = inRemoteAccesser.getRemoteFileStream(commonData.getCommons().getRemotePathFileName(inRootPojo.rootString, 
-						inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance, inRequestProcesserPojo.prevERLPojo.contentFileName,inRootPojo.fileSeparator));
-				documentToUpdate = (GenericGrouperDocPojo) commonData.getCommons().getJsonDocFromInputStream(prevFileStream,getPrimerDocClass());
-				prevFileStream.close();
-				System.out.println("At processContentAtWeb closing the instream prevFileStream " + prevFileStream);
-			}
+//			if (inRequestProcesserPojo.prevERLPojo == null) {
+//				documentToUpdate = getNewPrimerDoc();
+//			} else {
+//				InputStream prevFileStream = null;
+//				System.out.println("inRequestProcesserPojo.prevERLPojo is " + inRequestProcesserPojo.prevERLPojo);
+//				System.out.println("inRequestProcesserPojo.prevERLPojo.artifactKeyPojo is " + inRequestProcesserPojo.prevERLPojo.artifactKeyPojo);
+//				System.out.println("inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance is " + inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance);
+//				System.out.println("inRequestProcesserPojo.prevERLPojo.contentFileName is " + inRequestProcesserPojo.prevERLPojo.contentFileName);
+//	
+//				prevFileStream = inRemoteAccesser.getRemoteFileStream(commonData.getCommons().getRemotePathFileName(inRootPojo.rootString, 
+//						inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance, inRequestProcesserPojo.prevERLPojo.contentFileName,inRootPojo.fileSeparator));
+//				documentToUpdate = (GenericGrouperDocPojo) commonData.getCommons().getJsonDocFromInputStream(prevFileStream,getPrimerDocClass());
+//				prevFileStream.close();
+//				System.out.println("At processContentAtWeb closing the instream prevFileStream " + prevFileStream);
+//			}
 	
 			System.out.println("At processContentAtWeb inRequestProcesserPojo.prevERLPojo.contentFileName is " + inRequestProcesserPojo.incomingContentFullPath);
 
@@ -840,10 +854,33 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 				//documentToUpdate.absorbIncomingItemPojo(incomingDoc.getBaseItemDoc());
 	
 				System.out.println("At processContentAtWeb ContentHandlerSpecs.ROLLUP_ADDUP_TYPE_ROLLUP or addup side process ");
-	
+				
+				if (inRequestProcesserPojo.prevERLPojo == null) {
+					documentToUpdate = getNewPrimerDoc();
+
+					// set up any initial content
+					setInitialContent(inRequestProcesserPojo.requestPojo.relevance, inRequestProcesserPojo.requestPojo.contentType, documentToUpdate);
+					
+				} else {
+					InputStream prevFileStream = null;
+					System.out.println("inRequestProcesserPojo.prevERLPojo is " + inRequestProcesserPojo.prevERLPojo);
+					System.out.println("inRequestProcesserPojo.prevERLPojo.artifactKeyPojo is " + inRequestProcesserPojo.prevERLPojo.artifactKeyPojo);
+					System.out.println("inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance is " + inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance);
+					System.out.println("inRequestProcesserPojo.prevERLPojo.contentFileName is " + inRequestProcesserPojo.prevERLPojo.contentFileName);
+		
+					prevFileStream = inRemoteAccesser.getRemoteFileStream(commonData.getCommons().getRemotePathFileName(inRootPojo.rootString, 
+							inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance, inRequestProcesserPojo.prevERLPojo.contentFileName,inRootPojo.fileSeparator));
+					documentToUpdate = (GenericGrouperDocPojo) commonData.getCommons().getJsonDocFromInputStream(prevFileStream,getPrimerDocClass());
+					prevFileStream.close();
+					System.out.println("At processContentAtWeb closing the instream prevFileStream " + prevFileStream);
+				}
+
 				GenericItemDocPojo incomingDoc = null;
 				incomingDoc = (GenericItemDocPojo) commonData.getCommons().getJsonDocFromInputStream(incomingFileStream,getBasePrimerDocClass());
 				documentToUpdate.absorbIncomingItemPojo(incomingDoc.getItem());
+
+				additionalRollAddWebProcess(incomingDoc.getItem());
+
 			} else {
 				System.out.println("At processContentAtWeb not a ContentHandlerSpecs.ROLLUP_ADDUP_TYPE_ROLLUP or addup" );
 				
@@ -855,6 +892,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	
 			System.out.println("At processContentAtWeb closing the instream incomingFileStream " + incomingFileStream);
 			incomingFileStream.close();
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -865,6 +903,19 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 
 		System.out.println("end processContentAtWeb");
 	}
+	
+	public void setInitialContent(String inRelevance, String inContentType, GenericGrouperDocPojo inDocumentToUpdate) {
+		// dummy method to be overridden when required
+	}
+
+	public void additionalWebProcess(GenericGrouperDocPojo inDocumentToUpdate) {
+		// dummy method to be overridden when required
+	}
+	
+	public void additionalRollAddWebProcess(ItemPojo inItemPojo) {
+		// dummy method to be overridden when required		
+	}
+	
 	public abstract void extendedCommonInit();
 	public abstract ItemPojo getItemPojo(int itemNumber);
 	protected abstract void setAddlColumnHeaders();
@@ -989,5 +1040,10 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	// to know if anything changed that would call for trigger extended process
 		return false;
 	}
-	
+
+	public String prevalidate(CommonData inCommonData,ArtifactKeyPojo inArtifactKeyPojo){
+		//dummy method; to be overridden where used
+		String validateString = "";
+		return validateString;
+	}
 }

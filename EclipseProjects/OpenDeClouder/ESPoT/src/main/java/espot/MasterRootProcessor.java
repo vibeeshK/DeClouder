@@ -46,6 +46,12 @@ public class MasterRootProcessor implements Runnable {
 		int rootProcessCount = 0;
 
 		while (orchestrationData.okToContinue) {
+			if (rootPojo.requiresInternet && !commons.isInternetAvailable()){
+				commons.logger.warn(" Internet umavailable, hence skipping MasterRootProcess for " + rootPojo.rootNick);	
+				System.out.println(" Internet umavailable, hence skipping MasterRootProcess for " + rootPojo.rootNick);
+				break;
+			}
+			
 			try {
 				System.out.println("inside masterRootProcessr for = "
 						+ rootPojo.rootString);

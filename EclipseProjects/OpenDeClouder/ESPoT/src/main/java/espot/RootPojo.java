@@ -13,6 +13,7 @@ public class RootPojo {
 	public String rootString = null;
 	public String fileSeparator = null;
 	public String rootPrefix = "";
+	public boolean requiresInternet = false;
 	
 	public RootPojo() {
 	}
@@ -23,7 +24,8 @@ public class RootPojo {
 			String inRemoteAccesserType,
 			String inRootType,
 			String inFileSeparator,
-			String inRootPrefix
+			String inRootPrefix,
+			boolean inRequiresInternet
 		) {
 		setRootPojo(
 				inRootNick, 
@@ -31,7 +33,9 @@ public class RootPojo {
 				inRemoteAccesserType,
 				inRootType,
 				inFileSeparator,
-				inRootPrefix);
+				inRootPrefix,
+				inRequiresInternet
+				);
 	}
 
 	public void setRootPojo(
@@ -40,7 +44,8 @@ public class RootPojo {
 			String inRemoteAccesserType,
 			String inRootType,
 			String inFileSeparator,
-			String inRootPrefix
+			String inRootPrefix,
+			boolean inRequiresInternet
 	) {
 		rootNick = inRootNick;
 		rootString = inRootString;
@@ -48,5 +53,6 @@ public class RootPojo {
 		rootType =  inRootType;
 		fileSeparator = inFileSeparator;
 		rootPrefix = inRootPrefix;
+		requiresInternet = inRequiresInternet;
 	}
 }
