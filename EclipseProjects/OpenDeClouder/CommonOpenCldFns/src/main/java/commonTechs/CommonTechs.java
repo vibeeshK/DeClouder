@@ -954,7 +954,7 @@ public class CommonTechs {
 		propertiesInStream.close();
 
 		propertiesOutStream = new FileOutputStream(inPropertyStreamName);
-		propUpdtObject.store(propertiesOutStream,null);
+		propUpdtObject.store(propertiesOutStream,"refreshed "+inPropertyName);
 
 		System.out.println("After updating the prop stream :: " + inPropertyStreamName + " ; PropertyName :: " + inPropertyName + " = " + propUpdtObject.getProperty(inPropertyName));
 	}

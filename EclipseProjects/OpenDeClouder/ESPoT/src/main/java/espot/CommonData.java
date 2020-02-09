@@ -52,6 +52,10 @@ public class CommonData {
 		initOtherBaseData();
 	}
 
+	public void refresh() {
+		initBaseData();
+		initOtherBaseData();		
+	}
 	public void initBaseData(){
 		System.out.println("At initBaseData for commons.getCurrentRootNick() " + commons.getCurrentRootNick());
 		catelogPersistenceManager = new CatelogPersistenceManager(PublishedRootsHandler.getPublishedRoots(commons).get(commons.getCurrentRootNick()),commons,

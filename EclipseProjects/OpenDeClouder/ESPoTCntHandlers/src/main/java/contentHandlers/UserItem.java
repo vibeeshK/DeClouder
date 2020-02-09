@@ -67,7 +67,13 @@ public class UserItem extends GenericItemHandler {
 		Group userShortIDInfo = new Group(itemContentGroup, SWT.LEFT);
 		userShortIDInfo.setText("ShortID");
 		userShortIDInfo.setLayout(new FillLayout());
-		userShortIDText = new Text(userShortIDInfo, SWT.WRAP | SWT.CENTER);
+		
+		if (userItemPojo.itemNumber == -1) {
+		// ShortID is restricted for changes after initial set up, as it is the key identifier
+			userShortIDText = new Text(userShortIDInfo, SWT.WRAP | SWT.CENTER);			
+		} else {
+			userShortIDText = new Text(userShortIDInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
+		}
 		userShortIDText.setText(userItemPojo.userPojo.shortId);
 		
 		formData = new FormData();

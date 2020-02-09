@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.w3c.dom.Document;
+import org.apache.commons.lang.StringUtils;
 
 public class RootMaintenanceUI {
 	/*
@@ -34,6 +35,8 @@ public class RootMaintenanceUI {
 	Document subscribedRootsDoc = null;
 	SubscribedRootsPojo subscribedRootsPojo = null;
 
+	private TableEditor[] rootSysLoginIDs_TableEditors;
+	
 	public RootMaintenanceUI(CommonUIData inCommonUIData) {
 		commonUIData = inCommonUIData;
 		subscribedRootsPojo = new SubscribedRootsPojo(commonUIData);
@@ -76,7 +79,7 @@ public class RootMaintenanceUI {
 		table.setLinesVisible(true);
 
 		String[] columnHeaders = new String[] { "RootNick", "RootString",
-				"RootType", "RemoteAccesserType", "FileSeparator",
+				"RootType", "RemoteAccesserType", "FileSeparator", "SysLogin", "SaveID", 
 				"Subscriptions", "Default", "RelevancePick" };
 
 		for (int i = 0; i < columnHeaders.length; i++) {
@@ -98,6 +101,8 @@ public class RootMaintenanceUI {
 
 		TableItem[] items = table.getItems();
 
+		rootSysLoginIDs_TableEditors = new TableEditor[screenMaxNum];
+				
 		for (int ScreenRowNum = 0; ScreenRowNum < screenMaxNum; ScreenRowNum++) {
 
 			int columnCount = 0;
@@ -126,13 +131,15 @@ public class RootMaintenanceUI {
 
 			editor = new TableEditor(table);
 			Text rootTypeTx = new Text(table, SWT.READ_ONLY);
-			rootTypeTx.setText(dbRootPojo.rootString);
+			rootTypeTx.setText(dbRootPojo.rootType);
 			editor.grabHorizontal = true;
 			editor.setEditor(rootTypeTx, items[ScreenRowNum], columnCount++);
 
 			editor = new TableEditor(table);
 			Text remoteAccessorTx = new Text(table, SWT.READ_ONLY);
-			remoteAccessorTx.setText(dbRootPojo.remoteAccesserType);
+			//remoteAccessorTx.setText(dbRootPojo.remoteAccesserType);
+			//removing the first node in display as its same for all accessers
+			remoteAccessorTx.setText(StringUtils.split(dbRootPojo.remoteAccesserType,".")[1]);
 			editor.grabHorizontal = true;
 			editor.setEditor(remoteAccessorTx, items[ScreenRowNum],
 					columnCount++);
@@ -145,7 +152,75 @@ public class RootMaintenanceUI {
 					columnCount++);
 
 			if (dbRootPojo.rootType.equalsIgnoreCase(RootPojo.RegRootType)) {
-				// Subscriptions related process
+				// "SysLogin" starts
+
+				//editor = new TableEditor(table);
+				rootSysLoginIDs_TableEditors[ScreenRowNum] = new TableEditor(table);
+				Text sysLoginTx = new Text(table, SWT.NONE);
+				
+				String rootSysLoginID = "";
+				try {
+					rootSysLoginID = commonUIData.getCommons().readRootSysLoginIDFromClienSideProperties(dbRootPojo.rootNick);
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+					ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), "Error in RootMaintenanceUI displayRootMaintenanceUI reading rootSysLoginID of " + dbRootPojo.rootNick, e2);
+				}
+				sysLoginTx.setText(rootSysLoginID!=null?rootSysLoginID:"");
+				rootSysLoginIDs_TableEditors[ScreenRowNum].grabHorizontal = true;
+				rootSysLoginIDs_TableEditors[ScreenRowNum].setEditor(sysLoginTx, items[ScreenRowNum],
+						columnCount++);
+
+				// "SysLogin" ends
+			
+				// "Save" Starts
+				editor = new TableEditor(table);
+				Button userNameSaveButton = new Button(table, SWT.PUSH);
+				userNameSaveButton.setText("Save");
+				userNameSaveButton.setData("ScreenRowNum", ScreenRowNum);
+
+				System.out.println("RootNum = "
+						+ userNameSaveButton.getData("ScreenRowNum"));
+				
+				userNameSaveButton.pack();
+				editor.minimumWidth = userNameSaveButton
+						.getSize().x;
+				editor.horizontalAlignment = SWT.LEFT;
+				editor.setEditor(userNameSaveButton,
+						items[ScreenRowNum], columnCount++);
+				
+				userNameSaveButton
+				.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						Button eventButton = (Button) e.getSource();
+						System.out.println("eventButton = "
+								+ eventButton);
+						Integer screenRowNum = (Integer) eventButton
+								.getData("ScreenRowNum");
+						System.out
+								.println("selected screenRowNum = "
+										+ screenRowNum);
+
+						String selectedRootSysLoginID = ((Text) rootSysLoginIDs_TableEditors[screenRowNum].getEditor()).getText();
+
+						if (selectedRootSysLoginID == null || selectedRootSysLoginID.isEmpty()) {
+							MessageBox messageBox5 = new MessageBox(mainShell, SWT.ICON_WARNING | SWT.OK);
+							messageBox5.setMessage("SysLoginID shall not be blank while saving for a root");
+							int rc4 = messageBox5.open();
+							return;
+						}
+						
+						saveRootNickOfSelectedRow(screenRowNum);						
+					}
+				});
+				
+				
+				
+				// "Save" Ends
+				
+				// Subscriptions related process starts
+				
 				editor = new TableEditor(table);
 				Button maintainRootButton = new Button(table, SWT.PUSH);
 				maintainRootButton.setData("ScreenRowNum", ScreenRowNum);
@@ -207,8 +282,21 @@ public class RootMaintenanceUI {
 										}
 									}
 									
+									String selectedRootSysLoginID = ((Text) rootSysLoginIDs_TableEditors[screenRowNum].getEditor()).getText();
+
+									if (selectedRootSysLoginID == null || selectedRootSysLoginID.isEmpty()) {
+										MessageBox messageBox5 = new MessageBox(mainShell, SWT.ICON_WARNING | SWT.OK);
+										messageBox5.setMessage("SysLoginID shall not be blank while subscribing to a root");
+										int rc4 = messageBox5.open();
+										return;
+									}
+
+									saveRootNickOfSelectedRow(screenRowNum);
+									
 									subscribedRootsPojo.addSubscription(allRootNicksList
 											.get(screenRowNum));
+
+									
 									refreshRootMaintenanceUI();
 								}
 							});
@@ -220,9 +308,12 @@ public class RootMaintenanceUI {
 				editor.horizontalAlignment = SWT.LEFT;
 				editor.setEditor(maintainRootButton,
 						items[ScreenRowNum], columnCount++);
-				// Default rootnick setting starts
-				// Subscriptions related process
+				
+				// Subscriptions related process ends
 
+				
+				
+				// Default rootnick setting starts
 				if (!commonUIData.getCurrentRootNick()
 						.equalsIgnoreCase(dbRootPojo.rootNick)) {
 
@@ -270,7 +361,8 @@ public class RootMaintenanceUI {
 										e1.printStackTrace();
 										ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), "Error in RootMaintenanceUI displayRootMaintenanceUI", e1);													
 									}
-									commonUIData.initBaseData();
+									//commonUIData.initBaseData();
+									commonUIData.refresh();
 									refreshRootMaintenanceUI();
 								}
 							});
@@ -346,4 +438,35 @@ public class RootMaintenanceUI {
 				commonUIData.getESPoTDisplay().sleep();
 		}
 	}
+	
+	private void saveRootNickOfSelectedRow(int inScreenRowNum) {
+	
+		String selectedRootNick = publishedRootsMap.get(allRootNicksList
+				.get(inScreenRowNum)).rootNick;
+		String selectedRootSysLoginID = ((Text) rootSysLoginIDs_TableEditors[inScreenRowNum].getEditor()).getText();
+		System.out
+		.println("selected SysLoginID of screenRow is "
+		+ selectedRootSysLoginID);
+		System.out
+		.println("selected RootNick of screenRow is "
+		+ selectedRootNick);
+
+		MessageBox messageBox4 = new MessageBox(mainShell, SWT.ICON_WARNING | SWT.OK);
+		messageBox4.setMessage("Ensure to validate your RootSysLoginID in UserListing");
+		int rc4 = messageBox4.open();
+		
+		try {
+			commonUIData.getCommons().setRootSysLoginIDInClienSideProperties(
+					selectedRootNick,
+					selectedRootSysLoginID);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), 
+					"Error in RootMaintenanceUI saveRootNickOfSelectedRow while saving " + selectedRootSysLoginID 
+					+ " for rootNick " + selectedRootNick, e1);
+		}
+		
+	}
+	
 }

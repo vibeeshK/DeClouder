@@ -260,6 +260,7 @@ public class ReviewHandler {
 
 		System.out.println("before reassign display:");
 		System.out.println("before reassign display: artifactPojo.requestor is " + artifactPojo.requestor);
+		System.out.println("before reassign display: userName is " + commonUIData.getCommons().userName);
 
 		UserPojo deskUserDetail = commonUIData.getUsersHandler().getUserDetailsFromShortId(commonUIData.getCommons().userName);
 

@@ -67,6 +67,8 @@ public class Commons extends CommonTechs {
 	public int processMode = 0;
 	public final static int FATALEXITCODE = 8;
 
+	public final static String USERNAME_PREFIX_LIT = "userName.";
+	
 	public static String BASE_CATLOG_SERVER_FOLDER = "bsSrver";
 	public static String CLIENT_MACHNE_FOLDER = "clientMc";
 	public String xtdCatalogSrvrFolder = "extdSrvr";
@@ -286,6 +288,7 @@ public class Commons extends CommonTechs {
 		setPropertyFileValue(commonSyspropertiesFILENAME, "defaultUIRootNick", inRootNick);
 		System.out.println(" At setDefaultUIRootNick DefaultUIRootNick is " + defaultUIRootNick); 
 		defaultUIRootNick = inRootNick;
+		userName = readRootSysLoginIDFromClienSideProperties(defaultUIRootNick);		
 	}
 	
 	public boolean isInternetAvailable(){
@@ -416,13 +419,33 @@ public class Commons extends CommonTechs {
 		clientSidePropertiesStream.close();
 
 		//CLIENT_MACHNE_FOLDER = clientPropObject.getProperty("clientMcFolder");	why this is required???
-		userName = clientPropObject.getProperty("userName");
+		//userName = clientPropObject.getProperty("userName");
+		System.out.println("At readClienSideProperties defaultUIRootNick is " + defaultUIRootNick);
+
+		userName = readRootSysLoginIDFromClienSideProperties(defaultUIRootNick);
+
+		System.out.println("At readClienSideProperties userName is " + userName);
 
 		osHandlerName = clientPropObject.getProperty("OSHandler");
 		//backupRootNick = clientPropObject.getProperty("backupRootNick");
 		//remoteBackupFolder = clientPropObject.getProperty("remoteBackupFolder");
 	}
 
+	public String readRootSysLoginIDFromClienSideProperties(String inRootNick) throws IOException {
+		Properties clientPropObject = new Properties();
+
+		InputStream clientSidePropertiesStream = new FileInputStream(clientPropertiesFILENAME);
+		clientPropObject.load(clientSidePropertiesStream);
+		clientSidePropertiesStream.close();
+
+		System.out.println("At readRootSysLoginIDFromClienSideProperties USERNAME_PREFIX_LIT + inRootNick is " + USERNAME_PREFIX_LIT + inRootNick);
+		
+		return clientPropObject.getProperty(USERNAME_PREFIX_LIT + inRootNick);
+	}
+
+	public void setRootSysLoginIDInClienSideProperties(String inRootNick, String inRootSysLoginID) throws IOException {
+		setPropertyFileValue(clientPropertiesFILENAME, USERNAME_PREFIX_LIT + inRootNick, inRootSysLoginID);
+	}
 
 	public String getClientDbFileLocation(){
 		String clientDbFileLocation = clientDbFilePath + localFileSeparator + clientDbFileName;
