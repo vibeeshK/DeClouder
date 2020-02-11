@@ -9,17 +9,20 @@ public class AutoTriggerPojo {
 	final public static String PROCESS_STAT_DISCONTINUE = "Discontinue";
 	final public static String ArtifactStatusKEEPLOCAL = "KeepLocal";
 	ArtifactKeyPojo artifactKeyPojo;
+	String rootSysLoginID;
 	public String erlORRwUploadedTimeStamp;
 	public String prevTriggeredAt;
 	public int triggerIntervalSec;
 	public String processState;
 	public AutoTriggerPojo(
 			ArtifactKeyPojo inArtifactKeyPojo,
+			String inRootSysLoginID,
 			String inERLUploadedTimeStamp,
 			String inPrevTriggeredAt,
 			Integer inTriggerIntervalSec,
 			String inProcessState) {
 		artifactKeyPojo = inArtifactKeyPojo;
+		rootSysLoginID = inRootSysLoginID;
 		erlORRwUploadedTimeStamp = inERLUploadedTimeStamp;
 		System.out.println("inPrevTriggeredAt hsa been passed as " + inPrevTriggeredAt);
 		prevTriggeredAt = (inPrevTriggeredAt!=null)?inPrevTriggeredAt:null;

@@ -85,7 +85,7 @@ public class DesktopRootProcessor implements Runnable {
 
 		System.out.println("at 222221.4" );
 
-		contntHandlrTriggr = new ContntHandlrTriggr(commonUIData, remoteAccesser);
+		contntHandlrTriggr = new ContntHandlrTriggr(rootPojo, commons.readRootSysLoginIDFromClienSideProperties(rootPojo.rootNick), commonUIData, remoteAccesser);
 
 		System.out.println("at 222221 4 autoTriggerSubThreads after ContntHandlrTriggr initiation" );
 		
@@ -115,7 +115,7 @@ public class DesktopRootProcessor implements Runnable {
 			try {
 				System.out.println("catalogDBAlias123123abab: " + catelogPersistenceManager.catalogDBAlias);
 
-				//catalogDownloader.downloadCatalog();
+				catalogDownloader.downloadCatalog();
 				
 				catelogPersistenceManager.refreshForLatestCatalog();
 				if (commonUIData.onlyCatalogDownloadAllowed){

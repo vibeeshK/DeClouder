@@ -27,7 +27,8 @@ public class CatalogDisplay extends ArtifactsDisplay{
 
 	public void setData(){
 		System.out.println("catelogPersistenceManager in setData is " + commonUIData.getCatelogPersistenceManager());
-		ArrayList<ERLDownload> dbDisplayERLs = commonUIData.getCatelogPersistenceManager().readERLDownLoadsOfRoot();
+		//ArrayList<ERLDownload> dbDisplayERLs = commonUIData.getCatelogPersistenceManager().readERLDownLoadsOfRoot();
+		ArrayList<ERLDownload> dbDisplayERLs = commonUIData.getCatelogPersistenceManager().readRelevantERLDownLoads();
 		setArtifactValues(dbDisplayERLs);
 	}
 
@@ -91,20 +92,20 @@ public class CatalogDisplay extends ArtifactsDisplay{
 		
 		//Assigned Work button end
 		
-		Button btnRootMaintenance = new Button(buttonRibbon, SWT.NONE);
-		btnRootMaintenance.addSelectionListener(new SelectionAdapter() {
+		Button btnRootsSubscriptions = new Button(buttonRibbon, SWT.NONE);
+		btnRootsSubscriptions.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("getting into the RootMaintenance");
+				System.out.println("getting into the RootsSubsriptions");
 
-				RootMaintenanceUI rootMaintenanceUI = new RootMaintenanceUI(commonUIData);
+				RootsSubsciptionsUI rootsSubscriptionsUI = new RootsSubsciptionsUI(commonUIData);
 
 				lblMessageToUser.setText("CHILD WINDOW OPEN");
 				lblMessageToUser.setForeground(commonUIData.getESPoTDisplay().getSystemColor(SWT.COLOR_DARK_RED));
 				lblMessageToUser.redraw();
 				
-				rootMaintenanceUI.displayRootMaintenanceUI();
-				System.out.println("after triggering RootMaintenanceUI");
+				rootsSubscriptionsUI.displayRootsSubsriptionsUI();
+				System.out.println("after triggering RootsSubsriptionsUI");
 				refreshScreen();				
 
 				lblMessageToUser.setText("Welcome Back");
@@ -112,9 +113,9 @@ public class CatalogDisplay extends ArtifactsDisplay{
 				lblMessageToUser.redraw();
 			}
 		});
-		btnRootMaintenance.setBounds(10, 10, 120, 25);
-		btnRootMaintenance.setText("Root Maintenance");
-		btnRootMaintenance.setToolTipText("Navigate to choose roots and relevances");
+		btnRootsSubscriptions.setBounds(10, 10, 120, 25);
+		btnRootsSubscriptions.setText("Root Maintenance");
+		btnRootsSubscriptions.setToolTipText("Navigate to choose roots and relevances");
 
 		//Delete ALL ESPoT Artifacts starts
 		Button btnDeleteArtifacts = new Button(buttonRibbon, SWT.NONE);

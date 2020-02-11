@@ -33,7 +33,6 @@ public class CreateArtifactUI {
 	SelfAuthoredArtifactpojo selectedSelfAuthoredArtifactspojo = null;
 	CommonUIData commonUIData;
 	Commons commons;
-	static final String SCREENROWNUMLIT = "ScreenRowNum";
 
 	public CreateArtifactUI(CommonUIData inCommonData) {
 		commonUIData = inCommonData;
@@ -413,12 +412,12 @@ public class CreateArtifactUI {
 			maintainButton.setText(dbSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName);
 			maintainButton.setToolTipText("Navigate to view " + dbSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName);
 			
-			maintainButton.setData(SCREENROWNUMLIT, ScreenRowNum);
+			maintainButton.setData(Commons.SCREENROWNUMLIT, ScreenRowNum);
 			//maintainButton.setData("inProgressArtifactNum",
 			//		ScreenRowNum);
 
 			System.out.println("set data = "
-					+ maintainButton.getData(SCREENROWNUMLIT));
+					+ maintainButton.getData(Commons.SCREENROWNUMLIT));
 
 			maintainButton.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -428,7 +427,7 @@ public class CreateArtifactUI {
 					//Integer i = (Integer) eventButton
 					//		.getData("inProgressArtifactNum");
 					Integer i = (Integer) eventButton
-							.getData(SCREENROWNUMLIT);
+							.getData(Commons.SCREENROWNUMLIT);
 					
 					System.out.println("selected inProgressArtifactNum = "
 							+ i);
@@ -462,12 +461,12 @@ public class CreateArtifactUI {
 				delButn
 				.setToolTipText("Delete " + dbSelfAuthoredArtifactspojo.artifactKeyPojo.artifactName);
 
-				delButn.setData(SCREENROWNUMLIT, ScreenRowNum);
+				delButn.setData(Commons.SCREENROWNUMLIT, ScreenRowNum);
 				//delButn.setData("inProgressArtifactNum",
 				//		ScreenRowNum);
 	
 				System.out.println("set data = "
-						+ delButn.getData(SCREENROWNUMLIT));
+						+ delButn.getData(Commons.SCREENROWNUMLIT));
 	
 				delButn.addSelectionListener(new SelectionAdapter() {
 					@Override
@@ -477,7 +476,7 @@ public class CreateArtifactUI {
 						//Integer i = (Integer) eventButton
 						//		.getData("inProgressArtifactNum");
 						Integer i = (Integer) eventButton
-								.getData(SCREENROWNUMLIT);
+								.getData(Commons.SCREENROWNUMLIT);
 						
 						System.out.println("selected inProgressArtifactNum = "
 								+ i);

@@ -446,15 +446,15 @@ public class CatelogPersistenceManager {
 		return erlDownLoads;
 	}
 
-	public synchronized  ArrayList<ERLDownload> readNewAutoTriggerERLDownLoadsForAuthor(String inUserName) {
+	public synchronized  ArrayList<ERLDownload> readNewAutoTriggerERLDownLoadsForAuthor(String inRootSysLoginID) {
 				
 		System.out.println("At readNewAutoTriggerERLDownLoadsForAuthor tobeConnectedCatalogDbFile is " + tobeConnectedCatalogDbFile);
 		
-		String contentTypeString = " and ct.AutoTriggered and upper(erl.author) = upper('" + inUserName + "') ";
+		String contentTypeString = " and ct.AutoTriggered and upper(erl.author) = upper('" + inRootSysLoginID + "') ";
 		ArrayList<ERLDownload> autoTriggerERLDownLoads = readERLDownLoadsOfRootWithConstraint(contentTypeString);
 		ArrayList<ERLDownload> newAutoTriggerERLDownLoads = new ArrayList<ERLDownload>();
 		for (ERLDownload erlDownload : autoTriggerERLDownLoads){
-			AutoTriggerPojo autoTriggerPojo = readAutoTrigger(erlDownload.artifactKeyPojo);
+			AutoTriggerPojo autoTriggerPojo = readAutoTrigger(erlDownload.artifactKeyPojo, inRootSysLoginID);
 			if (autoTriggerPojo == null 
 				|| erlDownload.uploadedTimeStamp.compareTo(autoTriggerPojo.erlORRwUploadedTimeStamp)>0
 				|| erlDownload.reviewTimeStamp.compareTo(autoTriggerPojo.erlORRwUploadedTimeStamp)>0) {
@@ -773,12 +773,18 @@ public class CatelogPersistenceManager {
 
 	public synchronized  ArrayList<ERLDownload> readRelevantERLDownLoads() {
 		ArrayList<ERLDownload> relevantERLDownLoads = new ArrayList<ERLDownload>();
-		ArrayList<ERLDownload> tempERLDownLoads = readERLDownLoadsOfRoot();
-		for (int erlCount = 0; erlCount<=tempERLDownLoads.size();erlCount++){
-			if (tempERLDownLoads.get(erlCount).relevancePicked){
-				relevantERLDownLoads.add(tempERLDownLoads.get(erlCount));
+		ArrayList<ERLDownload> allERLDownLoads = readERLDownLoadsOfRoot();
+//		for (int erlCount = 0; erlCount<tempERLDownLoads.size();erlCount++){
+//			if (tempERLDownLoads.get(erlCount).relevancePicked){
+//				relevantERLDownLoads.add(tempERLDownLoads.get(erlCount));
+//			}
+//		}
+		for (ERLDownload erlDownload : allERLDownLoads){
+			if (erlDownload.relevancePicked){
+				relevantERLDownLoads.add(erlDownload);
 			}
 		}
+		
 		return relevantERLDownLoads;
 	}
 
@@ -1575,9 +1581,9 @@ public class CatelogPersistenceManager {
 	}
 
 	
-	public synchronized  ArrayList<AutoTriggerPojo> getElapsedAutoTriggers() throws ParseException{
+	public synchronized  ArrayList<AutoTriggerPojo> getElapsedAutoTriggers(String inRootNick, String inRootSysLoginID) throws ParseException{
 		System.out.println("starting getElapsedAutoTriggers");
-		ArrayList<AutoTriggerPojo> allAutoTriggers = readAllAutoTriggers();
+		ArrayList<AutoTriggerPojo> allAutoTriggers = readAllAutoTriggers(inRootNick, inRootSysLoginID);
 
 		ArrayList<AutoTriggerPojo> elapsedAutoTriggers = new ArrayList<AutoTriggerPojo>();
 		for (AutoTriggerPojo autoTrigger : allAutoTriggers){
@@ -1599,7 +1605,7 @@ public class CatelogPersistenceManager {
 		return elapsedAutoTriggers;
 	}
 	
-	public synchronized  ArrayList<AutoTriggerPojo> readAllAutoTriggers() {
+	public synchronized  ArrayList<AutoTriggerPojo> readAllAutoTriggers(String inRootNick, String inRootSysLoginID) {
 
 		System.out.println("starting readAllAutoTrigger");
 		ArrayList<AutoTriggerPojo> currentAutoTriggers = new ArrayList<AutoTriggerPojo>();
@@ -1618,7 +1624,10 @@ public class CatelogPersistenceManager {
 								+ " coalesce(TriggerIntervalSec,\"\") as TriggerIntervalSec, "
 								+ " coalesce(ProcessState,\"\") as ProcessState "
 								+ " from AutoTriggers "
-								+ " where ProcessState <> '" + AutoTriggerPojo.PROCESS_STAT_DISCONTINUE + "' " ;
+								+ " where "
+								+ " RootNick = '" + inRootNick + "' "
+								+ " and RootSysLoginID = '" + inRootSysLoginID + "' "
+								+ " and ProcessState <> '" + AutoTriggerPojo.PROCESS_STAT_DISCONTINUE + "' " ;
 
 			System.out.println(queryString);
 			
@@ -1631,6 +1640,7 @@ public class CatelogPersistenceManager {
 				System.out.println("showing1 readAllAutoTriggers date movement of PrevTriggeredAt as string " + rs.getString("PrevTriggeredAt"));
 				AutoTriggerPojo autoTrigger = new AutoTriggerPojo(
 												artifactKeyPojo,
+												inRootSysLoginID,
 												rs.getString("ERLUploadedTimeStamp"),
 												rs.getString("PrevTriggeredAt"),
 												rs.getInt("TriggerIntervalSec"),
@@ -1648,7 +1658,7 @@ public class CatelogPersistenceManager {
 		return currentAutoTriggers;
 	}
 
-	public synchronized  AutoTriggerPojo readAutoTrigger(ArtifactKeyPojo inArtifactKeyPojo) {
+	public synchronized  AutoTriggerPojo readAutoTrigger(ArtifactKeyPojo inArtifactKeyPojo, String inRootSysLoginID) {
 
 		System.out.println("starting readAutoTrigger");
 		AutoTriggerPojo autoTrigger = null;
@@ -1667,6 +1677,8 @@ public class CatelogPersistenceManager {
 			+ " and at.Relevance = '" + inArtifactKeyPojo.relevance +"' "
 			+ " and at.ArtifactName = '" + inArtifactKeyPojo.artifactName +"' "
 			+ " and at.ContentType = '" + inArtifactKeyPojo.contentType +"' "
+			+ " and at.RootSysLoginID = '" + inRootSysLoginID+"' "
+
 			;
 			System.out.println(queryString);
 			
@@ -1676,10 +1688,11 @@ public class CatelogPersistenceManager {
 				
 				autoTrigger = new AutoTriggerPojo(
 						inArtifactKeyPojo,
+						inRootSysLoginID,
 						rs.getString("ERLUploadedTimeStamp"),
 						rs.getString("PrevTriggeredAt"),
 						rs.getInt("TriggerIntervalSec"),
-						rs.getString("ProcessState"));
+						rs.getString("ProcessState"));				
 			}
 		} catch (SQLException e) {
 			// if the error message is "out of memory",
@@ -1700,6 +1713,7 @@ public class CatelogPersistenceManager {
 					+ " Relevance, "
 					+ " ArtifactName, "
 					+ " ContentType, "
+					+ " RootSysLoginID, "
 					+ " ERLUploadedTimeStamp, "
 					+ " PrevTriggeredAt, "
 					+ " TriggerIntervalSec, "
@@ -1709,6 +1723,7 @@ public class CatelogPersistenceManager {
 					+ inAutoTriggerPojo.artifactKeyPojo.relevance + "', '" 
 					+ inAutoTriggerPojo.artifactKeyPojo.artifactName + "', '" 
 					+ inAutoTriggerPojo.artifactKeyPojo.contentType + "', '" 
+					+ inAutoTriggerPojo.rootSysLoginID + "', '" 
 					+ inAutoTriggerPojo.erlORRwUploadedTimeStamp + "', '"
 					+ inAutoTriggerPojo.prevTriggeredAt + "', " 
 					+ inAutoTriggerPojo.triggerIntervalSec + ", '" 
@@ -1737,7 +1752,8 @@ public class CatelogPersistenceManager {
 				+ " where RootNick = '" + inAutoTriggerPojo.artifactKeyPojo.rootNick + "' "
 				+ " and Relevance = '" + inAutoTriggerPojo.artifactKeyPojo.relevance + "' "
 				+ " and ArtifactName = '" + inAutoTriggerPojo.artifactKeyPojo.artifactName + "' "
-				+ " and ContentType = '" + inAutoTriggerPojo.artifactKeyPojo.contentType + "' ";
+				+ " and ContentType = '" + inAutoTriggerPojo.artifactKeyPojo.contentType + "' "
+				+ " and RootSysLoginID = '" + inAutoTriggerPojo.rootSysLoginID + "' ";
 			System.out.println(updateString);
 			statement.executeUpdate(updateString);
 		} catch (SQLException e) {
@@ -2142,49 +2158,49 @@ public class CatelogPersistenceManager {
 		}
 	}
 
-	public synchronized String ReadXMLArtifactUI() {
-
-		ResultSet rs = null;
-		Statement stmt = null;
-		String sql;
-		String XMLString = new String();
-
-		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document doc = builder.newDocument();
-			Element results = doc.createElement("Results");
-			doc.appendChild(results);
-
-			sql = "select * from "
-			+ " SelfAuthoredArtifacts";
-			stmt = connection.createStatement();
-			rs = stmt.executeQuery(sql);
-
-			ResultSetMetaData rsmd = rs.getMetaData();
-			int colCount = rsmd.getColumnCount();
-
-			while (rs.next()) {
-				Element row = doc.createElement("Row");
-				results.appendChild(row);
-				for (int ii = 1; ii <= colCount; ii++) {
-					String columnName = rsmd.getColumnName(ii);
-					Object value = rs.getObject(ii);
-					Element node = doc.createElement(columnName);
-					node.appendChild(doc.createTextNode(value.toString()));
-					row.appendChild(node);
-				}
-			}
-
-			XMLString = commons.getDocumentAsXml(doc);
-
-		} catch (Exception e) {
-			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager ReadXMLArtifactUI ", e);
-		}
-		return XMLString;
-
-	}
+//	public synchronized String ReadXMLArtifactUI() {
+//
+//		ResultSet rs = null;
+//		Statement stmt = null;
+//		String sql;
+//		String XMLString = new String();
+//
+//		try {
+//			DocumentBuilderFactory factory = DocumentBuilderFactory
+//					.newInstance();
+//			DocumentBuilder builder = factory.newDocumentBuilder();
+//			Document doc = builder.newDocument();
+//			Element results = doc.createElement("Results");
+//			doc.appendChild(results);
+//
+//			sql = "select * from "
+//			+ " SelfAuthoredArtifacts";
+//			stmt = connection.createStatement();
+//			rs = stmt.executeQuery(sql);
+//
+//			ResultSetMetaData rsmd = rs.getMetaData();
+//			int colCount = rsmd.getColumnCount();
+//
+//			while (rs.next()) {
+//				Element row = doc.createElement("Row");
+//				results.appendChild(row);
+//				for (int ii = 1; ii <= colCount; ii++) {
+//					String columnName = rsmd.getColumnName(ii);
+//					Object value = rs.getObject(ii);
+//					Element node = doc.createElement(columnName);
+//					node.appendChild(doc.createTextNode(value.toString()));
+//					row.appendChild(node);
+//				}
+//			}
+//
+//			XMLString = commons.getDocumentAsXml(doc);
+//
+//		} catch (Exception e) {
+//			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager ReadXMLArtifactUI ", e);
+//		}
+//		return XMLString;
+//
+//	}
 
 	public synchronized void updateERL(ERLpojo erlPojo) {
 		try {

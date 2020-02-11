@@ -246,13 +246,22 @@ public class CommonTechs {
 		System.out.println("dest.getParentFile().exists():"
 				+ dest.getParentFile().exists());
 		createFolderOfFileIfDontExist(dest);
-
-		inputChannel = new FileInputStream(source).getChannel();
-		outputChannel = new FileOutputStream(dest).getChannel();
+		
+		//inputChannel = new FileInputStream(source).getChannel();
+		FileInputStream fileInStr = new FileInputStream(source);
+		inputChannel = fileInStr.getChannel();
+		
+		//outputChannel = new FileOutputStream(dest).getChannel();
+		FileOutputStream fileOutStr = new FileOutputStream(dest);
+		outputChannel = fileOutStr.getChannel();
+		
 		outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
 
 		inputChannel.close();
 		outputChannel.close();
+		
+		fileInStr.close();
+		fileOutStr.close();		
 	}
 
 
@@ -264,6 +273,9 @@ public class CommonTechs {
 		int len1 = (int) (fileObject.length());
 		byte buf1[] = new byte[len1];
 		localInputFileStream.read(buf1);
+		
+		localInputFileStream.close();
+		
 		return buf1;
 	}
 
@@ -403,25 +415,25 @@ public class CommonTechs {
 		return true;
 	}
 
-	public String getDocumentAsXml(Document doc)
-			throws TransformerConfigurationException, TransformerException {
-		DOMSource domSource = new DOMSource(doc);
-		TransformerFactory tf = TransformerFactory.newInstance();
-		Transformer transformer = tf.newTransformer();
-
-		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-		transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
-		// we want to pretty format the XML output
-		// note : this is broken in jdk1.5 beta!
-		transformer.setOutputProperty(
-				"{http://xml.apache.org/xslt}indent-amount", "4");
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		//
-		java.io.StringWriter sw = new java.io.StringWriter();
-		StreamResult sr = new StreamResult(sw);
-		transformer.transform(domSource, sr);
-		return sw.toString();
-	}
+//	public String getDocumentAsXml(Document doc)
+//			throws TransformerConfigurationException, TransformerException {
+//		DOMSource domSource = new DOMSource(doc);
+//		TransformerFactory tf = TransformerFactory.newInstance();
+//		Transformer transformer = tf.newTransformer();
+//
+//		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+//		transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
+//		// we want to pretty format the XML output
+//		// note : this is broken in jdk1.5 beta!
+//		transformer.setOutputProperty(
+//				"{http://xml.apache.org/xslt}indent-amount", "4");
+//		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+//		//
+//		java.io.StringWriter sw = new java.io.StringWriter();
+//		StreamResult sr = new StreamResult(sw);
+//		transformer.transform(domSource, sr);
+//		return sw.toString();
+//	}
 
 	public String getFileNameFromFullPath(String inFullPath, String inFileSeperator) {
 		return getLastNodeFromFullFilePath(inFullPath, inFileSeperator);
@@ -607,15 +619,15 @@ public class CommonTechs {
 		return doc;
 	}
 
-	public BufferedReader getReaderForFile(String inFileName) throws FileNotFoundException {
-	   BufferedReader br = new BufferedReader(new FileReader(inFileName));
-	   return br;
-	}
-
-	public BufferedWriter getWriterForFile(String inFileName) throws IOException {
-		BufferedWriter bw = new BufferedWriter(new FileWriter(inFileName));
-		return bw;
-	}
+//	public BufferedReader getReaderForFile(String inFileName) throws FileNotFoundException {
+//	   BufferedReader br = new BufferedReader(new FileReader(inFileName));
+//	   return br;
+//	}
+//
+//	public BufferedWriter getWriterForFile(String inFileName) throws IOException {
+//		BufferedWriter bw = new BufferedWriter(new FileWriter(inFileName));
+//		return bw;
+//	}
 	
 	public Gson getGson(){
 		if (gson == null) {
@@ -624,17 +636,25 @@ public class CommonTechs {
 		return gson;
 	}
 
-	public Object sysGetXMLObjFromFile(String inFileName, Class inClass) throws FileNotFoundException, JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(inClass);    
-        
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();    
-        Object unMarshalledObject = jaxbUnmarshaller.unmarshal(new File(inFileName));    
-		Object jsonDocObj = getGson().fromJson(getReaderForFile(inFileName), inClass);
-		return unMarshalledObject;
-	}
+//	public Object sysGetXMLObjFromFile(String inFileName, Class inClass) throws FileNotFoundException, JAXBException {
+//        JAXBContext jaxbContext = JAXBContext.newInstance(inClass);    
+//        
+//        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();    
+//        Object unMarshalledObject = jaxbUnmarshaller.unmarshal(new File(inFileName));    
+//		Object jsonDocObj = getGson().fromJson(getReaderForFile(inFileName), inClass);
+//		return unMarshalledObject;
+//	}
 	
-	public Object sysGetJsonDocObjFromFile(String inFileName, Class inClass) throws FileNotFoundException {
-		Object jsonDocObj = getGson().fromJson(getReaderForFile(inFileName), inClass);
+	public Object sysGetJsonDocObjFromFile(String inFileName, Class inClass) throws IOException {
+		//Object jsonDocObj = getGson().fromJson(getReaderForFile(inFileName), inClass);
+	
+		FileReader fileRdr = new FileReader(inFileName);
+		BufferedReader br = new BufferedReader(fileRdr);
+		Object jsonDocObj = getGson().fromJson(br, inClass);
+	
+		br.close();
+		fileRdr.close();
+
 		System.out.println(" At sysGetJsonDocObjFromFile jsonDocObj is " + jsonDocObj);
 		System.out.println(" At sysGetJsonDocObjFromFile inFileName is " + inFileName);
 		System.out.println(" At sysGetJsonDocObjFromFile inClass is " + inClass);
@@ -642,9 +662,15 @@ public class CommonTechs {
 		return jsonDocObj;
 	}
 
-	public Object sysGetJsonDocObjFromInputStream(InputStream inputStream, Class inClass) throws UnsupportedEncodingException {
-		JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
+	public Object sysGetJsonDocObjFromInputStream(InputStream inputStream, Class inClass) throws IOException {
+		
+		//JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
+
+		InputStreamReader strRdr = new InputStreamReader(inputStream, "UTF-8");
+		JsonReader reader = new JsonReader(strRdr);
 		Object jsonDocObj = getGson().fromJson(reader, inClass);
+		reader.close();
+		strRdr.close();		
 		return jsonDocObj;
 	}
 
@@ -667,9 +693,14 @@ public class CommonTechs {
 		System.out.println("gonna write json :: " + jsonDocString);
 		System.out.println("object passed was :: " + inGsonDocObj);
 		System.out.println("inFileName :: " + inFileName);
-		BufferedWriter bw = getWriterForFile(inFileName);
+		//BufferedWriter bw = getWriterForFile(inFileName);
+
+		FileWriter fw = new FileWriter(inFileName);		
+		BufferedWriter bw = new BufferedWriter(fw);		
 		bw.write(jsonDocString);
 		bw.close();
+
+		fw.close();		
 	}
 	
 	public InputStream sysGetJsonDocInStream(Object inGsonDocObj) throws IOException {
@@ -955,6 +986,7 @@ public class CommonTechs {
 
 		propertiesOutStream = new FileOutputStream(inPropertyStreamName);
 		propUpdtObject.store(propertiesOutStream,"refreshed "+inPropertyName);
+		propertiesOutStream.close();
 
 		System.out.println("After updating the prop stream :: " + inPropertyStreamName + " ; PropertyName :: " + inPropertyName + " = " + propUpdtObject.getProperty(inPropertyName));
 	}

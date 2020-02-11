@@ -11,6 +11,9 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,6 +53,8 @@ public class Commons extends CommonTechs {
 	public final static String adminBranchRelevanceLIT = "adminBranchRelevance";
 	public final static String STR_YES = "YES";
 	public final static String STR_NO = "NO";
+	public static final String SCREENROWNUMLIT = "ScreenRowNum";
+	
 	public boolean suppressSysCompRefresh = false;
 	public String platformRoot = null;
 	public final static String platformRootLIT = "platformRoot";
@@ -766,8 +771,8 @@ public class Commons extends CommonTechs {
 		InputStream fileInputStream = null;
 		if (fileToRead.exists()) {
 			fileInputStream = new FileInputStream(fileToRead);
-			jsonDocObj = sysGetJsonDocObjFromInputStream(fileInputStream,inClass);
 			try {
+				jsonDocObj = sysGetJsonDocObjFromInputStream(fileInputStream,inClass);
 				fileInputStream.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -787,13 +792,13 @@ public class Commons extends CommonTechs {
 		return sysGetStringFromJsonObj(inJsonObj);
 	}
 
-	public Object getXMLObjFromFile(String inFileName, Class inClass) throws FileNotFoundException, JAXBException {
-		Object xmlDocObj = null;
-		xmlDocObj = sysGetXMLObjFromFile(inFileName,inClass);
-		return xmlDocObj;
-	}
+//	public Object getXMLObjFromFile(String inFileName, Class inClass) throws FileNotFoundException, JAXBException {
+//		Object xmlDocObj = null;
+//		xmlDocObj = sysGetXMLObjFromFile(inFileName,inClass);
+//		return xmlDocObj;
+//	}
 	
-	public Object getJsonDocFromInputStream(InputStream inInputStream, Class inClass) throws UnsupportedEncodingException {
+	public Object getJsonDocFromInputStream(InputStream inInputStream, Class inClass) throws IOException {
 		System.out.println("At getJsonDocFromInputStream inClass is " + inClass);
 		Object jsonDocObj = null;
 		jsonDocObj = sysGetJsonDocObjFromInputStream(inInputStream,inClass);
@@ -966,11 +971,12 @@ public class Commons extends CommonTechs {
 
 		String archiveFileName = localArchive + localFileSeparator + sourcelocalFile.getName() + "_Tm" + getCurrentTimeStamp();
 
-		System.out.println("At Commons before archiveLocalFolder from " + sourcelocalFile.getName() + " into " + archiveFileName);
+		System.out.println("At Commons prepDupeArchiveName before archiveLocalFolder from " + sourcelocalFile.getName() + " into " + archiveFileName);
 		
 		if (doesFileExist(archiveFileName)) {
 		// in case a file already exists prior to archiving - maybe due to multiple calls in the same run,
 		// try to append with a dupe counter to find a unique name
+			System.out.println("At Commons prepDupeArchiveName " + archiveFileName + " already exists 1 ");
 			int versionNum = 1;
 			for (int dupeCount = 0; dupeCount < archiveDupeMax; dupeCount++) {
 				String checkName = archiveFileName + "_" + versionNum;
@@ -982,22 +988,62 @@ public class Commons extends CommonTechs {
 				}
 			}
 			if (doesFileExist(archiveFileName)) {
+				System.out.println("At Commons prepDupeArchiveName " + archiveFileName + " still already exists 2 ");
 			// in case a folder/file still exists in spite of appending with dupeCount, no other choice but to delete it.
 				deleteFileORFolder(archiveFileName);
 				logger.info("archiving " + archiveFileName + " already existed hence deleted prior to the new archival" );
 				System.out.println("archiving " + archiveFileName + " already existed hence deleted prior to the new archival");
 			}			
+		} else {
+			System.out.println("At Commons prepDupeArchiveName " + archiveFileName + " never existed");			
 		}
 		return archiveFileName;
 	}
 
+	public void dirtyFileMoveCheck(String inSourceFileName) throws IOException {
+		// dirty check to know if a file is moveable or locked up by some process
+		File sourcelocalFile = new File(inSourceFileName);		
+		String dirtyMoveFileName = localArchive + localFileSeparator + sourcelocalFile.getName() + "_dirtyChecker_" + getCurrentTimeStamp();
+		File dirtyMoveFile = new File(dirtyMoveFileName);
+
+		System.out.println("At Commons dirtyFileMoveCheck inSourceFileName " + inSourceFileName);
+		System.out.println("At Commons dirtyFileMoveCheck dirtyMoveFileName " + dirtyMoveFileName);
+
+		moveFileViaName(inSourceFileName, dirtyMoveFileName);
+		
+		System.out.println("At Commons moving back dirtyFileMoveCheck inSourceFileName " + inSourceFileName);
+		System.out.println("At Commons moving back dirtyFileMoveCheck dirtyMoveFileName " + dirtyMoveFileName);
+		
+		moveFileViaName(dirtyMoveFileName, inSourceFileName);
+
+		System.out.println("At Commons dirtyFileMoveCheck done ");
+	}
+
 	public void archiveLocalFile(String inLocalFileLocation) throws IOException {
+
+//		System.out.println("At Commons archiveLocalFile inLocalFileLocation before dirty move check " + inLocalFileLocation);		
+//		dirtyFileMoveCheck(inLocalFileLocation);
+//		System.out.println("At Commons archiveLocalFile inLocalFileLocation after dirty move check " + inLocalFileLocation);
+		
 		File sourcelocalFile = new File(inLocalFileLocation);
 		if (!doesFileExist(inLocalFileLocation)) {
 			logger.info("Nothing to archive as the source file " + inLocalFileLocation + " doesn't exist");
 			return;
-		}
+		}		
+		//Path sourceFilePath = Paths.get(inLocalFileLocation);
+		//boolean sourceFileWritable = Files.isWritable(sourceFilePath);
+		//System.out.println("At Commons archiveLocalFile source file writable state is " + sourceFileWritable);
+		
 		String archiveFileName = prepDupeArchiveName(sourcelocalFile);
+
+		if (doesFileExist(inLocalFileLocation)) {
+			logger.info("At Commons archiveLocalFile source file name exists before archival sourcelocalFile " + sourcelocalFile);
+		}
+
+		if (doesFileExist(archiveFileName)) {
+			logger.info("At Commons archiveLocalFile target file name exists before archival archiveFileName " + archiveFileName);
+		}
+
 		moveFileViaName(inLocalFileLocation, archiveFileName);
 		logger.info("At Commons after Archiving the file " + inLocalFileLocation + " into " + archiveFileName);
 		System.out.println("At Commons after Archiving the file " + inLocalFileLocation + " into " + archiveFileName);

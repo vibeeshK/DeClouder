@@ -17,10 +17,15 @@ public class ContntHandlrTriggr implements Runnable {
 	private CommonData commonData;
 	private CatelogPersistenceManager catelogPersistenceManager;
 	private Commons commons;
+	private RootPojo rootPojo;
+	private String rootSysLoginID;
 	ArrayList<AutoTriggerPojo> timeupTriggers;
 	Uploader uploader;
 
-	public ContntHandlrTriggr(CommonData inCommonData, RemoteAccesser inRemoteAccesser) throws IOException, ParseException {
+	public ContntHandlrTriggr(
+			RootPojo inRootPojo,
+			String inRootSysLoginID,			
+			CommonData inCommonData, RemoteAccesser inRemoteAccesser) throws IOException, ParseException {
 
 		//21OCt2018 major issue in reusing the same common persistance manager in this thread as
 		// it conflicted with sql calls from parent thread
@@ -29,10 +34,13 @@ public class ContntHandlrTriggr implements Runnable {
 		//commons = commonData.getCommons();
 		//catelogPersistenceManager = commonData.getCatelogPersistenceManager();
 		//rootPojo = commonData.getCurrentRootPojo();
+		rootPojo = inRootPojo;
+		rootSysLoginID = inRootSysLoginID;			
 
-		commons = Commons.getInstance(inCommonData.getCommons().processMode,inCommonData.getCurrentRootNick());
+		commons = Commons.getInstance(inCommonData.getCommons().processMode,rootPojo.rootNick);
 		
-		System.out.println("in ContntHandlrTriggr inCommonData.getCurrentRootNick(): " +  inCommonData.getCurrentRootNick());
+		System.out.println("in ContntHandlrTriggr rootNick " +  rootPojo.rootNick);
+		System.out.println("in ContntHandlrTriggr rootSysLoginID " +  rootSysLoginID);
 		System.out.println("in ContntHandlrTriggr commons : " +  commons);
 		
 		//commonData = inCommonData;
@@ -52,7 +60,7 @@ public class ContntHandlrTriggr implements Runnable {
 		catelogPersistenceManager.refreshForLatestCatalog();
  		arrangeForNewAutoTriggerERLs();
  		try {
-	  		timeupTriggers = catelogPersistenceManager.getElapsedAutoTriggers();
+	  		timeupTriggers = catelogPersistenceManager.getElapsedAutoTriggers(rootPojo.rootNick, rootSysLoginID);
 	 		processElapsedTriggers();
 	 		synchronized(Uploader.LOCKING_RESOURCE) { // sychronized to avoid racing with the main thread
 				uploader.uploadArtifactsOfOneRoot();
@@ -71,7 +79,7 @@ public class ContntHandlrTriggr implements Runnable {
 		System.out.println("catalog persistance manager inside arrangeForNewAutoTriggerERLs tobeConnectedCatalogDbFile is " + catelogPersistenceManager.tobeConnectedCatalogDbFile);
 		System.out.println("catalog persistance manager in inside arrangeForNewAutoTriggerERLs tobeConnectedCatalogDbFile is " + catelogPersistenceManager);
 
-		ArrayList<ERLDownload> autoTriggerERLDownlods = catelogPersistenceManager.readNewAutoTriggerERLDownLoadsForAuthor(commons.userName);
+		ArrayList<ERLDownload> autoTriggerERLDownlods = catelogPersistenceManager.readNewAutoTriggerERLDownLoadsForAuthor(rootSysLoginID);
 
 		System.out.println("from arrangeForNewAutoTriggerERLs autoTriggerERLDownload size " + autoTriggerERLDownlods.size());
 
@@ -87,7 +95,7 @@ public class ContntHandlrTriggr implements Runnable {
 
 			int triggerIntervalSec = contentHandlerObjectInterface.getTriggerInterval();
 
-			AutoTriggerPojo autoTriggerPojo = catelogPersistenceManager.readAutoTrigger(autoTriggerERLDownload.artifactKeyPojo);
+			AutoTriggerPojo autoTriggerPojo = catelogPersistenceManager.readAutoTrigger(autoTriggerERLDownload.artifactKeyPojo, rootSysLoginID);
 			if (autoTriggerPojo == null 
 					&& !autoTriggerERLDownload.erlStatus.equalsIgnoreCase(
 								SelfAuthoredArtifactpojo.ERLSTAT_INACTIVE)){
@@ -95,6 +103,7 @@ public class ContntHandlrTriggr implements Runnable {
 				System.out.println("from arrangeForNewAutoTriggerERLs commons.getCurrentTimeStamp() is " + commons.getCurrentTimeStamp());
 				
 				autoTriggerPojo = new AutoTriggerPojo(autoTriggerERLDownload.artifactKeyPojo,
+														rootSysLoginID,
 														autoTriggerERLDownload.uploadedTimeStamp,
 														null,	// prevtrigger timestamp
 														triggerIntervalSec,AutoTriggerPojo.PROCESS_STAT_NEW);

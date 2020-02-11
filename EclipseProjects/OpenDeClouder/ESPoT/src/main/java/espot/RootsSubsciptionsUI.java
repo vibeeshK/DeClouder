@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Text;
 import org.w3c.dom.Document;
 import org.apache.commons.lang.StringUtils;
 
-public class RootMaintenanceUI {
+public class RootsSubsciptionsUI {
 	/*
 	 * UI for the maintenance of root subscription and default root setting
 	 */
@@ -37,18 +37,18 @@ public class RootMaintenanceUI {
 
 	private TableEditor[] rootSysLoginIDs_TableEditors;
 	
-	public RootMaintenanceUI(CommonUIData inCommonUIData) {
+	public RootsSubsciptionsUI(CommonUIData inCommonUIData) {
 		commonUIData = inCommonUIData;
 		subscribedRootsPojo = new SubscribedRootsPojo(commonUIData);
 	}
 
-	public void refreshRootMaintenanceUI() {
+	public void refreshRootsSubsriptionsUI() {
 		mainShell.close();
 
-		displayRootMaintenanceUI();
+		displayRootsSubsriptionsUI();
 	}
 
-	public void displayRootMaintenanceUI() {
+	public void displayRootsSubsriptionsUI() {
 
 		mainShell = new Shell(commonUIData.getESPoTDisplay(), SWT.APPLICATION_MODAL | SWT.CLOSE
 				| SWT.TITLE | SWT.BORDER | SWT.RESIZE);
@@ -56,14 +56,14 @@ public class RootMaintenanceUI {
 		mainShell.setLayout(new GridLayout(1, false));
 		mainShell.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		System.out.println("RootMaintenanceUI.displayRootMaintenanceUI() bef");
+		System.out.println("RootsSubsriptionsUI.displayRootsSubsriptionsUI() bef");
 		//publishedRootsMap = PublishedRootsHandler.getPublishedRoots(commonUIData.getCommons());
 		publishedRootsMap = commonUIData.getRootPojoMap();
 		
 		allRootNicksList = new ArrayList<String>();
 		allRootNicksList.addAll(publishedRootsMap.keySet());
 		System.out
-				.println("RootMaintenanceUI.displayRootMaintenanceUI() aft22");
+				.println("RootsSubsriptionsUI.displayRootsSubsriptionsUI() aft22");
 
 		mainShell.setLayout(new GridLayout(1, false));
 
@@ -164,7 +164,7 @@ public class RootMaintenanceUI {
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
-					ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), "Error in RootMaintenanceUI displayRootMaintenanceUI reading rootSysLoginID of " + dbRootPojo.rootNick, e2);
+					ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), "Error in RootsSubsriptionsUI displayRootsSubsriptionsUI reading rootSysLoginID of " + dbRootPojo.rootNick, e2);
 				}
 				sysLoginTx.setText(rootSysLoginID!=null?rootSysLoginID:"");
 				rootSysLoginIDs_TableEditors[ScreenRowNum].grabHorizontal = true;
@@ -177,10 +177,10 @@ public class RootMaintenanceUI {
 				editor = new TableEditor(table);
 				Button userNameSaveButton = new Button(table, SWT.PUSH);
 				userNameSaveButton.setText("Save");
-				userNameSaveButton.setData("ScreenRowNum", ScreenRowNum);
+				userNameSaveButton.setData(Commons.SCREENROWNUMLIT, ScreenRowNum);
 
 				System.out.println("RootNum = "
-						+ userNameSaveButton.getData("ScreenRowNum"));
+						+ userNameSaveButton.getData(Commons.SCREENROWNUMLIT));
 				
 				userNameSaveButton.pack();
 				editor.minimumWidth = userNameSaveButton
@@ -197,7 +197,7 @@ public class RootMaintenanceUI {
 						System.out.println("eventButton = "
 								+ eventButton);
 						Integer screenRowNum = (Integer) eventButton
-								.getData("ScreenRowNum");
+								.getData(Commons.SCREENROWNUMLIT);
 						System.out
 								.println("selected screenRowNum = "
 										+ screenRowNum);
@@ -223,10 +223,10 @@ public class RootMaintenanceUI {
 				
 				editor = new TableEditor(table);
 				Button maintainRootButton = new Button(table, SWT.PUSH);
-				maintainRootButton.setData("ScreenRowNum", ScreenRowNum);
+				maintainRootButton.setData(Commons.SCREENROWNUMLIT, ScreenRowNum);
 
 				System.out.println("RootNum = "
-						+ maintainRootButton.getData("ScreenRowNum"));
+						+ maintainRootButton.getData(Commons.SCREENROWNUMLIT));
 
 				if (subscribedRootsPojo.doesRootNickExist(dbRootPojo.rootNick)) {
 					maintainRootButton.setText("UnSubscribe");
@@ -238,7 +238,7 @@ public class RootMaintenanceUI {
 									System.out.println("eventButton = "
 											+ eventButton);
 									Integer screenRowNum = (Integer) eventButton
-											.getData("ScreenRowNum");
+											.getData(Commons.SCREENROWNUMLIT);
 									System.out
 											.println("selected screenRowNum = "
 													+ screenRowNum);
@@ -253,7 +253,7 @@ public class RootMaintenanceUI {
 									
 									subscribedRootsPojo.removeSubscription(allRootNicksList
 											.get(screenRowNum));
-									refreshRootMaintenanceUI();
+									refreshRootsSubsriptionsUI();
 								}
 							});
 
@@ -267,7 +267,7 @@ public class RootMaintenanceUI {
 									System.out.println("eventButton = "
 											+ eventButton);
 									Integer screenRowNum = (Integer) eventButton
-											.getData("ScreenRowNum");
+											.getData(Commons.SCREENROWNUMLIT);
 									System.out
 											.println("selected screenRowNum = "
 													+ screenRowNum);
@@ -297,7 +297,7 @@ public class RootMaintenanceUI {
 											.get(screenRowNum));
 
 									
-									refreshRootMaintenanceUI();
+									refreshRootsSubsriptionsUI();
 								}
 							});
 				}
@@ -323,11 +323,11 @@ public class RootMaintenanceUI {
 							table);
 					Button defaultNickSettingButton = new Button(table,
 							SWT.PUSH);
-					defaultNickSettingButton.setData("ScreenRowNum",
+					defaultNickSettingButton.setData(Commons.SCREENROWNUMLIT,
 							ScreenRowNum);
 
 					System.out.println("RootNum = "
-							+ defaultNickSettingButton.getData("ScreenRowNum"));
+							+ defaultNickSettingButton.getData(Commons.SCREENROWNUMLIT));
 					defaultNickSettingButton.setText("Set as Default");
 					defaultNickSettingButton
 							.addSelectionListener(new SelectionAdapter() {
@@ -337,7 +337,7 @@ public class RootMaintenanceUI {
 									System.out.println("eventButton = "
 											+ eventButton);
 									Integer screenRowNum = (Integer) eventButton
-											.getData("ScreenRowNum");
+											.getData(Commons.SCREENROWNUMLIT);
 									System.out
 											.println("selected screenRowNum = "
 													+ screenRowNum);
@@ -359,11 +359,11 @@ public class RootMaintenanceUI {
 												.get(screenRowNum));
 									} catch (IOException e1) {
 										e1.printStackTrace();
-										ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), "Error in RootMaintenanceUI displayRootMaintenanceUI", e1);													
+										ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), "Error in RootsSubsriptionsUI displayRootsSubsriptionsUI", e1);													
 									}
 									//commonUIData.initBaseData();
 									commonUIData.refresh();
-									refreshRootMaintenanceUI();
+									refreshRootsSubsriptionsUI();
 								}
 							});
 					defaultNickSettingButton.pack();
@@ -400,10 +400,10 @@ public class RootMaintenanceUI {
 					editor.setEditor(relevancebutton,
 							items[ScreenRowNum], columnCount++);
 	
-					relevancebutton.setData("ScreenRowNum", ScreenRowNum);
+					relevancebutton.setData(Commons.SCREENROWNUMLIT, ScreenRowNum);
 	
 					System.out.println("set data = "
-							+ relevancebutton.getData("ScreenRowNum"));
+							+ relevancebutton.getData(Commons.SCREENROWNUMLIT));
 	
 					relevancebutton.addSelectionListener(new SelectionAdapter() {
 						@Override
@@ -414,14 +414,14 @@ public class RootMaintenanceUI {
 	
 							System.out.println("eventButton = " + eventButton);
 							Integer ScreenRowNum = (Integer) eventButton
-									.getData("ScreenRowNum");
+									.getData(Commons.SCREENROWNUMLIT);
 							System.out.println("selectedRowNum = " + ScreenRowNum);
 							String rootNick = allRootNicksList.get(ScreenRowNum);
 							System.out.println("rootNik = " + rootNick);
 	
 							RelevancePickUI relevancePickUI = new RelevancePickUI(commonUIData);
 							relevancePickUI.displayRelevancePickUI();
-							refreshRootMaintenanceUI();
+							refreshRootsSubsriptionsUI();
 						}
 					});
 				}
@@ -463,7 +463,7 @@ public class RootMaintenanceUI {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), 
-					"Error in RootMaintenanceUI saveRootNickOfSelectedRow while saving " + selectedRootSysLoginID 
+					"Error in RootsSubsriptionsUI saveRootNickOfSelectedRow while saving " + selectedRootSysLoginID 
 					+ " for rootNick " + selectedRootNick, e1);
 		}
 		

@@ -82,7 +82,10 @@ public abstract class ArtifactsDisplay {
 		
 		System.out.println("at ArtifactDisplay DisplayContent Startxxx");
 
-		mainShell.setText("OpenDeClouder " + displayTitle + ". Your login: " + commonUIData.getCommons().userName);
+		mainShell.setText("OpenDeClouder " + displayTitle 
+					+ ". Root: " + commonUIData.getCurrentRootNick()
+					+ ". RootSysLogin: " + commonUIData.getCommons().userName
+					+ ". DesktopUser: " + System.getProperty("user.name"));
 		mainShell.setLayout(new GridLayout(1, false));
 		mainShell.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
