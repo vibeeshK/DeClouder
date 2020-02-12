@@ -11,7 +11,9 @@ public class XtdAllocatdTask extends AllocatdTask implements ExtendedHandler {
 	/*
 	 * Handler for allocated task item's extended processing
 	 */
+
 	XtdCommons xtdCommons = null;
+
 	public void initializeExtendedHandlerForExtdSrvrProcess(CommonData inCommonData, 
 			ArtifactPojo inArtifactPojo) {
 		System.out.println("At initializeExtendedHandlerForExtdSrvrProcess");

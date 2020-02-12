@@ -37,12 +37,17 @@ public class ERLDownload extends ERLpojo{
 	public final static int CANT_VIEW_NOT_RENEWED_YET = 3;
 	public final static int CANT_VIEW_NOT_DOWNLOADED_YET = 4;
 	
+	public String leadID;
+	public boolean personified;
+	
 	public ERLDownload(
 			ArtifactKeyPojo inArtifactKeyPojo,
 			String inRequestor,
 			String inAuthor,
+			String inLeadID,			
 			boolean inHasSpecialHandler,
 			boolean inAutoTriggered,
+			boolean inPersonified,
 			String inReviewFileName,
 			String inERLStatus,
 			String inContentFileName, 
@@ -69,7 +74,9 @@ public class ERLDownload extends ERLpojo{
 		downLoadedReviewTimeStamp = inDownLoadedReviewTimeStamp;
 		relevancePicked  = inRelevancePicked;
 		autoTriggered = inAutoTriggered;
-
+		leadID = (inLeadID!= null) ? inLeadID : "";
+		personified = inPersonified;		
+		
 		System.out.println(" here we go..... inDownLoadedReviewFile loaded at ERLDownload is "  + inDownLoadedReviewFile);
 		System.out.println(" here we go..... downLoadedReviewFile loaded with ERLDownload is "  + downLoadedReviewFile);
 		

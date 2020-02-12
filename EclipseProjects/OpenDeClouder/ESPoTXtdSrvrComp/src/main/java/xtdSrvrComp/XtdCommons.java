@@ -42,13 +42,15 @@ public class XtdCommons extends Commons {
 	}
 	
 	public void readExtendedCatalogServerSecondaryProperties(String inExtdCtlgSrvrpropertiesFileName) throws IOException {
-		Properties extdCtlgSrvrPropObject = new Properties();
-		extdCtlgSrvrpropertiesFileName = inExtdCtlgSrvrpropertiesFileName;
-		InputStream propertiesStream = null;
-		propertiesStream = new FileInputStream(extdCtlgSrvrpropertiesFileName);
-	
-		extdCtlgSrvrPropObject.load(propertiesStream);
-		propertiesStream.close();
+
+//		Properties extdCtlgSrvrPropObject = new Properties();
+//		extdCtlgSrvrpropertiesFileName = inExtdCtlgSrvrpropertiesFileName;
+//		InputStream propertiesStream = new FileInputStream(extdCtlgSrvrpropertiesFileName);
+//		extdCtlgSrvrPropObject.load(propertiesStream);
+//		propertiesStream.close();
+		
+		Properties extdCtlgSrvrPropObject = getPropertiesFromFile(extdCtlgSrvrpropertiesFileName);
+
 		System.out.println("xxx extdCtlgSrvrPropObject getProperty on EXTENDED_CATLOG_SERVER_FOLDER is " + xtdCatalogSrvrFolder);
 		
 		userName = extdCtlgSrvrPropObject.getProperty("userName");
@@ -66,6 +68,7 @@ public class XtdCommons extends Commons {
 		
 		extdSrvrProcessFolder = installFileFolder + localFileSeparator + extdCtlgSrvrPropObject.getProperty("extdSrvrProcessFolder");
 		alltimesheetfile = extdSrvrProcessFolder + localFileSeparator + extdCtlgSrvrPropObject.getProperty("alltimesheetfile");
+
 		//timeAllocSheetname = extdCtlgSrvrPropObject.getProperty("timeallocsheetname");
 
 		//System.out.println("extdCtlgSrvrPropObject getProperty on keyColumnNo is " + extdCtlgSrvrPropObject.getProperty("keyColumnNo"));

@@ -24,8 +24,13 @@ public class UserItem extends GenericItemHandler {
 
 	Text userShortIDText;
 	Text userNameText;
+	Text leadIDText;
+	CCombo activeStatesList;
+
 	CCombo privilegeList;
 	private final static String[] PRIVILEGE_LIST_LITs = new String[]{UserPojo.ADMIN_LEVEL_LIT,UserPojo.TEAMMLEADER_LEVEL_LIT,UserPojo.TEAMMEMBER_LEVEL_LIT};
+	private final static String[] ACTIVESTATE_LIST_LITs = new String[]{UserPojo.ACTIVESTAT_ACTIVE, UserPojo.ACTIVESTAT_INACTIVE};
+	
 
 	public final static String userItemPreValidation(CommonData inCommonData,ArtifactKeyPojo inArtifactKeyPojo){
 		String validateString = "";
@@ -74,7 +79,7 @@ public class UserItem extends GenericItemHandler {
 		} else {
 			userShortIDText = new Text(userShortIDInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
 		}
-		userShortIDText.setText(userItemPojo.userPojo.shortId);
+		userShortIDText.setText(userItemPojo.userPojo.rootSysLoginID);
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
@@ -91,6 +96,35 @@ public class UserItem extends GenericItemHandler {
 		formData.top = new FormAttachment(inPrevGroup);		
 		userNameInfo.setLayoutData(formData);
 		inPrevGroup = userNameInfo;
+
+		Group leadIDInfo = new Group(itemContentGroup, SWT.LEFT);
+		leadIDInfo.setText("leadID");
+		leadIDInfo.setLayout(new FillLayout());
+		leadIDText = new Text(leadIDInfo, SWT.WRAP | SWT.CENTER);
+		leadIDText.setText(userItemPojo.userPojo.leadID);
+		
+		formData = new FormData();
+		formData.top = new FormAttachment(inPrevGroup);		
+		leadIDInfo.setLayoutData(formData);
+		inPrevGroup = leadIDInfo;
+
+		Group activeStateIDInfo = new Group(itemContentGroup, SWT.LEFT);
+		activeStateIDInfo.setText("ActiveState");
+		activeStateIDInfo.setLayout(new FillLayout());
+		if (commonData.getUsersHandler().getUserDetailsFromShortId(commons.userName).hasAdminPrivilege()){
+			activeStatesList = new CCombo(activeStateIDInfo, SWT.DROP_DOWN);
+		} else {
+			activeStatesList = new CCombo(activeStateIDInfo, SWT.DROP_DOWN | SWT.READ_ONLY);
+		}
+
+		activeStatesList.setItems(ACTIVESTATE_LIST_LITs);
+		if (userItemPojo!=null && userItemPojo.userPojo != null && !userItemPojo.userPojo.activeStatus.equalsIgnoreCase("")) {
+			activeStatesList.select(activeStatesList.indexOf(userItemPojo.userPojo.activeStatus));
+		}
+		formData = new FormData();
+		formData.top = new FormAttachment(inPrevGroup);
+		activeStateIDInfo.setLayoutData(formData);
+		inPrevGroup = activeStateIDInfo;
 
 		Group userPreveledgeInfo = new Group(itemContentGroup, SWT.LEFT);
 		userPreveledgeInfo.setText("UserPreveledge");
@@ -115,11 +149,16 @@ public class UserItem extends GenericItemHandler {
 	public void getAddlFieldsOfItemPojo(ItemPojo inItemPojo){
 		UserItemPojo userItemPojo = (UserItemPojo) inItemPojo;
 		userItemPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
-		userItemPojo.userPojo.shortId = userShortIDText.getText();
+		userItemPojo.userPojo.rootSysLoginID = userShortIDText.getText();
 		userItemPojo.userPojo.userName = userNameText.getText();		
-		if (commonData.getUsersHandler().getUserDetailsFromShortId(commons.userName).hasAdminPrivilege()
-			&& privilegeList.getSelectionIndex() > -1){
-			userItemPojo.userPojo.privilegeLevel = UserPojo.getPrivilegeLevelOfLit(PRIVILEGE_LIST_LITs[privilegeList.getSelectionIndex()]);
+		if (commonData.getUsersHandler().getUserDetailsFromShortId(commons.userName).hasAdminPrivilege()) {
+			if (privilegeList.getSelectionIndex() > -1){
+				userItemPojo.userPojo.privilegeLevel = UserPojo.getPrivilegeLevelOfLit(PRIVILEGE_LIST_LITs[privilegeList.getSelectionIndex()]);
+			}
+			if (activeStatesList.getSelectionIndex() > -1){
+				userItemPojo.userPojo.activeStatus = ACTIVESTATE_LIST_LITs[activeStatesList.getSelectionIndex()];
+			}
+			
 		}
 	}
 	

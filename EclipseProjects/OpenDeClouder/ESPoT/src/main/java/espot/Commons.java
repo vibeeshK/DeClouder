@@ -166,14 +166,31 @@ public class Commons extends CommonTechs {
 	}
 
 
+	public Properties getPropertiesFromFile(String inPropertyFileName) throws IOException{
+		Properties propObject = new Properties();
+		InputStream propertiesInStream = new FileInputStream(inPropertyFileName);
+		propObject.load(propertiesInStream);
+		propertiesInStream.close();
+		return propObject;
+	}
+	
+	public String readPropertyFromFile(String inPropName, String inPropFileName) throws IOException{
+		Properties propObject = getPropertiesFromFile(inPropFileName);
+		return propObject.getProperty(inPropName);
+	}
+	
+	
 	private void readCommonPropForAllMachines() throws IOException {
-		InputStream commonPropertiesInStream = null;
-		Properties commonPropObject = new Properties();
+//		InputStream commonPropertiesInStream = null;
+//		Properties commonPropObject = new Properties();
+//
+//		commonPropertiesInStream = new FileInputStream(commonPropertiesFILENAME);
+//		commonPropObject.load(commonPropertiesInStream);
+//		commonPropertiesInStream.close();
 
-		commonPropertiesInStream = new FileInputStream(commonPropertiesFILENAME);
-		commonPropObject.load(commonPropertiesInStream);
-		commonPropertiesInStream.close();
-
+		Properties commonPropObject = getPropertiesFromFile(commonPropertiesFILENAME);
+		
+		
 		localFileSeparator = Character.toString(File.separatorChar);
 
 		installFileFolder = commonPropObject.getProperty("installFileFolder") + localFileSeparator + System.getProperty("user.name");
@@ -370,12 +387,15 @@ public class Commons extends CommonTechs {
 	}
 
 	private void readServerSideProperties() throws IOException {
-		Properties serverPropObject = new Properties();
+//		Properties serverPropObject = new Properties();
+//
+//		InputStream propertiesStream = new FileInputStream(serverPropertiesFILENAME);
+//		serverPropObject.load(propertiesStream);
+//		propertiesStream.close();
 
-		InputStream propertiesStream = new FileInputStream(serverPropertiesFILENAME);
-		serverPropObject.load(propertiesStream);
-		propertiesStream.close();
-
+		Properties serverPropObject = getPropertiesFromFile(serverPropertiesFILENAME);
+		
+		
 		BASE_CATLOG_SERVER_FOLDER = serverPropObject.getProperty("bsSrverFolder");
 		
 		String serverRootNicksText = serverPropObject.getProperty("serverrootNicks");
@@ -400,12 +420,14 @@ public class Commons extends CommonTechs {
 	}
 
 	private void readCommonSysCompProperties() throws IOException, ParseException {
-		Properties commonSysCompPropObject = new Properties();
-		
-		InputStream sysPropertiesStream = new FileInputStream(commonSyspropertiesFILENAME);
-		commonSysCompPropObject.load(sysPropertiesStream);
-		sysPropertiesStream.close();
+//		Properties commonSysCompPropObject = new Properties();
+//		
+//		InputStream sysPropertiesStream = new FileInputStream(commonSyspropertiesFILENAME);
+//		commonSysCompPropObject.load(sysPropertiesStream);
+//		sysPropertiesStream.close();
 
+		Properties commonSysCompPropObject = getPropertiesFromFile(commonSyspropertiesFILENAME);
+		
 		String sysCompCurrLocalLogUpdateTmString = commonSysCompPropObject.getProperty(sysCompCurrLocalLogUpdateTmLIT);
 		platformRoot = commonSysCompPropObject.getProperty(platformRootLIT);
 		
@@ -417,12 +439,15 @@ public class Commons extends CommonTechs {
 	}
 	
 	private void readClienSideProperties() throws IOException {
-		Properties clientPropObject = new Properties();
+//		Properties clientPropObject = new Properties();
+//
+//		InputStream clientSidePropertiesStream = new FileInputStream(clientPropertiesFILENAME);
+//		clientPropObject.load(clientSidePropertiesStream);
+//		clientSidePropertiesStream.close();
 
-		InputStream clientSidePropertiesStream = new FileInputStream(clientPropertiesFILENAME);
-		clientPropObject.load(clientSidePropertiesStream);
-		clientSidePropertiesStream.close();
-
+		Properties clientPropObject = getPropertiesFromFile(clientPropertiesFILENAME);
+		
+		
 		//CLIENT_MACHNE_FOLDER = clientPropObject.getProperty("clientMcFolder");	why this is required???
 		//userName = clientPropObject.getProperty("userName");
 		System.out.println("At readClienSideProperties defaultUIRootNick is " + defaultUIRootNick);
@@ -437,15 +462,17 @@ public class Commons extends CommonTechs {
 	}
 
 	public String readRootSysLoginIDFromClienSideProperties(String inRootNick) throws IOException {
-		Properties clientPropObject = new Properties();
+//		Properties clientPropObject = new Properties();
+//
+//		InputStream clientSidePropertiesStream = new FileInputStream(clientPropertiesFILENAME);
+//		clientPropObject.load(clientSidePropertiesStream);
+//		clientSidePropertiesStream.close();
 
-		InputStream clientSidePropertiesStream = new FileInputStream(clientPropertiesFILENAME);
-		clientPropObject.load(clientSidePropertiesStream);
-		clientSidePropertiesStream.close();
-
-		System.out.println("At readRootSysLoginIDFromClienSideProperties USERNAME_PREFIX_LIT + inRootNick is " + USERNAME_PREFIX_LIT + inRootNick);
+		//Properties clientPropObject = getPropertiesFromFile(clientPropertiesFILENAME);		
+		System.out.println("At readRootSysLoginIDFromClienSideProperties USERNAME_PREFIX_LIT + inRootNick is " + USERNAME_PREFIX_LIT + inRootNick);		
+		//return clientPropObject.getProperty(USERNAME_PREFIX_LIT + inRootNick);
 		
-		return clientPropObject.getProperty(USERNAME_PREFIX_LIT + inRootNick);
+		return readPropertyFromFile(USERNAME_PREFIX_LIT + inRootNick, clientPropertiesFILENAME);
 	}
 
 	public void setRootSysLoginIDInClienSideProperties(String inRootNick, String inRootSysLoginID) throws IOException {

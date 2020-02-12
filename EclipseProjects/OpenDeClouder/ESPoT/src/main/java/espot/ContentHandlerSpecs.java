@@ -17,6 +17,7 @@ public class ContentHandlerSpecs {
 	public boolean hasSpecialHandler = false;
 	public boolean userInitiated = false;	
 	public boolean autoTriggered = false;	
+	public boolean personified = false;
 	public String handlerClass = "";
 	public String extdHandlerCls = "";
 	public String rollupOrAddup = "";
@@ -35,8 +36,8 @@ public class ContentHandlerSpecs {
 		commons = inCommons;
 	}
 
-	public void setContentHandlerSpecs(String inContentType, String inTemplate,
-			String inExtension, Boolean inHasSpecialHandler, Boolean inUserInitiated, Boolean inAutoTriggered,
+	public void setContentHandlerSpecs(String inContentType, String inTemplate, String inExtension, 
+			Boolean inHasSpecialHandler, Boolean inUserInitiated, Boolean inAutoTriggered, Boolean inPersonified,
 			String inHandlerClass, String inExtdHandlerCls, String inRollupOrAddup, 
 			String inRollAddSeparator, String inReplOptRelevance, String inReplOptArtifact, int inRollupLevel, 
 			String inRollAddContentType, 
@@ -49,6 +50,7 @@ public class ContentHandlerSpecs {
 		hasSpecialHandler = (inHasSpecialHandler != null) ? inHasSpecialHandler : false;
 		userInitiated = (inUserInitiated != null) ? inUserInitiated : false;				
 		autoTriggered = (inAutoTriggered != null) ? inAutoTriggered : false;
+		personified = (inPersonified != null) ? inPersonified: false;
 		handlerClass = (inHandlerClass != null) ? inHandlerClass : "";
 		extdHandlerCls = (inExtdHandlerCls != null) ? inExtdHandlerCls : "";
 		rollupOrAddup = inRollupOrAddup;
@@ -118,7 +120,11 @@ public class ContentHandlerSpecs {
 				//SlashFix ends
 			} else {
 				//ADDUP ----- addup artifacts just adds at the same relevance path as its child
-				rejointRelevanceString = inChildRelevance;
+				if (!addupRelevance.equalsIgnoreCase("")) {
+					rejointRelevanceString = addupRelevance; 
+				} else {
+					rejointRelevanceString = inChildRelevance;
+				}
 			}
 			System.out.println("getRolledUpRelevance ROLLUP_ADDUP_TYPE is:" + rollupOrAddup);
 			System.out.println("getRolledUpRelevance : rejointString:" + rejointRelevanceString);

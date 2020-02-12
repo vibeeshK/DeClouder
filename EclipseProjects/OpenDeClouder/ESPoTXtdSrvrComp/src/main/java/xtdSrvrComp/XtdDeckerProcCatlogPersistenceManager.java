@@ -181,13 +181,15 @@ public class XtdDeckerProcCatlogPersistenceManager extends XtdCatalogPersistence
 				+ " erl.ContentType, "
 				+ " Requestor, "
 				+ " coalesce(Author,\"\") as Author,"
+				+ " coalesce(usr.LeadID,\"\") as LeadID, "				
 				+ " coalesce(ContentFileName,\"\") as ContentFileName, "
 				+ " coalesce(ReviewFileName,\"\") as ReviewFileName, "
 				+ " erl.ERLStatus, "
 				+ " coalesce(UploadedTimeStamp,\"\") as UploadedTimeStamp, "
 				+ " coalesce(ReviewTimeStamp,\"\") as ReviewTimeStamp, "
 				+ " coalesce(ct.HasSpecialHandler,\"\") as HasSpecialHandler, "
-				+ " coalesce(ct.AutoTriggered,\"\") as AutoTriggered, "				
+				+ " coalesce(ct.AutoTriggered,\"\") as AutoTriggered, "		
+				+ " coalesce(ct.Personified,\"\") as Personified, "				
 				+ " coalesce(SubscriptionStatus,\"\") as SubscriptionStatus, "
 				+ " coalesce(sub.DownLoadedFile,\"\") as DownLoadedFile, "
 				+ " coalesce(sub.DownLoadedReviewFile,\"\") as DownLoadedReviewFile, "
@@ -199,6 +201,9 @@ public class XtdDeckerProcCatlogPersistenceManager extends XtdCatalogPersistence
 				+ catalogDBAliasPrefix + "ERLMaster erl, "
 				+ extdSrvrDBAliasPrefix + "GrouperChild GC, "
 				+ sysDBAliasPrefix + "ContentTypes ct "
+				+ " left outer join "
+				+ catalogDBAliasPrefix + " Users usr "
+				+ " on usr.RootSysLoginID = erl.Author "
 				+ " left outer join Subscriptions sub "
 				+ " on sub.RootNick = erl.RootNick "
 				+ " and sub.Relevance = erl.Relevance "
@@ -226,8 +231,10 @@ public class XtdDeckerProcCatlogPersistenceManager extends XtdCatalogPersistence
 											rs.getString("ContentType")),
 						rs.getString("Requestor"), 
 						rs.getString("Author"),						
+						rs.getString("LeadID"),
 						rs.getBoolean("HasSpecialHandler"),
 						rs.getBoolean("AutoTriggered"),						
+						rs.getBoolean("Personified"),
 						rs.getString("ReviewFileName"), rs.getString("ERLStatus"),
 						rs.getString("ContentFileName"),
 						rs.getString("UploadedTimeStamp"), rs.getString("ReviewTimeStamp"),

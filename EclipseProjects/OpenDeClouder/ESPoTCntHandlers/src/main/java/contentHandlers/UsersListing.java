@@ -80,6 +80,8 @@ public class UsersListing extends GenericGrouper {
 	//These single item fields will be referred when one single item is pulled out
 	Text userShortIDText;
 	Text userNameText;
+	Text leadIDText;
+	Text activeStateText;	
 	Text privilegeText;
 
 	public String prevalidate(CommonData inCommonData,ArtifactKeyPojo inArtifactKeyPojo){		
@@ -103,7 +105,7 @@ public class UsersListing extends GenericGrouper {
 		System.out.println("addlHeadersCount=" + addlHeadersCount);
 
 		//centerBaseColHeaders = new String[] {"Description","Author","Subportfolio","Application","Reviewer","Status"};
-		centerBaseColHeaders = new String[] {"ShortID","UserName","Privilege"};
+		centerBaseColHeaders = new String[] {"ShortID","UserName","LeadID","ActiveState", "Privilege"};
 	}
 
 	public void setDisplayItemsCenterBaseFieldsInMultiDisplay(TableEditor editor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojo){
@@ -111,7 +113,7 @@ public class UsersListing extends GenericGrouper {
 
 		editor = new TableEditor(inTable);
 		Text userShortID_Tx = new Text(inTable, SWT.READ_ONLY);
-		userShortID_Tx.setText(userItemPojo.userPojo.shortId);
+		userShortID_Tx.setText(userItemPojo.userPojo.rootSysLoginID);
 		editor.grabHorizontal = true;
 		editor.setEditor(userShortID_Tx, inTableItem, ++inLastColLocation);
 		
@@ -122,9 +124,20 @@ public class UsersListing extends GenericGrouper {
 		editor.setEditor(userName_Tx, inTableItem, ++inLastColLocation);
 	
 		editor = new TableEditor(inTable);
+		Text leadID_Tx = new Text(inTable, SWT.READ_ONLY);
+		leadID_Tx.setText(userItemPojo.userPojo.leadID);
+		editor.grabHorizontal = true;
+		editor.setEditor(leadID_Tx, inTableItem, ++inLastColLocation);		
+
+		editor = new TableEditor(inTable);
+		Text activeState_Tx = new Text(inTable, SWT.READ_ONLY);
+		activeState_Tx.setText(userItemPojo.userPojo.activeStatus);
+		editor.grabHorizontal = true;
+		editor.setEditor(activeState_Tx, inTableItem, ++inLastColLocation);		
+
+		editor = new TableEditor(inTable);
 		Text privilege_Tx = new Text(inTable, SWT.READ_ONLY);
-		privilege_Tx.setText(UserPojo.getPrivilegeLitOfLevel(userItemPojo.userPojo.privilegeLevel));
-				
+		privilege_Tx.setText(UserPojo.getPrivilegeLitOfLevel(userItemPojo.userPojo.privilegeLevel));				
 		editor.grabHorizontal = true;
 		editor.setEditor(privilege_Tx, inTableItem, ++inLastColLocation);
 
@@ -138,7 +151,7 @@ public class UsersListing extends GenericGrouper {
 		userInfo.setText("UserShortID");
 		userInfo.setLayout(new FillLayout());
 		userShortIDText = new Text(userInfo, SWT.WRAP | SWT.CENTER);
-		userShortIDText.setText(userItemPojo.userPojo.shortId);
+		userShortIDText.setText(userItemPojo.userPojo.rootSysLoginID);
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
@@ -155,6 +168,28 @@ public class UsersListing extends GenericGrouper {
 		formData.top = new FormAttachment(inPrevGroup);
 		userNameInfo.setLayoutData(formData);
 		inPrevGroup = userNameInfo;
+
+		Group leadIDInfo = new Group(itemContentGroup, SWT.LEFT);
+		leadIDInfo.setText("LeadID");
+		leadIDInfo.setLayout(new FillLayout());
+		leadIDText = new Text(leadIDInfo, SWT.WRAP | SWT.CENTER);
+		leadIDText.setText(userItemPojo.userPojo.leadID);
+		
+		formData = new FormData();
+		formData.top = new FormAttachment(inPrevGroup);
+		userNameInfo.setLayoutData(formData);
+		inPrevGroup = userNameInfo;
+
+		Group activeStateInfo = new Group(itemContentGroup, SWT.LEFT);
+		activeStateInfo.setText("LeadID");
+		activeStateInfo.setLayout(new FillLayout());
+		activeStateText = new Text(activeStateInfo, SWT.WRAP | SWT.CENTER);
+		activeStateText.setText(userItemPojo.userPojo.activeStatus);
+		
+		formData = new FormData();
+		formData.top = new FormAttachment(inPrevGroup);
+		activeStateInfo.setLayoutData(formData);
+		inPrevGroup = activeStateInfo;
 
 		Group privilegeInfo = new Group(itemContentGroup, SWT.LEFT);
 		privilegeInfo.setText("Privilege");
@@ -219,7 +254,7 @@ public class UsersListing extends GenericGrouper {
 			userItemPojo.itemID = commonData.getCommons().userName + commonData.getCommons().getCurrentTimeStamp() + "x" + usersCnt;
 			userItemPojo.contentType = inContentType;
 			userItemPojo.relevance = inRelevance;
-			userItemPojo.artifactName = userPojo.shortId;
+			userItemPojo.artifactName = userPojo.rootSysLoginID;
 
 			inDocumentToUpdate.absorbIncomingItemPojo(userItemPojo);
 		}

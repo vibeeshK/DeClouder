@@ -27,9 +27,31 @@ public class CatalogDisplay extends ArtifactsDisplay{
 
 	public void setData(){
 		System.out.println("catelogPersistenceManager in setData is " + commonUIData.getCatelogPersistenceManager());
-		//ArrayList<ERLDownload> dbDisplayERLs = commonUIData.getCatelogPersistenceManager().readERLDownLoadsOfRoot();
-		ArrayList<ERLDownload> dbDisplayERLs = commonUIData.getCatelogPersistenceManager().readRelevantERLDownLoads();
+
+		ArrayList<ERLDownload> allERLDownLoads = catelogPersistenceManager.readERLDownLoadsOfRoot();
+		
+		ArrayList<ERLDownload> dbDisplayERLs = new ArrayList<ERLDownload>();
+		for (ERLDownload erlDownload : allERLDownLoads){
+			System.out.println("CatalogDisplay SetData erlDownload " + erlDownload.artifactKeyPojo.artifactName);
+			System.out.println("CatalogDisplay SetData erlDownload relevancePicked " + erlDownload.relevancePicked);
+			System.out.println("CatalogDisplay SetData erlDownload relevancePicked " + erlDownload.relevancePicked);
+			System.out.println("CatalogDisplay SetData erlDownload contentType " + erlDownload.artifactKeyPojo.contentType);
+			System.out.println("CatalogDisplay SetData erlDownload personified " + erlDownload.personified);
+			System.out.println("CatalogDisplay SetData erlDownload personified " + erlDownload.personified);
+			
+			if (erlDownload.relevancePicked 
+				&& (erlDownload.author.equalsIgnoreCase(commons.userName)
+				|| !commonUIData.getContentHandlerSpecsMap().get(erlDownload.artifactKeyPojo.contentType).personified)) {
+
+				System.out.println("CatalogDisplay SetData Added erlDownload " + erlDownload.artifactKeyPojo.artifactName);
+
+				dbDisplayERLs.add(erlDownload);
+			} else {
+				System.out.println("CatalogDisplay SetData Skipped erlDownload " + erlDownload.artifactKeyPojo.artifactName);				
+			}			
+		}
 		setArtifactValues(dbDisplayERLs);
+
 	}
 
 	public void setAddlRibbonButtons() {
@@ -270,7 +292,7 @@ public class CatalogDisplay extends ArtifactsDisplay{
 					//} else {
 					//	commonUIData.getCatelogPersistenceManager().insertSubscription(selectedERLpojo,ERLDownload.CURRENTLY_SUBSCRIBED);
 					//}
-					commonUIData.getCatelogPersistenceManager().replaceSubscription(selectedERLpojo,ERLDownload.CURRENTLY_SUBSCRIBED);
+					catelogPersistenceManager.replaceSubscription(selectedERLpojo,ERLDownload.CURRENTLY_SUBSCRIBED);
 					refreshScreen();
 				}
 			});

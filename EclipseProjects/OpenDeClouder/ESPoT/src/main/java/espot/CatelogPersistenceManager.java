@@ -202,6 +202,7 @@ public class CatelogPersistenceManager {
 					+ " coalesce(HasSpecialHandler,\"\") as HasSpecialHandler, "
 					+ " coalesce(UserInitiated,\"\") as UserInitiated, "
 					+ " coalesce(AutoTriggered,\"\") as AutoTriggered, "
+					+ " coalesce(Personified,\"\") as Personified, "
 					+ " coalesce(HandlerClass,\"\") as HandlerClass, "
 					+ " coalesce(ExtdHandlerCls,\"\") as ExtdHandlerCls, "
 					+ " RollupOrAddup, "
@@ -225,6 +226,7 @@ public class CatelogPersistenceManager {
 						rs.getBoolean("HasSpecialHandler"), 
 						rs.getBoolean("UserInitiated"), 
 						rs.getBoolean("AutoTriggered"), 
+						rs.getBoolean("Personified"), 
 						rs.getString("HandlerClass"),
 						rs.getString("ExtdHandlerCls"),			
 						rs.getString("RollupOrAddup"),
@@ -324,6 +326,7 @@ public class CatelogPersistenceManager {
 					+ " coalesce(HasSpecialHandler,\"\") as HasSpecialHandler, "
 					+ " coalesce(UserInitiated,\"\") as UserInitiated, "
 					+ " coalesce(AutoTriggered,\"\") as AutoTriggered, "
+					+ " coalesce(Personified,\"\") as Personified, "
 					+ " coalesce(HandlerClass,\"\") as HandlerClass, "
 					+ " coalesce(ExtdHandlerCls,\"\") as ExtdHandlerCls, "
 					+ " RollupOrAddup, "
@@ -347,6 +350,7 @@ public class CatelogPersistenceManager {
 						rs.getBoolean("HasSpecialHandler"), 
 						rs.getBoolean("UserInitiated"), 
 						rs.getBoolean("AutoTriggered"), 
+						rs.getBoolean("Personified"), 
 						rs.getString("HandlerClass"),
 						rs.getString("ExtdHandlerCls"),			
 						rs.getString("RollupOrAddup"),
@@ -492,14 +496,33 @@ public class CatelogPersistenceManager {
 		return readERLDownLoadsOfRootWithConstraint(contentTypeConstraint);
 	}
 
-	public synchronized  ArrayList<ERLDownload> readERLDownLoadsOfAssignedContent(String inUserName) {
-		System.out.println("at readERLDownLoadsOfAssignedContent start ");
+	public synchronized  ArrayList<ERLDownload> old_readERLDownLoadsOfAssignedContent(String inUserName) {
+		System.out.println("at old_readERLDownLoadsOfAssignedContent start ");
 		String contentTypeConstraint = " and upper(erl.Author) = upper('" + inUserName + "') " + 
 										" and (erl.ERLStatus = '" + ArtifactPojo.ERLSTAT_DRAFTREQ + "' " +
 										" or erl.ERLStatus = '' or upper(erl.ERLStatus) = upper('null'))" ;
 		return readERLDownLoadsOfRootWithConstraint(contentTypeConstraint);
 	}
 
+	public synchronized  ArrayList<ERLDownload> readERLDownLoadsOfAssignedContent(String inUserName) {
+		System.out.println("at readERLDownLoadsOfAssignedContent start ");
+
+		String contentTypeConstraint = " and (erl.ERLStatus = '" + ArtifactPojo.ERLSTAT_DRAFTREQ + "' " +
+										" or erl.ERLStatus = '' or upper(erl.ERLStatus) = upper('null'))" ;
+		ArrayList<ERLDownload> allDraftReqERLs =  readERLDownLoadsOfRootWithConstraint(contentTypeConstraint);
+		
+		ArrayList<ERLDownload> assignedERLs = new ArrayList<ERLDownload>();
+		for (ERLDownload erlDownload : allDraftReqERLs){
+			if (erlDownload.relevancePicked 
+				&& (erlDownload.author.equalsIgnoreCase(inUserName)						
+				|| (erlDownload.personified && erlDownload.leadID.equalsIgnoreCase(inUserName)))) {
+
+				assignedERLs.add(erlDownload);
+			}
+		}
+		return assignedERLs;
+	}
+	
 	public synchronized  ArrayList<ERLDownload> readERLDownLoadsOfRootWithConstraint(String inConstraintString) {
 		System.out.println("at readERLDownLoadsOfRootWithConstraint start " +  inConstraintString);
 
@@ -517,6 +540,7 @@ public class CatelogPersistenceManager {
 			+ " erl.ContentType, "
 			+ " erl.Requestor, "
 			+ " coalesce(Author,\"\") as Author, "
+			+ " coalesce(usr.LeadID,\"\") as LeadID, "						
 			+ " coalesce(ContentFileName,\"\") as ContentFileName, "
 			+ " coalesce(ReviewFileName,\"\") as ReviewFileName, "
 			+ " erl.ERLStatus, "
@@ -524,6 +548,7 @@ public class CatelogPersistenceManager {
 			+ " coalesce(ReviewTimeStamp,\"\") as ReviewTimeStamp, "
 			+ " coalesce(ct.HasSpecialHandler,\"\") as HasSpecialHandler, "
 			+ " coalesce(ct.AutoTriggered,\"\") as AutoTriggered, "
+			+ " coalesce(ct.Personified,\"\") as Personified, "
 			+ " coalesce(sub.SubscriptionStatus,\"\") as SubscriptionStatus, "
 			+ " coalesce(sub.DownLoadedFile,\"\") as DownLoadedFile, "
 			+ " coalesce(sub.DownLoadedReviewFile,\"\") as DownLoadedReviewFile, "
@@ -534,6 +559,9 @@ public class CatelogPersistenceManager {
 			+ " from  "
 			+ catalogDBAliasPrefix + "ERLMaster erl, "
 			+ sysDBAliasPrefix + "ContentTypes ct "
+			+ " left outer join "
+			+ catalogDBAliasPrefix + " Users usr "
+			+ " on usr.RootSysLoginID = erl.Author "
 			+ " left outer join "
 			+ " Subscriptions sub "
 			+ " on sub.RootNick = erl.RootNick "
@@ -559,8 +587,10 @@ public class CatelogPersistenceManager {
 						tempArtifactKeyPojo,
 						rs.getString("Requestor"), 
 						rs.getString("Author"),
+						rs.getString("LeadID"),
 						rs.getBoolean("HasSpecialHandler"),
 						rs.getBoolean("AutoTriggered"),
+						rs.getBoolean("Personified"),
 						rs.getString("ReviewFileName"), rs.getString("ERLStatus"), 
 						rs.getString("ContentFileName"),
 						rs.getString("UploadedTimeStamp"), rs.getString("ReviewTimeStamp"),
@@ -607,6 +637,7 @@ public class CatelogPersistenceManager {
 			+ " erl.ContentType, "
 			+ " Requestor, "
 			+ " coalesce(Author,\"\") as Author,"
+			+ " coalesce(usr.LeadID,\"\") as LeadID, "						
 			+ " coalesce(ContentFileName,\"\") as ContentFileName, "
 			+ " coalesce(ReviewFileName,\"\") as ReviewFileName, "
 			+ " erl.ERLStatus, "		
@@ -614,6 +645,7 @@ public class CatelogPersistenceManager {
 			+ " coalesce(ReviewTimeStamp,\"\") as ReviewTimeStamp, "
 			+ " coalesce(ct.HasSpecialHandler,\"\") as HasSpecialHandler, "
 			+ " coalesce(ct.AutoTriggered,\"\") as AutoTriggered, "
+			+ " coalesce(ct.Personified,\"\") as Personified, "
 			+ " coalesce(sub.SubscriptionStatus,\"\") as SubscriptionStatus, "
 			+ " coalesce(sub.DownLoadedFile,\"\") as DownLoadedFile, "
 			+ " coalesce(sub.DownLoadedReviewFile,\"\") as DownLoadedReviewFile, "
@@ -624,6 +656,9 @@ public class CatelogPersistenceManager {
 			+ " from "
 			+ catalogDBAliasPrefix + "ERLMaster erl, "
 			+ sysDBAliasPrefix + "ContentTypes ct "
+			+ " left outer join "
+			+ catalogDBAliasPrefix + " Users usr "
+			+ " on usr.RootSysLoginID = erl.Author "
 			+ " left outer join Subscriptions sub "
 			+ " on sub.RootNick = erl.RootNick "
 			+ " and sub.Relevance = erl.Relevance "
@@ -652,8 +687,10 @@ public class CatelogPersistenceManager {
 						inArtifactKeyPojo,
 						rs.getString("Requestor"), 
 						rs.getString("Author"),
+						rs.getString("LeadID"),
 						rs.getBoolean("HasSpecialHandler"),
 						rs.getBoolean("AutoTriggered"),
+						rs.getBoolean("Personified"),
 						rs.getString("ReviewFileName"), rs.getString("ERLStatus"),
 						rs.getString("ContentFileName"),
 						rs.getString("UploadedTimeStamp"), rs.getString("ReviewTimeStamp"),
@@ -694,6 +731,7 @@ public class CatelogPersistenceManager {
 			+ " erl.ContentType, "
 			+ " Requestor, "
 			+ " coalesce(Author,\"\") as Author,"
+			+ " coalesce(usr.LeadID,\"\") as LeadID, "						
 			+ " coalesce(ContentFileName,\"\") as ContentFileName, "
 			+ " coalesce(ReviewFileName,\"\") as ReviewFileName, "
 			+ " erl.ERLStatus, "
@@ -701,6 +739,7 @@ public class CatelogPersistenceManager {
 			+ " coalesce(ReviewTimeStamp,\"\") as ReviewTimeStamp, "
 			+ " coalesce(ct.HasSpecialHandler,\"\") as HasSpecialHandler, "
 			+ " coalesce(ct.AutoTriggered,\"\") as AutoTriggered, "
+			+ " coalesce(ct.Personified,\"\") as Personified, "
 			+ " coalesce(Sub.SubscriptionStatus,\"\") as SubscriptionStatus, "
 			+ " coalesce(sub.DownLoadedFile,\"\") as DownLoadedFile, "
 			+ " coalesce(sub.DownLoadedReviewFile,\"\") as DownLoadedReviewFile, "
@@ -711,6 +750,9 @@ public class CatelogPersistenceManager {
 			+ " from  "
 			+ catalogDBAliasPrefix + "ERLMaster erl, "
 			+ sysDBAliasPrefix + "ContentTypes ct "
+			+ " left outer join "
+			+ catalogDBAliasPrefix + " Users usr "
+			+ " on usr.RootSysLoginID = erl.Author "
 			+ " left outer join Subscriptions sub "
 			+ " on sub.RootNick = erl.RootNick "
 			+ " and sub.Relevance = erl.Relevance "
@@ -741,8 +783,10 @@ public class CatelogPersistenceManager {
 						tempArtifactKeyPojo,
 						rs.getString("Requestor"), 
 						rs.getString("Author"),
+						rs.getString("LeadID"),
 						rs.getBoolean("HasSpecialHandler"),
 						rs.getBoolean("AutoTriggered"),
+						rs.getBoolean("Personified"),
 						rs.getString("ReviewFileName"), rs.getString("ERLStatus"),
 						rs.getString("ContentFileName"),
 						rs.getString("UploadedTimeStamp"), rs.getString("ReviewTimeStamp"),
@@ -2314,7 +2358,7 @@ public class CatelogPersistenceManager {
 				createConnectionAndStatment();
 			}
 
-			String queryString = "SELECT ShortId, UserName, RootSysLoginID, PrivilegeLevel, ActiveStatus from "
+			String queryString = "SELECT RootSysLoginID, UserName, LeadID, PrivilegeLevel, ActiveStatus from "
 					+ catalogDBAliasPrefix + "Users " 
 					+ " order by UserName"
 					;
@@ -2329,7 +2373,7 @@ public class CatelogPersistenceManager {
 			while (rs.next()) {
 				
 				UserPojo userPojo = new UserPojo (
-						rs.getString("ShortId"), rs.getString("UserName"), rs.getString("RootSysLoginID"),rs.getInt("PrivilegeLevel"),rs.getString("ActiveStatus"));
+						rs.getString("RootSysLoginID"), rs.getString("UserName"), rs.getString("LeadID"), rs.getInt("PrivilegeLevel"),rs.getString("ActiveStatus"));
 				usersList.add(userPojo);
 			}
 		} catch (SQLException e) {
@@ -2348,11 +2392,11 @@ public class CatelogPersistenceManager {
 			}
 			String replaceString = " REPLACE INTO "
 					+ catalogDBAliasPrefix + "Users "
-					+ " ( ShortId, UserName, RootSysLoginID, PrivilegeLevel, ActiveStatus ) "
+					+ " ( RootSysLoginID, UserName, LeadID, PrivilegeLevel, ActiveStatus ) "
 					+ " VALUES ( "
-					+ "'" + inUserPojo.shortId + "', "
-					+ "'" + inUserPojo.userName + "', "
 					+ "'" + inUserPojo.rootSysLoginID + "', "
+					+ "'" + inUserPojo.userName + "', "
+					+ "'" + inUserPojo.leadID + "', "
 					+ "'" + inUserPojo.privilegeLevel + "', "
 					+ "'" + inUserPojo.activeStatus + "')";
 

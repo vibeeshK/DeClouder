@@ -28,7 +28,7 @@ public class UsersDisplay {
 		assignedAuthorGroup.setText(inGroupText);
 		
 		if (inUsersHandler.getIndexOfUserShortId(inCurrentAuthor) == -1) {
-			UserPojo currentUserPojo = new UserPojo(inCurrentAuthor, "_Unknown Current User ", null, 0, "");
+			UserPojo currentUserPojo = new UserPojo(inCurrentAuthor, "_Unknown Current User ", "" , 0, "");
 			inUsersHandler.appendUserPojo(currentUserPojo);
 		}
 		userText = new Text(assignedAuthorGroup, SWT.LEFT | SWT.READ_ONLY);

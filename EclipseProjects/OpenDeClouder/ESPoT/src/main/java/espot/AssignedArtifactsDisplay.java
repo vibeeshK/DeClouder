@@ -28,7 +28,7 @@ public class AssignedArtifactsDisplay extends ArtifactsDisplay{
 	public void setData(){
 		System.out.println("catelogPersistenceManager in setData is " + commonUIData.getCatelogPersistenceManager());
 		ArrayList<ERLDownload> dbDisplayERLs = 
-			commonUIData.getCatelogPersistenceManager().readERLDownLoadsOfAssignedContent(commonUIData.getCommons().userName);
+				catelogPersistenceManager.readERLDownLoadsOfAssignedContent(commonUIData.getCommons().userName);
 		setArtifactValues(dbDisplayERLs);
 	}
 

@@ -12,10 +12,11 @@ public class UserPojo {
 	public final static String TEAMMLEADER_LEVEL_LIT = "TeamLead";
 	public final static String TEAMMEMBER_LEVEL_LIT = "TeamMember";
 	
-	public String shortId = "";
-	public String userName = "";
-	//public String emailID = "";
 	public String rootSysLoginID = "";
+	public String userName = "";
+	public String leadID = "";
+	//public String emailID = "";
+	//public String rootSysLoginID = "";
 	//public String userName = "";
 	public String activeStatus = "";
 	public int privilegeLevel = 0;
@@ -47,16 +48,16 @@ public class UserPojo {
 	public UserPojo(){		
 	}
 
-	public UserPojo(String inShortId, String inEmployeeName, String inEmailID, int inPrivilegeLevel, String inActiveStatus){
-		shortId = inShortId;
+	public UserPojo(String inRootSysLoginID, String inEmployeeName, String inLeadID, int inPrivilegeLevel, String inActiveStatus){
+		rootSysLoginID = inRootSysLoginID;
 		userName = inEmployeeName;
-		rootSysLoginID = inEmailID;
+		leadID = inLeadID;
 		privilegeLevel = inPrivilegeLevel;
 		activeStatus = inActiveStatus;
 	}
 	
 	public String getDisplayString() {
-		String displayString = userName + " (" + shortId + ")";
+		String displayString = userName + " (" + rootSysLoginID + ")";
 		return displayString;
 	}
 

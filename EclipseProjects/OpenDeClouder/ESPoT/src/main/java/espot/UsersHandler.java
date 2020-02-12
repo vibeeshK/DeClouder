@@ -29,8 +29,8 @@ public class UsersHandler {
 		commons = inCommons;
 		usersList = catelogPersistenceManager.readUsersList();
 		System.out.println("usersList.size() " + usersList.size());
-		System.out.println("usersList.get(0).shortId " + usersList.get(0).shortId);
-		System.out.println("usersList.get(readUsersList.size-1).shortId " + usersList.get(usersList.size()-1).shortId);
+		System.out.println("usersList.get(0).shortId " + usersList.get(0).rootSysLoginID);
+		System.out.println("usersList.get(readUsersList.size-1).shortId " + usersList.get(usersList.size()-1).rootSysLoginID);
 		creategetUsersNamesStrings();	// set up username strings
 	}
 	
@@ -65,12 +65,12 @@ public class UsersHandler {
 		usersShortNames = new String[usersList.size()];
 		for (int userCount = 0; userCount<usersList.size(); userCount++) {
 			usersNamesStrings[userCount] = usersList.get(userCount).getDisplayString();
-			usersShortNames[userCount] = usersList.get(userCount).shortId.toUpperCase();
+			usersShortNames[userCount] = usersList.get(userCount).rootSysLoginID.toUpperCase();
 			System.out.println("at creategetUsersNamesStrings usersShortNames[" + userCount + "]: " + usersShortNames[userCount]);
 		}
 	}
 	public String getUserShortnameByIndex(int userIndex){
-		return usersList.get(userIndex).shortId;
+		return usersList.get(userIndex).rootSysLoginID;
 	}
 	public int getIndexOfUserShortId(String userShortId){
 		int userIndex = -1;

@@ -632,8 +632,8 @@ public class RequestProcessor {
 			&& (requestAuthorsDetail.hasAdminPrivilege() 
 				|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
 				|| (inRequestProcesserPojo.prevERLPojo != null 
-					&& (requestAuthorsDetail.shortId.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)
-						|| requestAuthorsDetail.shortId.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor))))) {
+					&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)
+						|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor))))) {
 			
 			System.out.println("reassignment processing for requestor change");
 			inRequestProcesserPojo.newERLPojo.requestor = incomingItemNewReviewPojo.reassignedRequestor;
@@ -645,8 +645,8 @@ public class RequestProcessor {
 			&& (requestAuthorsDetail.hasAdminPrivilege() 
 				|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
 				|| (inRequestProcesserPojo.prevERLPojo != null 
-					&& (requestAuthorsDetail.shortId.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)
-						|| requestAuthorsDetail.shortId.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor))))) {
+					&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)
+						|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor))))) {
 			
 			System.out.println("reassignment processing for Author change");
 			inRequestProcesserPojo.newERLPojo.author = incomingItemNewReviewPojo.reassignedAuthor;
@@ -661,8 +661,8 @@ public class RequestProcessor {
 		if (requestAuthorsDetail.hasAdminPrivilege()
 			|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
 			|| (inRequestProcesserPojo.prevERLPojo != null
-				&& (requestAuthorsDetail.shortId.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor)
-					|| requestAuthorsDetail.shortId.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)))) {
+				&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor)
+					|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)))) {
 			System.out.println("erl status upgrades processing");
 			System.out.println("erl status being changed from " + inRequestProcesserPojo.newERLPojo.erlStatus + " to " +  incomingItemNewReviewPojo.newERLStatus);
 			inRequestProcesserPojo.newERLPojo.erlStatus = incomingItemNewReviewPojo.newERLStatus;

@@ -34,6 +34,9 @@ public abstract class ArtifactsDisplay {
 
 	ArrayList<ArtifactPojo> artifactPojos = null;
 	protected CommonUIData commonUIData = null;
+	Commons commons = null;
+	CatelogPersistenceManager catelogPersistenceManager = null;
+	
 	String displayTitle = null;
 	Composite buttonRibbon = null;
 	
@@ -47,7 +50,8 @@ public abstract class ArtifactsDisplay {
 
 	public ArtifactsDisplay(CommonUIData inCommonUIData) {
 		commonUIData = inCommonUIData ;
-
+		commons = commonUIData.getCommons();
+		catelogPersistenceManager = commonUIData.getCatelogPersistenceManager();
 	}
 	abstract public void setData();
 	
@@ -262,11 +266,11 @@ public abstract class ArtifactsDisplay {
 	abstract public void setDisplayItemsThirdAddlColFieldsOfRow(TableEditor editor,Table table, TableItem tableItem,ArtifactPojo displayArtifact, int inRowNumber);
 
 	public void refreshScreen() {
-		commonUIData.getCatelogPersistenceManager().tobeConnectedCatalogDbFile = 
+		catelogPersistenceManager.tobeConnectedCatalogDbFile = 
 			CatalogDownloadDtlsHandler.getInstance(commonUIData.getCommons()).getCatalogDownLoadedFileName(commonUIData.getCurrentRootNick());
-		commonUIData.getCatelogPersistenceManager().connectToToBECataloged();
+		catelogPersistenceManager.connectToToBECataloged();
 
-		System.out.println("refreshed catelogPersistenceManager is " + commonUIData.getCatelogPersistenceManager());
+		System.out.println("refreshed catelogPersistenceManager is " + catelogPersistenceManager);
 		
 		Control[] oldControls = mainShell.getChildren();
 		for (Control oldControl : oldControls) {
