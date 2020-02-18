@@ -158,7 +158,7 @@ public class RequestProcessor {
 				// check for user's active status and content file availability
 				// if not error the record
 				
-				if (!commonData.getUsersHandler().getUserDetailsFromShortId(requestPojo.requestor).isActive()) {
+				if (!commonData.getUsersHandler().getUserDetailsFromShortId(requestPojo.requestor.toUpperCase()).isActive()) {
 					recordErrored = true;
 					errorMessage = "Request coming from inactive user " + requestPojo.requestor;
 				} else if (!remoteAccesser.exists(requestProcesserPojo.incomingContentFullPath)) {

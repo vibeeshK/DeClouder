@@ -368,7 +368,6 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 
 		System.out.println("set data = "
 				+ reviewButton.getData("screenRowNum"));
-
 		
 		reviewButton.addSelectionListener(new SelectionAdapter() {
 			@Override

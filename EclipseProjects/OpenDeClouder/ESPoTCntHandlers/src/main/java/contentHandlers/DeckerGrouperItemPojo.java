@@ -19,7 +19,7 @@ public class DeckerGrouperItemPojo extends DeckerLiteItemPojo {
 		super(inItemNumber);
 	}
 	DeckerGrouperItemPojo(String inContentType, String inRelevance, String inArtifactName) {
-		super(-1);
+		super(inContentType, inRelevance, inArtifactName);
 //		contentType = inContentType;
 //		relevance = inRelevance;
 //		artifactName = inArtifactName;

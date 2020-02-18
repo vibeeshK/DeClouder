@@ -793,7 +793,7 @@ public class DeckerLite extends GenericGrouper {
 				if (deckerLiteDocPojo.getItemList()==null || deckerLiteDocPojo.getItemList().size()==0) {
 					childContentTypeList.clearSelection();
 				} else {
-					childContentTypeList.select(childContentTypeList.indexOf(deckerLiteDocPojo.getItemList().get(0).contentType));
+					childContentTypeList.select(childContentTypeList.indexOf(((DeckerLiteItemPojo) deckerLiteDocPojo.getItemList().get(0)).contentType));
 				}
 				childContentTypeList.addSelectionListener(new SelectionAdapter() {
 					public void widgetSelected(SelectionEvent e) {
@@ -807,7 +807,7 @@ public class DeckerLite extends GenericGrouper {
 						String selectedContentType = childContentTypeList.getItem(childContentTypeList.getSelectionIndex());
 						
 						if (deckerLiteDocPojo.getItemList().size() > 0
-							&& selectedContentType.equalsIgnoreCase(deckerLiteDocPojo.getItemList().get(0).contentType)) {
+							&& selectedContentType.equalsIgnoreCase(((DeckerLiteItemPojo) deckerLiteDocPojo.getItemList().get(0)).contentType)) {
 							return; // selection is same as current items' type
 						}
 
@@ -1070,15 +1070,45 @@ public class DeckerLite extends GenericGrouper {
 
 	}
 
+//	public void loadERLIntoItemsList(ERLDownload inERLDownload) {
+//		DeckerLiteDocPojo deckerLiteDocPojo = (DeckerLiteDocPojo) primerDoc;
+//		DeckerLiteItemPojo deckerLiteItemPojo = new DeckerLiteItemPojo(inERLDownload.artifactKeyPojo.contentType, inERLDownload.artifactKeyPojo.relevance, inERLDownload.artifactKeyPojo.artifactName);	
+//		deckerLiteItemPojo.status = inERLDownload.erlStatus;
+//		deckerLiteItemPojo.author = inERLDownload.author;		
+//		deckerLiteItemPojo.absorbScreenFieldValues(deckerLiteDocPojo.screenFieldDefaults);
+//		deckerLiteDocPojo.absorbIncomingItemPojo(deckerLiteItemPojo);
+//	}
+
+
 	public void loadERLIntoItemsList(ERLDownload inERLDownload) {
-		DeckerLiteDocPojo deckerLiteDocPojo = (DeckerLiteDocPojo) primerDoc;
-		DeckerLiteItemPojo deckerLiteItemPojo = new DeckerLiteItemPojo(inERLDownload.artifactKeyPojo.contentType, inERLDownload.artifactKeyPojo.relevance, inERLDownload.artifactKeyPojo.artifactName);	
+		DeckerLiteDocPojo deckerLiteDocPojo = (DeckerLiteDocPojo) getPrimerDoc();
+		DeckerLiteItemPojo deckerLiteItemPojo = (DeckerLiteItemPojo) createItemPojo(inERLDownload.artifactKeyPojo.contentType, inERLDownload.artifactKeyPojo.relevance, inERLDownload.artifactKeyPojo.artifactName);	
 		deckerLiteItemPojo.status = inERLDownload.erlStatus;
 		deckerLiteItemPojo.author = inERLDownload.author;		
 		deckerLiteItemPojo.absorbScreenFieldValues(deckerLiteDocPojo.screenFieldDefaults);
+
 		deckerLiteDocPojo.absorbIncomingItemPojo(deckerLiteItemPojo);
+		//absorbIncomingItemPojoIntoDoc(deckerLiteItemPojo);
+	}
+	
+	public ItemPojo createItemPojo(String inContentType, String inRelevance, String inArtifactName){
+		return new DeckerLiteItemPojo(inContentType, inRelevance, inArtifactName);
 	}
 
+//	public void absorbIncomingItemPojoIntoDoc(ItemPojo inItemPojo){
+//		DeckerLiteDocPojo deckerLiteDocPojo = (DeckerLiteDocPojo) primerDoc;
+//		deckerLiteDocPojo.absorbIncomingItemPojo(inItemPojo);
+//	}
+//	
+//	public void absorbScreenFieldValues(ItemPojo inItemPojo){
+//		DeckerLiteDocPojo deckerLiteDocPojo = (DeckerLiteDocPojo) primerDoc;
+//		deckerLiteDocPojo.absorbIncomingItemPojo(inItemPojo);
+//		
+//		DeckerLiteItemPojo deckerLiteItemPojo = (DeckerLiteItemPojo) inItemPojo;		
+//		deckerLiteItemPojo.absorbScreenFieldValues(deckerLiteDocPojo.screenFieldDefaults);
+//		
+//	}
+	
 	public GenericItemDocPojo getBaseDoc(ItemPojo inItemPojo) {
 		// this override required only for rollup types and DeckerLite is not one.
 		// calling this would be an error as Decker's child content type can be of any!!

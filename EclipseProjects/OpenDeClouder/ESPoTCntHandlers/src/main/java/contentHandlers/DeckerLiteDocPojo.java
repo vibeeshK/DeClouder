@@ -38,12 +38,20 @@ public class DeckerLiteDocPojo extends GenericGrouperDocPojo {
 		deckerEdited = false;
 	}
 
-	public ArrayList<DeckerLiteItemPojo> getItemList() {
+	public ArrayList<?> getItemList() {
 		return deckerLiteItemPojoList;
 	}
 	
-	public ArrayList<DeckerLiteItemPojo> createItemList() {
+//	public ArrayList<DeckerLiteItemPojo> createItemList() {
+//		deckerLiteItemPojoList = new ArrayList<DeckerLiteItemPojo>();
+//		return deckerLiteItemPojoList;
+//	}
+//
+	public ArrayList<?> createItemList() {
 		deckerLiteItemPojoList = new ArrayList<DeckerLiteItemPojo>();
+
+		System.out.println("at DeckerLiteDocPojo createItemList called = " + deckerLiteItemPojoList);
+		
 		return deckerLiteItemPojoList;
 	}
 

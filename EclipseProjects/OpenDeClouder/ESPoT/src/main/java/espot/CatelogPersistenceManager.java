@@ -512,13 +512,29 @@ public class CatelogPersistenceManager {
 		ArrayList<ERLDownload> allDraftReqERLs =  readERLDownLoadsOfRootWithConstraint(contentTypeConstraint);
 		
 		ArrayList<ERLDownload> assignedERLs = new ArrayList<ERLDownload>();
+		
+		System.out.println("at readERLDownLoadsOfAssignedContent loading erls for assigned content starts loop size " + allDraftReqERLs.size());
+		
 		for (ERLDownload erlDownload : allDraftReqERLs){
-			if (erlDownload.relevancePicked 
-				&& (erlDownload.author.equalsIgnoreCase(inUserName)						
-				|| (erlDownload.personified && erlDownload.leadID.equalsIgnoreCase(inUserName)))) {
+			
+			System.out.println("at readERLDownLoadsOfAssignedContent checknig erlDownload artifact " + erlDownload.artifactKeyPojo.artifactName);
+			System.out.println("at readERLDownLoadsOfAssignedContent checking erlDownload.relevancePicked " + erlDownload.relevancePicked);
+			System.out.println("at readERLDownLoadsOfAssignedContent checking inUserName " + inUserName);
+			System.out.println("at readERLDownLoadsOfAssignedContent checking erlDownload.author " + erlDownload.author);
+			System.out.println("at readERLDownLoadsOfAssignedContent checking erlDownload.leadID " + erlDownload.leadID);
+			System.out.println("at readERLDownLoadsOfAssignedContent checking erlDownload.personified " + erlDownload.personified);
+			
+			if (erlDownload.author.equalsIgnoreCase(inUserName)						
+				|| (erlDownload.personified && erlDownload.leadID.equalsIgnoreCase(inUserName))) {
 
+				System.out.println("at readERLDownLoadsOfAssignedContent adding erlDownload artifact " + erlDownload.artifactKeyPojo.artifactName);
+				
 				assignedERLs.add(erlDownload);
+			} else {
+				System.out.println("at readERLDownLoadsOfAssignedContent skipped erlDownload artifact " + erlDownload.artifactKeyPojo.artifactName);
+				
 			}
+			
 		}
 		return assignedERLs;
 	}

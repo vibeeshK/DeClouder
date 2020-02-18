@@ -597,13 +597,14 @@ public class TimeShCapture extends GenericItemHandler {
 																TimeSheetPojo.ALLOCATION_TYPE_PREALLOCATED);
 				timeEntryOptionsRecs.add(timeEntryOptionRec);
 				allTasksUniq.add(timeEntryOptionRec.taskID);
-				System.out.println("getAllTimeEntryOptionsRecs timeEntryOptionRec artifact is " + timeEntryOptionRec.taskID);
+				System.out.println("getAllTimeEntryOptionsRecs1 timeEntryOptionRec artifact is " + timeEntryOptionRec.taskID);
 			}
 		}
 
 		// (2) Get prev TimeShRollup
 		ArrayList<ERLDownload> timeShRollupAll = commonData.getCatelogPersistenceManager().readERLDownLoadsForAuthorOnContentType(invokedArtifactPojo.author,TIMESHROLLUP_CONTENTTYPE);
-		System.out.println("getAllTimeEntryOptionsRecs timeShRollupAll size is " + timeShRollupAll.size());
+		System.out.println("getAllTimeEntryOptionsRecs timeShRollupAll invokedArtifactPojo.author is " + invokedArtifactPojo.author);
+		System.out.println("getAllTimeEntryOptionsRecs TIMESHROLLUP_CONTENTTYPE is " + TIMESHROLLUP_CONTENTTYPE);
 		
 		if (timeShRollupAll != null && timeShRollupAll.size() > 0) {
 			if (timeShRollupAll.size() > 1) {
@@ -611,20 +612,24 @@ public class TimeShCapture extends GenericItemHandler {
 				commonData.getCommons().logger.warn("getAllTimeEntryOptionsRecs timeShRollupAll size is " + timeShRollupAll.size());
 			}
 
-			System.out.println("getAllTimeEntryOptionsRecs timeShRollupAll size is " + timeShRollupAll.size());
+			System.out.println("getAllTimeEntryOptionsRecs timeShRollupAll size is a1 " + timeShRollupAll.size());
 			
 			for (ERLDownload timeShRollup : timeShRollupAll) {
+				System.out.println("getAllTimeEntryOptionsRecs timeShRollup artifactName aa " + timeShRollup.artifactKeyPojo.artifactName);
+				System.out.println("getAllTimeEntryOptionsRecs timeShRollup author aa " + timeShRollup.author);
 				contentHandlerObjectInterface = ContentHandlerManager.getInstance(commonData.getCommons(), commonData.getCatelogPersistenceManager(), timeShRollup.artifactKeyPojo.contentType);
 				contentHandlerObjectInterface.
 					initializeContentHandlerForDownloadedArtifact((CommonUIData) commonData, timeShRollup);
 				TimeShRollupDoc timeShRollupDoc = ((TimeShRollup) contentHandlerObjectInterface).getPrimerDoc();
 				ArrayList<TimeSheetPojo> timeSheetsItems = timeShRollupDoc.getItemList();		
-				System.out.println("getAllTimeEntryOptionsRecs timeSheetsItems size is " + timeSheetsItems.size());
+				System.out.println("getAllTimeEntryOptionsRecs timeSheetsItems size is a2 " + timeSheetsItems.size());
 				for (TimeSheetPojo timeSheetPojo : timeSheetsItems) {
+					System.out.println("getAllTimeEntryOptionsRecs timeSheetsItems timeSheetPojo a " + timeSheetPojo.artifactName);
 					if (timeSheetPojo.capturedAt == null) {
 						System.out.println("getAllTimeEntryOptionsRecs timeSheetPojo capturedAt is blank hence skipping " + timeSheetPojo.itemID);
 						continue;
 					}
+					System.out.println("getAllTimeEntryOptionsRecs timeSheetsItems timeSheetPojo b " + timeSheetPojo.artifactName);
 					System.out.println("getAllTimeEntryOptionsRecs timeSheetPojo capturedAt is " + timeSheetPojo.capturedAt);
 					System.out.println("getAllTimeEntryOptionsRecs timeShCapturePojo captureStartDate is " + timeShCapturePojo.captureStartDate);
 					System.out.println("getAllTimeEntryOptionsRecs timeShCapturePojo captureEndDate is " + timeShCapturePojo.captureEndDate);
@@ -654,7 +659,7 @@ public class TimeShCapture extends GenericItemHandler {
 																			TimeSheetPojo.ALLOCATION_TYPE_PREVUSED);
 							timeEntryOptionsRecs.add(timeEntryOptionRec);
 							allTasksUniq.add(timeEntryOptionRec.taskID);
-							System.out.println("getAllTimeEntryOptionsRecs added timeEntryOptionRec " + timeEntryOptionRec.taskID);
+							System.out.println("getAllTimeEntryOptionsRecs2 added timeEntryOptionRec " + timeEntryOptionRec.taskID);
 					}
 				}
 			}
@@ -711,7 +716,7 @@ public class TimeShCapture extends GenericItemHandler {
 					
 					timeEntryOptionsRecs.add(timeEntryOptionRec);
 					allTasksUniq.add(timeEntryOptionRec.taskID);
-					System.out.println("getAllTimeEntryOptionsRecs add timeEntryOptionRec artifact" + timeEntryOptionRec.taskID);
+					System.out.println("getAllTimeEntryOptionsRecs3 add timeEntryOptionRec artifact" + timeEntryOptionRec.taskID);
 				}
 			}
 		}		

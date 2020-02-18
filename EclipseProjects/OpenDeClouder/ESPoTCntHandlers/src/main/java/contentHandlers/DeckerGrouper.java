@@ -864,6 +864,10 @@ public class DeckerGrouper extends DeckerLite {
 //		return null;
 //	}
 
+	public ItemPojo createItemPojo(String inContentType, String inRelevance, String inArtifactName){
+		return new DeckerGrouperItemPojo(inContentType, inRelevance, inArtifactName);
+	}	
+	
 	public GenericGrouperDocPojo getNewPrimerDoc() {
 		GenericGrouperDocPojo deckerGrouperDocPojo = new DeckerGrouperDocPojo();
 		return deckerGrouperDocPojo;

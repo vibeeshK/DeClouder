@@ -45,6 +45,7 @@ public class ProjTasksList extends GenericGrouper {
 	Text statusText;
 
 	private HashMap<String,AllocatdTaskItemPojo> allocatdTasksFromProj;
+	private HashMap<String,AllocatdTaskItemPojo> allocatdTasksDrafts;
 	boolean allocatdTasksUseable = true;
 
 	public void addlCommonInit() {
@@ -103,6 +104,8 @@ public class ProjTasksList extends GenericGrouper {
 		}
 		
 		// (2) Get AllocatedTask drafts
+		allocatdTasksDrafts = new HashMap<String,AllocatdTaskItemPojo>();
+		
 		ContentHandlerSpecs childAllocatdTaskSpecs = commonData.getContentHandlerSpecsMap().get(CONTENTTYPE1_AllocatdTask);
 
 		ArrayList<SelfAuthoredArtifactpojo> childAllocatdDrafts = catelogPersistenceManager.readDraftsForAuthorOnContentType(invokedArtifactPojo.artifactKeyPojo.rootNick, commons.userName,childAllocatdTaskSpecs.contentType);
@@ -122,7 +125,8 @@ public class ProjTasksList extends GenericGrouper {
 			AllocatdTaskItemPojo allocatdTaskItem = (AllocatdTaskItemPojo) allocatdTaskInterface.getFocusedItemPojo();
 			System.out.println("Addl common init added allocation from allocatedTasksERL.artifactKeyPojo.artifactName " + allocatdTaskItem);
 
-			allocatdTasksFromProj.put(allocatdTaskItem.taskID, allocatdTaskItem);
+			//allocatdTasksFromProj.put(allocatdTaskItem.taskID, allocatdTaskItem);
+			allocatdTasksDrafts.put(allocatdTaskItem.taskID, allocatdTaskItem);
 			System.out.println("Addl common init added allocation.taskID from draft " + allocatdTaskItem.taskID);
 		}
 		
@@ -141,6 +145,12 @@ public class ProjTasksList extends GenericGrouper {
 		System.out.println("addlHeadersCount=" + addlHeadersCount);
 
 		centerBaseColHeaders = new String[] {"Description","Author","Status"};
+		centerAddlColHeaders = new String[] {"Associate?"};
+		
+		System.out.println("centerBaseColHeaders 0 " + centerBaseColHeaders[0]);
+		System.out.println("centerBaseColHeaders 1 " + centerBaseColHeaders[1]);
+		System.out.println("centerBaseColHeaders 2 " + centerBaseColHeaders[2]);
+		//System.out.println("centerBaseColHeaders 3 " + centerBaseColHeaders[3]);
 	}
 
 	public void setDisplayItemsCenterBaseFieldsInMultiDisplay(TableEditor inEditor, Table inTable, 
@@ -284,21 +294,35 @@ public class ProjTasksList extends GenericGrouper {
 
 		System.out.println("atxx going to set the allocated flag for " + projTaskPojo.taskID);
 
-		if (allocatdTasksUseable && allocatdTasksFromProj.get(projTaskPojo.taskID) == null) {
-			linkTextButton.setText("Associate " + projTaskPojo.taskID + "?");			
-			linkTextButton.setEnabled(true);
+		if (allocatdTasksUseable
+			&& allocatdTasksFromProj.get(projTaskPojo.taskID) == null
+			&& allocatdTasksDrafts.get(projTaskPojo.taskID) == null) {
 
+			linkTextButton.setText("Associate " + projTaskPojo.taskID + "?");
+			linkTextButton.setEnabled(true);
 			System.out.println("atxx going to set true for " + projTaskPojo.taskID);
+
+		} else if (allocatdTasksUseable
+			&& allocatdTasksFromProj.get(projTaskPojo.taskID) != null) {
+		
+			linkTextButton.setText("Already Associated");
+			linkTextButton.setEnabled(false);
+			System.out.println("atxx going to set already exists for " + projTaskPojo.taskID);
+
+		} else if (allocatdTasksUseable
+			&& allocatdTasksDrafts.get(projTaskPojo.taskID) != null) {
+			
+			linkTextButton.setText("Assn.Req in-progress");
+			linkTextButton.setEnabled(false);
+			System.out.println("atxx going to set Assn.Req in-progress for " + projTaskPojo.taskID);
+		
 		} else {
-			if (allocatdTasksUseable && allocatdTasksFromProj.get(projTaskPojo.taskID) != null) {
-				linkTextButton.setText("Alleady Associated");
-				System.out.println("atxx going to set already exists for " + projTaskPojo.taskID);
-			} else {
-				linkTextButton.setText("Try Later");
-				System.out.println("atxx going to set try later for " + projTaskPojo.taskID);
-			}
+			
+			linkTextButton.setText("Try Later");
+			System.out.println("atxx going to set try later for " + projTaskPojo.taskID);
 			linkTextButton.setEnabled(false);
 		}
+		
 		inEditor.setEditor(linkTextButton, inTableItem, ++inLastColLocation);
 
 		linkTextButton.setToolTipText("Dare to join the party on : " + projTaskPojo.description);
@@ -349,7 +373,7 @@ public class ProjTasksList extends GenericGrouper {
 		
 				MessageBox messageBox1 = new MessageBox(
 				mainShell, SWT.OK);
-				messageBox1.setMessage("Thank you! You are now associated with the task: " + projTaskPojoInEvent.taskID + " of Project: " + projTaskPojoInEvent.projectName);
+				messageBox1.setMessage("Thank you! You will be associated with the task: " + projTaskPojoInEvent.taskID + " of Project: " + projTaskPojoInEvent.projectName);
 				int rc1 = messageBox1.open();
 				if (rc1 != SWT.OK) {
 					return;
