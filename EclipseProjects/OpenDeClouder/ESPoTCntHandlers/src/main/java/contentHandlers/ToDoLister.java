@@ -21,12 +21,12 @@ public class ToDoLister extends GenericGrouper {
 	/*
 	 * This content handler helps to group the ToDo activities
 	 */
-	Text authorText;
-	Text reviewerText;
-	Text statusText;
-	Text cloneFromArtifactNameText;
-	Text cloneFromRelevanceText;
-	Text cloneFromContentTypeText;
+	//Text authorText;
+	//Text reviewerText;
+	//Text statusText;
+	//Text cloneFromArtifactNameText;
+	//Text cloneFromRelevanceText;
+	//Text cloneFromContentTypeText;
 
 	protected void setScreenTitle() {
 		mainShell.setText("ESPoT:ToDoLister: <viewContentsAtDesk>");

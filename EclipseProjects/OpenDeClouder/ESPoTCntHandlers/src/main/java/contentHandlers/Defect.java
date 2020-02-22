@@ -110,6 +110,7 @@ public class Defect extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		descriptionInfo.setLayoutData(formData);
 		lastGroup = descriptionInfo;
 

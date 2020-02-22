@@ -48,7 +48,7 @@ public class ProjTask extends GenericItemHandler {
 	Text plannedHours_Tx;
 	Text plannedStart_Tx;
 	Text plannedEnd_Tx;
-	Text status_Tx;
+	//Text status_Tx;
 	Text actualStart_Tx;
 	Text actualEnd_Tx;
 	Text burntHours_Tx;
@@ -170,6 +170,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		projectIDInfo.setLayoutData(formData);
 		lastGroup = projectIDInfo;
 
@@ -181,6 +182,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		taskIDInfo.setLayoutData(formData);
 		lastGroup = taskIDInfo;
 
@@ -192,6 +194,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		descriptionInfo.setLayoutData(formData);
 		lastGroup = descriptionInfo;
 
@@ -203,6 +206,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		ownerInfo.setLayoutData(formData);
 		lastGroup = ownerInfo;
 
@@ -214,6 +218,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		leadInfo.setLayoutData(formData);
 		lastGroup = leadInfo;
 
@@ -225,6 +230,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		plannedHoursInfo.setLayoutData(formData);
 		lastGroup = plannedHoursInfo;
 
@@ -236,6 +242,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		plannedStartInfo.setLayoutData(formData);
 		lastGroup = plannedStartInfo;
 
@@ -247,13 +254,14 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		plannedEndInfo.setLayoutData(formData);
 		lastGroup = plannedEndInfo;
 
 		Group statusInfo = new Group(itemContentGroup, SWT.LEFT);
 		statusInfo.setText("Status");
 		statusInfo.setLayout(new FillLayout());
-		CCombo statusDropDownList = new CCombo(statusInfo, SWT.DROP_DOWN | SWT.READ_ONLY);
+		CCombo statusDropDownList = new CCombo(statusInfo, SWT.DROP_DOWN | SWT.CENTER | SWT.READ_ONLY);
 		statusDropDownList.setItems(TASKSTATUSVALUES);
 		if (projTaskItemPojo.taskStatus == null || projTaskItemPojo.taskStatus.equalsIgnoreCase("")) {
 			statusDropDownList.select(statusDropDownList.indexOf(ProjTaskItemPojo.TASKSTATUSVALUES_InProgress));
@@ -279,6 +287,7 @@ public class ProjTask extends GenericItemHandler {
 		}
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		statusInfo.setLayoutData(formData);
 		lastGroup = statusInfo;
 
@@ -291,6 +300,7 @@ public class ProjTask extends GenericItemHandler {
 			
 			formData = new FormData();
 			formData.top = new FormAttachment(lastGroup);
+			formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 			actualStartInfo.setLayoutData(formData);
 			lastGroup = actualStartInfo;
 		}
@@ -304,6 +314,7 @@ public class ProjTask extends GenericItemHandler {
 			
 			formData = new FormData();
 			formData.top = new FormAttachment(lastGroup);
+			formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 			actualEndInfo.setLayoutData(formData);
 			lastGroup = actualEndInfo;
 		}
@@ -316,6 +327,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		burntHoursInfo.setLayoutData(formData);
 		lastGroup = burntHoursInfo;
 
@@ -349,6 +361,7 @@ public class ProjTask extends GenericItemHandler {
 
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		estimatedOverrunEffortToCompleteInfo.setLayoutData(formData);
 		lastGroup = estimatedOverrunEffortToCompleteInfo;
 
@@ -360,6 +373,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		estimatedEffortToCompleteInfo.setLayoutData(formData);
 		lastGroup = estimatedEffortToCompleteInfo;
 
@@ -367,10 +381,10 @@ public class ProjTask extends GenericItemHandler {
 		expectedEndInfo.setText("ExpectedEnd");
 		expectedEndInfo.setLayout(new FillLayout());
 		if (invokedForEdit) {
-			expectedEnd_DateDisplay = new DateTime(expectedEndInfo, SWT.DATE);
+			expectedEnd_DateDisplay = new DateTime(expectedEndInfo, SWT.DATE | SWT.CENTER);
 			System.out.println("its an editable date now");
 		} else {
-			expectedEnd_DateDisplay = new DateTime(expectedEndInfo, SWT.DATE | SWT.READ_ONLY);
+			expectedEnd_DateDisplay = new DateTime(expectedEndInfo, SWT.DATE | SWT.CENTER | SWT.READ_ONLY);
 			System.out.println("its notEditable date now");
 		}
 		SimpleDateObj startDateSimpleObj;
@@ -383,6 +397,7 @@ public class ProjTask extends GenericItemHandler {
 
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		expectedEndInfo.setLayoutData(formData);
 		lastGroup = expectedEndInfo;
 
@@ -404,6 +419,7 @@ public class ProjTask extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		remarkInfo.setLayoutData(formData);
 		lastGroup = remarkInfo;
 
@@ -416,6 +432,7 @@ public class ProjTask extends GenericItemHandler {
 			
 			formData = new FormData();
 			formData.top = new FormAttachment(lastGroup);
+			formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 			impedimentsInfo.setLayoutData(formData);
 			lastGroup = impedimentsInfo;
 			System.out.println("at3a after impedimentsInfo1 is " + lastGroup);
@@ -533,6 +550,7 @@ public class ProjTask extends GenericItemHandler {
 			
 			formData = new FormData();
 			formData.top = new FormAttachment(lastGroup);
+			formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 			defectsInfo.setLayoutData(formData);
 			lastGroup = defectsInfo;
 			System.out.println("at3a after defectsInfo1 is " + lastGroup);
@@ -624,9 +642,7 @@ public class ProjTask extends GenericItemHandler {
 			System.out.println("at3a after defectsInfo2 is " + lastGroup);
 		}
 		// Defects display block ends
-		
-		
-		
+						
 		// New Defect&Impediment group starts
 		// New Defect&Impediment group starts
 		{
@@ -638,8 +654,8 @@ public class ProjTask extends GenericItemHandler {
 			initDefectImpedimentnButtonGrp.setLayout(new FillLayout());
 			formData = new FormData();
 			formData.top = new FormAttachment(lastGroup);
+			formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 			initDefectImpedimentnButtonGrp.setLayoutData(formData);
-
 			
 			Button newDefectButton = new Button(initDefectImpedimentnButtonGrp, SWT.PUSH);
 			newDefectButton.setText("New Defect");

@@ -22,10 +22,10 @@ public class TimeShRollup extends GenericGrouper {
 	 */
 
 	//These single item fields will be referred when one single item is pulled out
-	Text applicationText;
-	Text statusText;
-	Text reviewerText;
-	Text authorNameText;
+	//Text applicationText;
+	//Text statusText;
+	//Text reviewerText;
+	//Text authorNameText;
 
 	protected void setScreenTitle() {
 		mainShell.setText("ESPoT:TimeSheetsGrouper: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
@@ -83,7 +83,7 @@ public class TimeShRollup extends GenericGrouper {
 				| SWT.WRAP | SWT.READ_ONLY);
 		reviewerInfo.setText("Reviewer");
 		reviewerInfo.setLayout(new FillLayout());
-		reviewerText = new Text(reviewerInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
+		Text reviewerText = new Text(reviewerInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
 		reviewerText.setText(timeSheetPojo.reviewer);
 		
 		formData = new FormData();
@@ -95,7 +95,7 @@ public class TimeShRollup extends GenericGrouper {
 				| SWT.WRAP | SWT.READ_ONLY);
 		statusInfo.setText("Status");
 		statusInfo.setLayout(new FillLayout());
-		statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
+		Text statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
 		statusText.setText(timeSheetPojo.status);
 		
 		formData = new FormData();
@@ -106,7 +106,7 @@ public class TimeShRollup extends GenericGrouper {
 		Group authorInfo = new Group(itemContentGroup, SWT.LEFT);
 		authorInfo.setText("Author");
 		authorInfo.setLayout(new FillLayout());
-		authorNameText = new Text(authorInfo, SWT.WRAP
+		Text authorNameText = new Text(authorInfo, SWT.WRAP
 				| SWT.READ_ONLY | SWT.CENTER);
 		authorNameText.setText(timeSheetPojo.author);
 	

@@ -59,6 +59,7 @@ public class TimeShTrigger extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		reviewerInfo.setLayoutData(formData);
 		lastGroup = reviewerInfo;
 
@@ -75,6 +76,7 @@ public class TimeShTrigger extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		captureFreqInfo.setLayoutData(formData);
 		lastGroup = captureFreqInfo;
 
@@ -91,6 +93,7 @@ public class TimeShTrigger extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		allocationFreqInfo.setLayoutData(formData);
 		lastGroup = allocationFreqInfo;
 
@@ -101,9 +104,9 @@ public class TimeShTrigger extends GenericItemHandler {
 		if (invokedForEdit) {
 			//DateTime datetm = new DateTime(inDateTime);
 
-			captureStartDateDisplay = new DateTime(captureStartDateInfo, SWT.DATE);
+			captureStartDateDisplay = new DateTime(captureStartDateInfo, SWT.DATE | SWT.CENTER);
 		} else {
-			captureStartDateDisplay = new DateTime(captureStartDateInfo, SWT.DATE | SWT.READ_ONLY);
+			captureStartDateDisplay = new DateTime(captureStartDateInfo, SWT.DATE | SWT.READ_ONLY | SWT.CENTER);
 		}
 		if (invokedForEdit && timeShTriggerPojo.captureStartDate == null) {
 			SimpleDateObj startDateSimpleObj = new SimpleDateObj(commons.getDateTS());
@@ -124,6 +127,7 @@ public class TimeShTrigger extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		captureStartDateInfo.setLayoutData(formData);
 		lastGroup = captureStartDateInfo;
 
@@ -155,6 +159,7 @@ public class TimeShTrigger extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		captureEndDateInfo.setLayoutData(formData);
 		lastGroup = captureEndDateInfo;
 

@@ -72,6 +72,7 @@ public class Commons extends CommonTechs {
 	public int processMode = 0;
 	public final static int FATALEXITCODE = 8;
 
+	public final static int LOGINID_MAXLEN = 20;	// rootSysLoginID length limit
 	public final static String USERNAME_PREFIX_LIT = "userName.";
 	
 	public static String BASE_CATLOG_SERVER_FOLDER = "bsSrver";

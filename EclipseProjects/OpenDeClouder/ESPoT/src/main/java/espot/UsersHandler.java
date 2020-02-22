@@ -81,14 +81,14 @@ public class UsersHandler {
 		userIndex = commons.getIndexOfStringInArray(userShortId.toUpperCase(), usersShortNames);
 		return userIndex;
 	}
-	public UserPojo getUserDetailsFromShortId(String userShortId){
+	public UserPojo getUserDetailsFromRootSysLoginID(String userShortId){
 		int userIndex = -1;
 		UserPojo userDetails = null;
-		System.out.println("at start of getIndexOfUserShortId : " + userShortId);
-		System.out.println("in getIndexOfUserShortId usersShortNames: " + usersShortNames);
-		System.out.println("in getIndexOfUserShortId usersShortNames length : " + usersShortNames.length);
-		System.out.println("in getIndexOfUserShortId usersShortNames[0] : " + usersShortNames[0]);
-		System.out.println("in getIndexOfUserShortId usersShortNames[1] : " + usersShortNames[1]);
+		System.out.println("at start of getUserDetailsFromRootSysLoginID : " + userShortId);
+		System.out.println("in getUserDetailsFromRootSysLoginID usersShortNames: " + usersShortNames);
+		System.out.println("in getUserDetailsFromRootSysLoginID usersShortNames length : " + usersShortNames.length);
+		System.out.println("in getUserDetailsFromRootSysLoginID usersShortNames[0] : " + usersShortNames[0]);
+		//System.out.println("in getUserDetailsFromRootSysLoginID usersShortNames[1] : " + usersShortNames[1]);
 		userIndex = commons.getIndexOfStringInArray(userShortId.toUpperCase(), usersShortNames);
 		if (userIndex != -1) {
 			userDetails = usersList.get(userIndex);

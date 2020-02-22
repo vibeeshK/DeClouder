@@ -15,13 +15,15 @@ import org.eclipse.swt.widgets.Text;
 
 import espot.GenericItemHandler;
 import espot.ItemPojo;
+import espot.UsersDisplay;
 
 public class ToDoGenerator extends GenericItemHandler {
 	/*
 	 * This content handler helps the content requesters to set up a ToDo activity for another member
 	 */
-	Text reviewerText;
-	Text statusText;
+	//Text reviewerText;
+
+	//Text statusText;
 	CCombo cloneFromArtifactNameList;
 	CCombo cloneFromRelevanceList;
 	CCombo cloneFromContentTypeList;
@@ -49,6 +51,7 @@ public class ToDoGenerator extends GenericItemHandler {
 		}
 		return validationBeforeEdit;
 	}
+	
 	public Group setAddlFieldsForItemDisplay(Group itemContentGroup, Group inPrevGroup,FormData formData, ItemPojo itemPojo){
 
 		ToDoPojo toDoPojo = (ToDoPojo) itemPojo;
@@ -61,7 +64,7 @@ public class ToDoGenerator extends GenericItemHandler {
 		System.out.println("toDoPojo.cloneFromRelevance = " + toDoPojo.cloneFromRelevance);
 		
 		cloneFromRelevanceList = new CCombo(cloneFromRelevanceGroup,
-				SWT.DROP_DOWN | SWT.READ_ONLY);
+				SWT.DROP_DOWN | SWT.READ_ONLY | SWT.CENTER);
 
 		cloneFromRelevanceList.setItems(commonData.getCatelogPersistenceManager().getERLRelevances(commonData.getCommons().getCurrentRootNick()));
 
@@ -110,6 +113,7 @@ public class ToDoGenerator extends GenericItemHandler {
 		System.out.println("@@212 cloneFromRelevanceList.getSelectionIndex() :" +  cloneFromRelevanceList.getSelectionIndex());
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		cloneFromRelevanceGroup.setLayoutData(formData);
 		inPrevGroup = cloneFromRelevanceGroup;
 		//////////////////////cloneFromRelevance ends
@@ -120,7 +124,7 @@ public class ToDoGenerator extends GenericItemHandler {
 		cloneFromContentTypeGroup.setText("CloneFromContentType");
 
 		cloneFromContentTypeList = new CCombo(cloneFromContentTypeGroup,
-				SWT.DROP_DOWN | SWT.READ_ONLY);
+				SWT.DROP_DOWN | SWT.READ_ONLY | SWT.CENTER);
 		System.out.println("cloneFromRelevanceList.getSelectionIndex() : " + cloneFromRelevanceList
 				.getSelectionIndex());
 		
@@ -159,6 +163,7 @@ public class ToDoGenerator extends GenericItemHandler {
 		});
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		cloneFromContentTypeGroup.setLayoutData(formData);
 		inPrevGroup = cloneFromContentTypeGroup;
 		//////////////////////CloneFromContentType ends
@@ -182,7 +187,7 @@ public class ToDoGenerator extends GenericItemHandler {
 								.getSelectionIndex()));
 
 		cloneFromArtifactNameList = new CCombo(cloneFromArtifactNameGroup,
-				SWT.DROP_DOWN | SWT.READ_ONLY);
+				SWT.DROP_DOWN | SWT.READ_ONLY | SWT.CENTER);
 		cloneFromArtifactNameList.setItems(
 				commonData.getCatelogPersistenceManager().getERLArtifactsInRelevanceAndContentType(
 						commonData.getCommons().getCurrentRootNick(),
@@ -198,6 +203,7 @@ public class ToDoGenerator extends GenericItemHandler {
 		}
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		cloneFromArtifactNameGroup.setLayoutData(formData);
 		inPrevGroup = cloneFromArtifactNameGroup;
 

@@ -158,7 +158,7 @@ public class RequestProcessor {
 				// check for user's active status and content file availability
 				// if not error the record
 				
-				if (!commonData.getUsersHandler().getUserDetailsFromShortId(requestPojo.requestor.toUpperCase()).isActive()) {
+				if (!commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(requestPojo.requestor.toUpperCase()).isActive()) {
 					recordErrored = true;
 					errorMessage = "Request coming from inactive user " + requestPojo.requestor;
 				} else if (!remoteAccesser.exists(requestProcesserPojo.incomingContentFullPath)) {
@@ -616,7 +616,7 @@ public class RequestProcessor {
 		System.out.println("why null point error2 requestPojo is " + inRequestProcesserPojo.requestPojo);
 		System.out.println("why null point error3 requestor is " + inRequestProcesserPojo.requestPojo.requestor);
 		System.out.println("why null point error4 " + commonData.getUsersHandler());
-		System.out.println("why null point error5 " + commonData.getUsersHandler().getUserDetailsFromShortId(inRequestProcesserPojo.requestPojo.requestor));
+		System.out.println("why null point error5 " + commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(inRequestProcesserPojo.requestPojo.requestor));
 
 		//UserPojo requestersDetail = commonData.getUsersHandler().getUserDetailsFromShortId(inRequestProcesserPojo.requestPojo.requestor);
 		//if (requestersDetail.hasAdminPrivilege() || requestersDetail.hasTeamLeaderPrivilege() 
@@ -626,7 +626,7 @@ public class RequestProcessor {
 		//	inRequestProcesserPojo.newERLPojo.requestor = incomingItemNewReviewPojo.reassignedRequestor;
 		//	inRequestProcesserPojo.newERLPojo.author = incomingItemNewReviewPojo.reassignedAuthor;
 		//}
-		UserPojo requestAuthorsDetail = commonData.getUsersHandler().getUserDetailsFromShortId(inRequestProcesserPojo.requestPojo.requestor);
+		UserPojo requestAuthorsDetail = commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(inRequestProcesserPojo.requestPojo.requestor);
 		
 		if ((incomingItemNewReviewPojo.reassignedRequestor != null && incomingItemNewReviewPojo.reassignedRequestor.equalsIgnoreCase(""))
 			&& (requestAuthorsDetail.hasAdminPrivilege() 

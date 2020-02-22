@@ -22,9 +22,9 @@ public class ImpedimentsList extends GenericGrouper {
 	/*
 	 * This content handler helps to group impediments of a project
 	 */
-	Text descriptionText;
-	Text authorText;
-	Text statusText;
+	//Text descriptionText;
+	//Text authorText;
+	//Text statusText;
 
 	public static HashMap<String,ArrayList<ImpedimentItemPojo>> getTasksOpenImpediments(ArrayList<ImpedimentItemPojo> inImpedimentsList) {
 		HashMap<String,ArrayList<ImpedimentItemPojo>> tasksOpenImpediments = new HashMap<String,ArrayList<ImpedimentItemPojo>>();
@@ -86,7 +86,7 @@ public class ImpedimentsList extends GenericGrouper {
 		Group descriptionInfo = new Group(itemContentGroup, SWT.LEFT);
 		descriptionInfo.setText("Application");
 		descriptionInfo.setLayout(new FillLayout());
-		descriptionText = new Text(descriptionInfo, SWT.WRAP | SWT.CENTER);
+		Text descriptionText = new Text(descriptionInfo, SWT.WRAP | SWT.CENTER);
 		descriptionText.setText(impedimentPojo.description);
 		
 		formData = new FormData();
@@ -98,7 +98,7 @@ public class ImpedimentsList extends GenericGrouper {
 		Group authorInfo = new Group(itemContentGroup, SWT.LEFT);
 		authorInfo.setText("Author");
 		authorInfo.setLayout(new FillLayout());
-		authorText = new Text(authorInfo, SWT.WRAP
+		Text authorText = new Text(authorInfo, SWT.WRAP
 				| SWT.READ_ONLY | SWT.CENTER);
 		authorText.setText(impedimentPojo.author);
 		
@@ -112,7 +112,7 @@ public class ImpedimentsList extends GenericGrouper {
 				| SWT.WRAP | SWT.READ_ONLY);
 		statusInfo.setText("Status");
 		statusInfo.setLayout(new FillLayout());
-		statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
+		Text statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
 		statusText.setText(impedimentPojo.status);
 		
 		formData = new FormData();

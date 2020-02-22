@@ -53,7 +53,7 @@ public class ProjTracker extends GenericItemHandler implements DeckableContentTy
 		projTrackerFileLinkInfo.setText("ProjTracker");
 		projTrackerFileLinkInfo.setLayout(new FillLayout());
 
-		Button linkTextButton = new Button(projTrackerFileLinkInfo, SWT.PUSH);
+		Button linkTextButton = new Button(projTrackerFileLinkInfo, SWT.PUSH | SWT.CENTER);
 		linkTextButton.setText(projTrackerPojo.projTrackerFile);
 		linkTextButton.setToolTipText("click to view : " + projTrackerPathFilename);
 		linkTextButton.addSelectionListener(new SelectionAdapter() {
@@ -71,6 +71,7 @@ public class ProjTracker extends GenericItemHandler implements DeckableContentTy
 
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		projTrackerFileLinkInfo.setLayoutData(formData);
 		lastGroup = projTrackerFileLinkInfo;
 

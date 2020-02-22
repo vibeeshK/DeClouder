@@ -78,10 +78,10 @@ public class IdeasGrouper extends GenericGrouper {
 	 */
 
 	//These single item fields will be referred when one single item is pulled out
-	Text applicationText;
-	Text statusText;
-	Text reviewerText;
-	Text authorNameText;
+	//Text applicationText;
+	//Text statusText;
+	//Text reviewerText;
+	//Text authorNameText;
 
 	protected void setScreenTitle() {
 		mainShell.setText("ESPoT:IdeasGrouper: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
@@ -148,7 +148,7 @@ public class IdeasGrouper extends GenericGrouper {
 		Group applicationInfo = new Group(itemContentGroup, SWT.LEFT);
 		applicationInfo.setText("Application");
 		applicationInfo.setLayout(new FillLayout());
-		applicationText = new Text(applicationInfo, SWT.WRAP | SWT.CENTER);
+		Text applicationText = new Text(applicationInfo, SWT.WRAP | SWT.CENTER);
 		applicationText.setText(ideaPojo.application);
 		
 		formData = new FormData();
@@ -159,7 +159,7 @@ public class IdeasGrouper extends GenericGrouper {
 				| SWT.WRAP | SWT.READ_ONLY);
 		reviewerInfo.setText("Reviewer");
 		reviewerInfo.setLayout(new FillLayout());
-		reviewerText = new Text(reviewerInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
+		Text reviewerText = new Text(reviewerInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
 		reviewerText.setText(ideaPojo.reviewer);
 		
 		formData = new FormData();
@@ -170,7 +170,7 @@ public class IdeasGrouper extends GenericGrouper {
 				| SWT.WRAP | SWT.READ_ONLY);
 		statusInfo.setText("Status");
 		statusInfo.setLayout(new FillLayout());
-		statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
+		Text statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
 		statusText.setText(ideaPojo.status);
 		
 		formData = new FormData();
@@ -180,7 +180,7 @@ public class IdeasGrouper extends GenericGrouper {
 		Group authorInfo = new Group(itemContentGroup, SWT.LEFT);
 		authorInfo.setText("Author");
 		authorInfo.setLayout(new FillLayout());
-		authorNameText = new Text(authorInfo, SWT.WRAP
+		Text authorNameText = new Text(authorInfo, SWT.WRAP
 				| SWT.READ_ONLY | SWT.CENTER);
 		authorNameText.setText(ideaPojo.author);
 	

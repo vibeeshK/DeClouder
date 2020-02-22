@@ -64,6 +64,11 @@ public class ReviewHandler {
 		itemName = inItemName;	//itemName will be same as the artifact name for artifact reviews
 
 		outerMainShell = inMainShell;
+		System.out.println("@ReviewHandler inArtifactPojo = " + inArtifactPojo);
+		System.out.println("@ReviewHandler inArtifactPojo.artifactKeyPojo = " + inArtifactPojo.artifactKeyPojo);
+		System.out.println("@ReviewHandler inArtifactPojo.artifactKeyPojo.contentType = " + inArtifactPojo.artifactKeyPojo.contentType);
+		System.out.println("@ReviewHandler inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType) = " + inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType));
+		
 		ArtifactKeyPojo finalArtifactKeyPojo = inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType)
 							.getFinalArtifactKeyPojo(inArtifactPojo.artifactKeyPojo.rootNick, 
 									inArtifactPojo.artifactKeyPojo.relevance,
@@ -262,7 +267,7 @@ public class ReviewHandler {
 		System.out.println("before reassign display: artifactPojo.requestor is " + artifactPojo.requestor);
 		System.out.println("before reassign display: userName is " + commonUIData.getCommons().userName);
 
-		UserPojo deskUserDetail = commonUIData.getUsersHandler().getUserDetailsFromShortId(commonUIData.getCommons().userName);
+		UserPojo deskUserDetail = commonUIData.getUsersHandler().getUserDetailsFromRootSysLoginID(commonUIData.getCommons().userName);
 
 		if (commonUIData.getCommons().userName.equalsIgnoreCase(artifactPojo.requestor) || deskUserDetail.hasAdminPrivilege() || deskUserDetail.hasTeamLeaderPrivilege()) { 
 		//Only requestor can reassign. Later enhance to allow admins to change as well

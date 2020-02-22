@@ -72,20 +72,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class UsersListing extends GenericGrouper {
+public class UserMaintReqListing extends GenericGrouper {
 	/*
 	 * This content handler helps to view users
 	 */
 
 	//These single item fields will be referred when one single item is pulled out
-	Text userShortIDText;
-	Text userNameText;
-	Text leadIDText;
-	Text activeStateText;	
-	Text privilegeText;
+	//Text userShortIDText;
+	//Text userNameText;
+	//Text leadIDText;
+	//Text activeStateText;	
+	//Text privilegeText;
 
 	public String prevalidate(CommonData inCommonData,ArtifactKeyPojo inArtifactKeyPojo){		
-		return UserItem.userItemPreValidation(inCommonData,inArtifactKeyPojo);
+		return UserMaintReq.userItemPreValidation(inCommonData,inArtifactKeyPojo);
 	}
 	
 	protected void setScreenTitle() {
@@ -93,8 +93,8 @@ public class UsersListing extends GenericGrouper {
 	}
 
 	public ItemPojo getItemPojo(int inItemCount){
-		UserItemPojo userItemPojo = new UserItemPojo(inItemCount);
-		return userItemPojo;
+		UserMaintReqPojo userMaintReqPojo = new UserMaintReqPojo(inItemCount);
+		return userMaintReqPojo;
 	}
 	
 	protected void setAddlColumnHeaders(){
@@ -109,35 +109,35 @@ public class UsersListing extends GenericGrouper {
 	}
 
 	public void setDisplayItemsCenterBaseFieldsInMultiDisplay(TableEditor editor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojo){
-		UserItemPojo userItemPojo = (UserItemPojo) inItemPojo;
+		UserMaintReqPojo userMaintReqPojo = (UserMaintReqPojo) inItemPojo;
 
 		editor = new TableEditor(inTable);
 		Text userShortID_Tx = new Text(inTable, SWT.READ_ONLY);
-		userShortID_Tx.setText(userItemPojo.userPojo.rootSysLoginID);
+		userShortID_Tx.setText(userMaintReqPojo.userPojo.rootSysLoginID);
 		editor.grabHorizontal = true;
 		editor.setEditor(userShortID_Tx, inTableItem, ++inLastColLocation);
 		
 		editor = new TableEditor(inTable);
 		Text userName_Tx = new Text(inTable, SWT.READ_ONLY);
-		userShortID_Tx.setText(userItemPojo.userPojo.userName);
+		userShortID_Tx.setText(userMaintReqPojo.userPojo.userName);
 		editor.grabHorizontal = true;
 		editor.setEditor(userName_Tx, inTableItem, ++inLastColLocation);
 	
 		editor = new TableEditor(inTable);
 		Text leadID_Tx = new Text(inTable, SWT.READ_ONLY);
-		leadID_Tx.setText(userItemPojo.userPojo.leadID);
+		leadID_Tx.setText(userMaintReqPojo.userPojo.leadID);
 		editor.grabHorizontal = true;
 		editor.setEditor(leadID_Tx, inTableItem, ++inLastColLocation);		
 
 		editor = new TableEditor(inTable);
 		Text activeState_Tx = new Text(inTable, SWT.READ_ONLY);
-		activeState_Tx.setText(userItemPojo.userPojo.activeStatus);
+		activeState_Tx.setText(userMaintReqPojo.userPojo.activeStatus);
 		editor.grabHorizontal = true;
 		editor.setEditor(activeState_Tx, inTableItem, ++inLastColLocation);		
 
 		editor = new TableEditor(inTable);
 		Text privilege_Tx = new Text(inTable, SWT.READ_ONLY);
-		privilege_Tx.setText(UserPojo.getPrivilegeLitOfLevel(userItemPojo.userPojo.privilegeLevel));				
+		privilege_Tx.setText(UserPojo.getPrivilegeLitOfLevel(userMaintReqPojo.userPojo.privilegeLevel));				
 		editor.grabHorizontal = true;
 		editor.setEditor(privilege_Tx, inTableItem, ++inLastColLocation);
 
@@ -145,13 +145,13 @@ public class UsersListing extends GenericGrouper {
 
 	public Group setAddlFieldsForItemDisplay(Group itemContentGroup,Group inPrevGroup,FormData formData,ItemPojo itemPojo){
 
-		UserItemPojo userItemPojo = (UserItemPojo) itemPojo;
+		UserMaintReqPojo userMaintReqPojo = (UserMaintReqPojo) itemPojo;
 
 		Group userInfo = new Group(itemContentGroup, SWT.LEFT);
 		userInfo.setText("UserShortID");
 		userInfo.setLayout(new FillLayout());
-		userShortIDText = new Text(userInfo, SWT.WRAP | SWT.CENTER);
-		userShortIDText.setText(userItemPojo.userPojo.rootSysLoginID);
+		Text userShortIDText = new Text(userInfo, SWT.WRAP | SWT.CENTER);
+		userShortIDText.setText(userMaintReqPojo.userPojo.rootSysLoginID);
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
@@ -161,8 +161,8 @@ public class UsersListing extends GenericGrouper {
 		Group userNameInfo = new Group(itemContentGroup, SWT.LEFT);
 		userNameInfo.setText("UserName");
 		userNameInfo.setLayout(new FillLayout());
-		userNameText = new Text(userNameInfo, SWT.WRAP | SWT.CENTER);
-		userNameText.setText(userItemPojo.userPojo.userName);
+		Text userNameText = new Text(userNameInfo, SWT.WRAP | SWT.CENTER);
+		userNameText.setText(userMaintReqPojo.userPojo.userName);
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
@@ -172,8 +172,8 @@ public class UsersListing extends GenericGrouper {
 		Group leadIDInfo = new Group(itemContentGroup, SWT.LEFT);
 		leadIDInfo.setText("LeadID");
 		leadIDInfo.setLayout(new FillLayout());
-		leadIDText = new Text(leadIDInfo, SWT.WRAP | SWT.CENTER);
-		leadIDText.setText(userItemPojo.userPojo.leadID);
+		Text leadIDText = new Text(leadIDInfo, SWT.WRAP | SWT.CENTER);
+		leadIDText.setText(userMaintReqPojo.userPojo.leadID);
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
@@ -183,8 +183,8 @@ public class UsersListing extends GenericGrouper {
 		Group activeStateInfo = new Group(itemContentGroup, SWT.LEFT);
 		activeStateInfo.setText("LeadID");
 		activeStateInfo.setLayout(new FillLayout());
-		activeStateText = new Text(activeStateInfo, SWT.WRAP | SWT.CENTER);
-		activeStateText.setText(userItemPojo.userPojo.activeStatus);
+		Text activeStateText = new Text(activeStateInfo, SWT.WRAP | SWT.CENTER);
+		activeStateText.setText(userMaintReqPojo.userPojo.activeStatus);
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
@@ -194,8 +194,8 @@ public class UsersListing extends GenericGrouper {
 		Group privilegeInfo = new Group(itemContentGroup, SWT.LEFT);
 		privilegeInfo.setText("Privilege");
 		privilegeInfo.setLayout(new FillLayout());
-		privilegeText = new Text(privilegeInfo, SWT.WRAP | SWT.CENTER);
-		privilegeText.setText(UserPojo.getPrivilegeLitOfLevel(userItemPojo.userPojo.privilegeLevel));
+		Text privilegeText = new Text(privilegeInfo, SWT.WRAP | SWT.CENTER);
+		privilegeText.setText(UserPojo.getPrivilegeLitOfLevel(userMaintReqPojo.userPojo.privilegeLevel));
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(inPrevGroup);
@@ -206,17 +206,17 @@ public class UsersListing extends GenericGrouper {
 	}
 	
 	//public void getAddlFieldsOfItemPojo(ItemPojo inItemPojo){
-	//	UserItemPojo userItemPojo = (UserItemPojo) inItemPojo;
-	//	userItemPojo.application = applicationText.getText();
-	//	userItemPojo.status = statusText.getText();
-	//	userItemPojo.reviewer = reviewerText.getText();
-	//	userItemPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
+	//	UserItemPojo userMaintReqPojo = (UserItemPojo) inItemPojo;
+	//	userMaintReqPojo.application = applicationText.getText();
+	//	userMaintReqPojo.status = statusText.getText();
+	//	userMaintReqPojo.reviewer = reviewerText.getText();
+	//	userMaintReqPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 	//}
 	//
 	//public void setInitialItemPojoAddlFields(ItemPojo inItemPojo){
-	//	UserItemPojo userItemPojo = (UserItemPojo) inItemPojo;
-	//	userItemPojo.author = commonData.getCommons().userName;
-	//	userItemPojo.status = "Draft";
+	//	UserItemPojo userMaintReqPojo = (UserItemPojo) inItemPojo;
+	//	userMaintReqPojo.author = commonData.getCommons().userName;
+	//	userMaintReqPojo.status = "Draft";
 	//}
 
 	public void getPrimerDocAddlFields() {
@@ -237,12 +237,12 @@ public class UsersListing extends GenericGrouper {
 
 	@Override
 	protected Class getBasePrimerDocClass() {
-		return UserItemDoc.class;
+		return UserMaintReqDoc.class;
 	}
 
 	@Override
 	public Class getPrimerDocClass() {
-		return UsersListingDoc.class;
+		return UserMaintReqListingDoc.class;
 	}
 	
 	public void setInitialContent(String inRelevance, String inContentType, GenericGrouperDocPojo inDocumentToUpdate) {
@@ -250,13 +250,13 @@ public class UsersListing extends GenericGrouper {
 		int usersCnt = 0;
 		for (UserPojo userPojo : commonData.getUsersHandler().getUserDetails()) {
 			usersCnt++;
-			UserItemPojo userItemPojo = new UserItemPojo(userPojo);
-			userItemPojo.itemID = commonData.getCommons().userName + commonData.getCommons().getCurrentTimeStamp() + "x" + usersCnt;
-			userItemPojo.contentType = inContentType;
-			userItemPojo.relevance = inRelevance;
-			userItemPojo.artifactName = userPojo.rootSysLoginID;
+			UserMaintReqPojo userMaintReqPojo = new UserMaintReqPojo(userPojo);
+			userMaintReqPojo.itemID = commonData.getCommons().userName + commonData.getCommons().getCurrentTimeStamp() + "x" + usersCnt;
+			userMaintReqPojo.contentType = inContentType;
+			userMaintReqPojo.relevance = inRelevance;
+			userMaintReqPojo.artifactName = userPojo.rootSysLoginID;
 
-			inDocumentToUpdate.absorbIncomingItemPojo(userItemPojo);
+			inDocumentToUpdate.absorbIncomingItemPojo(userMaintReqPojo);
 		}
 	}
 	
@@ -264,15 +264,15 @@ public class UsersListing extends GenericGrouper {
 	// update users database
 		System.out.println("catelogPersistenceManager is " + catelogPersistenceManager);
 		System.out.println("inItemPojo is " + inItemPojo);
-		System.out.println("((UserItemPojo) inItemPojo).userPojo is " + ((UserItemPojo) inItemPojo).userPojo);
-		catelogPersistenceManager.replaceUser(((UserItemPojo) inItemPojo).userPojo);		
+		System.out.println("((UserItemPojo) inItemPojo).userPojo is " + ((UserMaintReqPojo) inItemPojo).userPojo);
+		catelogPersistenceManager.replaceUser(((UserMaintReqPojo) inItemPojo).userPojo);		
 	}
 	
 
 	@Override
 	public GenericGrouperDocPojo getNewPrimerDoc() {
-		GenericGrouperDocPojo usersListingDoc = new UsersListingDoc();
-		return usersListingDoc;
+		GenericGrouperDocPojo userRqMaintListingDoc = new UserMaintReqListingDoc();
+		return userRqMaintListingDoc;
 	}
 
 	public GenericItemDocPojo getBaseDoc(ItemPojo inItemPojo) {
@@ -281,18 +281,18 @@ public class UsersListing extends GenericGrouper {
 		System.out.println("at1 getBaseDoc for itemID title" + inItemPojo.title);
 
 
-		GenericItemDocPojo userItemDoc = new UserItemDoc(inItemPojo);
+		GenericItemDocPojo userRqMaintItemDoc = new UserMaintReqDoc(inItemPojo);
 
 		System.out.println("at2 getBaseDoc for itemID " + inItemPojo.itemID);
 		System.out.println("at2 getBaseDoc for itemID relevance" + inItemPojo.relevance);
 		System.out.println("at2 getBaseDoc for itemID title" + inItemPojo.title);
 
-		System.out.println("at3 getBaseDoc for doc " + userItemDoc);
-		System.out.println("at3 getBaseDoc for item " + userItemDoc.getItem());
-		System.out.println("at3 getBaseDoc for itemID " + userItemDoc.getItem().itemID);
-		System.out.println("at3 getBaseDoc for itemID relevance" + userItemDoc.getItem().relevance);
-		System.out.println("at3 getBaseDoc for itemID title" + userItemDoc.getItem().title);
-		return userItemDoc;		
+		System.out.println("at3 getBaseDoc for doc " + userRqMaintItemDoc);
+		System.out.println("at3 getBaseDoc for item " + userRqMaintItemDoc.getItem());
+		System.out.println("at3 getBaseDoc for itemID " + userRqMaintItemDoc.getItem().itemID);
+		System.out.println("at3 getBaseDoc for itemID relevance" + userRqMaintItemDoc.getItem().relevance);
+		System.out.println("at3 getBaseDoc for itemID title" + userRqMaintItemDoc.getItem().title);
+		return userRqMaintItemDoc;		
 	}
 
 	@Override
@@ -311,7 +311,7 @@ public class UsersListing extends GenericGrouper {
 	}
 
 	@Override
-	public UsersListingDoc getPrimerDoc() {
-		return (UsersListingDoc) primerDoc;
+	public UserMaintReqListingDoc getPrimerDoc() {
+		return (UserMaintReqListingDoc) primerDoc;
 	}
 }

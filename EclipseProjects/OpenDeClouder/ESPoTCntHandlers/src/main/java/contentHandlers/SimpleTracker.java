@@ -51,7 +51,7 @@ public class SimpleTracker extends GenericItemHandler implements DeckerLiteConte
 		simpleTrackerFileLinkInfo.setText("SimpleTracker");
 		simpleTrackerFileLinkInfo.setLayout(new FillLayout());
 
-		Button linkTextButton = new Button(simpleTrackerFileLinkInfo, SWT.PUSH);
+		Button linkTextButton = new Button(simpleTrackerFileLinkInfo, SWT.PUSH | SWT.CENTER);
 		linkTextButton.setText(simpleTrackerPojo.simpleTrackerFile);
 		linkTextButton.setToolTipText("click to view : " + simpleTrackerPathFilename);
 		linkTextButton.addSelectionListener(new SelectionAdapter() {
@@ -69,6 +69,7 @@ public class SimpleTracker extends GenericItemHandler implements DeckerLiteConte
 
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		simpleTrackerFileLinkInfo.setLayoutData(formData);
 		lastGroup = simpleTrackerFileLinkInfo;
 

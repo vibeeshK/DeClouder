@@ -106,6 +106,7 @@ public class TimeShCapture extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		captureFreqInfo.setLayoutData(formData);
 		lastGroup = captureFreqInfo;
 
@@ -118,6 +119,7 @@ public class TimeShCapture extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		allocationFreqInfo.setLayoutData(formData);
 		lastGroup = allocationFreqInfo;
 
@@ -132,6 +134,7 @@ public class TimeShCapture extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		captureStartDateInfo.setLayoutData(formData);
 		lastGroup = captureStartDateInfo;
 
@@ -146,6 +149,7 @@ public class TimeShCapture extends GenericItemHandler {
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		captureEndDateInfo.setLayoutData(formData);
 		lastGroup = captureEndDateInfo;
 
@@ -155,10 +159,11 @@ public class TimeShCapture extends GenericItemHandler {
 				| SWT.WRAP | SWT.READ_ONLY);
 		timeShEntryOptionsInfo.setText("TimeShEntryOptions");
 		timeShEntryOptionsInfo.setLayout(new GridLayout());
-		Table table = new Table(timeShEntryOptionsInfo, SWT.BORDER);
+		Table table = new Table(timeShEntryOptionsInfo, SWT.BORDER | SWT.CENTER);
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		timeShEntryOptionsInfo.setLayoutData(formData);
 		lastGroup = timeShEntryOptionsInfo;
 

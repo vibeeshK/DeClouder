@@ -277,3 +277,168 @@
 2020-Feb-19 00:12:06 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
 2020-Feb-19 00:13:01 AM [main] INFO  ESPoTLogger - Selection error
 2020-Feb-19 00:31:38 AM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 15:20:35 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 16:32:26 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 16:33:57 PM [main] INFO  ESPoTLogger - Error in ContentHandlerManager getContentHandlerInterface UsersListing from method displayArtifact --- java.lang.ClassNotFoundException: contentHandlers.UsersListing
+2020-Feb-21 16:34:06 PM [main] ERROR ESPoTLogger - Error in ContentHandlerManager getContentHandlerInterface UsersListing
+java.lang.ClassNotFoundException: contentHandlers.UsersListing
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.net.FactoryURLClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.forName(Unknown Source) ~[?:1.8.0_171]
+	at commonTechs.CustomClassLoader.getInstance(CustomClassLoader.java:27) ~[classes/:?]
+	at espot.ContentHandlerManager.getContentHandlerInterface(ContentHandlerManager.java:48) [classes/:?]
+	at espot.ContentHandlerManager.getInstance(ContentHandlerManager.java:31) [classes/:?]
+	at espot.ArtifactWrapperUI$1.widgetSelected(ArtifactWrapperUI.java:550) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactWrapperUI.displayContent(ArtifactWrapperUI.java:943) [classes/:?]
+	at espot.ArtifactWrapperUI.displayArtifactWrapperUI(ArtifactWrapperUI.java:306) [classes/:?]
+	at espot.CatalogDisplay$6.widgetSelected(CatalogDisplay.java:345) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactsDisplay.shellDisposeHolder(ArtifactsDisplay.java:254) [classes/:?]
+	at espot.ArtifactsDisplay.displayArtifact(ArtifactsDisplay.java:79) [classes/:?]
+	at espot.CatalogDisplay.main(CatalogDisplay.java:416) [classes/:?]
+2020-Feb-21 16:53:45 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 16:54:32 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 17:04:28 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 17:17:28 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 17:17:46 PM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20200221171746
+2020-Feb-21 17:17:46 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2020-Feb-21 17:17:46 PM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\responsesfolderlocal_Tm20200221171746
+2020-Feb-21 17:17:46 PM [main] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedcontent_Tm20200221171746
+2020-Feb-21 17:17:46 PM [main] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews doesn't exist or Not a Folder
+2020-Feb-21 17:23:15 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator starting up - logging set to info
+2020-Feb-21 17:26:31 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger - ESPoTServerOrchestrator starting up - logging set to info
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Feb-21 17:26:53 PM [main] INFO  ESPoTLogger - ESPoTServerOrchestrator started2 - logging set to info
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator starting up - logging set to info
+2020-Feb-21 17:27:42 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2020-Feb-21 17:28:15 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 18:06:35 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 18:10:27 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 18:13:37 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 18:26:54 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 18:33:34 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 20:17:18 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 20:34:14 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 21:22:59 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-21 21:29:09 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-22 12:00:42 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-22 12:30:18 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-22 12:32:55 PM [main] INFO  ESPoTLogger - Error in ContentHandlerManager getContentHandlerInterface Default from method displayArtifact --- java.lang.ClassNotFoundException: 
+2020-Feb-22 12:32:58 PM [main] ERROR ESPoTLogger - Error in ContentHandlerManager getContentHandlerInterface Default
+java.lang.ClassNotFoundException: 
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.forName(Unknown Source) ~[?:1.8.0_171]
+	at commonTechs.CustomClassLoader.getInstance(CustomClassLoader.java:27) ~[classes/:?]
+	at espot.ContentHandlerManager.getContentHandlerInterface(ContentHandlerManager.java:48) [classes/:?]
+	at espot.ContentHandlerManager.getInstance(ContentHandlerManager.java:31) [classes/:?]
+	at espot.ArtifactWrapperUI$2.widgetSelected(ArtifactWrapperUI.java:653) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactWrapperUI.displayContent(ArtifactWrapperUI.java:943) [classes/:?]
+	at espot.ArtifactWrapperUI.displayArtifactWrapperUI(ArtifactWrapperUI.java:306) [classes/:?]
+	at espot.CreateArtifactUI$1.widgetSelected(CreateArtifactUI.java:92) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:594) [classes/:?]
+	at espot.CreateArtifactUI.refreshScreen(CreateArtifactUI.java:53) [classes/:?]
+	at espot.CreateArtifactUI$3.widgetSelected(CreateArtifactUI.java:441) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:594) [classes/:?]
+	at espot.CreateArtifactUI.refreshScreen(CreateArtifactUI.java:53) [classes/:?]
+	at espot.CreateArtifactUI$3.widgetSelected(CreateArtifactUI.java:441) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:594) [classes/:?]
+	at espot.CreateArtifactUI.refreshScreen(CreateArtifactUI.java:53) [classes/:?]
+	at espot.CreateArtifactUI$1.widgetSelected(CreateArtifactUI.java:94) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:594) [classes/:?]
+	at espot.CreateArtifactUI.refreshScreen(CreateArtifactUI.java:53) [classes/:?]
+	at espot.CreateArtifactUI$1.widgetSelected(CreateArtifactUI.java:94) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.CreateArtifactUI.displayContent(CreateArtifactUI.java:594) [classes/:?]
+	at espot.CreateArtifactUI.displayCreateArtifactUI(CreateArtifactUI.java:61) [classes/:?]
+	at espot.CatalogDisplay$1.widgetSelected(CatalogDisplay.java:74) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactsDisplay.shellDisposeHolder(ArtifactsDisplay.java:254) [classes/:?]
+	at espot.ArtifactsDisplay.displayArtifact(ArtifactsDisplay.java:79) [classes/:?]
+	at espot.CatalogDisplay.main(CatalogDisplay.java:416) [classes/:?]
+2020-Feb-22 12:45:08 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-22 13:35:57 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-22 14:27:11 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-22 19:55:23 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Feb-22 20:23:44 PM [main] INFO  ESPoTLogger -  Catalog Display Started 

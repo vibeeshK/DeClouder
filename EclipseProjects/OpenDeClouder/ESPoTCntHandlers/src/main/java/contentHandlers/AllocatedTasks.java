@@ -21,9 +21,9 @@ public class AllocatedTasks extends GenericGrouper {
 	/*
 	 * This content handler helps to group allocated Tasks against a project for a team member
 	 */
-	Text descriptionText;
-	Text authorText;
-	Text statusText;
+	//Text descriptionText;
+	//Text authorText;
+	//Text statusText;
 	
 	protected void setScreenTitle() {
 		mainShell.setText("ESPoT:AllocatedTasksList: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
@@ -75,7 +75,7 @@ public class AllocatedTasks extends GenericGrouper {
 		Group descriptionInfo = new Group(itemContentGroup, SWT.LEFT);
 		descriptionInfo.setText("Application");
 		descriptionInfo.setLayout(new FillLayout());
-		descriptionText = new Text(descriptionInfo, SWT.WRAP | SWT.CENTER);
+		Text descriptionText = new Text(descriptionInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
 		descriptionText.setText(allocatdTaskPojo.description);
 		
 		formData = new FormData();
@@ -87,7 +87,7 @@ public class AllocatedTasks extends GenericGrouper {
 		Group authorInfo = new Group(itemContentGroup, SWT.LEFT);
 		authorInfo.setText("Author");
 		authorInfo.setLayout(new FillLayout());
-		authorText = new Text(authorInfo, SWT.WRAP
+		Text authorText = new Text(authorInfo, SWT.WRAP
 				| SWT.READ_ONLY | SWT.CENTER);
 		authorText.setText(allocatdTaskPojo.author);
 		
@@ -101,7 +101,7 @@ public class AllocatedTasks extends GenericGrouper {
 				| SWT.WRAP | SWT.READ_ONLY);
 		statusInfo.setText("Status");
 		statusInfo.setLayout(new FillLayout());
-		statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
+		Text statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
 		statusText.setText(allocatdTaskPojo.status);
 		
 		formData = new FormData();

@@ -52,10 +52,11 @@ public class DeckerLite extends GenericGrouper {
 	Button btnDelAllArtifacts;
 	Button btnDelSelected;
 	
-	Text applicationText;
-	Text statusText;
-	Text reviewerText;
-	Text authorNameText;
+	//Text applicationText;
+	//Text statusText;
+	//Text reviewerText;
+	//Text authorNameText;
+	
 	Text authorColHdrNameTx;
 	Text keyColHdrNameTx;
 

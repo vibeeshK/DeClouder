@@ -51,6 +51,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 	public ContentHandlerSpecs contentHandlerSpecs = null;
 
 	Text titleText;
+	Text statusText;
 	
 	public GenericItemHandler() {
 	}
@@ -206,7 +207,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 
 	public void initNonUIContentHandlerForDraftArtifact(CommonData inCommonData, SelfAuthoredArtifactpojo inSelfAuthoredArtifactspojo) {
 		System.out.println("GenericItemHandler for initNonUIContentHandlerForDraftArtifact");
-		invokedForEdit = true;
+		invokedForEdit = false;
 		doCommonInit(inCommonData, inSelfAuthoredArtifactspojo);
 	}
 	
@@ -322,6 +323,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup,0,SWT.BOTTOM);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		titleInfo.setLayoutData(formData);
 		lastGroup = titleInfo;
 
@@ -332,9 +334,10 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		authorInfo.setLayout(new FillLayout());
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		authorInfo.setLayoutData(formData);
 
-		Text authorText = new Text(authorInfo, SWT.MULTI | SWT.READ_ONLY);
+		Text authorText = new Text(authorInfo, SWT.MULTI | SWT.READ_ONLY | SWT.CENTER);
 		if (primerDoc.getItem().author == null || primerDoc.getItem().author.equalsIgnoreCase("")) {
 			authorText.setText(invokedArtifactPojo.author);	//For single items always the wrapper UI's author goes to item as well.
 		} else {
@@ -348,9 +351,10 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		statusInfo.setLayout(new FillLayout());
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		statusInfo.setLayoutData(formData);
 
-		Text statusText = new Text(statusInfo, SWT.MULTI | SWT.READ_ONLY);
+		statusText = new Text(statusInfo, SWT.MULTI | SWT.READ_ONLY | SWT.CENTER);
 		if (primerDoc.getItem().status == null || primerDoc.getItem().status.equalsIgnoreCase("")) {
 			statusText.setText(invokedArtifactPojo.erlStatus);	//For single items always the wrapper UI's author goes to item as well.
 		} else {
@@ -371,15 +375,16 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 
 		actionButtonGrp = new Group(itemContentGroup, SWT.LEFT
 				| SWT.WRAP | SWT.READ_ONLY);
-		actionButtonGrp.setText("Status");
+		actionButtonGrp.setText("Actions");
 		actionButtonGrp.setLayout(new FillLayout());
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
+		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
 		formData.bottom = new FormAttachment(100,0);
 		actionButtonGrp.setLayoutData(formData);
 
 		if (invokedForEdit) {
-			Button saveItemButton = new Button(actionButtonGrp, SWT.PUSH);
+			Button saveItemButton = new Button(actionButtonGrp, SWT.PUSH | SWT.CENTER);
 			saveItemButton.setText("SaveDraft");
 	
 			saveItemButton.addSelectionListener(new SelectionAdapter() {
@@ -393,6 +398,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 
 					ItemPojo itemPojo = primerDoc.getItem();
 					itemPojo.title = titleText.getText();
+					itemPojo.status = statusText.getText();
 					itemPojo.updatedAt = commons.getDateTS();
 					
 					System.out.println("itemPojo save details follows ");

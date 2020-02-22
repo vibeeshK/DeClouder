@@ -40,9 +40,9 @@ public class ProjTasksList extends GenericGrouper {
 	final static String CONTENTTYPE1_AllocatdTask = "AllocatdTask";
 	final static String CONTENTTYPE2_AllocatedTasks = "AllocatedTasks";
 	
-	Text descriptionText;
-	Text authorText;
-	Text statusText;
+	//Text descriptionText;
+	//Text authorText;
+	//Text statusText;
 
 	private HashMap<String,AllocatdTaskItemPojo> allocatdTasksFromProj;
 	private HashMap<String,AllocatdTaskItemPojo> allocatdTasksDrafts;
@@ -184,7 +184,7 @@ public class ProjTasksList extends GenericGrouper {
 		Group descriptionInfo = new Group(itemContentGroup, SWT.LEFT);
 		descriptionInfo.setText("Description");
 		descriptionInfo.setLayout(new FillLayout());
-		descriptionText = new Text(descriptionInfo, SWT.WRAP | SWT.CENTER);
+		Text descriptionText = new Text(descriptionInfo, SWT.WRAP | SWT.CENTER);
 		descriptionText.setText(projTaskPojo.description);
 		
 		inFormData = new FormData();
@@ -196,7 +196,7 @@ public class ProjTasksList extends GenericGrouper {
 		Group authorInfo = new Group(itemContentGroup, SWT.LEFT);
 		authorInfo.setText("Author");
 		authorInfo.setLayout(new FillLayout());
-		authorText = new Text(authorInfo, SWT.WRAP
+		Text authorText = new Text(authorInfo, SWT.WRAP
 				| SWT.READ_ONLY | SWT.CENTER);
 		authorText.setText(projTaskPojo.author);
 		
@@ -210,7 +210,7 @@ public class ProjTasksList extends GenericGrouper {
 				| SWT.WRAP | SWT.READ_ONLY);
 		statusInfo.setText("Status");
 		statusInfo.setLayout(new FillLayout());
-		statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
+		Text  statusText = new Text(statusInfo, SWT.WRAP | SWT.READ_ONLY | SWT.CENTER);
 		statusText.setText(projTaskPojo.status);
 		
 		inFormData = new FormData();

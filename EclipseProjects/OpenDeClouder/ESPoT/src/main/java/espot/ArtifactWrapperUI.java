@@ -322,7 +322,7 @@ public class ArtifactWrapperUI {
 
 		scrolledComposite_1.setLayoutData(gridDataSrol);
 
-		final Composite childCompositeOfDuplexView = new Composite(
+		Composite childCompositeOfDuplexView = new Composite(
 				scrolledComposite_1, SWT.NONE);
 		scrolledComposite_1.setContent(childCompositeOfDuplexView);
 		childCompositeOfDuplexView.setLayout(new GridLayout(2, false));
@@ -330,7 +330,7 @@ public class ArtifactWrapperUI {
 
 		childCompositeOfDuplexView.setLayoutData(gridDataDuplx);
 		
-		final Composite childCompositeOfLeftView = new Composite(
+		Composite childCompositeOfLeftView = new Composite(
 				childCompositeOfDuplexView, SWT.NONE);
 		childCompositeOfLeftView.setLayout(new FillLayout(SWT.VERTICAL));
 
@@ -348,14 +348,14 @@ public class ArtifactWrapperUI {
 		// displayContent() - base set up ends
 
 		// displayContent() - ideaGroup Splitting Starts
-		final Group artifactDetailGroup = new Group(childCompositeOfLeftView,
+		Group artifactDetailGroup = new Group(childCompositeOfLeftView,
 				SWT.SHADOW_NONE);
 		artifactDetailGroup.setText("ArtifactDetail");
 		artifactDetailGroup.setLayout(new FillLayout(SWT.VERTICAL));
 		// displayContent() - ideaGroup Splitting ends
 
 		// displayContent() - ArtifactName display starts
-		final Group artifactNameGroup = new Group(artifactDetailGroup, SWT.LEFT);
+		Group artifactNameGroup = new Group(artifactDetailGroup, SWT.LEFT);
 		artifactNameGroup.setLayout(new FillLayout());
 		artifactNameGroup.setText("ArtifactName");
 		artifactNameText = new Text(artifactNameGroup, SWT.NONE);
@@ -375,10 +375,10 @@ public class ArtifactWrapperUI {
 		// displayContent() - ArtifactName display ends
 
 		// displayContent() - ContentType display starts
-		final Group contentTypeGroup = new Group(artifactDetailGroup, SWT.LEFT);
+		Group contentTypeGroup = new Group(artifactDetailGroup, SWT.LEFT);
 		contentTypeGroup.setLayout(new FillLayout());
 		contentTypeGroup.setText("ContentType");
-		final CCombo contentTypeList = new CCombo(contentTypeGroup,
+		CCombo contentTypeList = new CCombo(contentTypeGroup,
 				SWT.DROP_DOWN | SWT.READ_ONLY);
 
 		if (calledFor.equalsIgnoreCase(CALLED_For_NewDraftSetup)) {
@@ -400,7 +400,7 @@ public class ArtifactWrapperUI {
 
 
 		// displayContent() - Relevance display starts
-		final Group relevanceGroup = new Group(artifactDetailGroup, SWT.LEFT);
+		Group relevanceGroup = new Group(artifactDetailGroup, SWT.LEFT);
 		relevanceGroup.setLayout(new FillLayout());
 		relevanceGroup.setText("Relevance");
 		relevanceList = new CCombo(relevanceGroup, SWT.DROP_DOWN | SWT.READ_ONLY);
@@ -423,9 +423,9 @@ public class ArtifactWrapperUI {
 
 		// displayContent() - Users display starts
 
-		final Group authorsGroup = new Group(artifactDetailGroup, SWT.LEFT);
+		Group authorsGroup = new Group(artifactDetailGroup, SWT.LEFT);
 		authorsGroup.setLayout(new FillLayout());
-		authorsGroup.setText("Author");
+		//authorsGroup.setText("Author");
 		String currentAuthor = "";
 		boolean invokedForEdit = false;
 		if (calledFor.equalsIgnoreCase(CALLED_For_NewDraftSetup) || calledFor.equalsIgnoreCase(CALLED_ForCloning)) {
@@ -448,7 +448,7 @@ public class ArtifactWrapperUI {
 		System.out.println("000 Invoking UsersDisplay from artifactWrapper inInvokedForEdit is " + invokedForEdit);
 		System.out.println("000 Invoking UsersDisplay from artifactWrapper ArtifactPojo.ERLSTAT_DRAFTREQ is " + ArtifactPojo.ERLSTAT_DRAFTREQ);
 
-		final UsersDisplay usersDisplay = new UsersDisplay(commonUIData.getUsersHandler(),authorsGroup,currentAuthor,false,UsersDisplay.AUTHOR_ASSIGN_TEXT);
+		UsersDisplay usersDisplay = new UsersDisplay(commonUIData.getUsersHandler(),authorsGroup,currentAuthor,false,UsersDisplay.AUTHOR_LIT);
 
 		// displayContent() - Users display ends
 		
@@ -473,7 +473,7 @@ public class ArtifactWrapperUI {
 		// view as well as edit, upload, backup on cloud, make clone
 		// For non-authors, it provides ability to view, make clone
 		//final Group actionsGrp = new Group(childCompositeOfLeftView, SWT.SHADOW_NONE);
-		final Group actionsGrp = new Group(artifactDetailGroup, SWT.SHADOW_NONE);		
+		Group actionsGrp = new Group(artifactDetailGroup, SWT.SHADOW_NONE);		
 		actionsGrp.setText("Actions");
 		actionsGrp.setLayout(new FillLayout());
 
@@ -649,15 +649,17 @@ public class ArtifactWrapperUI {
 						int rc1 = editMessage2Box.open();
 						return;
 					}
-					
-					ContentHandlerInterface prevalidatingContentHandlerInterface = ContentHandlerManager.getInstance(commonUIData.getCommons(), commonUIData.getCatelogPersistenceManager(), processingArtifactKeyPojo.contentType);
-					String prevalidateString = prevalidatingContentHandlerInterface.prevalidate(commonUIData,processingArtifactKeyPojo);
-					if (!prevalidateString.equalsIgnoreCase("")) {
-						MessageBox editMessage3Box = new MessageBox(mainShell,
-								SWT.ICON_ERROR | SWT.OK);
-						editMessage3Box.setMessage(prevalidateString);
-						int rc3 = editMessage3Box.open();
-						return;
+
+					if (contentHandlerSpecs.hasSpecialHandler) {
+						ContentHandlerInterface prevalidatingContentHandlerInterface = ContentHandlerManager.getInstance(commonUIData.getCommons(), commonUIData.getCatelogPersistenceManager(), processingArtifactKeyPojo.contentType);
+						String prevalidateString = prevalidatingContentHandlerInterface.prevalidate(commonUIData,processingArtifactKeyPojo);
+						if (!prevalidateString.equalsIgnoreCase("")) {
+							MessageBox editMessage3Box = new MessageBox(mainShell,
+									SWT.ICON_ERROR | SWT.OK);
+							editMessage3Box.setMessage(prevalidateString);
+							int rc3 = editMessage3Box.open();
+							return;
+						}
 					}
 
 					// Create button validation ends
@@ -912,7 +914,7 @@ public class ArtifactWrapperUI {
 
 		//review group integration starts
 		//review group integration starts
-		final Composite childCompositeOfRightView = new Composite(
+		Composite childCompositeOfRightView = new Composite(
 				childCompositeOfDuplexView, SWT.NONE | SWT.WRAP);
 
 		GridData gridDataRight = new GridData(SWT.FILL, SWT.FILL, true, true);

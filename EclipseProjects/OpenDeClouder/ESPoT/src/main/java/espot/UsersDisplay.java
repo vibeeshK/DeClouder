@@ -12,11 +12,14 @@ import org.eclipse.swt.widgets.Text;
 
 public class UsersDisplay {
 
+	public final static String AUTHOR_LIT = "Author";
+	public final static String REVIEWER_LIT = "Reviewer";
+	public final static String LEAD_LIT = "Lead";
 	public final static String AUTHOR_ASSIGN_TEXT = "Assign Author";
 	public final static String REQUESTOR_ASSIGN_TEXT = "Assign Requestor";
 	public final static String AUTHOR_REASSIGN_TEXT = "Re-assign Author";
 	public final static String REQUESTOR_REASSIGN_TEXT = "Re-assign Requestor";
-	Text userText = null;
+	public Text userText = null;
 	
 	public UsersDisplay(final UsersHandler inUsersHandler, Group inContainerGroup, String inCurrentAuthor, boolean inInvokedForEdit, String inGroupText){
 		System.out.println("At start of UsersDisplay inGroupText " + inGroupText);
@@ -31,7 +34,7 @@ public class UsersDisplay {
 			UserPojo currentUserPojo = new UserPojo(inCurrentAuthor, "_Unknown Current User ", "" , 0, "");
 			inUsersHandler.appendUserPojo(currentUserPojo);
 		}
-		userText = new Text(assignedAuthorGroup, SWT.LEFT | SWT.READ_ONLY);
+		userText = new Text(assignedAuthorGroup, SWT.CENTER | SWT.READ_ONLY);
 		userText.setText(inCurrentAuthor);
 
 		final CCombo usersList = new CCombo(assignedAuthorGroup, SWT.DROP_DOWN | SWT.READ_ONLY);

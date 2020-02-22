@@ -20,9 +20,9 @@ public class ItemPojo {
 	public int itemNumber = 0;
 	public String itemID = "";
 	public String artifactName = "";
-	public String title = "";
 	public String relevance = "";
 	public String contentType = "";
+	public String title = "";
 	public String author = "";
 	public String status = "";
 	public Date updatedAt;
