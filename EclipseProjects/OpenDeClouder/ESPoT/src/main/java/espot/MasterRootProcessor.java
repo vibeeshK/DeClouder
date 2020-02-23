@@ -12,7 +12,7 @@ public class MasterRootProcessor implements Runnable {
 	 * Called by Serverside Orchestrator to periodically execute the requests processor for the given root
 	 */
 
-	private HashMap<String, ContentHandlerSpecs>  contentHandlerSpecsMap = null;
+	//private HashMap<String, ContentHandlerSpecs>  contentHandlerSpecsMap = null;
 	private CommonData commonData;			
 	private Commons commons;			
 	private RootPojo rootPojo;
@@ -34,7 +34,7 @@ public class MasterRootProcessor implements Runnable {
 
 		System.out.println("created sardine");
 
-		contentHandlerSpecsMap = commonData.getCatelogPersistenceManager().getContentHandlerSpecsMap();
+		//contentHandlerSpecsMap = commonData.getCatelogPersistenceManager().getContentHandlerSpecsMap();
 		
 		requestProcessor = new RequestProcessor(commonData, remoteAccesser);
 			
@@ -55,8 +55,8 @@ public class MasterRootProcessor implements Runnable {
 			try {
 				System.out.println("inside masterRootProcessr for = "
 						+ rootPojo.rootString);
-				HashMap<String, ContentHandlerSpecs> contentHandlerSpecsMap = null;
-				contentHandlerSpecsMap = commonData.getCatelogPersistenceManager().getContentHandlerSpecsMap();
+				//HashMap<String, ContentHandlerSpecs> contentHandlerSpecsMap = null;
+				//contentHandlerSpecsMap = commonData.getCatelogPersistenceManager().getContentHandlerSpecsMap();
 				
 				requestProcessor.processRequestsOfOneRoot();
 			} catch (IOException | ClassNotFoundException | TransformerException | ParserConfigurationException e) {

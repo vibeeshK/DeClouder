@@ -56,7 +56,7 @@ public class ArtifactWrapperUI {
 	CCombo artifactVersionsList = null;
 	ContentHandlerSpecs contentHandlerSpecs = null;
 	CatelogPersistenceManager catelogPersistenceManager = null;	
-	boolean authorConflict = false;
+	boolean authorCanEdit = true;
 	boolean draftAvailable = false;
 	boolean waitForContentDownload = false;	
 	boolean awaitingUpload = false;
@@ -206,10 +206,11 @@ public class ArtifactWrapperUI {
 			} else {
 				waitForContentDownload = false;
 			}
-			if (!commonUIData.getCommons().userName.equalsIgnoreCase(erlDownload.author)) {
-				authorConflict = true;
-			} else {
-				authorConflict = false;
+
+			//if (!commonUIData.getCommons().userName.equalsIgnoreCase(erlDownload.author)) {
+			if (!commonUIData.getUsersHandler().doesUserHaveRightsOverMember(
+					commonUIData.getCommons().userName, erlDownload.author)) {
+				authorCanEdit = false;
 			}
 
 			String fullPathReviewFileName = "";
@@ -230,9 +231,9 @@ public class ArtifactWrapperUI {
 
 			if (inProgressSelfAuthoredArtifactpojo != null 
 					&& !newestDBSelfAuthoredArtifactspojo.author.equalsIgnoreCase(commons.userName)) {
-				authorConflict = true;
+				authorCanEdit = true;
 			} else {
-				authorConflict = false;
+				authorCanEdit = false;
 			}
 			waitForContentDownload = false;
 		}
@@ -739,12 +740,12 @@ public class ArtifactWrapperUI {
 		// pending for upload already
 		// Edit and upload allowed only on special conditions
 		System.out.println("authorConflict? while presenting is "
-				+ authorConflict);
+				+ authorCanEdit);
 		System.out.println("waitForContentDownload? while presenting is "
 				+ waitForContentDownload);
 		System.out.println("awaitingUpload? while presenting is "
 				+ awaitingUpload);
-		if (!authorConflict && !waitForContentDownload && !awaitingUpload) {
+		if (authorCanEdit && !waitForContentDownload && !awaitingUpload) {
 
 			// Edit and upload allowed only on special conditions
 			Button btnEditButton = new Button(actionsGrp, SWT.CENTER);
@@ -855,14 +856,14 @@ public class ArtifactWrapperUI {
 		// displayContent() - EDIT button ends
 
 		// displayContent() - Upload button starts
-		System.out.println("authorConflict? for upload is "
-				+ authorConflict);
+		System.out.println("authorCanEdit for upload is "
+				+ authorCanEdit);
 		System.out.println("waitForContentDownload? for upload is "
 				+ waitForContentDownload);
 		System.out.println("awaitingUpload? for upload is "
 				+ awaitingUpload);
 		if (draftAvailable && !waitForContentDownload)
-			if (!authorConflict && !waitForContentDownload && !awaitingUpload) {
+			if (authorCanEdit && !waitForContentDownload && !awaitingUpload) {
 			// Edit and upload allowed only on special conditions
 			Button btnUploadButton = new Button(actionsGrp, SWT.CENTER);
 			btnUploadButton.addSelectionListener(new SelectionAdapter() {

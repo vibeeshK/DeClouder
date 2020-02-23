@@ -743,7 +743,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		Group titleInfo = new Group(itemContentGroup, SWT.LEFT);
 		titleInfo.setText("Title");
 		titleInfo.setLayout(new FillLayout());
-		final Text titleText = new Text(titleInfo, SWT.WRAP | SWT.CENTER);
+		final Text titleText = new Text(titleInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
 		titleText.setText(reviewItemPojo.title);
 
 		formData = new FormData();

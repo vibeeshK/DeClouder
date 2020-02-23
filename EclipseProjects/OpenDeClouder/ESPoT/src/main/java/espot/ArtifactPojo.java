@@ -16,8 +16,7 @@ public class ArtifactPojo {
 	public static final String[] AUTHOR_VALID_ACTIONS = {
 																ERLSTAT_DRAFT,
 																ERLSTAT_DRAFTRQACK,
-																ERLSTAT_REVIEWREQ,
-																ERLSTAT_INACTIVE
+																ERLSTAT_REVIEWREQ
 															};
 	public static final String[] REQUESTOR_VALID_ACTIONS = {
 																ERLSTAT_DRAFTREQ,

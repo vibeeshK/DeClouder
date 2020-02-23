@@ -32,6 +32,8 @@ public class ContentHandlerSpecs {
 	public String instructions = "";
 	public CntProcInstrucDoc cntProcInstrucDoc = null;
 
+	public boolean rollupAddupType = false;
+	
 	public ContentHandlerSpecs(Commons inCommons){
 		commons = inCommons;
 	}
@@ -77,8 +79,13 @@ public class ContentHandlerSpecs {
 		System.out.println("@ setContentHandlerSpecs rollupArtifactName : " + rollAddArtifactName);
 		System.out.println("@ setContentHandlerSpecs rollupContentType : " + rollAddContentType);
 		System.out.println("@ setContentHandlerSpecs hasSpecialHandler : " + hasSpecialHandler);
-	}
 
+		if (rollupOrAddup == null || rollupOrAddup.equalsIgnoreCase("") || rollupOrAddup.equalsIgnoreCase(ROLLUP_ADDUP_TYPE_NONE)){
+			rollupAddupType = true;			
+		}		
+		System.out.println("@ setContentHandlerSpecs rollupAddupType : " + rollupAddupType);
+	}
+	
 	public ArtifactKeyPojo getFinalArtifactKeyPojo(String inChildRootNick, String inChildRelevance, String inChildArtifactName, String inSeparator) {
 		System.out.println("getFinalArtifactKeyPojo ");
 		System.out.println("getFinalArtifactKeyPojo contentType is " + contentType);
@@ -87,7 +94,8 @@ public class ContentHandlerSpecs {
 		System.out.println("getFinalArtifactKeyPojo inSeparator is " + inSeparator);
 
 		ArtifactKeyPojo finalArtifactKeyPojo = null;
-		if (rollupOrAddup == null || rollupOrAddup.equalsIgnoreCase("") || rollupOrAddup.equalsIgnoreCase(ROLLUP_ADDUP_TYPE_NONE)){
+		//if (rollupOrAddup == null || rollupOrAddup.equalsIgnoreCase("") || rollupOrAddup.equalsIgnoreCase(ROLLUP_ADDUP_TYPE_NONE)){
+		if (rollupAddupType) {
 			System.out.println("getFinalArtifactKeyPojo ROLLUP_ADDUP_TYPE_NONE");
 			finalArtifactKeyPojo = new ArtifactKeyPojo(inChildRootNick,inChildRelevance,inChildArtifactName,contentType);
 		} else {

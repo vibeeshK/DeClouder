@@ -28,7 +28,7 @@ public class CatalogDisplay extends ArtifactsDisplay{
 	public void setData(){
 		System.out.println("catelogPersistenceManager in setData is " + commonUIData.getCatelogPersistenceManager());
 
-		ArrayList<ERLDownload> allERLDownLoads = catelogPersistenceManager.readERLDownLoadsOfRoot();
+		ArrayList<ERLDownload> allERLDownLoads = catelogPersistenceManager.readActiveERLDownLoadsOfRoot();
 		
 		ArrayList<ERLDownload> dbDisplayERLs = new ArrayList<ERLDownload>();
 		for (ERLDownload erlDownload : allERLDownLoads){

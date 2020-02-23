@@ -43,7 +43,7 @@ public class AssignedArtifactsDisplay extends ArtifactsDisplay{
 
 	@Override
 	public void setAddlSecondColumnHeaders() {
-		secondAddlColumnHeaders = new String[] { 
+		secondAddlColumnHeaders = new String[] {"ERLStatus",
 												"FileName",
 												"UploadedAt",
 												"SubscriptionState"}; 
@@ -66,6 +66,12 @@ public class AssignedArtifactsDisplay extends ArtifactsDisplay{
 		ArtifactPojo displayArtifact, int inRowNumber) {
 		int lastColNum = firstAddlColumnHeaders.length + coreFirstColumnHeaders.length;
 		ERLDownload displayERL = (ERLDownload) displayArtifact;
+
+		editor = new TableEditor(table);
+		Text erlStatusTx = new Text(table, SWT.READ_ONLY);
+		erlStatusTx.setText(displayERL.erlStatus);
+		editor.grabHorizontal = true;
+		editor.setEditor(erlStatusTx, tableItem, lastColNum++);
 
 		editor = new TableEditor(table);
 		Text textContentRemoteLocation = new Text(table, SWT.READ_ONLY);

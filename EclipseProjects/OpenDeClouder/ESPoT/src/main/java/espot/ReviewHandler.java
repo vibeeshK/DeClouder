@@ -52,6 +52,8 @@ public class ReviewHandler {
 	boolean reviewVisible = true;
 	Group hideReviewGrp = null;	
 	Text newCommentText = null;
+	ContentHandlerSpecs contentHandlerSpecs = null;
+	
 	public ReviewHandler(CommonUIData inCommonUIData,
 							Composite inWrappingComposite,
 							ArtifactPojo inArtifactPojo, 
@@ -63,6 +65,9 @@ public class ReviewHandler {
 		artifactPojo = inArtifactPojo;
 		itemName = inItemName;	//itemName will be same as the artifact name for artifact reviews
 
+		contentHandlerSpecs = commonUIData.getContentHandlerSpecs(artifactPojo.artifactKeyPojo.contentType);
+		
+		
 		outerMainShell = inMainShell;
 		System.out.println("@ReviewHandler inArtifactPojo = " + inArtifactPojo);
 		System.out.println("@ReviewHandler inArtifactPojo.artifactKeyPojo = " + inArtifactPojo.artifactKeyPojo);
@@ -269,7 +274,11 @@ public class ReviewHandler {
 
 		UserPojo deskUserDetail = commonUIData.getUsersHandler().getUserDetailsFromRootSysLoginID(commonUIData.getCommons().userName);
 
-		if (commonUIData.getCommons().userName.equalsIgnoreCase(artifactPojo.requestor) || deskUserDetail.hasAdminPrivilege() || deskUserDetail.hasTeamLeaderPrivilege()) { 
+		if (!contentHandlerSpecs.rollupAddupType && 
+				(commonUIData.getUsersHandler().doesUserHaveRightsOverMember(
+					commonUIData.getCommons().userName, artifactPojo.requestor))) {
+				//commonUIData.getCommons().userName.equalsIgnoreCase(artifactPojo.requestor) || deskUserDetail.hasAdminPrivilege() || deskUserDetail.hasTeamLeaderPrivilege())) { 
+			
 		//Only requestor can reassign. Later enhance to allow admins to change as well
 			if (reviewPojo != null) {
 				if (reviewPojo.reassignedAuthor != null) {
@@ -280,8 +289,8 @@ public class ReviewHandler {
 				System.out.println("before reassign display2: artifactPojo.author is " + artifactPojo.author);
 				authorsDisplay = new UsersDisplay(commonUIData.getUsersHandler(),reviewActionsGrp,artifactPojo.author,true,UsersDisplay.AUTHOR_REASSIGN_TEXT);
 			}
-		}
-		if (commonUIData.getCommons().userName.equalsIgnoreCase(artifactPojo.requestor) || deskUserDetail.hasAdminPrivilege() || deskUserDetail.hasTeamLeaderPrivilege()) {
+		//}
+		//if (commonUIData.getCommons().userName.equalsIgnoreCase(artifactPojo.requestor) || deskUserDetail.hasAdminPrivilege() || deskUserDetail.hasTeamLeaderPrivilege()) {
 		//Only requestor can reassign. Later enhance to allow admins to change as well
 			if (reviewPojo != null) {
 				if (reviewPojo.reassignedRequestor != null) {
@@ -297,7 +306,7 @@ public class ReviewHandler {
 		///////////////// NEW ERL status starts
 		final Group erlStatusGroup = new Group(reviewActionsGrp, SWT.CENTER);
 		erlStatusGroup.setLayout(new FillLayout());
-		erlStatusGroup.setText("ERL Status");
+		//erlStatusGroup.setText("ERL Status");
 
 		formData = new FormData();
 		formData.top = new FormAttachment(lastReviewWdgtGrp,0,SWT.BOTTOM);

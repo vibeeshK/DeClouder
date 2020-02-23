@@ -98,4 +98,19 @@ public class UsersHandler {
 	public int getUsersCount(){
 		return usersList.size();
 	}
+	public boolean doesUserHaveRightsOverMember(String inSuperuser, String inMember){		
+	// check if the mentioned super user has rights over the member
+		boolean superuser = false;
+		UserPojo superUsersUserPojo = getUserDetailsFromRootSysLoginID(inSuperuser);
+		UserPojo memberUserPojo = getUserDetailsFromRootSysLoginID(inMember);
+
+		if (superUsersUserPojo != null && memberUserPojo != null
+			&& (superUsersUserPojo.hasAdminPrivilege() || 
+				superUsersUserPojo.hasTeamLeaderPrivilege() ||
+				memberUserPojo.leadID.equals(inSuperuser) ||
+				inMember.equals(inSuperuser))){
+			superuser = true;
+		}		
+		return superuser;
+	}
 }

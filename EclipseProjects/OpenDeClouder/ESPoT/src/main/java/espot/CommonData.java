@@ -136,6 +136,10 @@ public class CommonData {
 	public HashMap<String, ContentHandlerSpecs>  getContentHandlerSpecsMap() {
 		return contentHandlerSpecsMap;	
 	}
+	
+	public ContentHandlerSpecs getContentHandlerSpecs(String inContentType) {
+		return contentHandlerSpecsMap.get(inContentType);
+	}
 
 	public HashMap<String,RootPojo> getRootPojoMap() {
 		return rootPojoMap;	
@@ -143,7 +147,7 @@ public class CommonData {
 	
 	public String[] getRelavances() {
 		if (relavances == null) {
-			relavances = getCatelogPersistenceManager().readAllRelevanceStrings(getCurrentRootNick());			
+			relavances = getCatelogPersistenceManager().readAllRelevanceStrings();			
 		}
 		return relavances;
 	}	

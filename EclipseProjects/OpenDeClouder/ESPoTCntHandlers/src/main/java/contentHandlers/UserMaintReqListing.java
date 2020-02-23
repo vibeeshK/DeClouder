@@ -105,7 +105,7 @@ public class UserMaintReqListing extends GenericGrouper {
 		System.out.println("addlHeadersCount=" + addlHeadersCount);
 
 		//centerBaseColHeaders = new String[] {"Description","Author","Subportfolio","Application","Reviewer","Status"};
-		centerBaseColHeaders = new String[] {"ShortID","UserName","LeadID","ActiveState", "Privilege"};
+		centerBaseColHeaders = new String[] {"RootSysLoginID","UserName","LeadID","ActiveState", "Privilege"};
 	}
 
 	public void setDisplayItemsCenterBaseFieldsInMultiDisplay(TableEditor editor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojo){
@@ -119,7 +119,7 @@ public class UserMaintReqListing extends GenericGrouper {
 		
 		editor = new TableEditor(inTable);
 		Text userName_Tx = new Text(inTable, SWT.READ_ONLY);
-		userShortID_Tx.setText(userMaintReqPojo.userPojo.userName);
+		userName_Tx.setText(userMaintReqPojo.userPojo.userName);
 		editor.grabHorizontal = true;
 		editor.setEditor(userName_Tx, inTableItem, ++inLastColLocation);
 	
@@ -148,9 +148,9 @@ public class UserMaintReqListing extends GenericGrouper {
 		UserMaintReqPojo userMaintReqPojo = (UserMaintReqPojo) itemPojo;
 
 		Group userInfo = new Group(itemContentGroup, SWT.LEFT);
-		userInfo.setText("UserShortID");
+		userInfo.setText("RootSysLoginID");
 		userInfo.setLayout(new FillLayout());
-		Text userShortIDText = new Text(userInfo, SWT.WRAP | SWT.CENTER);
+		Text userShortIDText = new Text(userInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
 		userShortIDText.setText(userMaintReqPojo.userPojo.rootSysLoginID);
 		
 		formData = new FormData();
@@ -161,7 +161,7 @@ public class UserMaintReqListing extends GenericGrouper {
 		Group userNameInfo = new Group(itemContentGroup, SWT.LEFT);
 		userNameInfo.setText("UserName");
 		userNameInfo.setLayout(new FillLayout());
-		Text userNameText = new Text(userNameInfo, SWT.WRAP | SWT.CENTER);
+		Text userNameText = new Text(userNameInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
 		userNameText.setText(userMaintReqPojo.userPojo.userName);
 		
 		formData = new FormData();
@@ -172,7 +172,7 @@ public class UserMaintReqListing extends GenericGrouper {
 		Group leadIDInfo = new Group(itemContentGroup, SWT.LEFT);
 		leadIDInfo.setText("LeadID");
 		leadIDInfo.setLayout(new FillLayout());
-		Text leadIDText = new Text(leadIDInfo, SWT.WRAP | SWT.CENTER);
+		Text leadIDText = new Text(leadIDInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
 		leadIDText.setText(userMaintReqPojo.userPojo.leadID);
 		
 		formData = new FormData();
@@ -183,7 +183,7 @@ public class UserMaintReqListing extends GenericGrouper {
 		Group activeStateInfo = new Group(itemContentGroup, SWT.LEFT);
 		activeStateInfo.setText("LeadID");
 		activeStateInfo.setLayout(new FillLayout());
-		Text activeStateText = new Text(activeStateInfo, SWT.WRAP | SWT.CENTER);
+		Text activeStateText = new Text(activeStateInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
 		activeStateText.setText(userMaintReqPojo.userPojo.activeStatus);
 		
 		formData = new FormData();
@@ -194,7 +194,7 @@ public class UserMaintReqListing extends GenericGrouper {
 		Group privilegeInfo = new Group(itemContentGroup, SWT.LEFT);
 		privilegeInfo.setText("Privilege");
 		privilegeInfo.setLayout(new FillLayout());
-		Text privilegeText = new Text(privilegeInfo, SWT.WRAP | SWT.CENTER);
+		Text privilegeText = new Text(privilegeInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
 		privilegeText.setText(UserPojo.getPrivilegeLitOfLevel(userMaintReqPojo.userPojo.privilegeLevel));
 		
 		formData = new FormData();

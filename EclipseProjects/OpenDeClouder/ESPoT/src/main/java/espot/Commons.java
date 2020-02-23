@@ -124,6 +124,7 @@ public class Commons extends CommonTechs {
 	private String requestdropbox = null;
 	private String responsepickbox = null;
 	public String remoteArhive = null;
+	public String remoteInactiveERLsArchive = null;
 
 	public String sysUpdateLogDoc = null;
 	
@@ -261,7 +262,10 @@ public class Commons extends CommonTechs {
 		requestdropbox = commonPropObject.getProperty("requestdropbox");
 		responsepickbox = commonPropObject.getProperty("responsepickbox");
 		remoteReviewsFolder = commonPropObject.getProperty("remoteReviewsFolder");
-		remoteArhive = commonPropObject.getProperty("remoteArhive");
+	
+		remoteArhive = commonPropObject.getProperty("remoteArhive");		
+		remoteInactiveERLsArchive = commonPropObject.getProperty("remoteInactiveERLsArchive");
+		
 		catalogDbPublishFilePrefix = commonPropObject.getProperty("catalogDbPublishFilePrefix");
 
 		
@@ -927,14 +931,59 @@ public class Commons extends CommonTechs {
 		return remotePathFileName;
 	}
 
-	public String getRemoteArchivalPathFileName(String inRootString, String inRelevance, String inFileName, String inRemoteFileSeparator){
+	//public String getRemoteArchivalPathFileName(String inRootString, String inRelevance, String inFileName, String inRemoteFileSeparator){
+	//	String remoteArchPathFileName = "" ;
+	//
+	//	if (inFileName.equals("")) return remoteArchPathFileName;
+	//	
+	//	remoteArchPathFileName = inRootString
+	//						+ inRemoteFileSeparator
+	//						+ remoteArhive
+	//						+ inRemoteFileSeparator
+	//						+ inRelevance
+	//						+ inRemoteFileSeparator
+	//						+ inFileName;
+	//
+	//	System.out.println("remotePathFileName...=" + remoteArchPathFileName);
+	//
+	//	//SlashFix starts
+	//	//remoteArchPathFileName = remoteArchPathFileName.replace('\\', '/');
+	//	remoteArchPathFileName = remoteArchPathFileName.replace('\\', inRemoteFileSeparator.charAt(0));
+	//	remoteArchPathFileName = remoteArchPathFileName.replace('/', inRemoteFileSeparator.charAt(0));		
+	//	//SlashFix ends
+	//
+	//	return remoteArchPathFileName;
+	//}
+
+	public String getRemoteArchivalPathFileName(String inRootString, String inRelevance, 
+											String inFileName, String inRemoteFileSeparator){
+		return getRemoteCoreArchivalPathFileName(inRootString, 
+													inRelevance, 
+													inFileName, 
+													inRemoteFileSeparator, 
+													remoteArhive);
+	}
+
+	public String getRemoteInactiveArchivalPathFileName(String inRootString, String inRelevance,
+											String inFileName, String inRemoteFileSeparator){
+		return getRemoteCoreArchivalPathFileName(inRootString, 
+													inRelevance, 
+													inFileName, 
+													inRemoteFileSeparator, 
+													remoteInactiveERLsArchive);
+	}
+	
+	public String getRemoteCoreArchivalPathFileName(String inRootString, String inRelevance, 
+											String inFileName, String inRemoteFileSeparator, 
+											String inRemoteArhiveFolder){
+
 		String remoteArchPathFileName = "" ;
 
 		if (inFileName.equals("")) return remoteArchPathFileName;
 		
 		remoteArchPathFileName = inRootString
 							+ inRemoteFileSeparator
-							+ remoteArhive
+							+ inRemoteArhiveFolder
 							+ inRemoteFileSeparator
 							+ inRelevance
 							+ inRemoteFileSeparator
@@ -942,11 +991,8 @@ public class Commons extends CommonTechs {
 
 		System.out.println("remotePathFileName...=" + remoteArchPathFileName);
 	
-		//SlashFix starts
-		//remoteArchPathFileName = remoteArchPathFileName.replace('\\', '/');
 		remoteArchPathFileName = remoteArchPathFileName.replace('\\', inRemoteFileSeparator.charAt(0));
 		remoteArchPathFileName = remoteArchPathFileName.replace('/', inRemoteFileSeparator.charAt(0));		
-		//SlashFix ends
 
 		return remoteArchPathFileName;
 	}

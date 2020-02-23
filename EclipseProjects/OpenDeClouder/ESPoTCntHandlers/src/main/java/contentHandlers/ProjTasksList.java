@@ -184,7 +184,7 @@ public class ProjTasksList extends GenericGrouper {
 		Group descriptionInfo = new Group(itemContentGroup, SWT.LEFT);
 		descriptionInfo.setText("Description");
 		descriptionInfo.setLayout(new FillLayout());
-		Text descriptionText = new Text(descriptionInfo, SWT.WRAP | SWT.CENTER);
+		Text descriptionText = new Text(descriptionInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
 		descriptionText.setText(projTaskPojo.description);
 		
 		inFormData = new FormData();

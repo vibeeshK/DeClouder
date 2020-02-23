@@ -431,6 +431,68 @@ public class CatelogPersistenceManager {
 		return dbERLpojo;
 	}
 
+	public synchronized ArrayList<ERLpojo> readInactiveERLs() {
+		String inactiveERLConstraint =  " and (erl.ERLStatus = '" + ArtifactPojo.ERLSTAT_INACTIVE + "')";
+		System.out.println("At readInactiveERLs inactiveERLConstraint is " + inactiveERLConstraint);
+		return readERLsWithConstraint(inactiveERLConstraint);
+	}
+	
+	public synchronized ArrayList<ERLpojo> readERLsWithConstraint(String inConstraintString) {
+		ArrayList<ERLpojo> erlPojoList = new ArrayList<ERLpojo>();
+
+		try {
+			if (connection == null || statement == null) {
+				createConnectionAndStatment();
+			}
+			String queryString = "SELECT " 
+					+ "erl.RootNick, "
+					+ "erl.Relevance, "
+					+ "erl.ArtifactName, "
+					+ "erl.ContentType, "
+					+ "erl.Requestor, "
+					+ "coalesce(Author,\"\") as Author,"
+					+ "coalesce(ContentFileName,\"\") as ContentFileName, "
+					+ "coalesce(ReviewFileName,\"\") as ReviewFileName, "
+					+ "erl.ERLStatus, "
+					+ "coalesce(UploadedTimeStamp,\"\") as UploadedTimeStamp, "
+					+ "coalesce(ReviewTimeStamp,\"\") as ReviewTimeStamp, "
+					+ "coalesce(ct.HasSpecialHandler,\"\") as HasSpecialHandler, "
+					+ "coalesce(ct.AutoTriggered,\"\") as AutoTriggered "
+					+ "from "
+					+ catalogDBAliasPrefix + "ERLMaster erl, "
+					+ sysDBAliasPrefix + "ContentTypes ct "
+					+ " where "
+					+ " ct.ContentType = erl.ContentType "
+					+ inConstraintString
+					;
+
+			System.out.println("@ readERL : " + queryString);
+
+			ResultSet rs = statement.executeQuery(queryString);
+			while (rs.next()) {
+				ArtifactKeyPojo artifactKeyPojo = new ArtifactKeyPojo (
+						rs.getString("RootNick"), rs.getString("Relevance"), 
+						rs.getString("ArtifactName"), rs.getString("ContentType"));
+				
+				ERLpojo dbERLpojo = new ERLpojo(artifactKeyPojo,
+						rs.getString("Requestor"), rs.getString("Author"), rs.getBoolean("HasSpecialHandler"),
+						rs.getString("ReviewFileName"), rs.getString("ERLStatus"),rs.getString("ContentFileName"),
+						rs.getString("UploadedTimeStamp"), rs.getString("ReviewTimeStamp")
+						);
+				System.out.println("ReviewFileName read from db = " + rs.getString("ReviewFileName"));
+				System.out.println("UploadedTimeStamp read from db = " + rs.getString("UploadedTimeStamp"));
+				
+				erlPojoList.add(dbERLpojo);
+			}
+		} catch (SQLException e) {
+			// if the error message is "out of memory",
+			// it probably means no database file is found
+			//System.err.println(e.getMessage());
+			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readInactiveERLs ", e);
+		}
+		return erlPojoList;
+	}
+
 	public synchronized  ArrayList<ERLDownload> getSubscribedERLpojoList() {
 		ArrayList<ERLDownload> erlpojoList = readERLDownLoadsOfRoot();
 		ArrayList<ERLDownload> subscribedERLpojoList = new ArrayList<ERLDownload>();
@@ -468,11 +530,10 @@ public class CatelogPersistenceManager {
 		}
 		return newAutoTriggerERLDownLoads;
 	}
-
 	
 	public synchronized  ArrayList<ERLDownload> readERLDownLoadsOfRoot() {
-		String contentTypeString = "";
-		return readERLDownLoadsOfRootWithConstraint(contentTypeString);
+		String emptyConstraintString = "";
+		return readERLDownLoadsOfRootWithConstraint(emptyConstraintString);
 	}
 
 	public synchronized  ArrayList<ERLDownload> readERLDownLoadsOfRootsSpecificContentTypeRelevanceArtifactName(String inContentType, String inRelevance, String inArtifactName) {
@@ -504,12 +565,29 @@ public class CatelogPersistenceManager {
 		return readERLDownLoadsOfRootWithConstraint(contentTypeConstraint);
 	}
 
+	public synchronized  ArrayList<ERLDownload> readActiveERLDownLoadsOfRoot() {
+		String activeERLDownLoadsConstraint = " and (erl.ERLStatus <> '" + ArtifactPojo.ERLSTAT_INACTIVE + "')";
+		
+		return readERLDownLoadsOfRootWithConstraint(activeERLDownLoadsConstraint);
+	}
+
+	//public synchronized  ArrayList<ERLDownload> readInactiveERLDownLoadsOfRoot() {
+	//	String inactiveERLDownLoadsConstraint = " and (erl.ERLStatus = '" + ArtifactPojo.ERLSTAT_INACTIVE + "')";
+	//	
+	//	return readERLDownLoadsOfRootWithConstraint(inactiveERLDownLoadsConstraint);
+	//}
+
 	public synchronized  ArrayList<ERLDownload> readERLDownLoadsOfAssignedContent(String inUserName) {
 		System.out.println("at readERLDownLoadsOfAssignedContent start ");
 
-		String contentTypeConstraint = " and (erl.ERLStatus = '" + ArtifactPojo.ERLSTAT_DRAFTREQ + "' " +
-										" or erl.ERLStatus = '' or upper(erl.ERLStatus) = upper('null'))" ;
-		ArrayList<ERLDownload> allDraftReqERLs =  readERLDownLoadsOfRootWithConstraint(contentTypeConstraint);
+		//String contentTypeConstraint = " and (erl.ERLStatus = '" + ArtifactPojo.ERLSTAT_DRAFTREQ
+		//								+ "' or erl.ERLStatus = '" + ArtifactPojo.ERLSTAT_DRAFT
+		//								+ "' or erl.ERLStatus = '' "
+		//								+ "  or upper(erl.ERLStatus) = upper('null'))" ;		
+		//String assignedContentConstraint = " and (erl.ERLStatus <> '" + ArtifactPojo.ERLSTAT_INACTIVE + "')";
+		//ArrayList<ERLDownload> allDraftReqERLs =  readERLDownLoadsOfRootWithConstraint(assignedContentConstraint);
+		
+		ArrayList<ERLDownload> allDraftReqERLs =  readActiveERLDownLoadsOfRoot();
 		
 		ArrayList<ERLDownload> assignedERLs = new ArrayList<ERLDownload>();
 		
@@ -1321,7 +1399,7 @@ public class CatelogPersistenceManager {
 		return ContentTypePojo;
 	}
 
-	public synchronized  String[] readAllRelevanceStrings(String inRootNick) {
+	public synchronized  String[] readAllRelevanceStrings() {
 		ArrayList<String> relevanceList = new ArrayList<String>();
 		try {
 			if (connection == null || statement == null) {
@@ -1330,8 +1408,7 @@ public class CatelogPersistenceManager {
 			String queryString = "SELECT RL.Relevance from "
 					+ catalogDBAliasPrefix
 					+ "Relevance RL "
-					+ " where RL.RootNick = '" + inRootNick 
-					+ "' order by RL.Relevance";
+					+ " order by RL.Relevance";
 			System.out.println(queryString);
 			ResultSet rs = statement.executeQuery(queryString);
 			while (rs.next()) {
@@ -1341,7 +1418,7 @@ public class CatelogPersistenceManager {
 			// if the error message is "out of memory",
 			// it probably means no database file is found
 			//System.err.println(e.getMessage());
-			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readAllRelevanceStrings" + inRootNick, e);
+			ErrorHandler.showErrorAndQuit(commons, "Error in CatelogPersistenceManager readAllRelevanceStrings", e);
 		}
 		String[] relevance = new String[relevanceList.size()];
 		relevanceList.toArray(relevance);
@@ -1484,19 +1561,18 @@ public class CatelogPersistenceManager {
 			if (connection == null || statement == null) {
 				createConnectionAndStatment();
 			}
-			String queryString = "SELECT RL.RootNick, RL.Relevance, coalesce(PR.Relevance,\"\") as PickedRelevance from "
+			String queryString = "SELECT RL.Relevance, coalesce(PR.Relevance,\"\") as PickedRelevance from "
 				+ catalogDBAliasPrefix
 				+ "Relevance RL"
 				+ " left outer join "
 				+ " PickedRelevance PR "
-				+ " on PR.RootNick = RL.RootNick "
+				+ " on PR.RootNick = '" + inRootNick + "'"
 				+ " and PR.Relevance = RL.Relevance "
-				+ " where RL.RootNick = '" + inRootNick + "'"
 				+ " order by RL.Relevance";			
 			System.out.println(queryString);
 			ResultSet rs = statement.executeQuery(queryString);
 			while (rs.next()) {
-				relevancePojo = new RelevancePojo(rs.getString("RootNick"), rs.getString("Relevance"), rs
+				relevancePojo = new RelevancePojo(inRootNick, rs.getString("Relevance"), rs
 								.getString("PickedRelevance"));
 				relevancePojoList.add(relevancePojo);
 			}
