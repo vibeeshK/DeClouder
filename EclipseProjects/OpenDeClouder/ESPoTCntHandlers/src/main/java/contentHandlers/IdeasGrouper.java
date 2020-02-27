@@ -84,7 +84,7 @@ public class IdeasGrouper extends GenericGrouper {
 	//Text authorNameText;
 
 	protected void setScreenTitle() {
-		mainShell.setText("ESPoT:IdeasGrouper: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
+		mainShell.setText("IdeasGrouper: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 	}
 
 	public ItemPojo getItemPojo(int inItemCount){

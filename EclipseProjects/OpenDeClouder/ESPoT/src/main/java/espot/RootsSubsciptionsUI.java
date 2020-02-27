@@ -8,6 +8,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -52,7 +53,8 @@ public class RootsSubsciptionsUI {
 
 		mainShell = new Shell(commonUIData.getESPoTDisplay(), SWT.APPLICATION_MODAL | SWT.CLOSE
 				| SWT.TITLE | SWT.BORDER | SWT.RESIZE);
-		mainShell.setText("ESPoT: Root Maintenance");
+		mainShell.setImage(new Image(commonUIData.getESPoTDisplay(), commonUIData.getCommons().applicationIcon));
+		mainShell.setText("Root Maintenance");
 		mainShell.setLayout(new GridLayout(1, false));
 		mainShell.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 

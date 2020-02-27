@@ -12,7 +12,7 @@ public class ERLStatusDisplay {
 	/*
 	 * Convenience class that derives the ERL Status text to be displayed
 	 */
-	public final static String STATUS_ASSIGN_TEXT = "New ERL Status";
+	public final static String STATUS_ASSIGN_TEXT = "New ERLStatus";
 	public final static String CURR_STATUS_TEXT = "Current ERLStatus";
 	CCombo statusList = null;
 	Text statusText = null;

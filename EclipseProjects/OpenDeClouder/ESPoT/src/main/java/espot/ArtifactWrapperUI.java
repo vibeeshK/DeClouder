@@ -230,7 +230,7 @@ public class ArtifactWrapperUI {
 			System.out.println("within ArtifactWrapperUI startupWithArtifactKeyPojo erlDownload is null " + erlDownload);
 
 			if (inProgressSelfAuthoredArtifactpojo != null 
-					&& !newestDBSelfAuthoredArtifactspojo.author.equalsIgnoreCase(commons.userName)) {
+					&& newestDBSelfAuthoredArtifactspojo.author.equalsIgnoreCase(commons.userName)) {
 				authorCanEdit = true;
 			} else {
 				authorCanEdit = false;
@@ -297,11 +297,12 @@ public class ArtifactWrapperUI {
 
 			mainShell = new Shell(commonUIData.getESPoTDisplay(), SWT.APPLICATION_MODAL | SWT.CLOSE
 					| SWT.TITLE | SWT.BORDER | SWT.RESIZE);
+			mainShell.setImage(new Image(commonUIData.getESPoTDisplay(), commonUIData.getCommons().applicationIcon));
 		} else {
 			System.out.println("mainShell already set. prev value: "
 					+ mainShell);
 		}
-		mainShell.setText("ESPoT: ArtifactWrapperUI");
+		mainShell.setText("ArtifactWrapperUI");
 		//mainShell.setLayout(new FillLayout());
 		mainShell.setLayout(new GridLayout());
 		displayContent();

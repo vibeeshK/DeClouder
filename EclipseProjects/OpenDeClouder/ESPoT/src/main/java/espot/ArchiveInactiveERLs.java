@@ -47,37 +47,42 @@ public class ArchiveInactiveERLs {
 		}
 	}
 
-	public void archiveInactiveERLSOfOneRoot() throws TransformerConfigurationException, IOException, TransformerException, ParserConfigurationException, ClassNotFoundException {
+	public void archiveInactiveERLSOfOneRoot() throws TransformerConfigurationException, IOException, TransformerException, ParserConfigurationException, ClassNotFoundException, ParseException {
 
 		ArrayList<ERLpojo> allInactiveERLs = catelogPersistenceManager.readInactiveERLs();
 		
 		int inactiveERLArchivalCount = 0;
-		for (ERLpojo inactiveERL : allInactiveERLs){
-			String erlVersioningReviewItemKey = ERLVersioningDocItem.getERLVersioningItemKey(
-					inactiveERL.artifactKeyPojo.relevance,
-					inactiveERL.artifactKeyPojo.artifactName,
-					RequestPojo.REVIEW);
-
-			System.out.println("At archiveInactiveERLSOfOneRoot archiving erlVersioningReviewItemKey = " + erlVersioningReviewItemKey);
-			
-			inactiveERLArchivalCount = 
-					inactiveERLArchivalCount 
-					+ removeVersionsOfERLItem(inactiveERL.artifactKeyPojo, erlVersioningReviewItemKey);
-
-			System.out.println("At archiveInactiveERLSOfOneRoot after removing erlVersioningReviewItemKey inactiveERLArchivalCount = " + inactiveERLArchivalCount);
-			
-			String erlVersioningArtifactItemKey = ERLVersioningDocItem.getERLVersioningItemKey(
-					inactiveERL.artifactKeyPojo.relevance,
-					inactiveERL.artifactKeyPojo.artifactName,
-					RequestPojo.ARTIFACT);
-
-			System.out.println("At archiveInactiveERLSOfOneRoot removing erlVersioningArtifactItemKey = " + erlVersioningArtifactItemKey);
-
-			inactiveERLArchivalCount = 
-					inactiveERLArchivalCount 
-					+ removeVersionsOfERLItem(inactiveERL.artifactKeyPojo, erlVersioningArtifactItemKey);
-			System.out.println("At archiveInactiveERLSOfOneRoot after removing erlVersioningArtifactItemKey inactiveERLArchivalCount = " + inactiveERLArchivalCount);
-
+		
+		for (ERLpojo inactiveERL : allInactiveERLs){			
+			if (!commons.hasDaysElapsed(commons.getDateFromString(inactiveERL.uploadedTimeStamp),commons.inactiveAgingDaysLimit)) {
+				System.out.println("At archiveInactiveERLSOfOneRoot; skipping erl as days not elapsed for inactiveERL = " + inactiveERL.artifactKeyPojo.artifactName);
+				continue;
+			} else {
+				String erlVersioningReviewItemKey = ERLVersioningDocItem.getERLVersioningItemKey(
+						inactiveERL.artifactKeyPojo.relevance,
+						inactiveERL.artifactKeyPojo.artifactName,
+						RequestPojo.REVIEW);
+	
+				System.out.println("At archiveInactiveERLSOfOneRoot archiving erlVersioningReviewItemKey = " + erlVersioningReviewItemKey);
+				
+				inactiveERLArchivalCount = 
+						inactiveERLArchivalCount 
+						+ removeVersionsOfERLItem(inactiveERL.artifactKeyPojo, erlVersioningReviewItemKey);
+	
+				System.out.println("At archiveInactiveERLSOfOneRoot after removing erlVersioningReviewItemKey inactiveERLArchivalCount = " + inactiveERLArchivalCount);
+				
+				String erlVersioningArtifactItemKey = ERLVersioningDocItem.getERLVersioningItemKey(
+						inactiveERL.artifactKeyPojo.relevance,
+						inactiveERL.artifactKeyPojo.artifactName,
+						RequestPojo.ARTIFACT);
+	
+				System.out.println("At archiveInactiveERLSOfOneRoot removing erlVersioningArtifactItemKey = " + erlVersioningArtifactItemKey);
+	
+				inactiveERLArchivalCount = 
+						inactiveERLArchivalCount 
+						+ removeVersionsOfERLItem(inactiveERL.artifactKeyPojo, erlVersioningArtifactItemKey);
+				System.out.println("At archiveInactiveERLSOfOneRoot after removing erlVersioningArtifactItemKey inactiveERLArchivalCount = " + inactiveERLArchivalCount);
+			}
 		}
 
 		System.out.println("At archiveInactiveERLSOfOneRoot after all removals inactiveERLArchivalCount = " + inactiveERLArchivalCount);

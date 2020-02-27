@@ -129,6 +129,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 
 		mainShell = new Shell(inCommonUIData.getESPoTDisplay(), SWT.APPLICATION_MODAL | SWT.CLOSE
 				| SWT.TITLE | SWT.BORDER | SWT.RESIZE | SWT.MAX);
+		mainShell.setImage(new Image(inCommonUIData.getESPoTDisplay(), inCommonUIData.getCommons().applicationIcon));
 		System.out.println("doCommonUIInit mainShell created " + mainShell);
 		mainShell.setLayout(new GridLayout(1, false));
 		//mainShell.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -232,7 +233,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 
 		invokedForEdit = true;
 		System.out.println("before editContentAtDesk");
-		mainShell.setText("ESPoT:Item Generator: <editContentsAtDesk> for " + invokedArtifactPojo.artifactKeyPojo.artifactName);
+		mainShell.setText("Item Generator: <editContentsAtDesk> for " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 
 		System.out.println("before displayContent");
 		
@@ -252,7 +253,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 	public void viewContentsAtDesk() throws IOException
 	{
 		invokedForEdit = false;
-		mainShell.setText("ESPoT:Item Generator: <viewContentsAtDesk> for " + invokedArtifactPojo.artifactKeyPojo.artifactName);
+		mainShell.setText("Item Generator: <viewContentsAtDesk> for " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 	
 		System.out.println("before displayItemUI()");
 		displayItemUI();

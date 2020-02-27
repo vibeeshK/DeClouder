@@ -319,17 +319,17 @@ public class CommonTechs {
 		return simpl_dteonly_format.parse(inDateOnlyString);
 	}
 
-	public synchronized String getCalendarTS(Calendar inClndrDate) {
-		String timeStamp = null;
-		//timeStamp = SIMPL_DTE_FORMAT.format(inClndrDate);	// replaced by local variable
-															// as it was not threadsafe
-
-		SimpleDateFormat simple_dte_format = new SimpleDateFormat(SIMPL_DTE_FORMAT);
-		timeStamp = simple_dte_format.format(inClndrDate);
-		
-		System.out.println("timeStamp=" + timeStamp);
-		return timeStamp;
-	}	
+	//public synchronized String getCalendarTS(Calendar inClndrDate) {
+	//	String timeStamp = null;
+	//	//timeStamp = SIMPL_DTE_FORMAT.format(inClndrDate);	// replaced by local variable
+	//														// as it was not threadsafe
+	//
+	//	SimpleDateFormat simple_dte_format = new SimpleDateFormat(SIMPL_DTE_FORMAT);
+	//	timeStamp = simple_dte_format.format(inClndrDate);
+	//	
+	//	System.out.println("timeStamp=" + timeStamp);
+	//	return timeStamp;
+	//}	
 
 	public String getCurrentTimeStamp() {
 		return getTimeStamp(null);
@@ -393,25 +393,44 @@ public class CommonTechs {
 													);
 		return SimpleDateObj.getDate(simpleDateObj);
 	}
-
-
 	
 	public synchronized boolean hasTimeSecElapsed(Date inStartTime, int inSec){
-		System.out.println("hasTimeSecElapsed??");
+		System.out.println("hasTimeSecElapsed?? inStartTime is " + inStartTime);
+		System.out.println(" inSec is " + inSec);
 		
 		Calendar currentCalendrDate = getCalendarTS();
 		Calendar startTimePlusGap 
 							= getCalendarDteFromDate(inStartTime); 	// step 1 of 2
 		startTimePlusGap.add(Calendar.SECOND,inSec);	// step 2 of 2
 
-		System.out.println("startTimePlusGap : " + startTimePlusGap);
-		System.out.println("currentCalendrDate : " + currentCalendrDate);
+		System.out.println("startTimePlusGap : " + startTimePlusGap.getTime());
+		System.out.println("currentCalendrDate : " + currentCalendrDate.getTime());
 
 		if (currentCalendrDate.compareTo(startTimePlusGap) < 0){
 			System.out.println("TimeSecElapsed is too short");
 			return false;		// Gap is too short for a new download
 		}
 		System.out.println("Sec elapsed");
+		return true;
+	}
+	
+	public synchronized boolean hasDaysElapsed(Date inStartTime, int inDays){
+		System.out.println("hasDaysElapsed?? inStartTime is " + inStartTime);
+		System.out.println(" inDays is " + inDays);
+		
+		Calendar currentCalendrDate = getCalendarTS();
+		Calendar startTimePlusGap 
+							= getCalendarDteFromDate(inStartTime); 	// step 1 of 2
+		startTimePlusGap.add(Calendar.DAY_OF_YEAR, inDays);	// step 2 of 2
+
+		System.out.println("startTimePlusGap : " + startTimePlusGap.getTime());
+		System.out.println("currentCalendrDate : " + currentCalendrDate.getTime());
+
+		if (currentCalendrDate.compareTo(startTimePlusGap) < 0){
+			System.out.println("DaysElapsed is too short");
+			return false;		// Gap is too short for a new download
+		}
+		System.out.println("Days elapsed");
 		return true;
 	}
 
@@ -449,7 +468,6 @@ public class CommonTechs {
 
 		return outFileName;
 	}
-
 	
 	public String getFolderNameFromFullPath(String inFullPath) {
 		File file = new File(inFullPath);

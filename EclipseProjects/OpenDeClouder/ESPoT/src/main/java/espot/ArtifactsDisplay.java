@@ -86,7 +86,7 @@ public abstract class ArtifactsDisplay {
 		
 		System.out.println("at ArtifactDisplay DisplayContent Startxxx");
 
-		mainShell.setText("OpenDeClouder " + displayTitle 
+		mainShell.setText(displayTitle 
 					+ ". Root: " + commonUIData.getCurrentRootNick()
 					+ ". RootSysLogin: " + commonUIData.getCommons().userName
 					+ ". DesktopUser: " + System.getProperty("user.name"));

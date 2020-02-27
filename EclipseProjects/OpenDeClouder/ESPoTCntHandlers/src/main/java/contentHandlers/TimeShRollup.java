@@ -28,7 +28,7 @@ public class TimeShRollup extends GenericGrouper {
 	//Text authorNameText;
 
 	protected void setScreenTitle() {
-		mainShell.setText("ESPoT:TimeSheetsGrouper: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
+		mainShell.setText("TimeSheetsGrouper: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 	}
 
 	public ItemPojo getItemPojo(int inItemCount){

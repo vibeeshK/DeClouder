@@ -89,7 +89,7 @@ public class UserMaintReqListing extends GenericGrouper {
 	}
 	
 	protected void setScreenTitle() {
-		mainShell.setText("ESPoT:UsersListing: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
+		mainShell.setText("UsersListing: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 	}
 
 	public ItemPojo getItemPojo(int inItemCount){

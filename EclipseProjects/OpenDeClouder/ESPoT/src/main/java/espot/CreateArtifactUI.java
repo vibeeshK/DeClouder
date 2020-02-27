@@ -9,6 +9,7 @@ import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -56,6 +57,7 @@ public class CreateArtifactUI {
 	public void displayCreateArtifactUI() {
 
 		mainShell = new Shell(commonUIData.getESPoTDisplay(), SWT.APPLICATION_MODAL|SWT.CLOSE|SWT.TITLE|SWT.BORDER|SWT.RESIZE);
+		mainShell.setImage(new Image(commonUIData.getESPoTDisplay(), commonUIData.getCommons().applicationIcon));		
 		//mainShell.setText("ESPoT: My Drafts");
 		//mainShell.setLayout(new GridLayout(1, false));
 		displayContent();
@@ -73,7 +75,7 @@ public class CreateArtifactUI {
 
 		System.out.println("testtest mainShell : " + mainShell);
 
-		mainShell.setText("ESPoT: My Drafts");
+		mainShell.setText("My Drafts");
 		mainShell.setLayout(new GridLayout(1, false));
 		
 		final Composite buttonRibbon = new Composite(mainShell, SWT.NONE);

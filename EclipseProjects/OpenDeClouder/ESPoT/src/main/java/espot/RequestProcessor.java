@@ -133,8 +133,8 @@ public class RequestProcessor {
 
 			System.out.println("1.1 At processRequestsOfOneRoot reqTrackItem = " + reqTrackItem);
 			
-			boolean recordErrored = false;
-			String errorMessage = "";
+			//boolean recordErrored = false;			
+			//String errorMessage = "";
 			
 			if (reqTrackItem == null || !reqTrackItem.artifactMoveComplete) {
 
@@ -158,15 +158,25 @@ public class RequestProcessor {
 				// check for user's active status and content file availability
 				// if not error the record
 				
-				if (!commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(requestPojo.requestor.toUpperCase()).isActive()) {
-					recordErrored = true;
-					errorMessage = "Request coming from inactive user " + requestPojo.requestor;
+				if (requestPojo.requestor == null ||
+					commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(requestPojo.requestor.toUpperCase()) == null ||
+					!commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(requestPojo.requestor.toUpperCase()).isActive()) {
+					
+					reqTrackItem.errored = true;
+					reqTrackItem.errorMessage = "Request coming from inactive user " + requestPojo.requestor;
+
+					commons.putJsonDocToFile(reqProcTrackingPathFileName,reqProcTracking);
+					System.out.println("2.01 At processRequestsOfOneRoot req tracker written");
+					
 				} else if (!remoteAccesser.exists(requestProcesserPojo.incomingContentFullPath)) {
-					recordErrored = true;
-					errorMessage = "Content not found " + requestProcesserPojo.incomingContentFullPath;
+					reqTrackItem.errored = true;
+					reqTrackItem.errorMessage = "Content not found " + requestProcesserPojo.incomingContentFullPath;
+
+					commons.putJsonDocToFile(reqProcTrackingPathFileName,reqProcTracking);
+					System.out.println("2.02 At processRequestsOfOneRoot req tracker written");
 				}
 				
-				if (!recordErrored) {
+				if (!reqTrackItem.errored) {
 					System.out.println("requestProcesserPojo.incomingContentFullPath is " + requestProcesserPojo.incomingContentFullPath);
 	
 					requestProcesserPojo.contentHandlerSpecs = contentHandlerSpecsMap.get(requestPojo.contentType);				
@@ -246,10 +256,19 @@ public class RequestProcessor {
 												:requestProcesserPojo.requestPojo.author),
 										requestProcesserPojo.contentHandlerSpecs.hasSpecialHandler,
 										requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewFileName:"",
-										requestProcesserPojo.requestPojo.erlStatus,
+
+										//requestProcesserPojo.requestPojo.erlStatus,
+										//rollupAddup parents cannot take their child status.
+										//Inactive parents will become active if there is any child activity
+										requestProcesserPojo.contentHandlerSpecs.rollupAddupType?
+											(requestProcesserPojo.prevERLPojo != null
+												&& !requestProcesserPojo.prevERLPojo.erlStatus.
+													equals(ERLpojo.ERLSTAT_INACTIVE)?
+												requestProcesserPojo.prevERLPojo.erlStatus:"")
+											:requestProcesserPojo.requestPojo.erlStatus,											
 										newContentFileName,	//inContentFileName
-										requestProcesserPojo.requestPojo.uploadedTimeStamp,	//Content TimeStamp 
-										requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewTimeStamp:""	// ReviewTimeStamp 
+										requestProcesserPojo.requestPojo.uploadedTimeStamp,	//Content TimeStamp
+										requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewTimeStamp:""	// ReviewTimeStamp
 										);
 		
 						System.out.println("at 23432 requestProcesserPojo.newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
@@ -292,7 +311,7 @@ public class RequestProcessor {
 							System.out.println("At request processer requestProcesserPojo.updatedContentInputStream is closed for " + requestProcesserPojo.updatedContentInputStream);
 							
 							String remoteContentArchiveFile = rootPojo.rootString
-									+ rootPojo.fileSeparator + commons.remoteArhive
+									+ rootPojo.fileSeparator + commons.remoteArchive
 									+ rootPojo.fileSeparator
 									+ commons.getFileNameFromURL(requestProcesserPojo.incomingContentFullPath,rootPojo.fileSeparator);
 				
@@ -369,7 +388,7 @@ public class RequestProcessor {
 					erlVersionDocPathFileName,
 					erlVersionDetail);
 
-			if (!recordErrored && !reqTrackItem.oldestContentVersionArchived) {
+			if (!reqTrackItem.errored && !reqTrackItem.oldestContentVersionArchived) {
 				String oldestFileToBeRemoved = erlVersioningDocItem.getOldestVerFileDetail(commons.erlMaxVersions);
 	
 				if (oldestFileToBeRemoved!= null) {
@@ -404,7 +423,7 @@ public class RequestProcessor {
 			
 			// update ERL database
 			
-			if (!recordErrored && !reqTrackItem.erlMasterDBUpdated) {
+			if (!reqTrackItem.errored && !reqTrackItem.erlMasterDBUpdated) {
 				if (requestProcesserPojo.doesERLAlreadyExist()) {
 					System.out.println("doesERLAlreadyExist is true and requestProcesserPojo.newERLPojo contentType" + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
 	
@@ -426,8 +445,8 @@ public class RequestProcessor {
 
 			if (!reqTrackItem.reqRespFileUpdated) {
 				String responseMessage = "";
-				if (recordErrored) {
-					responseMessage = errorMessage;
+				if (reqTrackItem.errored) {
+					responseMessage = reqTrackItem.errorMessage;
 				} else {
 					responseMessage = "Your artifact \"" + requestPojo.artifactName + "\" of \"" 
 							+ requestPojo.relevance + "\" has been processed into " 
@@ -443,14 +462,30 @@ public class RequestProcessor {
 			}
 			
 			if (!reqTrackItem.reqArchived) {
+				if (!reqTrackItem.errored) {
 				// archive request files
-				String remoteReqArchiveFile = rootPojo.rootString
-						+ rootPojo.fileSeparator + commons.remoteArhive
-						+ rootPojo.fileSeparator
-						+ commons.getFileNameFromURL(requestFile,rootPojo.fileSeparator);
-	
-				System.out.println("remoteArchiveFile...=" + remoteReqArchiveFile);
-				remoteAccesser.moveToRemoteLocation(requestFile, remoteReqArchiveFile);
+					String remoteReqArchiveFile = rootPojo.rootString
+							+ rootPojo.fileSeparator + commons.remoteArchive
+							+ rootPojo.fileSeparator
+							+ commons.getFileNameFromURL(requestFile,rootPojo.fileSeparator);
+		
+					System.out.println("remoteArchiveFile...=" + remoteReqArchiveFile);
+					remoteAccesser.moveToRemoteLocation(requestFile, remoteReqArchiveFile);
+				} else {
+				// move errored request files to errorReq folder
+					String remoteErroredReqFile = rootPojo.rootString
+							+ rootPojo.fileSeparator + commons.remoteErroredRequests
+							+ rootPojo.fileSeparator
+							+ commons.getFileNameFromURL(requestFile,rootPojo.fileSeparator);		
+					System.out.println("remoteErroredRequest...=" + remoteErroredReqFile);
+					remoteAccesser.moveToRemoteLocation(requestFile, remoteErroredReqFile);
+
+					// skip the remaining process for the errored record.
+					// skip the remaining process for the errored record.
+					continue;	
+					// skip the remaining process for the errored record.
+					// skip the remaining process for the errored record.
+				}				
 			}
 			reqTrackItem.reqArchived = true;
 			reqProcTracking.reqTrackItems.remove(reqFileNameFromURL); // clean up the request item as its no longer required
@@ -602,7 +637,7 @@ public class RequestProcessor {
 		inRequestProcesserPojo.updatedContentInputStream.close();
 		
 		String remoteRemarkArchiveFile = rootPojo.rootString
-				+ rootPojo.fileSeparator + commons.remoteArhive
+				+ rootPojo.fileSeparator + commons.remoteArchive
 				+ rootPojo.fileSeparator
 				+ commons.getFileNameFromURL(inRequestProcesserPojo.incomingContentFullPath,rootPojo.fileSeparator);
 		System.out.println("remoteContentArchiveFile...=" + remoteRemarkArchiveFile);

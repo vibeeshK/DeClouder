@@ -11,6 +11,9 @@ public class ReqTrackItem {
 	public boolean erlMasterDBUpdated;
 	public boolean reqRespFileUpdated;
 	public boolean reqArchived;
+	public boolean errored;
+	public String errorMessage;
+	
 	public ERLVersioningDocItem erlVersioningDocItem;
 	//requestArchived = false; not required as the request would hvae been already archived and 
 	//this record would have been removed from hashMap.
@@ -22,5 +25,7 @@ public class ReqTrackItem {
 		reqRespFileUpdated = false;
 		reqArchived = false;
 		erlVersioningDocItem = null;
+		errored = false;
+		errorMessage = "";
 	}
 }

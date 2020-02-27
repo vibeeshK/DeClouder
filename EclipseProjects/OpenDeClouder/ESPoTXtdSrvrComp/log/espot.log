@@ -13,3 +13,56 @@
 2020-Feb-17 23:13:06 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
 2020-Feb-17 23:13:06 PM [main] INFO  ESPoTLogger - XtdDeckerProcOrchestrator starting up - logging set to info
 2020-Feb-17 23:13:06 PM [main] INFO  ESPoTLogger - XtdDeckerProcOrchestrator has started - logging set to info
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger - XtdProjTrackingSrvrOrchestrator starting up - logging set to info
+2020-Feb-27 16:42:52 PM [main] INFO  ESPoTLogger - XtdProjTrackingSrvrOrchestrator has started - logging set to info
+2020-Feb-27 16:42:54 PM [main] INFO  ESPoTLogger - Error in WindowsAccesser getRemoteFileStream of C:\Kannan\Java\ESPoT\WindowsRoots\DemoWinContentRoot\null\MyOrg\Divisions\Sales\ProjTracker1_20200227164238.zip from method orchestration --- java.io.FileNotFoundException: C:\Kannan\Java\ESPoT\WindowsRoots\DemoWinContentRoot\null\MyOrg\Divisions\Sales\ProjTracker1_20200227164238.zip (The system cannot find the path specified)
+2020-Feb-27 16:42:57 PM [main] ERROR ESPoTLogger - Error in WindowsAccesser getRemoteFileStream of C:\Kannan\Java\ESPoT\WindowsRoots\DemoWinContentRoot\null\MyOrg\Divisions\Sales\ProjTracker1_20200227164238.zip
+java.io.FileNotFoundException: C:\Kannan\Java\ESPoT\WindowsRoots\DemoWinContentRoot\null\MyOrg\Divisions\Sales\ProjTracker1_20200227164238.zip (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_171]
+	at java.io.FileInputStream.open(Unknown Source) ~[?:1.8.0_171]
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_171]
+	at remoteAccessers.WindowsAccesser.getRemoteFileStream(WindowsAccesser.java:107) [ESPoTRemoteAccessers.jar!/:?]
+	at espot.ContentDownloader.downloadContentFilesForOneRoot(ContentDownloader.java:82) [classes/:?]
+	at xtdSrvrComp.XtdStdContentProcMaster.coreProcessOfRecords(XtdStdContentProcMaster.java:97) [classes/:?]
+	at xtdSrvrComp.AbstractRtCtOrchestrator.orchestration(AbstractRtCtOrchestrator.java:118) [classes/:?]
+	at xtdSrvrComp.XtdProjTrackingSrvrOrchestrator.main(XtdProjTrackingSrvrOrchestrator.java:71) [classes/:?]
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger - XtdProjTrackingSrvrOrchestrator starting up - logging set to info
+2020-Feb-27 21:47:04 PM [main] INFO  ESPoTLogger - XtdProjTrackingSrvrOrchestrator has started - logging set to info
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger - XtdProjTrackingSrvrOrchestrator starting up - logging set to info
+2020-Feb-27 21:58:38 PM [main] INFO  ESPoTLogger - XtdProjTrackingSrvrOrchestrator has started - logging set to info

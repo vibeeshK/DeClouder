@@ -68,7 +68,7 @@ public class DeckerGrouper extends DeckerLite {
 //	ArrayList<Integer> selctdItemNums;
 
 	protected void setScreenTitle() {
-		mainShell.setText("ESPoT:DeckerGrouper: <viewContentsAtDesk>");
+		mainShell.setText("DeckerGrouper: <viewContentsAtDesk>");
 	}
 
 //	public void extendedCommonInit() {

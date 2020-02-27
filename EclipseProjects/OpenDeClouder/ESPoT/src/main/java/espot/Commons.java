@@ -79,7 +79,13 @@ public class Commons extends CommonTechs {
 	public static String CLIENT_MACHNE_FOLDER = "clientMc";
 	public String xtdCatalogSrvrFolder = "extdSrvr";
 
-	public int erlMaxVersions = 2; //initiated with default
+	public int erlMaxVersions;
+	public int inactiveAgingDaysLimit; //initiated with default
+
+	public String remoteArchive = null;
+	public String remoteInactiveERLsArchive = null;
+	public String remoteErroredRequests = null;
+
 	public static Commons baseCatalogServerCommonsInstance = null;
 	public static Commons clientMachineCommonsInstance = null;
 	public static Commons extendedCatalogServerCommonsInstance = null;
@@ -120,11 +126,11 @@ public class Commons extends CommonTechs {
 	
 	//private String backupRootNick = null;
 	//private String remoteBackupFolder = null;
+	
+	private String remoteArtifacts = null;	//both artifacts and remarks are maintained in hte same branch
 	private String contentdropbox = null;
 	private String requestdropbox = null;
 	private String responsepickbox = null;
-	public String remoteArhive = null;
-	public String remoteInactiveERLsArchive = null;
 
 	public String sysUpdateLogDoc = null;
 	
@@ -141,7 +147,7 @@ public class Commons extends CommonTechs {
 	public String sysDbFileLocation = null;
 	private String reqTrackersFolderLocal = null;
 	private String versioningFilesFolderLocal = null;
-	private String remoteReviewsFolder = null;
+	//private String remoteReviewsFolder = null;
 	public String publishedRootsFileName = null;
 	public String subscribedRootNicksFileName = null;
 	public String userName = null;
@@ -258,13 +264,15 @@ public class Commons extends CommonTechs {
 		clientSideCatalogDbReceiveFolder = installFileFolder + localFileSeparator + commonPropObject.getProperty("clientSideCatalogDbReceiveFolder");
 		serverSideSideCatalogDbPublishFolder = commonPropObject.getProperty("serverSideSideCatalogDbPublishFolder");
 
+		remoteArtifacts = commonPropObject.getProperty("remoteArtifacts");
 		contentdropbox = commonPropObject.getProperty("contentdropbox");
 		requestdropbox = commonPropObject.getProperty("requestdropbox");
 		responsepickbox = commonPropObject.getProperty("responsepickbox");
-		remoteReviewsFolder = commonPropObject.getProperty("remoteReviewsFolder");
+		//remoteReviewsFolder = commonPropObject.getProperty("remoteReviewsFolder");
 	
-		remoteArhive = commonPropObject.getProperty("remoteArhive");		
-		remoteInactiveERLsArchive = commonPropObject.getProperty("remoteInactiveERLsArchive");
+		//remoteArchive = commonPropObject.getProperty("remoteArchive");		
+		//remoteInactiveERLsArchive = commonPropObject.getProperty("remoteInactiveERLsArchive");
+		//remoteErroredRequests = commonPropObject.getProperty("remoteErroredRequests");
 		
 		catalogDbPublishFilePrefix = commonPropObject.getProperty("catalogDbPublishFilePrefix");
 
@@ -422,6 +430,19 @@ public class Commons extends CommonTechs {
 		System.out.println(" versioningFilesFolderLocal is " + installFileFolder + localFileSeparator + serverPropObject.getProperty("versioningFilesFolderLocal"));
 
 		erlMaxVersions = Integer.parseInt(serverPropObject.getProperty("erlMaxVersions"));
+		System.out.println(" erlMaxVersions is " + erlMaxVersions);
+		
+		inactiveAgingDaysLimit = Integer.parseInt(serverPropObject.getProperty("inactiveAgingDaysLimit"));
+		System.out.println(" inactiveAgingDaysLimit is " + inactiveAgingDaysLimit);
+		
+		remoteArchive = serverPropObject.getProperty("remoteArchive");		
+		System.out.println(" remoteArchive is " + remoteArchive);
+		
+		remoteInactiveERLsArchive = serverPropObject.getProperty("remoteInactiveERLsArchive");
+		System.out.println(" remoteInactiveERLsArchive is " + remoteInactiveERLsArchive);
+		
+		remoteErroredRequests = serverPropObject.getProperty("remoteErroredRequests");	
+		System.out.println(" remoteErroredRequests is " + remoteErroredRequests);
 	}
 
 	private void readCommonSysCompProperties() throws IOException, ParseException {
@@ -916,6 +937,8 @@ public class Commons extends CommonTechs {
 		
 		remotePathFileName = inRootString
 							+ inRemoteFileSeparator
+							+ remoteArtifacts
+							+ inRemoteFileSeparator
 							+ inRelevance
 							+ inRemoteFileSeparator
 							+ inFileName;
@@ -961,7 +984,7 @@ public class Commons extends CommonTechs {
 													inRelevance, 
 													inFileName, 
 													inRemoteFileSeparator, 
-													remoteArhive);
+													remoteArchive);
 	}
 
 	public String getRemoteInactiveArchivalPathFileName(String inRootString, String inRelevance,

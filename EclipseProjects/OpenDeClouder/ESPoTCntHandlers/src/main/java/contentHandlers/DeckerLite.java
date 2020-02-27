@@ -88,7 +88,7 @@ public class DeckerLite extends GenericGrouper {
 	ArrayList<Integer> selctdItemNums;
 
 	protected void setScreenTitle() {
-		mainShell.setText("ESPoT:DeckerLite: <viewContentsAtDesk>");
+		mainShell.setText("DeckerLite: <viewContentsAtDesk>");
 	}
 
 	public void extendedCommonInit() {

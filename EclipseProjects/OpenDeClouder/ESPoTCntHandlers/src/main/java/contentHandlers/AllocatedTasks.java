@@ -26,7 +26,7 @@ public class AllocatedTasks extends GenericGrouper {
 	//Text statusText;
 	
 	protected void setScreenTitle() {
-		mainShell.setText("ESPoT:AllocatedTasksList: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
+		mainShell.setText("AllocatedTasksList: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 	}
 
 	public ItemPojo getItemPojo(int inItemCount){

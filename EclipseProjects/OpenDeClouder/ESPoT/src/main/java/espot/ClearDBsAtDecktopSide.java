@@ -10,8 +10,6 @@ public class ClearDBsAtDecktopSide {
 	 * 			DONT INVOKE BEFORE BACKING UP CURRENT DATA
 	 */
 	
-	static String catalogDisplayTitle = "ESPoT: Catalog";
-
 	CommonUIData commonUIData;
 	CatelogPersistenceManager catelogPersistenceManager;
 

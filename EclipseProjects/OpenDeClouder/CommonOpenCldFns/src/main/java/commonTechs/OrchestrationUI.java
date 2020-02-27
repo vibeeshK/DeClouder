@@ -47,7 +47,7 @@ public class OrchestrationUI implements Runnable {
 		mainShell = new Shell(display, SWT.APPLICATION_MODAL | SWT.CLOSE
 				| SWT.TITLE | SWT.BORDER | SWT.RESIZE | SWT.MIN | SWT.MAX);
 		mainShell.setLayout(new FillLayout());
-		mainShell.setText("OpenDeClouder: " + orchestration.title);
+		mainShell.setText(orchestration.title);
 
 		mainShell.setImage(new Image(display,orchestration.applicationIconPathFileName));
 

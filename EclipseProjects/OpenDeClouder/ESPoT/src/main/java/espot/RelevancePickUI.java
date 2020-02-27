@@ -2,6 +2,7 @@ package espot;
 
 import java.util.ArrayList;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
@@ -28,7 +29,8 @@ public class RelevancePickUI {
 	public void displayRelevancePickUI() {
 
 		mainShell = new Shell(commonUIData.getESPoTDisplay(), SWT.APPLICATION_MODAL|SWT.CLOSE|SWT.TITLE|SWT.BORDER|SWT.RESIZE);
-		mainShell.setText("ESPoT: Relevance Pick");
+		mainShell.setImage(new Image(commonUIData.getESPoTDisplay(), commonUIData.getCommons().applicationIcon));		
+		mainShell.setText("Relevance Pick");
 		mainShell.setLayout(new FillLayout());
 		relevancePojoList = commonUIData.getCatelogPersistenceManager()
 				.readRelevances(commonUIData.getCommons().getCurrentRootNick());

@@ -179,6 +179,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	
 		mainShell = new Shell(inCommonUIData.getESPoTDisplay(), SWT.APPLICATION_MODAL | SWT.CLOSE
 				| SWT.TITLE | SWT.BORDER | SWT.RESIZE | SWT.MAX);
+		mainShell.setImage(new Image(inCommonUIData.getESPoTDisplay(), inCommonUIData.getCommons().applicationIcon));
 		mainShell.setLayout(new GridLayout(1, false));
 		mainShell.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
@@ -288,7 +289,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		System.out.println("GenericGrouper initiated for editContentAtDesk");
 		
 		invokedForEdit = true;
-		mainShell.setText("ESPoT:Item Generator: <editContentsAtDesk> for " + invokedArtifactPojo.artifactKeyPojo.artifactName);
+		mainShell.setText("Item Generator: <editContentsAtDesk> for " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 
 		showRibbonEditControls();
 		buttonRibbon.pack();		
@@ -305,7 +306,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 
 		invokedForEdit = false;
 		System.out.println("mainShell = " + mainShell);
-		mainShell.setText("ESPoT: " + invokedArtifactPojo.artifactKeyPojo.contentType + " <viewContentsAtDesk> for " + invokedArtifactPojo.artifactKeyPojo.artifactName);
+		mainShell.setText(invokedArtifactPojo.artifactKeyPojo.contentType + " <viewContentsAtDesk> for " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 		System.out.println("invokedArtifactPojo artifactKeyPojo artifactName is = " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 
 		System.out.println("before displayContent");

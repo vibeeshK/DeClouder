@@ -29,7 +29,7 @@ public class ToDoLister extends GenericGrouper {
 	//Text cloneFromContentTypeText;
 
 	protected void setScreenTitle() {
-		mainShell.setText("ESPoT:ToDoLister: <viewContentsAtDesk>");
+		mainShell.setText("ToDoLister: <viewContentsAtDesk>");
 	}
 
 	public ItemPojo getItemPojo(int inItemCount){
