@@ -66,3 +66,6 @@ java.io.FileNotFoundException: C:\Kannan\Java\ESPoT\WindowsRoots\DemoWinContentR
 2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
 2020-Feb-27 21:58:37 PM [main] INFO  ESPoTLogger - XtdProjTrackingSrvrOrchestrator starting up - logging set to info
 2020-Feb-27 21:58:38 PM [main] INFO  ESPoTLogger - XtdProjTrackingSrvrOrchestrator has started - logging set to info
+2020-Mar-07 23:36:23 PM [main] ERROR ESPoTLogger - Error in Commons getInstance processMode = 2
+2020-Mar-08 11:51:21 AM [main] ERROR ESPoTLogger - Error in Commons getInstance processMode = 2
+2020-Mar-08 12:41:14 PM [main] ERROR ESPoTLogger - Error in Commons getInstance processMode = 2

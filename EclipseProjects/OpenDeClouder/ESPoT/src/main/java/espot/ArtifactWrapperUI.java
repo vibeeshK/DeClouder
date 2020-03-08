@@ -746,7 +746,9 @@ public class ArtifactWrapperUI {
 				+ waitForContentDownload);
 		System.out.println("awaitingUpload? while presenting is "
 				+ awaitingUpload);
-		if (authorCanEdit && !waitForContentDownload && !awaitingUpload) {
+		if (authorCanEdit && !waitForContentDownload && !awaitingUpload
+				&& !calledFor.equalsIgnoreCase(CALLED_For_NewDraftSetup) 
+				&& !calledFor.equalsIgnoreCase(CALLED_ForCloning)) {
 
 			// Edit and upload allowed only on special conditions
 			Button btnEditButton = new Button(actionsGrp, SWT.CENTER);

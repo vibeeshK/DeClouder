@@ -101,9 +101,9 @@ public class CatalogDownloadDtlsHandler {
 			catalogDownLoadedFileName = commons.getFullLocalPathFileNameOfDownloadedDbFile(inRootNick,
 												catalogDownloadDetailsMap.get(inRootNick).downloadedFileName);
 		} else {
-			//Commons.logger.error("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downlaoded yet");
-			System.out.println("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downlaoded yet");
-			ErrorHandler.showErrorAndQuit(commons, "At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downlaoded yet");
+			//Commons.logger.error("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downloaded yet");
+			System.out.println("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downloaded yet");
+			ErrorHandler.showErrorAndQuit(commons, "At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downloaded yet");
 		}
 		return catalogDownLoadedFileName;
 	}

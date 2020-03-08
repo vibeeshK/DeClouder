@@ -77,3 +77,26 @@
 2020-Feb-27 23:04:26 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
 2020-Feb-27 23:04:26 PM [main] INFO  ESPoTLogger - ESPoTServerOrchestrator started2 - logging set to info
 2020-Feb-27 23:04:29 PM [Thread-2] WARN  ESPoTLogger -  rootNick DemoWinContentRoot has 6 unfinished requests. e.g. espot.ReqTrackItem@72f3a75f
+2020-Mar-02 17:58:08 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Mar-02 18:03:26 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Mar-02 21:42:20 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Mar-02 23:24:42 PM [main] INFO  ESPoTLogger - At end of getCatalogDownLoadedFileName inRootNick DemoWinContentRoot is not downlaoded yet from method getUIInstance
+2020-Mar-02 23:24:49 PM [main] ERROR ESPoTLogger - At end of getCatalogDownLoadedFileName inRootNick DemoWinContentRoot is not downlaoded yet
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator starting up - logging set to info
+2020-Mar-02 23:26:34 PM [main] INFO  ESPoTLogger - ESPoTClientOrchestrator started2 - logging set to info
+2020-Mar-02 23:27:19 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Mar-02 23:49:34 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Mar-02 23:53:36 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
+2020-Mar-07 23:05:17 PM [main] INFO  ESPoTLogger -  Catalog Display Started 
