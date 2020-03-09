@@ -4,14 +4,14 @@ This is the shortcut specification for windows. Its considered default so on
 Systems that are not shortcut compatible the information is taken from here.
 -->
 <shortcuts>
-<programGroup defaultName="oDeClouder" location="applications"/>
+<programGroup defaultName="CollabTracker" location="applications"/>
 <shortcut
-    name = "DeClouder_CatalogUI"
+    name = "CollabTracker_CatalogUI"
     target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_CatalogDisplay.bat"
     commandLine = ""
     workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
-    description="DeClouder User Interface for Artifact Maintenance"
-    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\DeClouderIcon.ico"
+    description="CollabTracker User Interface for Artifact Maintenance"
+    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\CollabTrack.ico"
     iconIndex="0"
     initialState="noShow"
     programGroup="yes"
@@ -20,12 +20,12 @@ Systems that are not shortcut compatible the information is taken from here.
     startMenu="yes"
     startup="yes"/>
 <shortcut
-    name = "DeClouder_ClientOrchestrator"
+    name = "CollabTracker_ClientOrchestrator"
     target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_ClientOrchestrator.bat"
     commandLine = ""
     workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
-    description="DeClouder Client Orchestrator for Decktop sync ups"
-    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\DeClouderIcon.ico"
+    description="CollabTracker Client Orchestrator for Decktop sync ups"
+    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\CollabTrack.ico"
     iconIndex="0"
     initialState="noShow"
     programGroup="yes"
@@ -34,12 +34,12 @@ Systems that are not shortcut compatible the information is taken from here.
     startMenu="yes"
     startup="yes"/>    
 <shortcut
-    name = "DeClouder_ServerOrchestrator"
+    name = "CollabTracker_ServerOrchestrator"
     target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_ServerOrchestrator.bat"
     commandLine = ""
     workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
-    description="DeClouder Server Orchestrator for DocCentral sync ups"
-    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\DeClouderIcon.ico"
+    description="CollabTracker Server Orchestrator for DocCentral sync ups"
+    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\CollabTrack.ico"
     iconIndex="0"
     initialState="noShow"
     programGroup="yes"
@@ -48,17 +48,45 @@ Systems that are not shortcut compatible the information is taken from here.
     startMenu="yes"
     startup="yes"/>
  <shortcut
-    name = "DeClouder_XtdDeckerLiteProcOrchestrator"
+    name = "CollabTracker_XtdDeckerLiteProcOrchestrator"
     target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdDeckerLiteProcOrchestrator.bat"
     commandLine = ""
     workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
-    description="DeClouder DeckerLite Extended Process Orchestrator"
-    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\DeClouderIcon.ico"
+    description="CollabTracker DeckerLite Extended Process Orchestrator"
+    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\CollabTrack.ico"
     iconIndex="0"
     initialState="noShow"
     programGroup="yes"
     desktop="yes"
     applications="yes"
     startMenu="yes"
-    startup="yes"/>       
+    startup="yes"/>
+ <shortcut
+    name = "CollabTracker_XtdDeckerProcOrchestrator"
+    target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdDeckerProcOrchestrator.bat"
+    commandLine = ""
+    workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
+    description="CollabTracker Extended Decker Process Orchestrator"
+    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\CollabTrack.ico"
+    iconIndex="0"
+    initialState="noShow"
+    programGroup="yes"
+    desktop="yes"
+    applications="yes"
+    startMenu="yes"
+    startup="yes"/>
+ <shortcut
+    name = "CollabTracker_XtdProjTrackingSrvrOrchestrator"
+    target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdProjTrackingSrvrOrchestrator.bat"
+    commandLine = ""
+    workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
+    description="CollabTracker Extended Project Tracking Process Orchestrator"
+    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\CollabTrack.ico"
+    iconIndex="0"
+    initialState="noShow"
+    programGroup="yes"
+    desktop="yes"
+    applications="yes"
+    startMenu="yes"
+    startup="yes"/>    
 </shortcuts>

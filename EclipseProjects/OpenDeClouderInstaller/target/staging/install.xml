@@ -3,9 +3,9 @@
 <installation version="1.0">
  
   <info>
-    <appname>OpenDeClouder Installer for Windows</appname>
+    <appname>CollabTracker for Windows</appname>
     <appversion>0.0</appversion>
-    <appsubpath>ODeClouder\bin\${USER_NAME}\DemoInstall</appsubpath>
+    <appsubpath>CollabTracker\bin\${USER_NAME}\DemoInstall</appsubpath>
     <javaversion>1.6</javaversion>
     <pack200 />
   </info>
@@ -44,9 +44,9 @@
   </panels>
  
   <packs>
-    <pack name="OpenSource DeClouder Installation on Windows" required="yes">
+    <pack name="OpenSource CollabTracker Installation on Windows" required="yes">
       <description> 
-      	Installing OpenSource DeClouder software
+      	Installing OpenSource CollabTracker software
       </description>
 	  <file src="Readme.txt" targetdir="$INSTALL_PATH"/>
 	  <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
@@ -56,10 +56,9 @@
       <parsable targetfile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\PulishedRoots.xml"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\commons.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\client.properties" type="javaprop"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvr.properties" type="javaprop"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForDeckerLite.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForExtendedDecker.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForStdProcessor.properties" type="javaprop"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForTmShProcessor.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_CatalogDisplay.bat"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_ClientOrchestrator.bat"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_ServerOrchestrator.bat"/>

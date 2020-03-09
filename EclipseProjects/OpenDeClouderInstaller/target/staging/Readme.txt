@@ -7,7 +7,7 @@ Version     Date            Author
 
 Please refer licence.txt for the terms and conditions for this software usage.
 
-This installer will install the Opensource software OpenDeClouder which is built on other free software. You may configure and use after testing for specific needs.
+This installer will install the Opensource software CollabTracker which is built on other free software. You may configure and use after testing for specific needs.
 
 It comes pre-configured with below functions which are useful for the scenarios mentioned.
 

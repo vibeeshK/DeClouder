@@ -6,12 +6,6 @@
     <field type="text" variable="DesktopUserName">
       <spec txt="Desktop Login Name: " id="DesktopUserName" size="25" set="${USER_NAME}"/>
     </field>
-    <field type="text" variable="ApplicationUserName">
-      <spec txt="Application User Name: " id="ApplicationUserName" size="25" set="DEMOUSER"/>
-    </field>
-    <field type="text" variable="ExtendedServerUserName">
-      <spec txt="ExtendedServerUser User Name: " id="ExtendedServerUserName" size="25" set="XTD_${USER_NAME}"/>
-    </field>
     <field type="text" variable="proxyaddress">
       <spec txt="Proxy Host:" id="input.proxy" size="25" set=""/>
     </field>
