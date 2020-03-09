@@ -3,21 +3,10 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:SchemaLocation="http://www.microsoft.com family.xsd
 https://www.w3schools.com attribute.xsd">
-<Update TimeStamp="20170923030716"
-FileFromLocation="Templates\DefaultDocTestDownload.docx"
-FileToLocation="Templates\DefaultDocTestDownload.docx"
-/>
-<Update TimeStamp="20170923030717"
-FileFromLocation="Config\dynamicJars\TestDownload.jar"
-FileToLocation="Config\dynamicJars\TestDownload.jar"
-/>
-<Update TimeStamp="20180206010120"
-FileFromLocation="SQLiteDB\SysDBDownloadFolder\sysdbfile"
-FileToLocation="SysDBDownloadFolder\sysdbfile"
-/>
-<Update TimeStamp="20180207010119"
-FileFromLocation="Templates\DeckerGrouperTemplate.zip"
-FileToLocation="Templates\DeckerGrouperTemplate.zip"
-/>
-
+<!--sample update item
+	<Update TimeStamp="20170923030717"
+	FileFromLocation="Config\dynamicJars\TestDownload.jar"
+	FileToLocation="Config\dynamicJars\TestDownload.jar"
+	/>
+-->
 </Updates>
