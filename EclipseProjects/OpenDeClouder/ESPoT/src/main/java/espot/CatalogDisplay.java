@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-public class CatalogDisplay extends ArtifactsDisplay{
+public class CatalogDisplay extends ArtifactsDisplay implements Runnable {
 	/*
 	 * Diplays catalogs where the relevance is marked as interested
 	 */	
@@ -417,5 +417,11 @@ public class CatalogDisplay extends ArtifactsDisplay{
 
 		commonUIData.getCatelogPersistenceManager().closeup();
 		commonUIData.getESPoTDisplay().dispose();
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		displayArtifact();
 	}
 }

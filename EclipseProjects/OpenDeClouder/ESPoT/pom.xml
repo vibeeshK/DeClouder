@@ -87,7 +87,7 @@
 	        <configuration>
 	          <archive>
 	            <manifest>
-              		<mainClass>espot.CatalogDisplay</mainClass>
+              		<mainClass>espot.ColbTrkClientUI</mainClass>
 	            </manifest>
 	          </archive>
 	          <descriptorRefs>

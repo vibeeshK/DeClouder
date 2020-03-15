@@ -59,7 +59,7 @@ public class CatalogDownloadDtlsHandler {
 		return catalogDownloadsDetailsDoc;
 	}
 
-	public void refreshCatalogDownloadDetailsMap(){
+	public synchronized void refreshCatalogDownloadDetailsMap(){
 		System.out.println("starting refreshCatalogDownloadDetailsMap mapRefreshedTime is " + mapRefreshedTime);
 		System.out.println("starting refreshCatalogDownloadDetailsMap mapRefreshGap is " + mapRefreshGap);
 		
@@ -91,24 +91,50 @@ public class CatalogDownloadDtlsHandler {
 			catalogDownloadDetailsMap.put(catalogDownloadDetailsPojo.rootNick, catalogDownloadDetailsPojo);
 		}
 		mapRefreshedTime = commons.getCalendarTS();
+		System.out.println("At refreshCatalogDownloadDetailsMap Setting map refresh time " + mapRefreshedTime);
 	}
 
-	public String getCatalogDownLoadedFileName(String inRootNick){
+	//public String getCatalogDownLoadedFileName(String inRootNick){
+	//	System.out.println("starting getCatalogDownLoadedFileName for inRootNick " + inRootNick);
+	//	refreshCatalogDownloadDetailsMap();
+	//	String catalogDownLoadedFileName = null;
+	//	if (catalogDownloadDetailsMap.containsKey(inRootNick)){
+	//		catalogDownLoadedFileName = commons.getFullLocalPathFileNameOfDownloadedDbFile(inRootNick,
+	//											catalogDownloadDetailsMap.get(inRootNick).downloadedFileName);
+	//	} else {
+	//		//Commons.logger.error("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downloaded yet");
+	//		System.out.println("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downloaded yet");
+	//		ErrorHandler.showErrorAndQuit(commons, "At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downloaded yet");
+	//	}
+	//	return catalogDownLoadedFileName;
+	//}
+
+	public synchronized String getCatalogDownLoadedFileName(String inRootNick){
+	// This method reads for downloadedFileName and aborts if unavailable present
+	// This method shall be called if there is subsequent process expects a downloaded file
 		System.out.println("starting getCatalogDownLoadedFileName for inRootNick " + inRootNick);
-		refreshCatalogDownloadDetailsMap();
-		String catalogDownLoadedFileName = null;
-		if (catalogDownloadDetailsMap.containsKey(inRootNick)){
-			catalogDownLoadedFileName = commons.getFullLocalPathFileNameOfDownloadedDbFile(inRootNick,
-												catalogDownloadDetailsMap.get(inRootNick).downloadedFileName);
-		} else {
-			//Commons.logger.error("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downloaded yet");
+
+		String catalogDownLoadedFileName = getCatalogDownLoadedFileNameIfAvailable(inRootNick);
+		if (catalogDownLoadedFileName == null) {
 			System.out.println("At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downloaded yet");
 			ErrorHandler.showErrorAndQuit(commons, "At end of getCatalogDownLoadedFileName inRootNick " + inRootNick + " is not downloaded yet");
 		}
 		return catalogDownLoadedFileName;
 	}
 	
-	public boolean isFreshDownLoadAllowed(String inRootNick){
+	public synchronized String getCatalogDownLoadedFileNameIfAvailable(String inRootNick){
+	// This method reads the downloadedFileName and returns null if there is none		
+		System.out.println("starting getCatalogDownLoadedFileNameIfAvailable for inRootNick " + inRootNick);
+		refreshCatalogDownloadDetailsMap();
+		String catalogDownLoadedFileName = null;
+		if (catalogDownloadDetailsMap.containsKey(inRootNick)){
+			catalogDownLoadedFileName = commons.getFullLocalPathFileNameOfDownloadedDbFile(inRootNick,
+												catalogDownloadDetailsMap.get(inRootNick).downloadedFileName);
+		}
+		return catalogDownLoadedFileName;
+	}
+
+	public synchronized boolean isFreshDownLoadAllowed(String inRootNick){
 		refreshCatalogDownloadDetailsMap();
 		if (!catalogDownloadDetailsMap.containsKey(inRootNick)){
 			System.out.println("Continue for new Catalog download as there was no prev download");

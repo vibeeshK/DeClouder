@@ -6,8 +6,8 @@ Systems that are not shortcut compatible the information is taken from here.
 <shortcuts>
 <programGroup defaultName="CollabTracker" location="applications"/>
 <shortcut
-    name = "CollabTracker_CatalogUI"
-    target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_CatalogDisplay.bat"
+    name = "CollabTrackerClientUI"
+    target = "${INSTALL_PATH}\mainJar64Bit\ColbTrk_ClientUI.bat"
     commandLine = ""
     workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
     description="CollabTracker User Interface for Artifact Maintenance"
@@ -20,22 +20,8 @@ Systems that are not shortcut compatible the information is taken from here.
     startMenu="yes"
     startup="yes"/>
 <shortcut
-    name = "CollabTracker_ClientOrchestrator"
-    target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_ClientOrchestrator.bat"
-    commandLine = ""
-    workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
-    description="CollabTracker Client Orchestrator for Decktop sync ups"
-    iconFile="${INSTALL_PATH}\${DesktopUserName}\ConfigData\CollabTrack.ico"
-    iconIndex="0"
-    initialState="noShow"
-    programGroup="yes"
-    desktop="yes"
-    applications="yes"
-    startMenu="yes"
-    startup="yes"/>    
-<shortcut
-    name = "CollabTracker_ServerOrchestrator"
-    target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_ServerOrchestrator.bat"
+    name = "ServerOrchestrator"
+    target = "${INSTALL_PATH}\mainJar64Bit\ColbTrk_ServerOrchestrator.bat"
     commandLine = ""
     workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
     description="CollabTracker Server Orchestrator for DocCentral sync ups"
@@ -48,8 +34,8 @@ Systems that are not shortcut compatible the information is taken from here.
     startMenu="yes"
     startup="yes"/>
  <shortcut
-    name = "CollabTracker_XtdDeckerLiteProcOrchestrator"
-    target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdDeckerLiteProcOrchestrator.bat"
+    name = "XtdDeckerLiteProcOrchestrator"
+    target = "${INSTALL_PATH}\mainJar64Bit\ColbTrk_XtdDeckerLiteProcOrchestrator.bat"
     commandLine = ""
     workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
     description="CollabTracker DeckerLite Extended Process Orchestrator"
@@ -62,8 +48,8 @@ Systems that are not shortcut compatible the information is taken from here.
     startMenu="yes"
     startup="yes"/>
  <shortcut
-    name = "CollabTracker_XtdDeckerProcOrchestrator"
-    target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdDeckerProcOrchestrator.bat"
+    name = "XtdDeckerProcOrchestrator"
+    target = "${INSTALL_PATH}\mainJar64Bit\ColbTrk_XtdDeckerProcOrchestrator.bat"
     commandLine = ""
     workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
     description="CollabTracker Extended Decker Process Orchestrator"
@@ -76,8 +62,8 @@ Systems that are not shortcut compatible the information is taken from here.
     startMenu="yes"
     startup="yes"/>
  <shortcut
-    name = "CollabTracker_XtdProjTrackingSrvrOrchestrator"
-    target = "${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdProjTrackingSrvrOrchestrator.bat"
+    name = "XtdProjTrackingSrvrOrchestrator"
+    target = "${INSTALL_PATH}\mainJar64Bit\ColbTrk_XtdProjTrackingSrvrOrchestrator.bat"
     commandLine = ""
     workingDirectory= "${INSTALL_PATH}\mainJar64Bit"
     description="CollabTracker Extended Project Tracking Process Orchestrator"

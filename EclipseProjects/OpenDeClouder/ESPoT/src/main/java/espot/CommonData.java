@@ -56,13 +56,13 @@ public class CommonData {
 		initBaseData();
 		initOtherBaseData();		
 	}
-	public void initBaseData(){
+	protected void initBaseData(){
 		System.out.println("At initBaseData for commons.getCurrentRootNick() " + commons.getCurrentRootNick());
 		catelogPersistenceManager = new CatelogPersistenceManager(PublishedRootsHandler.getPublishedRoots(commons).get(commons.getCurrentRootNick()),commons,
 				commons.processMode);
 	}	
 	
-	public void initOtherBaseData(){
+	protected void initOtherBaseData(){
 		System.out.println("initOtherBaseData catelogPersistenceManager is " + catelogPersistenceManager);
 
 		contentHandlerSpecsMap = catelogPersistenceManager.getContentHandlerSpecsMap();

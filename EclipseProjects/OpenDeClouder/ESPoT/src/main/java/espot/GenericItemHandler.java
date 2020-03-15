@@ -463,10 +463,12 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		System.out.println("before looping for mainshell dispose check");
 		while (!mainShell.isDisposed()) {
 			if (!((CommonUIData) commonData).getESPoTDisplay().readAndDispatch()) {
-
-				((CommonUIData) commonData).getESPoTDisplay().sleep();
-			} else {
-			}
+				if (((CommonUIData) commonData).getArtifactDisplayOkayToContinue()) {
+					((CommonUIData) commonData).getESPoTDisplay().sleep();
+				} else {
+					break;
+				}
+			}			
 		}
 
 		System.out.println("end of......displayContent");

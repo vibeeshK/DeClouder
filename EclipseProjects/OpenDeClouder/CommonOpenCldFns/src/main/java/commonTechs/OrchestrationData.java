@@ -16,7 +16,16 @@ public class OrchestrationData {
 		title = inTitle;
 		applicationIconPathFileName = inApplicationIcon;
 	}
+	
+	public synchronized void setOkayToContinue(boolean inOkayToContinue){
+		okToContinue = inOkayToContinue;
+	}
 
+	public synchronized boolean getOkayToContinue(){
+		return okToContinue;
+	}
+	
+	
 	public int getHealthCheckIntervalInSeconds(){
 		return healthCheckIntervalMin * 60;
 	}

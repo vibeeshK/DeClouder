@@ -72,7 +72,7 @@ public abstract class AbstractRtCtOrchestrator {
 			System.out.println("Abstract Orchestrator begins at 1 at commons is " + initialCommons);
 			//boolean nothingToProcess = false;
 			//while (!nothingToProcess) {
-			while (orchestrationData.okToContinue) {
+			while (orchestrationData.getOkayToContinue()) {
 				rootPojosFromDBmap = PublishedRootsHandler.getPublishedRoots(initialCommons);
 				for (int rootCount = 0; rootCount < initialCommons.extendedSrvrRtNicks.length; rootCount++) {
 					String processingRootNick = initialCommons.extendedSrvrRtNicks[rootCount];

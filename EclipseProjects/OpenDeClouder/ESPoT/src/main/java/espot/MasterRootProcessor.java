@@ -43,9 +43,7 @@ public class MasterRootProcessor implements Runnable {
 
 	public void run() {
 
-		int rootProcessCount = 0;
-
-		while (orchestrationData.okToContinue) {
+		while (orchestrationData.getOkayToContinue()) {
 			if (rootPojo.requiresInternet && !commons.isInternetAvailable()){
 				commons.logger.warn(" Internet umavailable, hence skipping MasterRootProcess for " + rootPojo.rootNick);	
 				System.out.println(" Internet umavailable, hence skipping MasterRootProcess for " + rootPojo.rootNick);
@@ -75,8 +73,8 @@ public class MasterRootProcessor implements Runnable {
 				}
 				System.out.println("COMING OUT OF WAIT");
 			}
-			System.out.println(" orchestrationData okToContinue 21 is " + orchestrationData.okToContinue);	
+			System.out.println(" orchestrationData okToContinue 21 is " + orchestrationData.getOkayToContinue());	
 		}
-		System.out.println(" orchestrationData okToContinue 22 is " + orchestrationData.okToContinue);
+		System.out.println(" orchestrationData okToContinue 22 is " + orchestrationData.getOkayToContinue());
 	}
 }

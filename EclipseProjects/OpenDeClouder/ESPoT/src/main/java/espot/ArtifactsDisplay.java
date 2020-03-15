@@ -31,9 +31,9 @@ public abstract class ArtifactsDisplay {
 
 	Shell mainShell;
 	Label lblMessageToUser;
-
+	
 	ArrayList<ArtifactPojo> artifactPojos = null;
-	protected CommonUIData commonUIData = null;
+	public CommonUIData commonUIData = null;
 	Commons commons = null;
 	CatelogPersistenceManager catelogPersistenceManager = null;
 	
@@ -251,8 +251,13 @@ public abstract class ArtifactsDisplay {
 	
 	private void shellDisposeHolder() {
 		while (!mainShell.isDisposed()) {
-			if (!commonUIData.getESPoTDisplay().readAndDispatch())
-				commonUIData.getESPoTDisplay().sleep();
+			if (!commonUIData.getESPoTDisplay().readAndDispatch()) {
+				if (commonUIData.getArtifactDisplayOkayToContinue()) {
+					commonUIData.getESPoTDisplay().sleep();
+				} else {
+					break;
+				}
+			}
 		}
 		System.out.println("here disposing....");
 		mainShell.dispose();

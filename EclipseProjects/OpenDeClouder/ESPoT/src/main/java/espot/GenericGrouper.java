@@ -781,8 +781,13 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	
 	private void shellDisposeHolder() {
 		while (!mainShell.isDisposed()) {
-			if (!((CommonUIData) commonData).getESPoTDisplay().readAndDispatch())
-				((CommonUIData) commonData).getESPoTDisplay().sleep();
+			if (!((CommonUIData) commonData).getESPoTDisplay().readAndDispatch()) {
+				if (((CommonUIData) commonData).getArtifactDisplayOkayToContinue()) {
+					((CommonUIData) commonData).getESPoTDisplay().sleep();
+				} else {
+					break;
+				}
+			}			
 		}
 		System.out.println("here disposing....");
 		mainShell.dispose();

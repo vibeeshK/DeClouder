@@ -59,13 +59,12 @@
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForDeckerLite.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForExtendedDecker.properties" type="javaprop"/>
       <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\config\extdCtlgSrvrForStdProcessor.properties" type="javaprop"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_CatalogDisplay.bat"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_ClientOrchestrator.bat"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_ServerOrchestrator.bat"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdProjTrackingSrvrOrchestrator.bat"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdDeckerProcOrchestrator.bat"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ESPoT_XtdDeckerLiteProcOrchestrator.bat"/>
-      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\(admin)NeverCallMeESPoT_DB_Rec_Delete.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ColbTrk_ClientUI.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ColbTrk_ServerOrchestrator.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ColbTrk_XtdProjTrackingSrvrOrchestrator.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ColbTrk_XtdDeckerProcOrchestrator.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ColbTrk_XtdDeckerLiteProcOrchestrator.bat"/>
+      <parsable targetfile="${INSTALL_PATH}\mainJar64Bit\ColbTrk_ArchiveInactiveERLs.bat"/>
     </pack>
   </packs>
  

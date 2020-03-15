@@ -187,8 +187,13 @@ public class RelevancePickUI {
 		mainShell.open();
 
 		while (!mainShell.isDisposed()) {
-			if (!commonUIData.getESPoTDisplay().readAndDispatch())
-				commonUIData.getESPoTDisplay().sleep();
+			if (!commonUIData.getESPoTDisplay().readAndDispatch()) {
+				if (commonUIData.getArtifactDisplayOkayToContinue()) {
+					commonUIData.getESPoTDisplay().sleep();
+				} else {
+					break;
+				}
+			}			
 		}
 	}
 }

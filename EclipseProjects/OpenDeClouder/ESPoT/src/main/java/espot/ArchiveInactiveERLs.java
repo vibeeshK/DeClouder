@@ -30,8 +30,7 @@ public class ArchiveInactiveERLs {
 		commons = commonData.getCommons();
 		catelogPersistenceManager = commonData.getCatelogPersistenceManager();
 		remoteAccesser = inRemoteAccesser;
-		System.out.println("on creation of requestprocessor sardine = "
-				+ remoteAccesser);
+		commons.logger.info("At ArchiveInactiveERLs start for root " + rootPojo.rootNick);	
 
 		erlVersionDocPathFileName = commons.getLocalERLVersioningPathFile(rootPojo.rootNick);		
 		try {
@@ -82,10 +81,13 @@ public class ArchiveInactiveERLs {
 						inactiveERLArchivalCount 
 						+ removeVersionsOfERLItem(inactiveERL.artifactKeyPojo, erlVersioningArtifactItemKey);
 				System.out.println("At archiveInactiveERLSOfOneRoot after removing erlVersioningArtifactItemKey inactiveERLArchivalCount = " + inactiveERLArchivalCount);
+				commons.logger.info("At ArchiveInactiveERLs archived ArtifactItemKey = " + erlVersioningArtifactItemKey);
+				commons.logger.info("At ArchiveInactiveERLs the inactiveERLArchivalCount at this point is = " + inactiveERLArchivalCount);
 			}
 		}
 
 		System.out.println("At archiveInactiveERLSOfOneRoot after all removals inactiveERLArchivalCount = " + inactiveERLArchivalCount);
+		commons.logger.info("At archiveInactiveERLSOfOneRoot after all removals inactiveERLArchivalCount = " + inactiveERLArchivalCount);
 		
 		if (inactiveERLArchivalCount > 0) {
 			String catalogpublishFolder = rootPojo.rootString

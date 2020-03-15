@@ -6,6 +6,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
+import commonTechs.DisplayKeeper;
+
 public class ErrorHandler {
 	/*
 	 * Handles error situation - displays message box / quits as asked
@@ -17,7 +19,7 @@ public class ErrorHandler {
 
 		Shell mainShell = null;
 		if (inMainShell==null) {
-			Display display = DisplayKeeper.getESPoTDisplay();
+			Display display = DisplayKeeper.getDisplay();
 			mainShell = new Shell(display, SWT.APPLICATION_MODAL | SWT.CLOSE
 					| SWT.TITLE | SWT.BORDER | SWT.RESIZE | SWT.MIN | SWT.MAX);
 			mainShell.setLayout(new FillLayout());
@@ -28,6 +30,13 @@ public class ErrorHandler {
 				SWT.ICON_WARNING | SWT.OK);
 		messageBox1.setMessage(inMsg);
 		System.out.println("Error Handler displayError");
+		try {
+			throw new Exception(inMsg);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		int rc1 = messageBox1.open();
 		if (rc1 == SWT.OK) {
 			return;
@@ -71,7 +80,7 @@ public class ErrorHandler {
 		Shell mainShell = null;
 		if (inMainShell == null) {
 
-			Display display = DisplayKeeper.getESPoTDisplay();
+			Display display = DisplayKeeper.getDisplay();
 
 			mainShell = new Shell(display, SWT.APPLICATION_MODAL | SWT.CLOSE
 					| SWT.TITLE | SWT.BORDER | SWT.RESIZE | SWT.MIN | SWT.MAX);

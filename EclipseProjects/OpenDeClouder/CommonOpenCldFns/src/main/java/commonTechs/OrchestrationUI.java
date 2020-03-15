@@ -43,7 +43,10 @@ public class OrchestrationUI implements Runnable {
 	}
 
 	void displayOrchUI() {
-		display = Display.getDefault();
+		//display = Display.getDefault();
+		//display = new Display();
+		display = DisplayKeeper.getDisplay();
+
 		mainShell = new Shell(display, SWT.APPLICATION_MODAL | SWT.CLOSE
 				| SWT.TITLE | SWT.BORDER | SWT.RESIZE | SWT.MIN | SWT.MAX);
 		mainShell.setLayout(new FillLayout());
@@ -88,7 +91,7 @@ public class OrchestrationUI implements Runnable {
 		stopButton.setText ("Stop");
 		stopButton.addSelectionListener (new SelectionAdapter () {
 	        public void widgetSelected (SelectionEvent e) {
-	        	orchestration.okToContinue = false;
+	        	orchestration.setOkayToContinue(false);
 	        }
 	      });
 				
@@ -109,12 +112,12 @@ public class OrchestrationUI implements Runnable {
 		mainShell.addListener(SWT.Close, new Listener() {
 		    public void handleEvent(Event event) {
 				System.out.println("inside window closure event ");
-		    	orchestration.okToContinue = false;
+		    	orchestration.setOkayToContinue(false);
 		    }
 		});
 
 		// Wait forever...
-		while (orchestration.okToContinue) {
+		while (orchestration.getOkayToContinue()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}

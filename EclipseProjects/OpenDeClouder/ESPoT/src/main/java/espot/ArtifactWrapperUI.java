@@ -946,8 +946,13 @@ public class ArtifactWrapperUI {
 		//mainShell.layout(true);
 		mainShell.open();
 		while (!mainShell.isDisposed()) {
-			if (!commonUIData.getESPoTDisplay().readAndDispatch())
-				commonUIData.getESPoTDisplay().sleep();
+			if (!commonUIData.getESPoTDisplay().readAndDispatch()) {
+				if (commonUIData.getArtifactDisplayOkayToContinue()) {
+					commonUIData.getESPoTDisplay().sleep();
+				} else {
+					break;
+				}
+			}
 		}
 		System.out.println("end of......displayContent");
 		// displayContent() - final prep before display ends
