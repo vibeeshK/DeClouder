@@ -137,7 +137,7 @@ public class ColbTrkClientOrchestrator implements Runnable {
 	
 					if (!rootProcessors.containsKey(rootsNicks[rootCount])) {
 
-						System.out.println("starting thread as it did not already contain key for" + rootsNicks[rootCount]);
+						System.out.println("starting thread as it did not already contain key for " + rootsNicks[rootCount]);
 						
 						try {
 							rootProcessor = new DesktopRootProcessor(rootPojosFromDBmap

@@ -149,7 +149,7 @@ public class ColbTrkClientUI {
 		
 		if (catalogDownLoadedFileName == null) {
 			MessageBox messageBox1 = new MessageBox(mainShell, SWT.ICON_WARNING | SWT.OK);
-			messageBox1.setMessage("Catalogs not downLoaded yet. You can only invoke CatalogUI after download completes.");
+			messageBox1.setMessage("Catalogs not downLoaded yet. You can invoke CatalogUI after download completes in a few min.");
 			messageBox1.open();
 			return;			
 		}		

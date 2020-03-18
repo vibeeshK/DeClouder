@@ -22,11 +22,15 @@ public class CatalogDownloader {
 		System.out.println("at 111 rootPojo nick= " + rootPojo.rootNick);
 	}
 
-	public void downloadCatalog() throws IOException {
+	public synchronized void downloadCatalog() throws IOException {
+		System.out.println("At start of downloadCatalog");
 		
 		if (!CatalogDownloadDtlsHandler.getInstance(commons).isFreshDownLoadAllowed(rootPojo.rootNick)) {
+			System.out.println("Fresh Download not allowed");
 			return;	// maybe too soon to download again. hence skipping
 		}
+
+		System.out.println("Fresh Download allowed check passed");
 		
 		String localCatalogDbFileWithPath;
 		ArrayList<String> publishFileNameURLs = new ArrayList<String>();
@@ -55,6 +59,38 @@ public class CatalogDownloader {
 
 		String latestDbFileName = commons.getFileNameFromURL(publishFileNameURLs.get(0), rootPojo.fileSeparator);
 
+		///////////
+		///////////
+		// Check if the latest remote catalog is same as what is locally available and skip downloading
+
+		System.out.println("latestDbFileName = " + latestDbFileName);
+		
+		String availableDownloadedFileFullPath = CatalogDownloadDtlsHandler.getInstance(commons).getCatalogDownLoadedFileNameIfAvailable(rootPojo.rootNick);
+
+		System.out.println("availableDownloadedFileFullPath = " + availableDownloadedFileFullPath);
+		
+		if (availableDownloadedFileFullPath!= null) {
+
+			String availableDownloadedFile = commons.getFileNameFromFullPath(availableDownloadedFileFullPath,commons.localFileSeparator);
+			
+			System.out.println("availableDownloadedFile = " + availableDownloadedFile);
+			
+			if (availableDownloadedFile.equalsIgnoreCase(latestDbFileName)){
+				// Already available catalogDbFile is the latest hence skip duplicate download
+				System.out.println("Already available catalogDbFile " + availableDownloadedFile + " is the latest.");
+	
+				// Refresh timestamp to push out next check before returning
+				CatalogDownloadDtlsHandler.getInstance(commons).updateCatalogDownloadDetail(rootPojo.rootNick,availableDownloadedFile,commons.getCurrentTimeStamp());
+				return;
+			}
+		}
+
+		
+		System.out.println("Found a newer catalog file to download");
+		
+		///////////
+		///////////		
+		
 		localCatalogDbFileWithPath = commons.getFullLocalPathFileNameOfDownloadedDbFile(rootPojo.rootNick,
 																							latestDbFileName);
 		System.out.println("publishFileNameURLs.get(0) = " + publishFileNameURLs.get(0));
@@ -89,6 +125,8 @@ public class CatalogDownloader {
 
 	public String OLDdownCatalogToTempFolderIfNew(String inFileName) throws 
 			IOException {
+		// This method is not used. It was initially used to get latest catalog
+		// by sorting the downloaded file names directly each time.
 		String downloadedTempDbPathFile = "";
 		System.out.println("at downloadCat1111");
 
