@@ -85,7 +85,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		}
 
 		if (!commons.doesFileExist(contentPathFileName)) {
-			createNewStartupPrimer(contentPathFileName,invokedArtifactPojo.artifactKeyPojo.contentType);
+			createNewStartupPrimer(contentPathFileName,invokedArtifactPojo);
 		}
 
 		System.out.println("checkhere ");
@@ -108,17 +108,32 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		ItemPojo itemPojo = primerDoc.getItem();
 		testPrinter("From doCommonInit");
 
-		if (itemPojo.itemID.equalsIgnoreCase("")) {
-			itemPojo.author = invokedArtifactPojo.author;	//the invoked artifact author name is carried for the single items
-			itemPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance; // relevance remains same as the containing artifact
-			itemPojo.status = invokedArtifactPojo.erlStatus;
-			itemPojo.artifactName = invokedArtifactPojo.artifactKeyPojo.artifactName;
+		//if (itemPojo.itemID.equalsIgnoreCase("")) {
+		//	itemPojo.author = invokedArtifactPojo.author;	//the invoked artifact author name is carried for the single items
+		//	itemPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance; // relevance remains same as the containing artifact
+		//	itemPojo.status = invokedArtifactPojo.erlStatus;
+		//	itemPojo.artifactName = invokedArtifactPojo.artifactKeyPojo.artifactName;
+		//	setInitialItemPojoAddlFields();
+		//	checkSetNewItemID();
+		//	//itemID will be set by a separate process
+		//}
+		if (itemPojo.itemNumber == -1) {
+			setInitialCoreFields();
 			setInitialItemPojoAddlFields();
-			checkSetNewItemID();
-			//itemID will be set by a separate process
 		}
-		
+
 		addlCommonInit();
+	}
+	
+	public void setInitialCoreFields(){
+		ItemPojo itemPojo = primerDoc.getItem();
+		itemPojo.author = invokedArtifactPojo.author;	//the invoked artifact author name is carried for the single items
+		itemPojo.requestor = invokedArtifactPojo.requestor;	//the invoked artifact author name is carried for the single items
+		itemPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance; // relevance remains same as the containing artifact
+		
+		itemPojo.status = invokedArtifactPojo.erlStatus;
+		itemPojo.artifactName = invokedArtifactPojo.artifactKeyPojo.artifactName;
+		checkSetNewItemID();		
 	}
 
 	public void doCommonUIInit(CommonUIData inCommonUIData, ArtifactPojo inArtifactPojo) {
@@ -167,6 +182,8 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		testPrinter("From initializeContentHandlerForDraftArtifact2");
 
 		itemPojo.author = invokedArtifactPojo.author;	//the invoked artifact author name is carried for the single items
+		itemPojo.requestor = invokedArtifactPojo.requestor;	//the invoked artifact author name is carried for the single items
+		
 		itemPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance; // relevance remains same as the containing artifact
 		itemPojo.status = SelfAuthoredArtifactpojo.ERLSTAT_DRAFT;
 
@@ -186,6 +203,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 	public void setItemFromInvokdedAritifact() {
 		ItemPojo itemPojo = primerDoc.getItem();
 		itemPojo.author = invokedArtifactPojo.author;
+		itemPojo.requestor = invokedArtifactPojo.requestor;	//the invoked artifact author name is carried for the single items
 		itemPojo.itemID = invokedArtifactPojo.artifactKeyPojo.artifactName;
 		itemPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 	}
@@ -401,6 +419,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 					itemPojo.title = titleText.getText();
 					itemPojo.status = statusText.getText();
 					itemPojo.updatedAt = commons.getDateTS();
+					itemPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 					
 					System.out.println("itemPojo save details follows ");
 					System.out.println("itemPojo title is " + primerDoc.getItem().title);
@@ -484,16 +503,31 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		mainShell.close();
 	}
 
-	public void createNewStartupPrimer(String inNewPrimerFilePath, String inContentType) {
+	//public void createNewStartupPrimer(String inNewPrimerFilePath, String inContentType) {
+	public void createNewStartupPrimer(String inNewPrimerFilePath, ArtifactPojo inArtifactpojo) {
 		System.out.println("At createNewStartupPrimer json file name passed : " + inNewPrimerFilePath);
-		GenericItemDocPojo newPrimerDoc = getNewPrimerDoc();
-		newPrimerDoc.getItem().contentType = inContentType;
-		try {
-			commons.putJsonDocToFile(inNewPrimerFilePath,newPrimerDoc);
-		} catch (IOException e) {
 
+		//GenericItemDocPojo newPrimerDoc = getNewPrimerDoc();		
+		//newPrimerDoc.getItem().contentType = inArtifactKeyPojo.contentType;
+		primerDoc = getNewPrimerDoc();		
+		ItemPojo itemPojo = primerDoc.getItem();
+		
+		itemPojo.relevance = inArtifactpojo.artifactKeyPojo.relevance; // relevance remains same as the containing artifact
+		itemPojo.artifactName = inArtifactpojo.artifactKeyPojo.artifactName;
+		itemPojo.contentType = inArtifactpojo.artifactKeyPojo.contentType;
+
+		//itemPojo.status = SelfAuthoredArtifactpojo.ArtifactStatusDraft;
+		itemPojo.status = ArtifactPojo.ERLSTAT_DRAFT;
+		itemPojo.author = inArtifactpojo.author;	//the invoked artifact author name is carried for the single items
+		itemPojo.requestor = inArtifactpojo.requestor;	//the invoked artifact author name is carried for the single items
+
+		checkSetNewItemID();		
+
+		try {
+			commons.putJsonDocToFile(inNewPrimerFilePath,primerDoc);
+		} catch (IOException e) {
 			e.printStackTrace();
-			ErrorHandler.showErrorAndQuit(mainShell, commonData.getCommons(), "Error at GenericItemHandler createNewStartupPrimer " + inNewPrimerFilePath + " " + inContentType, e);
+			ErrorHandler.showErrorAndQuit(mainShell, commonData.getCommons(), "Error at GenericItemHandler createNewStartupPrimer " + inNewPrimerFilePath + " " + inArtifactpojo.artifactKeyPojo.artifactName, e);
 		}
 		System.out.println("createNewStartupPrimer Stored the json file at : " + inNewPrimerFilePath);
 	}
@@ -589,18 +623,4 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		return validateString;
 	}
 
-}
-
-class ItemID2 {
-	String itemID;
-	String relevance;
-	String title;
-	String description;
-	String contentType;
-	String cloneFromArtifactName;
-	String cloneFromRelevance;
-	String cloneFromContentType;
-	String attachments;
-	String reviewer;
-	String status;
 }

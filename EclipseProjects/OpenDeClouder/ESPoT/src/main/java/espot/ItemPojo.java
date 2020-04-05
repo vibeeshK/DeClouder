@@ -24,6 +24,7 @@ public class ItemPojo {
 	public String contentType = "";
 	public String title = "";
 	public String author = "";
+	public String requestor = "";
 	public String status = "";
 	public Date updatedAt;
 	public ItemPojo(int inItemNumber) {

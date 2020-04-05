@@ -90,7 +90,7 @@ public class TimeSheet extends GenericItemHandler {
 		TimeSheetPojo timeSheetPojo = (TimeSheetPojo) inItemPojo;
 		//timeSheetPojo.status = statusText.getText();
 		timeSheetPojo.reviewer = reviewerText.getText();
-		timeSheetPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
+		//timeSheetPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 		timeSheetPojo.description = descriptionText.getText();
 	}
 

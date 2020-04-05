@@ -124,7 +124,7 @@ public class IdeaGenerator extends GenericItemHandler {
 		//ideaPojo.status = statusText.getText();
 		//ideaPojo.reviewer = reviewerText.getText();
 		ideaPojo.reviewer = reviewerDisplay.userText.getText();
-		ideaPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
+		//ideaPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 		ideaPojo.description = descriptionText.getText();
 	}
 	

@@ -31,6 +31,7 @@ public class ReviewHandler {
 	 */
 	public static final int PREFERED_REVIEW_PANEL_WIDTH = 600;
 	public static final int PREFERED_REVIEW_HEIGHT = 100;
+	private static final String hideReviewLIT = "HideReview";
 
 	Composite wrappingExtlComposite;
 	Composite reviewFrameOutmostScroller;
@@ -75,17 +76,16 @@ public class ReviewHandler {
 		System.out.println("@ReviewHandler inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType) = " + inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType));
 		
 		ArtifactKeyPojo finalArtifactKeyPojo = inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType)
-							.getFinalArtifactKeyPojo(inArtifactPojo.artifactKeyPojo.rootNick, 
-									inArtifactPojo.artifactKeyPojo.relevance,
-									inArtifactPojo.artifactKeyPojo.artifactName,
-									inCommonUIData.getCurrentRootPojo().fileSeparator);
+												.getFinalArtifactKeyPojo(inArtifactPojo.artifactKeyPojo.rootNick, 
+													inArtifactPojo.artifactKeyPojo.relevance,
+													inArtifactPojo.artifactKeyPojo.artifactName,
+													inCommonUIData.getCurrentRootPojo().fileSeparator);
 						
-		finalReviewPathFileName = 
-			getParentRemarksFileIfAny(
-				finalArtifactKeyPojo.rootNick,
-				finalArtifactKeyPojo.relevance, 
-				finalArtifactKeyPojo.artifactName,
-				finalArtifactKeyPojo.contentType);
+		finalReviewPathFileName = getParentRemarksFileIfAny(
+										finalArtifactKeyPojo.rootNick,
+										finalArtifactKeyPojo.relevance,
+										finalArtifactKeyPojo.artifactName,
+										finalArtifactKeyPojo.contentType);
 
 		reviewFrameOutmostScroller = new Composite(wrappingExtlComposite,SWT.BORDER);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
@@ -102,7 +102,7 @@ public class ReviewHandler {
 		hideReviewGrp.setLayout(new FillLayout(SWT.VERTICAL));
 
 		Button hideReviewButton = new Button(hideReviewGrp, SWT.PUSH);
-		hideReviewButton.setText("Hide");
+		hideReviewButton.setText(hideReviewLIT);
 		hideReviewButton.setToolTipText("Hide this review pane to make room in screen");
 		hideReviewButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
@@ -123,7 +123,7 @@ public class ReviewHandler {
 					} else {
 						System.out.println("review not editable or empty");
 					}
-					((Button) event.getSource()).setText("Show");
+					((Button) event.getSource()).setText("ShowReview");
 					System.out.println("Hiding Review");
 					Control[] oldControls = reviewContentScroller.getChildren();
 					for (Control oldControl : oldControls) {
@@ -131,11 +131,13 @@ public class ReviewHandler {
 					}
 					reviewContentScroller.dispose();
 					reviewVisible = false;
+
+					hideReviewGrp.pack();
 					reviewFrameOutmostScroller.pack();
 					wrappingExtlComposite.pack();
 					wrappingExtlComposite.layout(true);
 				} else {
-					((Button) event.getSource()).setText("Hide");
+					((Button) event.getSource()).setText(hideReviewLIT);
 					displayContent();
 					reviewVisible = true;
 				}

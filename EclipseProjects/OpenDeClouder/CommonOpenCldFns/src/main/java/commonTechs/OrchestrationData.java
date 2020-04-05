@@ -4,17 +4,19 @@ public class OrchestrationData {
 	/* 
 	 * This class used mainly for passing and holding state data of connected processes
 	 */
-	public boolean okToContinue = true;
+	private boolean okToContinue = true;
 	public String userName;
 	public String message;
 	public String title;
-	public int healthCheckIntervalMin = 1;
-	public int repeatIntervalMin = 1;
+	private int healthCheckIntervalMin = 1;
+	private int repeatIntervalMin = 1;
 	String applicationIconPathFileName = null;
+
 	public OrchestrationData(String inUserName,String inTitle, String inApplicationIcon) {
 		userName = inUserName;
 		title = inTitle;
 		applicationIconPathFileName = inApplicationIcon;
+		okToContinue = true;
 	}
 	
 	public synchronized void setOkayToContinue(boolean inOkayToContinue){
@@ -24,12 +26,16 @@ public class OrchestrationData {
 	public synchronized boolean getOkayToContinue(){
 		return okToContinue;
 	}
-	
-	
-	public int getHealthCheckIntervalInSeconds(){
+	public synchronized int getHealthCheckIntervalInSeconds(){
 		return healthCheckIntervalMin * 60;
 	}
-	public int getrepeatIntervalInSeconds(){
+	public synchronized void setHealthCheckIntervalMin(int inHealthCheckIntervalMin){
+		healthCheckIntervalMin = inHealthCheckIntervalMin;
+	}
+	public synchronized int getRepeatIntervalInSeconds(){
 		return repeatIntervalMin * 60;
+	}		
+	public synchronized void setRepeatIntervalMin(int inRepeatIntervalMin){
+		repeatIntervalMin = inRepeatIntervalMin;
 	}	
 }

@@ -229,95 +229,97 @@ public class RequestProcessor {
 					System.out.println("3 At processRequestsOfOneRoot requestProcesserPojo = " + requestProcesserPojo);
 	
 					if (requestPojo.artifactOrReview.equalsIgnoreCase(RequestPojo.ARTIFACT)) {
-						String newContentFileName = 
-								finalArtifactKeyPojo.artifactName
-								+ "_"
-								+ commons.getCurrentTimeStamp()
-								+ requestProcesserPojo.contentHandlerSpecs.extension;
-						
-						System.out.println("requestPojo.contentFile...="
-								+ requestProcesserPojo.requestPojo.contentFileName);
-						System.out.println("requestProcesserPojo.requestPojo.uploadedTimeStamp...="
-								+ requestProcesserPojo.requestPojo.uploadedTimeStamp);
-		
-						System.out.println("requestProcesserPojo.contentHandlerSpecs.extension ="
-								+ requestProcesserPojo.contentHandlerSpecs.extension);
-						System.out.println("check if zip is present newContentFileName ="
-								+ newContentFileName);
-		
-						requestProcesserPojo.newERLPojo = new ERLpojo(finalArtifactKeyPojo,
-										//requestProcesserPojo.requestPojo.requestor,
-										(requestProcesserPojo.prevERLPojo!=null?
-												requestProcesserPojo.prevERLPojo.requestor
-												:requestProcesserPojo.requestPojo.requestor),
-										//requestProcesserPojo.requestPojo.author,
-										(requestProcesserPojo.prevERLPojo!=null?
-												requestProcesserPojo.prevERLPojo.author
-												:requestProcesserPojo.requestPojo.author),
-										requestProcesserPojo.contentHandlerSpecs.hasSpecialHandler,
-										requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewFileName:"",
+						//String newContentFileName = 
+						//		finalArtifactKeyPojo.artifactName
+						//		+ "_"
+						//		+ commons.getCurrentTimeStamp()
+						//		+ requestProcesserPojo.contentHandlerSpecs.extension;
+						//
+						//System.out.println("requestPojo.contentFile...="
+						//		+ requestProcesserPojo.requestPojo.contentFileName);
+						//System.out.println("requestProcesserPojo.requestPojo.uploadedTimeStamp...="
+						//		+ requestProcesserPojo.requestPojo.uploadedTimeStamp);
+						//
+						//System.out.println("requestProcesserPojo.contentHandlerSpecs.extension ="
+						//		+ requestProcesserPojo.contentHandlerSpecs.extension);
+						//System.out.println("check if zip is present newContentFileName ="
+						//		+ newContentFileName);
+						//
+						//requestProcesserPojo.newERLPojo = new ERLpojo(finalArtifactKeyPojo,
+						//				//requestProcesserPojo.requestPojo.requestor,
+						//				(requestProcesserPojo.prevERLPojo!=null?
+						//						requestProcesserPojo.prevERLPojo.requestor
+						//						:requestProcesserPojo.requestPojo.requestor),
+						//				//requestProcesserPojo.requestPojo.author,
+						//				(requestProcesserPojo.prevERLPojo!=null?
+						//						requestProcesserPojo.prevERLPojo.author
+						//						:requestProcesserPojo.requestPojo.author),
+						//				requestProcesserPojo.contentHandlerSpecs.hasSpecialHandler,
+						//				requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewFileName:"",
+						//
+						//				//requestProcesserPojo.requestPojo.erlStatus,
+						//				//rollupAddup parents cannot take their child status.
+						//				//Inactive parents will become active if there is any child activity
+						//				requestProcesserPojo.contentHandlerSpecs.rollupAddupType?
+						//					(requestProcesserPojo.prevERLPojo != null
+						//						&& !requestProcesserPojo.prevERLPojo.erlStatus.
+						//							equals(ERLpojo.ERLSTAT_INACTIVE)?
+						//						requestProcesserPojo.prevERLPojo.erlStatus:"")
+						//					:requestProcesserPojo.requestPojo.erlStatus,											
+						//				newContentFileName,	//inContentFileName
+						//				requestProcesserPojo.requestPojo.uploadedTimeStamp,	//Content TimeStamp
+						//				requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewTimeStamp:""	// ReviewTimeStamp
+						//				);
+						//
+						//System.out.println("at 23432 requestProcesserPojo.newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+						//
+						//String newContentRemoteLocation = commons.getRemotePathFileName(rootPojo.rootString,finalArtifactKeyPojo.relevance,newContentFileName,rootPojo.fileSeparator);
+						//System.out.println("@@1 newContentRemoteLocation=" + newContentRemoteLocation);
+						//System.out.println("@@1 finalArtifactKeyPojo.relevance=" + finalArtifactKeyPojo.relevance);
+						//System.out.println("@@1 newContentFileName=" + newContentFileName);
+						//
+						//System.out.println("@@1 requestProcesserPojo.requestPojo.contentPathFile=" + requestProcesserPojo.requestPojo.contentFileName);
+						//System.out.println("@@1 requestProcesserPojo.incomingContentFullPath=" + requestProcesserPojo.incomingContentFullPath);
+						//
+						//if (!requestProcesserPojo.contentHandlerSpecs.hasSpecialHandler) {
+						//	requestProcesserPojo.updatedContentFileLocation = requestProcesserPojo.incomingContentFullPath;
+						//	System.out.println("@@xx1 RequestProcesserPojo");
+						//	System.out.println("@@xx1 requestProcesserPojo.updatedContentFileLocation=" + requestProcesserPojo.updatedContentFileLocation);
+						//	System.out.println("@@xx1 newContentRemoteLocation=" + newContentRemoteLocation);
+						//	
+						//	remoteAccesser.moveToRemoteLocation(requestProcesserPojo.updatedContentFileLocation, newContentRemoteLocation);
+						//
+						//} else {
+						//	System.out.println("at 2143a requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+						//
+						//	ContentHandlerInterface contentHandlerObjectInterface = ContentHandlerManager.getInstance(commons, catelogPersistenceManager, finalArtifactKeyPojo.contentType);
+						//
+						//	System.out.println("at 2143b requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+						//	
+						//	contentHandlerObjectInterface.initializeContentHandlerWithMinimumSetup(commonData);
+						//	
+						//	System.out.println("at 2143c requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+						//
+						//	contentHandlerObjectInterface.processContentAtWeb(rootPojo, remoteAccesser, requestProcesserPojo);
+						//
+						//	System.out.println("at 2143d requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+						//
+						//	System.out.println("newContentRemoteLocation is " + newContentRemoteLocation);
+						//
+						//	remoteAccesser.putInStreamIntoRemoteLocation(newContentRemoteLocation, requestProcesserPojo.updatedContentInputStream);
+						//	requestProcesserPojo.updatedContentInputStream.close();
+						//	System.out.println("At request processer requestProcesserPojo.updatedContentInputStream is closed for " + requestProcesserPojo.updatedContentInputStream);
+						//	
+						//	String remoteContentArchiveFile = rootPojo.rootString
+						//			+ rootPojo.fileSeparator + commons.remoteArchive
+						//			+ rootPojo.fileSeparator
+						//			+ commons.getFileNameFromURL(requestProcesserPojo.incomingContentFullPath,rootPojo.fileSeparator);
+						//
+						//	System.out.println("remoteContentArchiveFile...=" + remoteContentArchiveFile);
+						//	remoteAccesser.moveToRemoteLocation(requestProcesserPojo.incomingContentFullPath, remoteContentArchiveFile);
+						//}
 
-										//requestProcesserPojo.requestPojo.erlStatus,
-										//rollupAddup parents cannot take their child status.
-										//Inactive parents will become active if there is any child activity
-										requestProcesserPojo.contentHandlerSpecs.rollupAddupType?
-											(requestProcesserPojo.prevERLPojo != null
-												&& !requestProcesserPojo.prevERLPojo.erlStatus.
-													equals(ERLpojo.ERLSTAT_INACTIVE)?
-												requestProcesserPojo.prevERLPojo.erlStatus:"")
-											:requestProcesserPojo.requestPojo.erlStatus,											
-										newContentFileName,	//inContentFileName
-										requestProcesserPojo.requestPojo.uploadedTimeStamp,	//Content TimeStamp
-										requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewTimeStamp:""	// ReviewTimeStamp
-										);
-		
-						System.out.println("at 23432 requestProcesserPojo.newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
-		
-						String newContentRemoteLocation = commons.getRemotePathFileName(rootPojo.rootString,finalArtifactKeyPojo.relevance,newContentFileName,rootPojo.fileSeparator);
-						System.out.println("@@1 newContentRemoteLocation=" + newContentRemoteLocation);
-						System.out.println("@@1 finalArtifactKeyPojo.relevance=" + finalArtifactKeyPojo.relevance);
-						System.out.println("@@1 newContentFileName=" + newContentFileName);
-		
-						System.out.println("@@1 requestProcesserPojo.requestPojo.contentPathFile=" + requestProcesserPojo.requestPojo.contentFileName);
-						System.out.println("@@1 requestProcesserPojo.incomingContentFullPath=" + requestProcesserPojo.incomingContentFullPath);
-	
-						if (!requestProcesserPojo.contentHandlerSpecs.hasSpecialHandler) {
-							requestProcesserPojo.updatedContentFileLocation = requestProcesserPojo.incomingContentFullPath;
-							System.out.println("@@xx1 RequestProcesserPojo");
-							System.out.println("@@xx1 requestProcesserPojo.updatedContentFileLocation=" + requestProcesserPojo.updatedContentFileLocation);
-							System.out.println("@@xx1 newContentRemoteLocation=" + newContentRemoteLocation);
-							
-							remoteAccesser.moveToRemoteLocation(requestProcesserPojo.updatedContentFileLocation, newContentRemoteLocation);
-	
-						} else {
-							System.out.println("at 2143a requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
-		
-							ContentHandlerInterface contentHandlerObjectInterface = ContentHandlerManager.getInstance(commons, catelogPersistenceManager, finalArtifactKeyPojo.contentType);
-		
-							System.out.println("at 2143b requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
-							
-							contentHandlerObjectInterface.initializeContentHandlerWithMinimumSetup(commonData);
-							
-							System.out.println("at 2143c requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
-		
-							contentHandlerObjectInterface.processContentAtWeb(rootPojo, remoteAccesser, requestProcesserPojo);
-		
-							System.out.println("at 2143d requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
-		
-							System.out.println("newContentRemoteLocation is " + newContentRemoteLocation);
-		
-							remoteAccesser.putInStreamIntoRemoteLocation(newContentRemoteLocation, requestProcesserPojo.updatedContentInputStream);
-							requestProcesserPojo.updatedContentInputStream.close();
-							System.out.println("At request processer requestProcesserPojo.updatedContentInputStream is closed for " + requestProcesserPojo.updatedContentInputStream);
-							
-							String remoteContentArchiveFile = rootPojo.rootString
-									+ rootPojo.fileSeparator + commons.remoteArchive
-									+ rootPojo.fileSeparator
-									+ commons.getFileNameFromURL(requestProcesserPojo.incomingContentFullPath,rootPojo.fileSeparator);
-				
-							System.out.println("remoteContentArchiveFile...=" + remoteContentArchiveFile);
-							remoteAccesser.moveToRemoteLocation(requestProcesserPojo.incomingContentFullPath, remoteContentArchiveFile);
-						}
+						updateTargetContent(requestProcesserPojo,finalArtifactKeyPojo);
 	
 						erlVersioningDocItem.stackUp(requestProcesserPojo.newERLPojo.contentFileName);
 						
@@ -340,24 +342,27 @@ public class RequestProcessor {
 						}
 		
 						requestProcesserPojo.newERLPojo = new ERLpojo(finalArtifactKeyPojo,
-								//requestProcesserPojo.requestPojo.requestor,
 								(requestProcesserPojo.prevERLPojo!=null?
 										requestProcesserPojo.prevERLPojo.requestor
 										:requestProcesserPojo.requestPojo.requestor),
-								//requestProcesserPojo.requestPojo.author,
 								(requestProcesserPojo.prevERLPojo!=null?
 										requestProcesserPojo.prevERLPojo.author
 										:requestProcesserPojo.requestPojo.author),
 								requestProcesserPojo.contentHandlerSpecs.hasSpecialHandler,
 								requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewFileName:"",
-								requestProcesserPojo.prevERLPojo.erlStatus,			//remarks do not change erl status
+								requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.erlStatus:"",			//remarks do not change erl status
 								requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.contentFileName:"",	 
 								requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.uploadedTimeStamp:"",  //content timestamp
 								requestProcesserPojo.requestPojo.uploadedTimeStamp	//Review timestamp 
-								);
+							);
 						
-						processRemarksAtWeb(requestProcesserPojo);
+						processRemarksAtWeb(requestProcesserPojo);						
 						erlVersioningDocItem.stackUp(requestProcesserPojo.newERLPojo.reviewFileName);
+						
+						if (requestProcesserPojo.artifactToBeUpdatedForRemarkFields){
+							updateTargetContent(requestProcesserPojo,finalArtifactKeyPojo);
+							erlVersioningDocItem.stackUp(requestProcesserPojo.newERLPojo.contentFileName);
+						}
 					}
 					System.out.println("4.01 At processRequestsOfOneRoot reqTrackItem.artifactMoveComplete is " + reqTrackItem.artifactMoveComplete);
 					System.out.println("4.01 At processRequestsOfOneRoot gonna write req tracker");
@@ -546,6 +551,102 @@ public class RequestProcessor {
 		}
 	}
 
+	public void updateTargetContent(RequestProcesserPojo requestProcesserPojo,ArtifactKeyPojo finalArtifactKeyPojo) throws IOException{
+		String newContentFileName = 
+				finalArtifactKeyPojo.artifactName
+				+ "_"
+				+ commons.getCurrentTimeStamp()
+				+ requestProcesserPojo.contentHandlerSpecs.extension;
+		
+		System.out.println("requestPojo.contentFile...="
+				+ requestProcesserPojo.requestPojo.contentFileName);
+		System.out.println("requestProcesserPojo.requestPojo.uploadedTimeStamp...="
+				+ requestProcesserPojo.requestPojo.uploadedTimeStamp);
+
+		System.out.println("requestProcesserPojo.contentHandlerSpecs.extension ="
+				+ requestProcesserPojo.contentHandlerSpecs.extension);
+		System.out.println("check if zip is present newContentFileName ="
+				+ newContentFileName);
+
+		if (requestProcesserPojo.requestPojo.artifactOrReview.equalsIgnoreCase(RequestPojo.ARTIFACT)) {
+
+			requestProcesserPojo.newERLPojo = new ERLpojo(finalArtifactKeyPojo,
+					(requestProcesserPojo.prevERLPojo!=null?
+							requestProcesserPojo.prevERLPojo.requestor
+							:requestProcesserPojo.requestPojo.requestor),
+					(requestProcesserPojo.prevERLPojo!=null?
+							requestProcesserPojo.prevERLPojo.author
+							:requestProcesserPojo.requestPojo.author),
+					requestProcesserPojo.contentHandlerSpecs.hasSpecialHandler,
+					requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewFileName:"",
+					//rollupAddup parents cannot take their child status.
+					//Inactive parents will become active if there is any child activity
+					requestProcesserPojo.contentHandlerSpecs.rollupAddupType && requestProcesserPojo.prevERLPojo != null?
+						requestProcesserPojo.prevERLPojo.erlStatus:"",
+					newContentFileName,	//inContentFileName
+					requestProcesserPojo.requestPojo.uploadedTimeStamp,	//Content TimeStamp
+					requestProcesserPojo.prevERLPojo!=null?requestProcesserPojo.prevERLPojo.reviewTimeStamp:""	// ReviewTimeStamp
+				);
+		} else {
+			// some fields of newERLPojo is already set
+			
+			// Though its remark upload, since the content also is being changed now hence refreshing content and its timestamp
+			requestProcesserPojo.newERLPojo.contentFileName = newContentFileName;
+			requestProcesserPojo.newERLPojo.uploadedTimeStamp = requestProcesserPojo.requestPojo.uploadedTimeStamp;
+			//requestProcesserPojo.newERLPojo.erlStatus = requestProcesserPojo.requestPojo.erlStatus;			//remarks do not change erl status
+		}
+
+		System.out.println("at 23432 requestProcesserPojo.newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+
+		String newContentRemoteLocation = commons.getRemotePathFileName(rootPojo.rootString,finalArtifactKeyPojo.relevance,newContentFileName,rootPojo.fileSeparator);
+		System.out.println("@@1 newContentRemoteLocation=" + newContentRemoteLocation);
+		System.out.println("@@1 finalArtifactKeyPojo.relevance=" + finalArtifactKeyPojo.relevance);
+		System.out.println("@@1 newContentFileName=" + newContentFileName);
+
+		System.out.println("@@1 requestProcesserPojo.requestPojo.contentPathFile=" + requestProcesserPojo.requestPojo.contentFileName);
+		System.out.println("@@1 requestProcesserPojo.incomingContentFullPath=" + requestProcesserPojo.incomingContentFullPath);
+
+		if (!requestProcesserPojo.contentHandlerSpecs.hasSpecialHandler) {
+			requestProcesserPojo.updatedContentFileLocation = requestProcesserPojo.incomingContentFullPath;
+			System.out.println("@@xx1 RequestProcesserPojo");
+			System.out.println("@@xx1 requestProcesserPojo.updatedContentFileLocation=" + requestProcesserPojo.updatedContentFileLocation);
+			System.out.println("@@xx1 newContentRemoteLocation=" + newContentRemoteLocation);
+			
+			remoteAccesser.moveToRemoteLocation(requestProcesserPojo.updatedContentFileLocation, newContentRemoteLocation);
+
+		} else {
+			System.out.println("at 2143a requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+
+			ContentHandlerInterface contentHandlerObjectInterface = ContentHandlerManager.getInstance(commons, catelogPersistenceManager, finalArtifactKeyPojo.contentType);
+
+			System.out.println("at 2143b requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+			
+			contentHandlerObjectInterface.initializeContentHandlerWithMinimumSetup(commonData);
+			
+			System.out.println("at 2143c requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+
+			contentHandlerObjectInterface.processContentAtWeb(rootPojo, remoteAccesser, requestProcesserPojo);
+
+			System.out.println("at 2143d requestProcesserPojo newERLPojo contentType is " + requestProcesserPojo.newERLPojo.artifactKeyPojo.contentType);
+
+			System.out.println("newContentRemoteLocation is " + newContentRemoteLocation);
+
+			remoteAccesser.putInStreamIntoRemoteLocation(newContentRemoteLocation, requestProcesserPojo.updatedContentInputStream);
+			requestProcesserPojo.updatedContentInputStream.close();
+			System.out.println("At request processer requestProcesserPojo.updatedContentInputStream is closed for " + requestProcesserPojo.updatedContentInputStream);
+			
+			String remoteContentArchiveFile = rootPojo.rootString
+					+ rootPojo.fileSeparator + commons.remoteArchive
+					+ rootPojo.fileSeparator
+					+ commons.getFileNameFromURL(requestProcesserPojo.incomingContentFullPath,rootPojo.fileSeparator);
+
+			System.out.println("remoteContentArchiveFile...=" + remoteContentArchiveFile);
+			remoteAccesser.moveToRemoteLocation(requestProcesserPojo.incomingContentFullPath, remoteContentArchiveFile);			
+		}		
+	}
+
+	
+	
 	public void processRemarksAtWeb(RequestProcesserPojo inRequestProcesserPojo) throws IOException {
 		System.out.println("begin processRemarksAtWeb");
 
@@ -584,7 +685,7 @@ public class RequestProcessor {
 													rootPojo.rootString,
 													inRequestProcesserPojo.newERLPojo.artifactKeyPojo.relevance,
 													inRequestProcesserPojo.newERLPojo.artifactKeyPojo.artifactName);
-		if (prevReviewsRemoteLocation == null || prevReviewsRemoteLocation.equalsIgnoreCase("")){
+		if (prevReviewsRemoteLocation.isEmpty()){
 			//use the incoming xml reviews as base
 			try {
 				artifactAllReviewsPojo.initiateArtifactReviewsDoc();
@@ -636,16 +737,7 @@ public class RequestProcessor {
 		remoteAccesser.putInStreamIntoRemoteLocation(newContentRemoteLocation, inRequestProcesserPojo.updatedContentInputStream);
 		inRequestProcesserPojo.updatedContentInputStream.close();
 		
-		String remoteRemarkArchiveFile = rootPojo.rootString
-				+ rootPojo.fileSeparator + commons.remoteArchive
-				+ rootPojo.fileSeparator
-				+ commons.getFileNameFromURL(inRequestProcesserPojo.incomingContentFullPath,rootPojo.fileSeparator);
-		System.out.println("remoteContentArchiveFile...=" + remoteRemarkArchiveFile);
-		remoteAccesser.moveToRemoteLocation(inRequestProcesserPojo.incomingContentFullPath, remoteRemarkArchiveFile);
-
-		System.out.println("end processContentAtWeb");
-		//Reassignment of Requester and Author if the review record is from Requestor or Admin
-		//Privilege
+		//Reassignment of Requester and Author if the review record is from Requestor or Admin Privilege
 
 		System.out.println("why null point error1 inRequestProcesserPojo is " + inRequestProcesserPojo);
 		System.out.println("why null point error2 requestPojo is " + inRequestProcesserPojo.requestPojo);
@@ -653,56 +745,103 @@ public class RequestProcessor {
 		System.out.println("why null point error4 " + commonData.getUsersHandler());
 		System.out.println("why null point error5 " + commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(inRequestProcesserPojo.requestPojo.requestor));
 
-		//UserPojo requestersDetail = commonData.getUsersHandler().getUserDetailsFromShortId(inRequestProcesserPojo.requestPojo.requestor);
-		//if (requestersDetail.hasAdminPrivilege() || requestersDetail.hasTeamLeaderPrivilege() 
-		//		|| inRequestProcesserPojo.requestPojo.requestor.equalsIgnoreCase(inRequestProcesserPojo.newERLPojo.requestor)){
-		//	System.out.println("reassignment processing");
-		//
-		//	inRequestProcesserPojo.newERLPojo.requestor = incomingItemNewReviewPojo.reassignedRequestor;
-		//	inRequestProcesserPojo.newERLPojo.author = incomingItemNewReviewPojo.reassignedAuthor;
-		//}
 		UserPojo requestAuthorsDetail = commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(inRequestProcesserPojo.requestPojo.requestor);
-		
-		if ((incomingItemNewReviewPojo.reassignedRequestor != null && incomingItemNewReviewPojo.reassignedRequestor.equalsIgnoreCase(""))
-			&& (requestAuthorsDetail.hasAdminPrivilege() 
-				|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
-				|| (inRequestProcesserPojo.prevERLPojo != null 
-					&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)
-						|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor))))) {
-			
-			System.out.println("reassignment processing for requestor change");
-			inRequestProcesserPojo.newERLPojo.requestor = incomingItemNewReviewPojo.reassignedRequestor;
-		} else {
-			inRequestProcesserPojo.newERLPojo.requestor = inRequestProcesserPojo.prevERLPojo.requestor;
-		}
 
-		if ((incomingItemNewReviewPojo.reassignedAuthor != null && incomingItemNewReviewPojo.reassignedAuthor.equalsIgnoreCase(""))
-			&& (requestAuthorsDetail.hasAdminPrivilege() 
-				|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
-				|| (inRequestProcesserPojo.prevERLPojo != null 
-					&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)
-						|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor))))) {
-			
-			System.out.println("reassignment processing for Author change");
-			inRequestProcesserPojo.newERLPojo.author = incomingItemNewReviewPojo.reassignedAuthor;
-		} else {
-			inRequestProcesserPojo.newERLPojo.author = inRequestProcesserPojo.prevERLPojo.author;
-		}
+		if (!incomingItemNewReviewPojo.reassignedRequestor.isEmpty() 
+			|| !incomingItemNewReviewPojo.reassignedAuthor.isEmpty()
+			|| !incomingItemNewReviewPojo.newERLStatus.isEmpty()) {
 
-		//if (requestersDetail.hasAdminPrivilege()
-		//		|| requestersDetail.hasTeamLeaderPrivilege() 
-		//		|| inRequestProcesserPojo.requestPojo.requestor.equalsIgnoreCase(inRequestProcesserPojo.newERLPojo.requestor)
-		//		|| inRequestProcesserPojo.requestPojo.requestor.equalsIgnoreCase(inRequestProcesserPojo.newERLPojo.author)){
-		if (requestAuthorsDetail.hasAdminPrivilege()
-			|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
-			|| (inRequestProcesserPojo.prevERLPojo != null
-				&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor)
-					|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)))) {
-			System.out.println("erl status upgrades processing");
-			System.out.println("erl status being changed from " + inRequestProcesserPojo.newERLPojo.erlStatus + " to " +  incomingItemNewReviewPojo.newERLStatus);
-			inRequestProcesserPojo.newERLPojo.erlStatus = incomingItemNewReviewPojo.newERLStatus;
-		}		
+			if (inRequestProcesserPojo.contentHandlerSpecs.rollupAddupType) {
+			// for rollAddTypes, this info is at item level
+				inRequestProcesserPojo.artifactToBeUpdatedForRemarkFields = true;
+				
+				inRequestProcesserPojo.itemReassignedRequestor = incomingItemNewReviewPojo.reassignedRequestor;
+				inRequestProcesserPojo.itemReassignedAuthor = incomingItemNewReviewPojo.reassignedAuthor;	
+				inRequestProcesserPojo.itemNewERLStatus = incomingItemNewReviewPojo.newERLStatus;
+				
+			}
+			else {
+				
+				if (requestAuthorsDetail.hasAdminPrivilege() 
+						|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
+						|| (inRequestProcesserPojo.prevERLPojo != null 
+							&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)
+								|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor)
+								|| commonData.getUsersHandler().doesUserHaveRightsOverMember(requestAuthorsDetail.rootSysLoginID, inRequestProcesserPojo.prevERLPojo.author)
+						))) {
+						
+						if (!incomingItemNewReviewPojo.reassignedRequestor.isEmpty()) {
+							System.out.println("reassignment processing for requestor change");
+							inRequestProcesserPojo.newERLPojo.requestor = incomingItemNewReviewPojo.reassignedRequestor;
+						}
+						if (!incomingItemNewReviewPojo.reassignedAuthor.isEmpty()) {
+							System.out.println("reassignment processing for Author change");						
+							inRequestProcesserPojo.newERLPojo.author = incomingItemNewReviewPojo.reassignedAuthor;
+						}
+						if (!incomingItemNewReviewPojo.reassignedAuthor.isEmpty()) {
+							System.out.println("erl status upgrades processing");
+							inRequestProcesserPojo.newERLPojo.erlStatus = incomingItemNewReviewPojo.newERLStatus;
+						}
+					}				
+			//	if (!incomingItemNewReviewPojo.reassignedRequestor.isEmpty()
+			//	&& (requestAuthorsDetail.hasAdminPrivilege() 
+			//		|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
+			//		|| (inRequestProcesserPojo.prevERLPojo != null 
+			//			&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)
+			//				|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor)
+			//				|| commonData.getUsersHandler().doesUserHaveRightsOverMember(requestAuthorsDetail.rootSysLoginID, inRequestProcesserPojo.prevERLPojo.author)
+			//		)))) {
+			//
+			//		
+			//		System.out.println("reassignment processing for requestor change");
+			//
+			//		inRequestProcesserPojo.newERLPojo.requestor = incomingItemNewReviewPojo.reassignedRequestor;				
+			//	}
+			//	
+			//	if (!incomingItemNewReviewPojo.reassignedAuthor.isEmpty()
+			//		&& (requestAuthorsDetail.hasAdminPrivilege() 
+			//			|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
+			//			|| (inRequestProcesserPojo.prevERLPojo != null 
+			//				&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author)
+			//					|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor))))) {
+			//		
+			//		System.out.println("reassignment processing for Author change");
+			//
+			//		inRequestProcesserPojo.newERLPojo.author = incomingItemNewReviewPojo.reassignedAuthor;		
+			//	}
+			//
+			//	if (!incomingItemNewReviewPojo.newERLStatus.isEmpty() 
+			//		&& (requestAuthorsDetail.hasAdminPrivilege()
+			//			|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
+			//			|| (inRequestProcesserPojo.prevERLPojo != null
+			//				&& (requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.requestor)
+			//					|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(inRequestProcesserPojo.prevERLPojo.author))))) {
+			//		System.out.println("erl status upgrades processing");
+			//		System.out.println("erl status being changed from " + inRequestProcesserPojo.newERLPojo.erlStatus + " to " +  incomingItemNewReviewPojo.newERLStatus);
+			//
+			//		inRequestProcesserPojo.newERLPojo.erlStatus = incomingItemNewReviewPojo.newERLStatus;
+			//	}
+			
+			// Archival of incoming remark content. Note: when item fields are to be updated, this archival is deferred and
+			// taken care in the next step
+				String remoteRemarkArchiveFile = rootPojo.rootString
+						+ rootPojo.fileSeparator + commons.remoteArchive
+						+ rootPojo.fileSeparator
+						+ commons.getFileNameFromURL(inRequestProcesserPojo.incomingContentFullPath,rootPojo.fileSeparator);
+				System.out.println("remoteRemarkArchiveFile...=" + remoteRemarkArchiveFile);
+				remoteAccesser.moveToRemoteLocation(inRequestProcesserPojo.incomingContentFullPath, remoteRemarkArchiveFile);
+			}
+		}
+		System.out.println("end processContentAtWeb");
 	}
+
+//	public void checkIfArtifactAlsoToBeUpdated(RequestProcesserPojo inRequestProcesserPojo){
+//	// whenever a remarks field viz. status, requestor, author is changed for a child artifact 
+//	// the artifact itself to be updated since the values are at item level
+//		if (inRequestProcesserPojo.contentHandlerSpecs.hasSpecialHandler) {
+//			inRequestProcesserPojo.artifactToBeUpdatedForRemarkFields = true;
+//		}
+//	}
 	
 	public static void main(String[] args) throws IOException, ParseException {
 

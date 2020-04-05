@@ -32,7 +32,9 @@ public class ProjTracker extends GenericItemHandler implements DeckableContentTy
 	
 	public void setInitialItemPojoAddlFields(){
 		ProjTrackerPojo projTrackerPojo = (ProjTrackerPojo) primerDoc.getItem();
-		checkSetNewItemID();
+		
+		//22Mar2020 SetNewItemID is invoked in the calling method itself
+		//checkSetNewItemID();
 	}
 
 	public void checkSetNewItemID() {
@@ -88,7 +90,7 @@ public class ProjTracker extends GenericItemHandler implements DeckableContentTy
 	
 	public void getAddlFieldsOfItemPojo(ItemPojo inItemPojo){
 		ProjTrackerPojo projTrackerPojo = (ProjTrackerPojo) primerDoc.getItem();
-		projTrackerPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
+		//projTrackerPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 		projTrackerPojo.corePlanChanged = true;	// As this method is called only when save button is pressed in UI
 												// it would indicate that the core plan had changed.		
 	}

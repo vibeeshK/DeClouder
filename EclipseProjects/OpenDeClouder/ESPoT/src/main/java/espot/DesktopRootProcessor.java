@@ -161,9 +161,9 @@ public class DesktopRootProcessor implements Runnable {
 				System.out.println("GONNA WAIT22");
 				try {
 
-					System.out.println("goint to wait " + orchestrationData.getrepeatIntervalInSeconds() + " seconds");
+					System.out.println("goint to wait " + orchestrationData.getRepeatIntervalInSeconds() + " seconds");
 
-					wait(orchestrationData.getrepeatIntervalInSeconds() * 1000);				
+					wait(orchestrationData.getRepeatIntervalInSeconds() * 1000);				
 
 				} catch (InterruptedException e) {
 

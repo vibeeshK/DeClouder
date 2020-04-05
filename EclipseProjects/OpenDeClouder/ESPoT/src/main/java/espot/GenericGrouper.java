@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -26,6 +27,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
@@ -42,6 +44,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	
 	public final static String ITEMNUMLIT = "ItemNumber";
 	public final static String COLFIELDLIT = "ColumnField";
+
+	public static final int PREFERED_ITEM_PANEL_WIDTH = 600;
 	
 	public ArtifactPojo invokedArtifactPojo = null;
 	public boolean invokedForEdit = false;
@@ -52,6 +56,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	private ScrolledComposite scrolledComposite_1 = null;
 	public Composite childCompositeOfMultiView = null;
 	public Composite itemsMainCompositeInMultiConentView = null;
+	private GridData itemsReviewGridData;
+	
 	public ScrolledComposite ribbonScrollPane = null;	
 	public ScrolledComposite artifactRwScrollPane = null;
 	public ScrolledComposite scrolledComposite_main = null;
@@ -61,6 +67,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	public ContentHandlerSpecs contentHandlerSpecs = null;
 	
 	public ArrayList<?> itemList = null;	
+	ArrayList<ItemPojo> filteredItems = null;
 	public GenericGrouperDocPojo primerDoc = null;
 
 	private ERLpojo cloneERLpojo = null;
@@ -78,7 +85,20 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	
 	public ItemPojo focusedItemPojo = null;
 	public ItemPojo viewFocusItemPojo = null;
-
+	
+	private static final String hidefiltersLIT = "HideFilters";
+	protected Composite filtersGroup;
+	protected List statusSelList;
+	//protected Text allSelectedStatusText;
+	protected boolean hideShowFilter;
+	
+	private Button showOrHideFiltersButton;
+	private Button applyFilterButton;
+	
+	private GridData filtersRibbonData;
+	
+	protected Table table;
+	
 	public ItemPojo getERLItemByChildArtifactName(String inChildRelevance, String inChildArtifactName) {
 		ItemPojo existingItemPojo = null;
 		if (inChildRelevance != null && !inChildRelevance.equalsIgnoreCase("")
@@ -203,6 +223,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		//create pane for control ribbon ends		
 		///////////
 		///////////
+		setSelectionFilters(buttonRibbon);
+
 		additionalRibbonButtons(buttonRibbon);
 		buttonRibbon.pack();
 	}
@@ -211,6 +233,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		System.out.println("review Artifact: " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 		artifactRwScrollPane = new ScrolledComposite(mainShell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gridData.minimumHeight = 30;
 		artifactRwScrollPane.setLayoutData(gridData);		
 		final Composite childCompositOfSingleView2 = new Composite(artifactRwScrollPane, SWT.NONE); 
 		artifactRwScrollPane.setContent(childCompositOfSingleView2);
@@ -324,12 +347,36 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 
 	public void setDisplayCoreLeftFieldsInMultiDisplay(TableEditor inEditor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojoScrolled, Button inMaintenanceButton, int inScreenRowNum) {
 		// the reason the maintenanceButton is kept as argument is it would be referred for setting focus on specific record.
-		
 		System.out.println("setDisplayCoreLeftFieldsInMultiDisplay");
+
+		boolean itemOnRowHasALocalDraft = false;
+		ArtifactKeyPojo artifactKeyPojoOnRow = new ArtifactKeyPojo(
+				invokedArtifactPojo.artifactKeyPojo.rootNick,
+				inItemPojoScrolled.relevance,
+				inItemPojoScrolled.artifactName,
+				inItemPojoScrolled.contentType);
+		SelfAuthoredArtifactpojo localDraft = catelogPersistenceManager.readSelfAuthoredArtifact(artifactKeyPojoOnRow);
+		if (localDraft != null) {
+			System.out.println("at setFlags localDraft.draftingState is " + localDraft.draftingState);
+			System.out.println("at setFlags SelfAuthoredArtifactpojo.ArtifactStatusDraft is " + SelfAuthoredArtifactpojo.ArtifactStatusDraft);
+			System.out.println("at setFlags SelfAuthoredArtifactpojo.ArtifactStatusToBeBatchUploaded is " + SelfAuthoredArtifactpojo.ArtifactStatusToBeBatchUploaded);
+
+			if (!localDraft.draftingState.equalsIgnoreCase(SelfAuthoredArtifactpojo.ArtifactStatusProcessed)
+				&& !localDraft.draftingState.equalsIgnoreCase(SelfAuthoredArtifactpojo.ArtifactStatusOutdated)) {
+				itemOnRowHasALocalDraft = true;				
+			}
+		}
 		TableEditor maintenanceButtonEditor = new TableEditor(inTable);
-		inMaintenanceButton
-				.setText(inItemPojoScrolled.artifactName);
-		inMaintenanceButton.setToolTipText("click for maintenance of: " + inItemPojoScrolled.title);
+
+		if (itemOnRowHasALocalDraft){
+			inMaintenanceButton
+			.setText("*" + inItemPojoScrolled.artifactName);
+			inMaintenanceButton.setToolTipText("click for maintenance of: " + inItemPojoScrolled.title + ". A draft is already available");
+		} else {
+			inMaintenanceButton
+			.setText(inItemPojoScrolled.artifactName);			
+			inMaintenanceButton.setToolTipText("click for maintenance of: " + inItemPojoScrolled.title);
+		}		
 		inMaintenanceButton.setData(SCREENROWNUMLIT, inScreenRowNum);
 
 		System.out.println("itemPojo.itemID:"+inItemPojoScrolled.itemID);
@@ -355,7 +402,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	}
 
 	public void setDisplayItemscoreRightFieldsInMultiDisplay(TableEditor inEditor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo itemPojoScrolled, int screenRowNum) {
-		System.out.println("lastColLocation after centerAddl = " + inLastColLocation);
+		System.out.println("At setDisplayItemscoreRightFieldsInMultiDisplay lastColLocation = " + inLastColLocation);
 		TableEditor reviewButtonEditor = new TableEditor(inTable);
 		Button reviewButton = new Button(inTable, SWT.PUSH);
 		System.out.println("@1 reviewButton.getSize().x = " + reviewButton.getSize().x);
@@ -386,7 +433,9 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 				ArrayList itemsObjects = new ArrayList();
 				displayedItemMap.put(selectedItemRow, itemsObjects);
 				
-				ItemPojo selectedItemPojo  = (ItemPojo) itemList.get(selectedItemRow);
+				//ItemPojo selectedItemPojo  = (ItemPojo) itemList.get(selectedItemRow);
+				ItemPojo selectedItemPojo  = (ItemPojo) filteredItems.get(selectedItemRow);
+				
 				System.out.println("This item is being viewed = " + selectedItemPojo.title);
 				primerDoc.setItem(selectedItemRow, selectedItemPojo);
 				System.out.println("itemPojo :2: " + selectedItemPojo);
@@ -407,75 +456,74 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		System.out.println("reviewButton reviewButton.horizontalAlignment = " + reviewButtonEditor.horizontalAlignment);
 		System.out.println("reviewButton @ lastColLocation = " + inLastColLocation);
 
-		if (commonData.getCommons().userName.equals("reviewer")) {
-			
-			System.out.println("Got inside the reviewer path");
-
-			// Approve & Reject Buttons
-			TableEditor approveButtonEditor = new TableEditor(inTable);
-			Button approveButton = new Button(inTable, SWT.PUSH);
-			approveButton
-					.setText("Approve");
-			approveButton.setData(SCREENROWNUMLIT, screenRowNum);
-
-			System.out.println("set data = "
-					+ approveButton.getData("screenRowNum"));
-
-			approveButton.addSelectionListener(new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					Button eventButton = (Button) e.getSource();
-					System.out.println("eventButton = " + eventButton);
-					Integer i = (Integer) eventButton
-							.getData("screenRowNum");
-					System.out.println("selected screenRowNum = "
-							+ i);
-					ItemPojo selectedItemPojo  = (ItemPojo) itemList.get(i);
-
-					System.out.println("This item is passed = " + selectedItemPojo.title);
-
-				}
-			});
-
-			approveButton.pack();
-			approveButtonEditor.minimumWidth = approveButton.getSize().x;
-			approveButtonEditor.horizontalAlignment = SWT.LEFT;
-			approveButtonEditor.setEditor(approveButton, inTableItem,++inLastColLocation);
-			System.out.println("approve button lastColLocation = " + inLastColLocation);
-
-			TableEditor rejectButtonEditor = new TableEditor(inTable);
-			Button rejectButton = new Button(inTable, SWT.PUSH);
-			rejectButton
-					.setText("Reject");
-			rejectButton.setData(SCREENROWNUMLIT, screenRowNum);
-
-			System.out.println("set data = "
-					+ rejectButton.getData("screenRowNum"));
-
-			rejectButton.addSelectionListener(new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					Button eventButton = (Button) e.getSource();
-					System.out.println("eventButton = " + eventButton);
-					Integer i = (Integer) eventButton
-							.getData("screenRowNum");
-					System.out.println("selected screenRowNum = "
-							+ i);
-					ItemPojo selectedItemPojo  = (ItemPojo) itemList.get(i);
-
-					System.out.println("This item is rejected = " + selectedItemPojo.title);
-				}
-			});
-
-			rejectButton.pack();
-			rejectButtonEditor.minimumWidth = rejectButton.getSize().x;
-			rejectButtonEditor.horizontalAlignment = SWT.LEFT;
-			rejectButtonEditor.setEditor(rejectButton, inTableItem,++inLastColLocation);
-			System.out.println("reject button rightColumnStartLocation = " + inLastColLocation);
-			
-		}		
+		//if (commonData.getCommons().userName.equals("reviewer")) {
+		//	
+		//	System.out.println("Got inside the reviewer path");
+		//
+		//	// Approve & Reject Buttons
+		//	TableEditor approveButtonEditor = new TableEditor(inTable);
+		//	Button approveButton = new Button(inTable, SWT.PUSH);
+		//	approveButton
+		//			.setText("Approve");
+		//	approveButton.setData(SCREENROWNUMLIT, screenRowNum);
+		//
+		//	System.out.println("set data = "
+		//			+ approveButton.getData("screenRowNum"));
+		//
+		//	approveButton.addSelectionListener(new SelectionAdapter() {
+		//		@Override
+		//		public void widgetSelected(SelectionEvent e) {
+		//			Button eventButton = (Button) e.getSource();
+		//			System.out.println("eventButton = " + eventButton);
+		//			Integer i = (Integer) eventButton
+		//					.getData("screenRowNum");
+		//			System.out.println("selected screenRowNum = "
+		//					+ i);
+		//			ItemPojo selectedItemPojo  = (ItemPojo) itemList.get(i);
+		//
+		//			System.out.println("This item is passed = " + selectedItemPojo.title);
+		//
+		//		}
+		//	});
+		//
+		//	approveButton.pack();
+		//	approveButtonEditor.minimumWidth = approveButton.getSize().x;
+		//	approveButtonEditor.horizontalAlignment = SWT.LEFT;
+		//	approveButtonEditor.setEditor(approveButton, inTableItem,++inLastColLocation);
+		//	System.out.println("approve button lastColLocation = " + inLastColLocation);
+		//
+		//	TableEditor rejectButtonEditor = new TableEditor(inTable);
+		//	Button rejectButton = new Button(inTable, SWT.PUSH);
+		//	rejectButton
+		//			.setText("Reject");
+		//	rejectButton.setData(SCREENROWNUMLIT, screenRowNum);
+		//
+		//	System.out.println("set data = "
+		//			+ rejectButton.getData("screenRowNum"));
+		//
+		//	rejectButton.addSelectionListener(new SelectionAdapter() {
+		//		@Override
+		//		public void widgetSelected(SelectionEvent e) {
+		//			Button eventButton = (Button) e.getSource();
+		//			System.out.println("eventButton = " + eventButton);
+		//			Integer i = (Integer) eventButton
+		//					.getData("screenRowNum");
+		//			System.out.println("selected screenRowNum = "
+		//					+ i);
+		//			ItemPojo selectedItemPojo  = (ItemPojo) itemList.get(i);
+		//
+		//			System.out.println("This item is rejected = " + selectedItemPojo.title);
+		//		}
+		//	});
+		//
+		//	rejectButton.pack();
+		//	rejectButtonEditor.minimumWidth = rejectButton.getSize().x;
+		//	rejectButtonEditor.horizontalAlignment = SWT.LEFT;
+		//	rejectButtonEditor.setEditor(rejectButton, inTableItem,++inLastColLocation);
+		//	System.out.println("reject button rightColumnStartLocation = " + inLastColLocation);
+		//	
+		//}		
 	}
-	
 	
 	public void displayMultiContent() {
 		System.out.println("GenericGrouper displayMultiContent");
@@ -484,9 +532,11 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		childCompositeOfMultiView.setLayout(new GridLayout(1,false));
 
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gridData.minimumHeight = 100;
+
 		childCompositeOfMultiView.setLayoutData(gridData);
 		
-		Table table = new Table(childCompositeOfMultiView, SWT.BORDER| SWT.V_SCROLL | SWT.H_SCROLL);
+		table = new Table(childCompositeOfMultiView, SWT.BORDER| SWT.V_SCROLL | SWT.H_SCROLL);
 
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
@@ -495,9 +545,10 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 				"Artifact",
 				"Title"};
 		coreRightColumnHeaders = new String[] { 
-				"Review",
-				"Approve",
-				"Reject"};
+				"Review"
+				//,"Approve"
+				//,"Reject"
+				};
 		setAddlColumnHeaders();
 
 		if (addlLeftColumnHeaders == null) { addlLeftColumnHeaders = new String[]{};}
@@ -514,13 +565,96 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 			System.out.println("columnHeaders col(" + i + ") " + columnHeaders[i]);
 		}
 		System.out.println("screen rows filling starts");
+
+		populateScreenItems();
 		
-		for (int screenRowNum = 0; screenRowNum < itemList.size(); screenRowNum++) {
+		//ArrayList<ItemPojo> filteredItems = getFilteredItemList();
+		//
+		////for (int screenRowNum = 0; screenRowNum < itemList.size(); screenRowNum++) {
+		//for (int screenRowNum = 0; screenRowNum < filteredItems.size(); screenRowNum++) {
+		//
+		//	System.out.println("screenRowNum = " + screenRowNum);
+		//	int lastColLocation = -1;
+		//	
+		//	//ItemPojo itemPojoScrolled = (ItemPojo) itemList.get(screenRowNum);
+		//	ItemPojo itemPojoScrolled = (ItemPojo) filteredItems.get(screenRowNum);
+		//	
+		//
+		//	TableItem tableItem = new TableItem(table, SWT.NONE);
+		//
+		//	TableEditor editor = new TableEditor(table);
+		//
+		//	setDisplayItemsAddlLeftFieldsInMultiDisplay(editor,table,tableItem,lastColLocation,itemPojoScrolled);
+		//	lastColLocation = addlLeftColumnHeaders.length - 1;
+		//
+		//	Button maintenanceButton = new Button(table, SWT.PUSH);			
+		//	setDisplayCoreLeftFieldsInMultiDisplay(editor,table,tableItem,lastColLocation,itemPojoScrolled, maintenanceButton, screenRowNum);
+		//
+		//	lastColLocation = addlLeftColumnHeaders.length + coreLeftColumnHeaders.length - 1;
+		//	setDisplayItemsCenterBaseFieldsInMultiDisplay(editor,table,tableItem,lastColLocation,itemPojoScrolled);
+		//	
+		//	lastColLocation = addlLeftColumnHeaders.length + coreLeftColumnHeaders.length + centerBaseColHeaders.length - 1;
+		//	setDisplayItemsCenterAddlFieldsInMultiDisplay(editor,table,tableItem,lastColLocation,itemPojoScrolled);
+		//
+		//	lastColLocation = addlLeftColumnHeaders.length + coreLeftColumnHeaders.length + centerBaseColHeaders.length + centerAddlColHeaders.length - 1;
+		//	setDisplayItemscoreRightFieldsInMultiDisplay(editor,table,tableItem,lastColLocation,itemPojoScrolled,screenRowNum);
+		//
+		//	if (itemPojoScrolled.equals(viewFocusItemPojo)) {
+		//
+		//		maintenanceButton.setFocus();
+		//	}
+		//	
+		//}
+
+		////create pane for individual items start1
+		scrolledComposite_main = new ScrolledComposite(mainShell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+
+		GridData gridData2 = new GridData(SWT.FILL, SWT.FILL, true, true);
+		//gridData2.minimumHeight = 100;
+		scrolledComposite_main.setLayoutData(gridData2);
+
+		itemsMainCompositeInMultiConentView = new Composite(scrolledComposite_main, SWT.NONE); 
+		scrolledComposite_main.setContent(itemsMainCompositeInMultiConentView);
+		
+		itemsMainCompositeInMultiConentView.setLayout(new GridLayout(1,true));
+		itemsReviewGridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		itemsMainCompositeInMultiConentView.setLayoutData(itemsReviewGridData);
+		itemsReviewGridData.exclude = true; // hide until any item invoked for review		
+		
+	    Image bg = new Image(((CommonUIData) commonData).getESPoTDisplay(), commonData.getCommons().backgroundImagePathFileName);
+
+	    itemsMainCompositeInMultiConentView.setBackgroundImage(bg);
+	    itemsMainCompositeInMultiConentView.pack();		
+		////create pane for individual items end1
+		
+		//childCompositeOfMultiView.pack();
+
+		showArtifactReview();		
+		
+		scrolledComposite_main.pack();
+		mainShell.pack();		
+		mainShell.open();
+	}
+	
+	public void populateScreenItems(){
+
+		table.removeAll(); // clearing if called via filtering
+		for (Control control : table.getChildren()){
+			control.dispose();
+		}
+		
+		applyFilterButton.setVisible(false);
+
+		filteredItems = getFilteredItemList();
+
+		for (int screenRowNum = 0; screenRowNum < filteredItems.size(); screenRowNum++) {
 
 			System.out.println("screenRowNum = " + screenRowNum);
 			int lastColLocation = -1;
 			
-			ItemPojo itemPojoScrolled = (ItemPojo) itemList.get(screenRowNum);
+			//ItemPojo itemPojoScrolled = (ItemPojo) itemList.get(screenRowNum);
+			ItemPojo itemPojoScrolled = (ItemPojo) filteredItems.get(screenRowNum);
+			
 
 			TableItem tableItem = new TableItem(table, SWT.NONE);
 
@@ -547,32 +681,9 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 			}
 			
 		}
-
-		////create pane for individual items start1
-		scrolledComposite_main = new ScrolledComposite(mainShell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-
-		GridData gridData2 = new GridData(SWT.FILL, SWT.FILL, true, true);
-		gridData2.minimumHeight = 100;
-		scrolledComposite_main.setLayoutData(gridData2);
-
-		itemsMainCompositeInMultiConentView = new Composite(scrolledComposite_main, SWT.NONE); 
-		scrolledComposite_main.setContent(itemsMainCompositeInMultiConentView);
-		
-		itemsMainCompositeInMultiConentView.setLayout(new GridLayout(1,true));
-		GridData  gridData3 = new GridData(SWT.FILL, SWT.FILL, true, true);
-		itemsMainCompositeInMultiConentView.setLayoutData(gridData3);
-	    Image bg = new Image(((CommonUIData) commonData).getESPoTDisplay(), commonData.getCommons().backgroundImagePathFileName);
-
-	    itemsMainCompositeInMultiConentView.setBackgroundImage(bg);
-	    itemsMainCompositeInMultiConentView.pack();		
-		////create pane for individual items end1
-		
 		childCompositeOfMultiView.pack();
-
-		showArtifactReview();		
-		
-		mainShell.open();
-
+		mainShell.pack();
+		mainShell.layout();
 	}
 
 	protected void maintenanceButtonProcess(Button inMaintenanceButton) {
@@ -589,7 +700,9 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 						.getData("screenRowNum");
 				System.out.println("selected screenRowNum = "
 						+ selectedItemRow);
-				ItemPojo selectedItemPojo  = (ItemPojo) itemList.get(selectedItemRow);
+				//ItemPojo selectedItemPojo  = (ItemPojo) itemList.get(selectedItemRow);
+				ItemPojo selectedItemPojo  = (ItemPojo) filteredItems.get(selectedItemRow);
+				
 				System.out.println("This item is being taken for maintenance = " + selectedItemPojo.title);
 				System.out.println("selectedItemPojo.itemID = " + selectedItemPojo.itemID);
 				System.out.println("selectedItemPojo.relevance = " + selectedItemPojo.relevance);
@@ -662,6 +775,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		
 		itemsObjects = displayedItemMap.get(reviewItemRow);
 
+		itemsReviewGridData.exclude = false; // now that there is a content make its pane visibile
+
 		Group actionButtonGrp1 = new Group(itemsMainCompositeInMultiConentView, SWT.RIGHT | SWT.WRAP | SWT.READ_ONLY);
 		actionButtonGrp1.setLayout(new FillLayout());
 		
@@ -689,7 +804,14 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 				Control control2 = (Control) itemsObjsWithinEvent.get(1);
 				control2.dispose();
 				displayedItemMap.remove(itemRwWithinEvent);
+				if (displayedItemMap.size() == 0) {
+					itemsReviewGridData.exclude = true; // since all content is gone, regain real estate.
+				}
+				
 				itemsMainCompositeInMultiConentView.pack();
+				scrolledComposite_main.pack();
+				mainShell.pack();
+				
 				mainShell.layout(true);
 			}
 		});
@@ -846,14 +968,18 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	
 			System.out.println("At processContentAtWeb inRequestProcesserPojo.prevERLPojo.contentFileName is " + inRequestProcesserPojo.incomingContentFullPath);
 
-			InputStream incomingFileStream = inRemoteAccesser.getRemoteFileStream(inRequestProcesserPojo.incomingContentFullPath);
-	
+			InputStream incomingFileStream = null;
+			InputStream prevFileStream = null;
+			
+			//incomingFileStream = inRemoteAccesser.getRemoteFileStream(inRequestProcesserPojo.incomingContentFullPath);
+			
 			System.out.println("At processContentAtWeb incomingFileStream is " + incomingFileStream);
 			System.out.println("At processContentAtWeb ContentHandlerSpecs.ROLLUP_ADDUP_TYPE_ROLLUP is " + inRequestProcesserPojo.contentHandlerSpecs.rollupOrAddup);
 			System.out.println("At processContentAtWeb contenttype is " + inRequestProcesserPojo.contentHandlerSpecs.contentType);
 			
-			if ((inRequestProcesserPojo.contentHandlerSpecs.rollupOrAddup.equalsIgnoreCase(ContentHandlerSpecs.ROLLUP_ADDUP_TYPE_ROLLUP))
-				|| (inRequestProcesserPojo.contentHandlerSpecs.rollupOrAddup.equalsIgnoreCase(ContentHandlerSpecs.ROLLUP_ADDUP_TYPE_ADDUP))) {
+			//if ((inRequestProcesserPojo.contentHandlerSpecs.rollupOrAddup.equalsIgnoreCase(ContentHandlerSpecs.ROLLUP_ADDUP_TYPE_ROLLUP))
+			//	|| (inRequestProcesserPojo.contentHandlerSpecs.rollupOrAddup.equalsIgnoreCase(ContentHandlerSpecs.ROLLUP_ADDUP_TYPE_ADDUP))) {
+			if (inRequestProcesserPojo.contentHandlerSpecs.rollupAddupType) {
 				//For rollup contents such as innovations we need to absorb 'single item' from base content type
 				//For other types just need to refresh whole list as both incoming and prev will be both 'group items'
 				//documentToUpdate.absorbIncomingItemPojo(incomingDoc.getBaseItemDoc());
@@ -867,7 +993,6 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 					setInitialContent(inRequestProcesserPojo.requestPojo.relevance, inRequestProcesserPojo.requestPojo.contentType, documentToUpdate);
 					
 				} else {
-					InputStream prevFileStream = null;
 					System.out.println("inRequestProcesserPojo.prevERLPojo is " + inRequestProcesserPojo.prevERLPojo);
 					System.out.println("inRequestProcesserPojo.prevERLPojo.artifactKeyPojo is " + inRequestProcesserPojo.prevERLPojo.artifactKeyPojo);
 					System.out.println("inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance is " + inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance);
@@ -881,24 +1006,86 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 				}
 
 				GenericItemDocPojo incomingDoc = null;
-				incomingDoc = (GenericItemDocPojo) commonData.getCommons().getJsonDocFromInputStream(incomingFileStream,getBasePrimerDocClass());
-				documentToUpdate.absorbIncomingItemPojo(incomingDoc.getItem());
 
-				additionalRollAddWebProcess(incomingDoc.getItem());
+				if (inRequestProcesserPojo.requestPojo.artifactOrReview.equalsIgnoreCase(RequestPojo.ARTIFACT)) {
+					
+					incomingFileStream = inRemoteAccesser.getRemoteFileStream(inRequestProcesserPojo.incomingContentFullPath);
+					incomingDoc = (GenericItemDocPojo) commonData.getCommons().getJsonDocFromInputStream(incomingFileStream,getBasePrimerDocClass());
+					incomingFileStream.close();
 
+					documentToUpdate.absorbIncomingItemPojo(incomingDoc.getItem());
+					additionalRollAddWebProcess(incomingDoc.getItem());
+
+				} else {
+					//incomingFileStream = inRemoteAccesser.getRemoteFileStream(commonData.getCommons().getRemotePathFileName(inRootPojo.rootString, 
+					//		inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance, inRequestProcesserPojo.prevERLPojo.contentFileName,inRootPojo.fileSeparator));
+					//documentToUpdate = (GenericGrouperDocPojo) commonData.getCommons().getJsonDocFromInputStream(incomingFileStream,getPrimerDocClass());
+					//incomingFileStream.close();
+
+///////////////////
+///////////////////
+					ItemPojo itemPojoToUpdate = documentToUpdate.getItemByChildArtifactName(
+							inRequestProcesserPojo.requestPojo.relevance, 
+							inRequestProcesserPojo.requestPojo.artifactName);
+
+					UserPojo requestAuthorsDetail = commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(inRequestProcesserPojo.requestPojo.requestor);
+
+					if (!inRequestProcesserPojo.itemReassignedRequestor.isEmpty() 
+						|| !inRequestProcesserPojo.itemReassignedAuthor.isEmpty()
+						|| !inRequestProcesserPojo.itemNewERLStatus.isEmpty()) {
+
+						if (requestAuthorsDetail.hasAdminPrivilege() 
+							|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
+							|| ((requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(itemPojoToUpdate.author)
+									|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(itemPojoToUpdate.requestor)
+									|| commonData.getUsersHandler().doesUserHaveRightsOverMember(requestAuthorsDetail.rootSysLoginID, itemPojoToUpdate.author)
+							))) {
+							if (!inRequestProcesserPojo.itemReassignedRequestor.isEmpty()){
+								itemPojoToUpdate.requestor = inRequestProcesserPojo.itemReassignedRequestor;
+							}
+							if (!inRequestProcesserPojo.itemReassignedAuthor.isEmpty()){
+								itemPojoToUpdate.author = inRequestProcesserPojo.itemReassignedAuthor;
+							}
+							if (!inRequestProcesserPojo.itemNewERLStatus.isEmpty()){
+								itemPojoToUpdate.status = inRequestProcesserPojo.itemNewERLStatus;
+							}
+						}
+					}
+///////////////////					
+///////////////////					
+					//ItemPojo itemPojoToUpdate = documentToUpdate.getItemByChildArtifactName(
+					//		inRequestProcesserPojo.newERLPojo.artifactKeyPojo.relevance, 
+					//		inRequestProcesserPojo.newERLPojo.artifactKeyPojo.artifactName);
+					//
+					//if (!inRequestProcesserPojo.newERLPojo.author.isEmpty()) {
+					//	itemPojoToUpdate.author = inRequestProcesserPojo.newERLPojo.author;
+					//}
+					//if (!inRequestProcesserPojo.newERLPojo.erlStatus.isEmpty()) {
+					//	itemPojoToUpdate.status = inRequestProcesserPojo.newERLPojo.erlStatus;
+					//}
+					
+					documentToUpdate.absorbIncomingItemPojo(itemPojoToUpdate);
+				}
 			} else {
 				System.out.println("At processContentAtWeb not a ContentHandlerSpecs.ROLLUP_ADDUP_TYPE_ROLLUP or addup" );
-				
-				GenericGrouperDocPojo incomingDoc = (GenericGrouperDocPojo) commonData.getCommons().getJsonDocFromInputStream(incomingFileStream,getPrimerDocClass());
-				documentToUpdate = incomingDoc;								// hence replacing the whole doc with new.
+
+				if (inRequestProcesserPojo.requestPojo.artifactOrReview.equalsIgnoreCase(RequestPojo.ARTIFACT)) {				
+					incomingFileStream = inRemoteAccesser.getRemoteFileStream(inRequestProcesserPojo.incomingContentFullPath);
+					GenericGrouperDocPojo incomingDoc = (GenericGrouperDocPojo) commonData.getCommons().getJsonDocFromInputStream(incomingFileStream,getPrimerDocClass());
+					documentToUpdate = incomingDoc;								// hence replacing the whole doc with new.
+					incomingFileStream.close();
+				} else {
+					prevFileStream = inRemoteAccesser.getRemoteFileStream(commonData.getCommons().getRemotePathFileName(inRootPojo.rootString, 
+							inRequestProcesserPojo.prevERLPojo.artifactKeyPojo.relevance, inRequestProcesserPojo.prevERLPojo.contentFileName,inRootPojo.fileSeparator));
+					documentToUpdate = (GenericGrouperDocPojo) commonData.getCommons().getJsonDocFromInputStream(prevFileStream,getPrimerDocClass());
+					prevFileStream.close();
+				}
 			}
 	
 			inRequestProcesserPojo.updatedContentInputStream = commonData.getCommons().getJsonDocInStream(documentToUpdate);
 	
 			System.out.println("At processContentAtWeb closing the instream incomingFileStream " + incomingFileStream);
-			incomingFileStream.close();
 			
-
 		} catch (IOException e) {
 			e.printStackTrace();
 			ErrorHandler.showErrorAndQuit(mainShell, commonData.getCommons(), "Error2 at GenericGrouper processContentAtWeb " + inRequestProcesserPojo.newERLPojo.artifactKeyPojo.artifactName, e);
@@ -960,11 +1147,56 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		});
 		btnSaveDraft.setText("Save Draft");
 		btnSaveDraft.pack();
-
 	}
+	
 	public abstract void additionalRibbonButtons(Composite ribbon);
+	
+	public void setSelectionFilters(Composite buttonRibbon) {
+
+		filtersGroup = new Composite(buttonRibbon, SWT.NONE);
+		filtersGroup.setLayout(new GridLayout(3, false));
+
+	    filtersRibbonData = new GridData(SWT.FILL, SWT.FILL, true, true);
+	    filtersGroup.setLayoutData(filtersRibbonData);
+		
+		
+		statusSelList = new List(filtersGroup, SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		//statusSelList.setItems(new String[]{"zero","one","two"});
+		hideShowFilter = true;
+
+		//Capture the unique filter values
+		for (Object itemPojoObj : itemList ) {
+			ItemPojo itemPojo = (ItemPojo) itemPojoObj;
+			loadFilterList(statusSelList,((ItemPojo) itemPojo).status);
+			loadAdditionalFiltersList(itemPojo);
+		}
+		
+		//allSelectedStatusText = new Text(filtersRibbon, SWT.READ_ONLY);
+		
+		setFilterButtons(buttonRibbon);
+		setFilter(filtersGroup, statusSelList);
+		setAdditionalSelectionFilters(filtersGroup);
+
+		filtersGroup.pack();
+	}
+
+	private void loadFilterList(List inFilterList, String inFilterFieldValue) {
+		if (inFilterFieldValue == null) return;
+		if (inFilterList.indexOf(inFilterFieldValue) == -1) {
+			inFilterList.add(inFilterFieldValue);
+		}
+	}
+
+	public void loadAdditionalFiltersList(ItemPojo inItemPojo) {
+		// dummy method so only the handlers that need to add more filters need to override
+	}
+	
+	public void setAdditionalSelectionFilters(Composite buttonRibbon){		
+	}
+	
 	public void showAdditionalRibbonEditControls(Composite ribbon){
 	}
+
 	public void saveItemsJSON() {
 		System.out.println("GenericGrouper saveItemsXML");
 		try {
@@ -1011,14 +1243,17 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		System.out.println("writeJSON Stored the xml file : " + contentPathFileName);
 	}
 	
-	public void createNewStartupPrimer(String inNewPrimerFilePath, String inContentType) {
+	//public void createNewStartupPrimer(String inNewPrimerFilePath, String inContentType) {
+	public void createNewStartupPrimer(String inNewPrimerFilePath, ArtifactPojo inArtifactpojo) {
 		System.out.println("At createNewStartupPrimer json file name passed : " + inNewPrimerFilePath);
-		GenericGrouperDocPojo newPrimerDoc = getNewPrimerDoc();
+		//GenericGrouperDocPojo newPrimerDoc = getNewPrimerDoc();
+		primerDoc = getNewPrimerDoc();
 		try {
-			commons.putJsonDocToFile(inNewPrimerFilePath,newPrimerDoc);
+			commons.putJsonDocToFile(inNewPrimerFilePath,primerDoc);
 		} catch (IOException e) {
 			e.printStackTrace();
-			ErrorHandler.showErrorAndQuit(mainShell, commonData.getCommons(), "Error at GenericGrouper createNewStartupPrimer " + inNewPrimerFilePath + " " + inContentType, e);
+			ErrorHandler.showErrorAndQuit(mainShell, commonData.getCommons(), "Error at GenericGrouper createNewStartupPrimer " 
+							+ inNewPrimerFilePath + " " + inArtifactpojo.artifactKeyPojo.artifactName, e);
 		}
 		System.out.println("createNewStartupPrimer Stored the json file at : " + inNewPrimerFilePath);
 	}
@@ -1051,4 +1286,103 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		String validateString = "";
 		return validateString;
 	}
+	
+	public void setFilter(Composite inButtonRibbon, List inList) {
+
+		inList.addSelectionListener(new SelectionAdapter() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				List dropDownList = (List) e.getSource();
+				int[] comboSelection = dropDownList.getSelectionIndices();
+				if (comboSelection != null) {
+					//System.out.println("selected items are " + dropDownList.getSelection()inDropDownItems[dropDownList.getSelectionIndices()[0]]);
+					System.out.println("selected items are " + dropDownList.getSelection());
+				}
+				applyFilterButton.setVisible(true);
+			}
+		});
+		inList.pack();
+	}
+
+	public ArrayList<ItemPojo> getFilteredItemList(){
+		ArrayList<ItemPojo> filteredItemlist = new ArrayList<ItemPojo>();
+
+		for (Object itemPojoObj : itemList ) {
+			ItemPojo itemPojo = (ItemPojo) itemPojoObj;
+			if (checkFilter(statusSelList,itemPojo.status)){
+				if (checkAddlFilters(itemPojo)){
+					filteredItemlist.add(itemPojo);					
+				}
+			}
+		}
+		
+		return filteredItemlist;
+	}
+	
+	public boolean checkFilter(List statusSelList,String inFilterValue){
+		if (statusSelList == null || statusSelList.getSelectionCount() == 0 || inFilterValue == null
+			|| statusSelList.isSelected(statusSelList.indexOf(inFilterValue))) {
+			return true;
+		} else return false;
+	}
+
+	public boolean checkAddlFilters(ItemPojo inItemPojo){
+		return true;
+	}
+
+	public void setFilterButtons(Composite inRibbonComposite){
+		
+		//set up the ApplyFilter button
+		applyFilterButton = new Button(filtersGroup, SWT.PUSH);	// the container is inner ribbon
+		applyFilterButton.setText("ApplyFilter");
+		applyFilterButton.setToolTipText("Hide this review pane to make room in screen");
+
+		applyFilterButton.addSelectionListener(new SelectionAdapter() {			
+			public void widgetSelected(SelectionEvent event) {
+				populateScreenItems();
+			}
+		});
+		applyFilterButton.pack();
+		filtersGroup.pack();
+		
+		//set up the showhide button
+		showOrHideFiltersButton = new Button(inRibbonComposite, SWT.PUSH);
+		showOrHideFiltersButton.setText(hidefiltersLIT);
+		showOrHideFiltersButton.setToolTipText("Hide this review pane to make room in screen");
+
+		showOrHideFiltersButton.addSelectionListener(new SelectionAdapter() {			
+			public void widgetSelected(SelectionEvent event) {
+				if (hideShowFilter) {
+
+					System.out.println("hideShowFilterVisible");
+											
+					//MessageBox WarningMessageBox = new MessageBox(mainShell,
+					//			SWT.ICON_WARNING | SWT.OK | SWT.CANCEL);
+					//	WarningMessageBox.setMessage("The keyed in text will be lost if hidden. Proceed?");
+					//if (WarningMessageBox.open() == SWT.CANCEL) {
+					//	System.out.println("Cancel chosen. returning");
+					//	return;
+					//} else {
+					//	System.out.println("Hide confirmed. Proceeding");
+					//}
+					((Button) event.getSource()).setText("ShowFilters");
+					System.out.println("Hiding Filter");
+					hideShowFilter = false;
+					filtersGroup.setVisible(false);
+					filtersRibbonData.exclude = true;
+				} else {
+					((Button) event.getSource()).setText(hidefiltersLIT);
+					hideShowFilter = true;
+					filtersGroup.setVisible(true);
+					filtersRibbonData.exclude = false;
+				}
+				buttonRibbon.pack();
+				filtersGroup.pack();
+				mainShell.pack();
+				mainShell.layout();				
+			}
+		});
+		showOrHideFiltersButton.pack();
+		inRibbonComposite.pack();
+	}	
 }

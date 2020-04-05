@@ -172,7 +172,7 @@ public class ColbTrkClientOrchestrator implements Runnable {
 
 				System.out.println("goint to sleep for " + orchestrationData.getHealthCheckIntervalInSeconds() + " seconds");
 
-				Thread.sleep(orchestrationData.getHealthCheckIntervalInSeconds() * 1000);
+				Thread.sleep(orchestrationData.getHealthCheckIntervalInSeconds() * 1000);	//sleep for x milliseconds
 
 				System.out.println("resuming Client Orchestrator");
 				System.out.println(" orchestrationData okToContinue 11 is " + orchestrationData.getOkayToContinue());

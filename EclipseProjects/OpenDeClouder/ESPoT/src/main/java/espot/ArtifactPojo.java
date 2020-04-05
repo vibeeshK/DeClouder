@@ -13,22 +13,30 @@ public class ArtifactPojo {
 	public static final String ERLSTAT_APPROVED = "APPROVED";
 	public static final String ERLSTAT_INACTIVE = "INACTIVE";
 	
-	public static final String[] AUTHOR_VALID_ACTIONS = {
-																ERLSTAT_DRAFT,
-																ERLSTAT_DRAFTRQACK,
-																ERLSTAT_REVIEWREQ
-															};
 	public static final String[] REQUESTOR_VALID_ACTIONS = {
 																ERLSTAT_DRAFTREQ,
-																ERLSTAT_REVIEWREQ,
 																ERLSTAT_REVIEWRQACK,
 																ERLSTAT_APPROVED,
 																ERLSTAT_INACTIVE
 															};
-	public static final String[] ADMIN_VALID_ACTIONS = {
+	public static final String[] AUTHOR_VALID_ACTIONS = {
+																ERLSTAT_DRAFTRQACK,
 																ERLSTAT_DRAFT,
+																ERLSTAT_REVIEWREQ
+															};
+	//public static final String[] LEADER_VALID_ACTIONS = {
+	//															ERLSTAT_DRAFTREQ,
+	//															ERLSTAT_DRAFTRQACK,
+	//															ERLSTAT_DRAFT,
+	//															ERLSTAT_REVIEWREQ,
+	//															ERLSTAT_REVIEWRQACK,
+	//															ERLSTAT_APPROVED,
+	//															ERLSTAT_INACTIVE
+	//														};
+	public static final String[] ADMIN_VALID_ACTIONS = {
 																ERLSTAT_DRAFTREQ,
 																ERLSTAT_DRAFTRQACK,
+																ERLSTAT_DRAFT,
 																ERLSTAT_REVIEWREQ,
 																ERLSTAT_REVIEWRQACK,
 																ERLSTAT_APPROVED,

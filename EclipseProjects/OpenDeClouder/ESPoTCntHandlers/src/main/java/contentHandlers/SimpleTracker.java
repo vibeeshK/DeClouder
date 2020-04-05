@@ -86,7 +86,7 @@ public class SimpleTracker extends GenericItemHandler implements DeckerLiteConte
 	
 	public void getAddlFieldsOfItemPojo(ItemPojo inItemPojo){
 		SimpleTrackerPojo simpleTrackerPojo = (SimpleTrackerPojo) primerDoc.getItem();
-		simpleTrackerPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
+		//simpleTrackerPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 		simpleTrackerPojo.corePlanChanged = true;	// As this method is called only when save button is pressed in UI
 												// it would indicate that the core plan had changed.		
 	}

@@ -28,7 +28,7 @@ public class OrchestrationUI implements Runnable {
 
 	final int DEFAULTINTERVAL_MINIM_MINTS = 1;
 	final int DEFAULTINTERVAL_INCREMT_MINTS = 1;
-	final int DEFAULTINTERVAL_MAX_MINTS = 2;
+	final int DEFAULTINTERVAL_MAX_MINTS = 60;
 	final int DEFAULTINTERVAL_DEFSEL_MINTS = 1;
 	
 	Spinner healthCheckIntervalDateTime;
@@ -80,10 +80,13 @@ public class OrchestrationUI implements Runnable {
 		applyButton.setText ("Apply");
 		applyButton.addSelectionListener (new SelectionAdapter () {
 	        public void widgetSelected (SelectionEvent e) {
-				orchestration.healthCheckIntervalMin = healthCheckIntervalDateTime.getSelection();
-				orchestration.repeatIntervalMin = repeatIntervalDateTime.getSelection();
-				System.out.println("healthCheckIntervalMin is " + orchestration.healthCheckIntervalMin);
-				System.out.println("repeatIntervalMin is " + orchestration.repeatIntervalMin);
+				//orchestration.healthCheckIntervalMin = healthCheckIntervalDateTime.getSelection();
+	        	orchestration.setHealthCheckIntervalMin(healthCheckIntervalDateTime.getSelection());
+				//orchestration.repeatIntervalMin = repeatIntervalDateTime.getSelection();
+				orchestration.setRepeatIntervalMin(repeatIntervalDateTime.getSelection());
+
+				System.out.println("healthCheckIntervalMin is " + orchestration.getHealthCheckIntervalInSeconds());
+				System.out.println("repeatIntervalMin is " + orchestration.getRepeatIntervalInSeconds());
 	        }
 	      });
 		

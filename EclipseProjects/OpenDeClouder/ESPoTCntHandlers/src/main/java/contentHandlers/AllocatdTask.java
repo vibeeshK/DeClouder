@@ -61,7 +61,7 @@ public class AllocatdTask extends GenericItemHandler {
 
 	public void setInitialItemPojoAddlFields(Object inItemPojo){
 		AllocatdTaskItemPojo allocatedTaskItemPojo = (AllocatdTaskItemPojo) inItemPojo;
-		allocatedTaskItemPojo.status = "Draft";
+		//allocatedTaskItemPojo.status = "Draft";
 	}
 	
 	public String validateBeforeUIEdit() {

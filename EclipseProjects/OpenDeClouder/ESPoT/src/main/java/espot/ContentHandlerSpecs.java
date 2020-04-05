@@ -35,6 +35,7 @@ public class ContentHandlerSpecs {
 	public boolean rollupAddupType = false;
 	
 	public ContentHandlerSpecs(Commons inCommons){
+		rollupAddupType = false;
 		commons = inCommons;
 	}
 
@@ -80,9 +81,14 @@ public class ContentHandlerSpecs {
 		System.out.println("@ setContentHandlerSpecs rollupContentType : " + rollAddContentType);
 		System.out.println("@ setContentHandlerSpecs hasSpecialHandler : " + hasSpecialHandler);
 
-		if (rollupOrAddup == null || rollupOrAddup.equalsIgnoreCase("") || rollupOrAddup.equalsIgnoreCase(ROLLUP_ADDUP_TYPE_NONE)){
-			rollupAddupType = true;			
-		}		
+		//if (rollupOrAddup == null || rollupOrAddup.equalsIgnoreCase("") || rollupOrAddup.equalsIgnoreCase(ROLLUP_ADDUP_TYPE_NONE)){
+		//	rollupAddupType = true;			
+		//}		
+		
+		if (!rollupOrAddup.isEmpty() && !rollupOrAddup.equalsIgnoreCase(ROLLUP_ADDUP_TYPE_NONE)){
+			rollupAddupType = true;
+		}
+
 		System.out.println("@ setContentHandlerSpecs rollupAddupType : " + rollupAddupType);
 	}
 	
@@ -95,7 +101,7 @@ public class ContentHandlerSpecs {
 
 		ArtifactKeyPojo finalArtifactKeyPojo = null;
 		//if (rollupOrAddup == null || rollupOrAddup.equalsIgnoreCase("") || rollupOrAddup.equalsIgnoreCase(ROLLUP_ADDUP_TYPE_NONE)){
-		if (rollupAddupType) {
+		if (!rollupAddupType) {
 			System.out.println("getFinalArtifactKeyPojo ROLLUP_ADDUP_TYPE_NONE");
 			finalArtifactKeyPojo = new ArtifactKeyPojo(inChildRootNick,inChildRelevance,inChildArtifactName,contentType);
 		} else {

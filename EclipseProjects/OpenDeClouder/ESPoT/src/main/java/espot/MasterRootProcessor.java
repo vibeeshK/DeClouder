@@ -65,8 +65,8 @@ public class MasterRootProcessor implements Runnable {
 			synchronized (this) {
 				System.out.println("GONNA WAIT");
 				try {
-					System.out.println("goint to wait " + orchestrationData.getrepeatIntervalInSeconds() + " seconds");
-					wait(orchestrationData.getrepeatIntervalInSeconds() * 1000);								
+					System.out.println("goint to wait " + orchestrationData.getRepeatIntervalInSeconds() + " seconds");
+					wait(orchestrationData.getRepeatIntervalInSeconds() * 1000);								
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 					System.out.println("EXITING THE CURRENT LOOP1");

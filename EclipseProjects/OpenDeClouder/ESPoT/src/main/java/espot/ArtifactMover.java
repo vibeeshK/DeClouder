@@ -174,8 +174,9 @@ public class ArtifactMover {
 				
 				//contentHandlerInterfaceForNewPrimeFileCreation.createNewStartupPrimer(artifactMover.getPrimeFilePath(inDestSelfAuthoredArtifactpojo),
 				//		inDestSelfAuthoredArtifactpojo.artifactKeyPojo.contentType);
-				contentHandlerInterfaceForNewPrimeFileCreation.createNewStartupPrimer(getPrimeFilePath(inDestSelfAuthoredArtifactpojo),
-						inDestSelfAuthoredArtifactpojo.artifactKeyPojo.contentType);
+				contentHandlerInterfaceForNewPrimeFileCreation.createNewStartupPrimer(
+																	getPrimeFilePath(inDestSelfAuthoredArtifactpojo),
+																	inDestSelfAuthoredArtifactpojo);
 				System.out.println("At moveFromTemplate 8 lastProcessStatus = " + lastProcessStatus);
 				if (lastProcessStatus == NO_SOURCE_FILE) {
 					lastProcessStatus = PROCESSED_OK;	// as this condition is already handled resetting to ok

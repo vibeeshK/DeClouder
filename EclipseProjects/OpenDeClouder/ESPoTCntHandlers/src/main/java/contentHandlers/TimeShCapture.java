@@ -478,8 +478,7 @@ public class TimeShCapture extends GenericItemHandler {
 
 	public void getAddlFieldsOfItemPojo(ItemPojo inItemPojo){
 		TimeShCapturePojo timeShCapturePojo = (TimeShCapturePojo) primerDoc.getItem();
-		timeShCapturePojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
-		System.out.println("title value while saving is " + timeShCapturePojo.title);
+		//timeShCapturePojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 		System.out.println("title value while saving is " + timeShCapturePojo.title);
 
 		timeShCapturePojo.captureInterval = commonData.getCommons().convertStringToInt(captureIntervalText.getText());

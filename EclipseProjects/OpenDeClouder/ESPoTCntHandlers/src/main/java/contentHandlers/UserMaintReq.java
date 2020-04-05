@@ -171,7 +171,7 @@ public class UserMaintReq extends GenericItemHandler {
 	
 	public void getAddlFieldsOfItemPojo(ItemPojo inItemPojo){
 		UserMaintReqPojo userMaintReqPojo = (UserMaintReqPojo) inItemPojo;
-		userMaintReqPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
+		//userMaintReqPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 		userMaintReqPojo.userPojo.rootSysLoginID = rootSysLoginIDText.getText();
 		userMaintReqPojo.userPojo.userName = userNameText.getText();
 		//userMaintReqPojo.userPojo.leadID = leadIDText.getText();

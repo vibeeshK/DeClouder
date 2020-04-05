@@ -10,8 +10,8 @@ public interface ContentHandlerInterface {
 
 	public String prevalidate(CommonData inCommonData,ArtifactKeyPojo inArtifactKeyPojo);
 	public void initializeContentHandlerWithMinimumSetup(CommonData inCommonData);
-	public void createNewStartupPrimer(String inNewPrimerFilePath, String inContentType);
-	public void initializeContentHandlerForDraftArtifact(CommonUIData inCommonUIData, SelfAuthoredArtifactpojo inSelfAuthoredArtifactspoj);
+	public void createNewStartupPrimer(String inNewPrimerFilePath, ArtifactPojo inArtifactspojo);
+	public void initializeContentHandlerForDraftArtifact(CommonUIData inCommonUIData, SelfAuthoredArtifactpojo inSelfAuthoredArtifactspojo);
 	public void initializeContentHandlerForDownloadedArtifact(CommonUIData inCommonUIData, ERLDownload inERLDownload);
 	public void initializeContentHandlerForERLDownloadAndItemFocus(CommonUIData inCommonUIData,ERLDownload inERLDownload, ItemPojo inItemPojo);	
 	public void initNonUIContentHandlerForDownloadedArtifact(CommonData inCommonData, ERLDownload inERLDownload);

@@ -15,9 +15,19 @@ public class RequestProcesserPojo {
 	public String updatedContentFileLocation;
 	public transient InputStream updatedContentInputStream = null;
 	public String incomingContentFullPath = null;
+	public boolean artifactToBeUpdatedForRemarkFields = false;
+
+	// holding item values to pass to the grouper handler
+	public String itemReassignedRequestor;
+	public String itemReassignedAuthor;	
+	public String itemNewERLStatus;
 
 	public RequestProcesserPojo(RequestPojo inRequestPojo) {
 		requestPojo = inRequestPojo;
+		artifactToBeUpdatedForRemarkFields = false;
+		itemReassignedRequestor = "";
+		itemReassignedAuthor = "";
+		itemNewERLStatus = "";
 	}
 
 	public boolean doesERLAlreadyExist() {

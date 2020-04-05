@@ -107,23 +107,41 @@ public class TimeShTrigger extends GenericItemHandler {
 			captureStartDateDisplay = new DateTime(captureStartDateInfo, SWT.DATE | SWT.CENTER);
 		} else {
 			captureStartDateDisplay = new DateTime(captureStartDateInfo, SWT.DATE | SWT.READ_ONLY | SWT.CENTER);
+			captureStartDateDisplay.setEnabled(false);
 		}
-		if (invokedForEdit && timeShTriggerPojo.captureStartDate == null) {
-			SimpleDateObj startDateSimpleObj = new SimpleDateObj(commons.getDateTS());
-			captureStartDateDisplay.setDate(startDateSimpleObj.year,startDateSimpleObj.month-1,startDateSimpleObj.day);
-		}
-		
-		if (timeShTriggerPojo.captureStartDate!= null) {
-			SimpleDateObj startDateSimpleObj = null;
+		if (invokedForEdit && (timeShTriggerPojo.captureStartDate == null || timeShTriggerPojo.captureStartDate.isEmpty())) {
+			//SimpleDateObj startDateSimpleObj = new SimpleDateObj(commons.getDateTS());
+			//captureStartDateDisplay.setDate(startDateSimpleObj.year,startDateSimpleObj.month-1,startDateSimpleObj.day);
+			
 			try {
-				startDateSimpleObj = new SimpleDateObj(commons.getDateFromDateOnlyString(timeShTriggerPojo.captureStartDate));
+				commons.setCurrentDateOnDisplay(captureStartDateDisplay);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				ErrorHandler.showErrorAndQuit(commons, "Error in TimeShCapture setAddlFieldsForItemDisplay " + " " + inItemPojo.artifactName, e);				
+				ErrorHandler.showErrorAndQuit(commons, "Error in TimeShCapture setAddlFieldsForItemDisplay CurrDate StartDate of " 
+															+ inItemPojo.artifactName, e);
 			}
-			captureStartDateDisplay.setDate(startDateSimpleObj.year,startDateSimpleObj.month-1,startDateSimpleObj.day);
+		} else if (timeShTriggerPojo.captureStartDate != null && !timeShTriggerPojo.captureStartDate.isEmpty()) {
+			//SimpleDateObj startDateSimpleObj = null;
+			//try {
+			//	startDateSimpleObj = new SimpleDateObj(commons.getDateFromDateOnlyString(timeShTriggerPojo.captureStartDate));
+			//} catch (ParseException e) {
+			//	// TODO Auto-generated catch block
+			//	e.printStackTrace();
+			//	ErrorHandler.showErrorAndQuit(commons, "Error in TimeShCapture setAddlFieldsForItemDisplay " + " " + inItemPojo.artifactName, e);				
+			//}
+			//captureStartDateDisplay.setDate(startDateSimpleObj.year,startDateSimpleObj.month-1,startDateSimpleObj.day);
+
+			try {
+				commons.setDateOnDisplay(captureStartDateDisplay, timeShTriggerPojo.captureStartDate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				ErrorHandler.showErrorAndQuit(commons, "Error in TimeShCapture setAddlFieldsForItemDisplay StartDate of " 
+															+ inItemPojo.artifactName, e);				
+			}
 		}
+		
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(lastGroup);
@@ -139,22 +157,40 @@ public class TimeShTrigger extends GenericItemHandler {
 			captureEndDateDisplay = new DateTime(captureEndDateInfo, SWT.DATE | SWT.CENTER);
 		} else {
 			captureEndDateDisplay = new DateTime(captureEndDateInfo, SWT.DATE | SWT.READ_ONLY | SWT.CENTER);
+			captureEndDateDisplay.setEnabled(false);
 		}
 
-		if (invokedForEdit && timeShTriggerPojo.captureEndDate == null) {
-			SimpleDateObj endDateSimpleObj = new SimpleDateObj(commons.getDateTS());
-			captureEndDateDisplay.setDate(endDateSimpleObj.year,endDateSimpleObj.month-1,endDateSimpleObj.day);			
+		if (invokedForEdit && (timeShTriggerPojo.captureEndDate == null || timeShTriggerPojo.captureEndDate.isEmpty())) {
+			//SimpleDateObj endDateSimpleObj = new SimpleDateObj(commons.getDateTS());
+			//captureEndDateDisplay.setDate(endDateSimpleObj.year,endDateSimpleObj.month-1,endDateSimpleObj.day);			
+
+			try {
+				commons.setCurrentDateOnDisplay(captureEndDateDisplay);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				ErrorHandler.showErrorAndQuit(commons, "Error in TimeShCapture setAddlFieldsForItemDisplay CurrDate EndDate of " 
+															+ inItemPojo.artifactName, e);
+			}		
 		}
 		
-		if (timeShTriggerPojo.captureEndDate!= null) {
-			SimpleDateObj endDateSimpleObj = null;
+		if (timeShTriggerPojo.captureEndDate!= null && !timeShTriggerPojo.captureEndDate.isEmpty()) {
+			//SimpleDateObj endDateSimpleObj = null;
+			//try {
+			//	endDateSimpleObj = new SimpleDateObj(commons.getDateFromDateOnlyString(timeShTriggerPojo.captureEndDate));
+			//} catch (ParseException e) {
+			//	e.printStackTrace();
+			//	ErrorHandler.showErrorAndQuit(commons, "Error in TimeShTrigger setAddlFieldsForItemDisplay " + " " + inItemPojo.artifactName, e);
+			//}
+			//captureEndDateDisplay.setDate(endDateSimpleObj.year,endDateSimpleObj.month-1,endDateSimpleObj.day);
+
 			try {
-				endDateSimpleObj = new SimpleDateObj(commons.getDateFromDateOnlyString(timeShTriggerPojo.captureEndDate));
+				commons.setDateOnDisplay(captureEndDateDisplay, timeShTriggerPojo.captureEndDate);
 			} catch (ParseException e) {
 				e.printStackTrace();
-				ErrorHandler.showErrorAndQuit(commons, "Error in TimeShTrigger setAddlFieldsForItemDisplay " + " " + inItemPojo.artifactName, e);
+				ErrorHandler.showErrorAndQuit(commons, "Error in TimeShTrigger setAddlFieldsForItemDisplay EndDate of "
+															+ inItemPojo.artifactName, e);
 			}
-			captureEndDateDisplay.setDate(endDateSimpleObj.year,endDateSimpleObj.month-1,endDateSimpleObj.day);
 		}
 		
 		formData = new FormData();
@@ -169,7 +205,7 @@ public class TimeShTrigger extends GenericItemHandler {
 	public void getAddlFieldsOfItemPojo(ItemPojo inItemPojo){
 		TimeShTriggerPojo timeShTriggerPojo = (TimeShTriggerPojo) primerDoc.getItem();
 		timeShTriggerPojo.reviewer = reviewerText.getText();
-		timeShTriggerPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
+		//timeShTriggerPojo.relevance = invokedArtifactPojo.artifactKeyPojo.relevance;
 		System.out.println("title value while saving is " + timeShTriggerPojo.title);
 		System.out.println("title value while saving is " + timeShTriggerPojo.title);
 
@@ -177,20 +213,24 @@ public class TimeShTrigger extends GenericItemHandler {
 		timeShTriggerPojo.allocationInterval = commonData.getCommons().convertStringToInt(allocationIntervalText.getText());
 
 		try {
-			timeShTriggerPojo.captureStartDate = commons.getDateString(commons.getDate(
-															captureStartDateDisplay.getYear(),
-															captureStartDateDisplay.getMonth()+1,
-															captureStartDateDisplay.getDay(),			
-															captureStartDateDisplay.getHours(),
-															captureStartDateDisplay.getMinutes(),
-															captureStartDateDisplay.getSeconds()));
-			timeShTriggerPojo.captureEndDate = commons.getDateString(commons.getDate(
-															captureEndDateDisplay.getYear(),
-															captureEndDateDisplay.getMonth()+1,
-															captureEndDateDisplay.getDay(),			
-															captureEndDateDisplay.getHours(),
-															captureEndDateDisplay.getMinutes(),
-															captureEndDateDisplay.getSeconds()));
+			//timeShTriggerPojo.captureStartDate = commons.getDateString(commons.getDate(
+			//												captureStartDateDisplay.getYear(),
+			//												captureStartDateDisplay.getMonth()+1,
+			//												captureStartDateDisplay.getDay(),			
+			//												captureStartDateDisplay.getHours(),
+			//												captureStartDateDisplay.getMinutes(),
+			//												captureStartDateDisplay.getSeconds()));
+			//timeShTriggerPojo.captureEndDate = commons.getDateString(commons.getDate(
+			//												captureEndDateDisplay.getYear(),
+			//												captureEndDateDisplay.getMonth()+1,
+			//												captureEndDateDisplay.getDay(),			
+			//												captureEndDateDisplay.getHours(),
+			//												captureEndDateDisplay.getMinutes(),
+			//												captureEndDateDisplay.getSeconds()));
+			
+			timeShTriggerPojo.captureStartDate = commons.getDateStringFromDisplayDate(captureStartDateDisplay);
+			timeShTriggerPojo.captureEndDate = commons.getDateStringFromDisplayDate(captureEndDateDisplay);
+			
 		} catch (ParseException e) {			
 			e.printStackTrace();
 			ErrorHandler.showErrorAndQuit(commons, "Error in TimeShTrigger getAddlFieldsOfItemPojo " + " " + inItemPojo.artifactName, e);			

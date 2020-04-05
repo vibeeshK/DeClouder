@@ -99,7 +99,7 @@ public class IdeasGrouper extends GenericGrouper {
 		System.out.println("setAddlColumnHeaders  ");
 		System.out.println("addlHeadersCount=" + addlHeadersCount);
 
-		centerBaseColHeaders = new String[] {"Description","Author","Subportfolio","Application","Reviewer","Status"};
+		centerBaseColHeaders = new String[] {"Description","Author","Application","Reviewer","Status"};
 	}
 
 	public void setDisplayItemsCenterBaseFieldsInMultiDisplay(TableEditor editor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojo){
@@ -116,12 +116,6 @@ public class IdeasGrouper extends GenericGrouper {
 		author_Tx.setText(ideaPojo.author);
 		editor.grabHorizontal = true;
 		editor.setEditor(author_Tx, inTableItem, ++inLastColLocation);
-	
-		editor = new TableEditor(inTable);
-		Text subportfolio_Tx = new Text(inTable, SWT.READ_ONLY);
-		subportfolio_Tx.setText(ideaPojo.subportfolio);
-		editor.grabHorizontal = true;
-		editor.setEditor(subportfolio_Tx, inTableItem, ++inLastColLocation);
 	
 		editor = new TableEditor(inTable);
 		Text application_Tx = new Text(inTable, SWT.READ_ONLY);

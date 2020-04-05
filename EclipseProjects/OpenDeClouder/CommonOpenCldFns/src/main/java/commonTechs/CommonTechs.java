@@ -56,6 +56,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.swt.widgets.DateTime;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -63,7 +64,6 @@ import org.xml.sax.SAXException;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-
 
 public class CommonTechs {
 	/*
@@ -312,7 +312,7 @@ public class CommonTechs {
 	}
 
 	public synchronized Date getDateFromDateOnlyString(String inDateOnlyString) throws ParseException {
-		if (inDateOnlyString==null) {
+		if (inDateOnlyString==null || inDateOnlyString.isEmpty()) {
 			return null;
 		}
 		SimpleDateFormat simpl_dteonly_format = new SimpleDateFormat(SIMPL_DTEONLY_FORMAT);
@@ -393,6 +393,33 @@ public class CommonTechs {
 													);
 		return SimpleDateObj.getDate(simpleDateObj);
 	}
+
+	public synchronized void setDateOnDisplay(DateTime inDateTime, String inDateString) throws ParseException{
+		SimpleDateObj startDateSimpleObj 
+					= new SimpleDateObj(getDateFromDateOnlyString(inDateString));
+		inDateTime.setDate(startDateSimpleObj.year,startDateSimpleObj.month-1,startDateSimpleObj.day);
+	}
+	
+	public synchronized void setCurrentDateOnDisplay(DateTime inDateTime) throws ParseException{
+		SimpleDateObj startDateSimpleObj 
+					= new SimpleDateObj(getDateTS());
+		inDateTime.setDate(startDateSimpleObj.year,startDateSimpleObj.month-1,startDateSimpleObj.day);
+	}
+
+	public synchronized String getDateStringFromDisplayDate(DateTime inDateTime) throws ParseException {
+		String dateString = "";
+		if (inDateTime != null) {
+			dateString = getDateString(getDate(
+											inDateTime.getYear(),
+											inDateTime.getMonth()+1,
+											inDateTime.getDay(),			
+											inDateTime.getHours(),
+											inDateTime.getMinutes(),
+											inDateTime.getSeconds()));
+		}
+		return dateString;
+	}
+	
 	
 	public synchronized boolean hasTimeSecElapsed(Date inStartTime, int inSec){
 		System.out.println("hasTimeSecElapsed?? inStartTime is " + inStartTime);

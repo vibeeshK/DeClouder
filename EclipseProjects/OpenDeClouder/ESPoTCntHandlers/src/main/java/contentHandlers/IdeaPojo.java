@@ -7,8 +7,6 @@ public class IdeaPojo extends ItemPojo{
 	 * Data holder for an idea item
 	 */
 
-	String portfolio;
-	String subportfolio;
 	String description;
 	String application;
 	String attachments;
@@ -27,8 +25,6 @@ public class IdeaPojo extends ItemPojo{
 	void initializeAdditionalItemPojoFields(){
 		System.out.println("initializeAdditionalItemPojoFields at ideaPojo class");
 
-		portfolio = "";
-		subportfolio = "";
 		description = "";
 		application = "";
 		attachments = "";
