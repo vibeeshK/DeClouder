@@ -87,5 +87,5 @@ public class AllocatdTask extends GenericItemHandler {
 	
 	public AllocatdTaskItemDoc getNewPrimerDoc() {
 		return new AllocatdTaskItemDoc(new AllocatdTaskItemPojo(-1));
-	}	
+	}
 }

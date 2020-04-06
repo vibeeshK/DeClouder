@@ -7,7 +7,7 @@ public class GenlRequestPojo extends ItemPojo{
 	 * Data holder for an GenlRequestPojo item
 	 */
 
-	String requestorShortName;
+	//String requestorShortName;
 	String requestDesc;	
 	String requestCategory;	
 	String requestStartDate;
@@ -21,7 +21,7 @@ public class GenlRequestPojo extends ItemPojo{
 	void initializeAdditionalItemPojoFields(){
 		System.out.println("initializeAdditionalItemPojoFields at genlRequestPojoPojo class");
 
-		requestorShortName = "";
+		//requestorShortName = "";
 		requestDesc = "";
 		requestCategory = "";	
 		requestStartDate = "";

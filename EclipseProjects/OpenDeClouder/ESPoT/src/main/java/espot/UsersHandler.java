@@ -17,6 +17,7 @@ public class UsersHandler {
 	private ArrayList<UserPojo> usersList = null;
 	private String[] usersNamesStrings = null;
 	private String[] usersShortNames = null;
+	private UserPojo currentUserDetail = null;
 	CatelogPersistenceManager catelogPersistenceManager = null;
 	Commons commons = null;
 	//private static UsersHandler usersHandler = null; // removed singleton to avoid building up of unknown users
@@ -32,6 +33,7 @@ public class UsersHandler {
 		System.out.println("usersList.get(0).shortId " + usersList.get(0).rootSysLoginID);
 		System.out.println("usersList.get(readUsersList.size-1).shortId " + usersList.get(usersList.size()-1).rootSysLoginID);
 		creategetUsersNamesStrings();	// set up username strings
+		currentUserDetail = getUserDetailsFromRootSysLoginID(commons.userName);
 	}
 	
 	public int appendUserPojo(UserPojo inUserPojo){
@@ -56,6 +58,10 @@ public class UsersHandler {
 	
 	public ArrayList<UserPojo> getUserDetails() {
 		return usersList;
+	}
+	
+	public UserPojo getCurrentUserPojo(){
+		return currentUserDetail;
 	}
 	
 	public void creategetUsersNamesStrings(){

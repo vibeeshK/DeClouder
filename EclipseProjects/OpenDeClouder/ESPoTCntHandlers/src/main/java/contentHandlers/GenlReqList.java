@@ -19,6 +19,7 @@ import espot.GenericGrouper;
 import espot.GenericGrouperDocPojo;
 import espot.GenericItemDocPojo;
 import espot.ItemPojo;
+import espot.UsersDisplay;
 
 public class GenlReqList extends GenericGrouper {
 	/*
@@ -50,7 +51,7 @@ public class GenlReqList extends GenericGrouper {
 		System.out.println("setAddlColumnHeaders  ");
 		System.out.println("addlHeadersCount=" + addlHeadersCount);
 
-		centerBaseColHeaders = new String[] {"requestor","requestTitle","Description","Category","ReqStartsOn","ReqUpto","Status"};
+		centerBaseColHeaders = new String[] {"ReqByShortID","ReqByName","Title","Description","Category","ReqStartsOn","ReqUpto","Status"};
 	}
 
 	public void setDisplayItemsCenterBaseFieldsInMultiDisplay(TableEditor editor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojo){
@@ -64,10 +65,16 @@ public class GenlReqList extends GenericGrouper {
 //		requestEndDate = "";
 
 		editor = new TableEditor(inTable);
-		Text requestorShortName_Tx = new Text(inTable, SWT.READ_ONLY);
-		requestorShortName_Tx.setText(genlRequestPojo.requestorShortName);
+		Text requestedByShortName_Tx = new Text(inTable, SWT.READ_ONLY);
+		requestedByShortName_Tx.setText(genlRequestPojo.author);
 		editor.grabHorizontal = true;
-		editor.setEditor(requestorShortName_Tx, inTableItem, ++inLastColLocation);
+		editor.setEditor(requestedByShortName_Tx, inTableItem, ++inLastColLocation);
+
+		editor = new TableEditor(inTable);
+		Text requestedByFullName_Tx = new Text(inTable, SWT.READ_ONLY);
+		requestedByFullName_Tx.setText(commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(genlRequestPojo.author).userName);
+		editor.grabHorizontal = true;
+		editor.setEditor(requestedByFullName_Tx, inTableItem, ++inLastColLocation);
 
 		editor = new TableEditor(inTable);
 		Text requestFor_Tx = new Text(inTable, SWT.READ_ONLY);
@@ -144,18 +151,34 @@ public class GenlReqList extends GenericGrouper {
 			inPrevGroup = requestDescInfo;
 		}
 	
+		//{
+		//	Group requestorShortNameInfo = new Group(itemContentGroup, SWT.LEFT);
+		//	requestorShortNameInfo.setText("RequestorShortName");
+		//	requestorShortNameInfo.setLayout(new FillLayout());
+		//	requestorShortNameText = new Text(requestorShortNameInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
+		//	requestorShortNameText.setText(genlRequestPojo.requestorShortName);
+		//	
+		//	formData = new FormData();
+		//	formData.top = new FormAttachment(inPrevGroup);
+		//	formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
+		//	requestorShortNameInfo.setLayoutData(formData);
+		//	inPrevGroup = requestorShortNameInfo;
+		//}
+		
 		{
-			Group requestorShortNameInfo = new Group(itemContentGroup, SWT.LEFT);
-			requestorShortNameInfo.setText("RequestorShortName");
-			requestorShortNameInfo.setLayout(new FillLayout());
-			requestorShortNameText = new Text(requestorShortNameInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
-			requestorShortNameText.setText(genlRequestPojo.requestorShortName);
-			
+			// displayContent() - Users display starts
+			Group authorsGroup = new Group(itemContentGroup, SWT.LEFT);
+			authorsGroup.setLayout(new FillLayout());
+			UsersDisplay usersDisplay = new UsersDisplay(commonData.getUsersHandler(),
+												authorsGroup,genlRequestPojo.author,
+												false,UsersDisplay.AUTHOR_LIT);
 			formData = new FormData();
 			formData.top = new FormAttachment(inPrevGroup);
 			formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
-			requestorShortNameInfo.setLayoutData(formData);
-			inPrevGroup = requestorShortNameInfo;
+			authorsGroup.setLayoutData(formData);
+			inPrevGroup  = authorsGroup;
+			// displayContent() - Users display ends
+			
 		}
 
 		{
@@ -187,6 +210,7 @@ public class GenlReqList extends GenericGrouper {
 																+ genlRequestPojo.artifactName, e);
 				}
 			}
+			requestStartDateDisplay.setEnabled(false);
 			formData = new FormData();
 			formData.top = new FormAttachment(inPrevGroup);
 			formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
@@ -209,6 +233,7 @@ public class GenlReqList extends GenericGrouper {
 																+ genlRequestPojo.artifactName, e);
 				}
 			}
+			requestEndDateDisplay.setEnabled(false);
 
 			formData = new FormData();
 			formData.top = new FormAttachment(inPrevGroup);

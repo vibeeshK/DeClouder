@@ -17,7 +17,7 @@ public interface ContentHandlerInterface {
 	public void initNonUIContentHandlerForDownloadedArtifact(CommonData inCommonData, ERLDownload inERLDownload);
 	public void initNonUIContentHandlerForDraftArtifact(CommonData inCommonData, SelfAuthoredArtifactpojo inSelfAuthoredArtifactspojo);	
 	public ItemPojo getUptoDateERLItem(ItemPojo inItemPojo);
-	public ItemPojo getERLItemByChildArtifactName(String inChildRelevance, String inChildArtifactName);
+	public ItemPojo getERLItemByChildArtifactName(String inChildRelevance, String inChildArtifactName, String inChildContentType);
 	public byte[] getBaseItemDocBytes(ItemPojo inItemPojo);
 	public void initializeContentHandlerForExtdSrvrProcess(CommonData inCommonData, ArtifactPojo inArtifactPojo);
 	public void editContentAtDesk() throws IOException;

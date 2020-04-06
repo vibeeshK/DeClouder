@@ -40,7 +40,10 @@ public class XtdDeckrGroupr extends DeckerGrouper implements ExtendedHandler {
 		System.out.println("at 2345432 processItemDetail = " + inChildArtifactPojo.artifactKeyPojo.artifactName);
 
 		DeckerGrouperDocPojo deckerGrouperDocPojo = (DeckerGrouperDocPojo) primerDoc;
-		DeckerGrouperItemPojo deckerGrouperItemPojo = (DeckerGrouperItemPojo) deckerGrouperDocPojo.getItemByChildArtifactName(inChildArtifactPojo.artifactKeyPojo.relevance, inChildArtifactPojo.artifactKeyPojo.artifactName);
+		DeckerGrouperItemPojo deckerGrouperItemPojo = 
+				(DeckerGrouperItemPojo) deckerGrouperDocPojo.getItemByChildArtifactName(inChildArtifactPojo.artifactKeyPojo.relevance, 
+																						inChildArtifactPojo.artifactKeyPojo.artifactName,
+																						inChildArtifactPojo.artifactKeyPojo.contentType);
 
 		SelfAuthoredArtifactpojo xtdChildDraft = setupDraftArtifact(inChildArtifactPojo.artifactKeyPojo);
 
@@ -86,7 +89,10 @@ public class XtdDeckrGroupr extends DeckerGrouper implements ExtendedHandler {
 		System.out.println("at 23454231 processItemSummary inChildArtifactPojo = " + inChildArtifactPojo.artifactKeyPojo.artifactName);
 
 		DeckerGrouperDocPojo deckerGrouperDocPojo = (DeckerGrouperDocPojo) primerDoc;
-		DeckerGrouperItemPojo deckerGrouperItemPojo = (DeckerGrouperItemPojo) deckerGrouperDocPojo.getItemByChildArtifactName(inChildArtifactPojo.artifactKeyPojo.relevance, inChildArtifactPojo.artifactKeyPojo.artifactName);
+		DeckerGrouperItemPojo deckerGrouperItemPojo = 
+				(DeckerGrouperItemPojo) deckerGrouperDocPojo.getItemByChildArtifactName(inChildArtifactPojo.artifactKeyPojo.relevance,
+																inChildArtifactPojo.artifactKeyPojo.artifactName,
+																inChildArtifactPojo.artifactKeyPojo.contentType);
 
 		String srcChildItemFilePath = commonData.getCommons().getAbsolutePathFromDirAndFileNm(contentPathFolderName,deckerGrouperItemPojo.itemSummaryFile);
 		System.out.println("at 23454231 processItemSummary srcChildFilePath = " + srcChildItemFilePath);

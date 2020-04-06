@@ -91,7 +91,10 @@ public class XtdDeckrLite extends DeckerLite implements ExtendedHandler {
 		System.out.println("at 23454231 processItemSummary inChildArtifactPojo = " + inChildArtifactPojo.artifactKeyPojo.artifactName);
 
 		DeckerLiteDocPojo deckerLiteDocPojo = (DeckerLiteDocPojo) primerDoc;
-		DeckerLiteItemPojo deckerLiteItemPojo = (DeckerLiteItemPojo) deckerLiteDocPojo.getItemByChildArtifactName(inChildArtifactPojo.artifactKeyPojo.relevance, inChildArtifactPojo.artifactKeyPojo.artifactName);
+		DeckerLiteItemPojo deckerLiteItemPojo = 
+					(DeckerLiteItemPojo) deckerLiteDocPojo.getItemByChildArtifactName(inChildArtifactPojo.artifactKeyPojo.relevance,
+													inChildArtifactPojo.artifactKeyPojo.artifactName,
+													inChildArtifactPojo.artifactKeyPojo.contentType);
 
 		ContentHandlerInterface contentHandlerObjectInterface = null;
 		contentHandlerObjectInterface = ContentHandlerManager.getInstance(commons, catelogPersistenceManager, inChildArtifactPojo.artifactKeyPojo.contentType);

@@ -41,7 +41,7 @@ public class GenlRequest extends GenericItemHandler {
 	@Override
 	public void setInitialItemPojoAddlFields() {
 		GenlRequestPojo genlRequestPojo = (GenlRequestPojo) primerDoc.getItem();
-		genlRequestPojo.requestorShortName = commons.userName;				
+		//genlRequestPojo.requestorShortName = commons.userName;				
 	}
 
 	public void checkSetNewItemID() {
@@ -103,19 +103,19 @@ public class GenlRequest extends GenericItemHandler {
 			inPrevGroup = requestDescInfo;
 		}
 	
-		{
-			Group requestorShortNameInfo = new Group(itemContentGroup, SWT.LEFT);
-			requestorShortNameInfo.setText("RequestorShortName");
-			requestorShortNameInfo.setLayout(new FillLayout());
-			requestorShortNameText = new Text(requestorShortNameInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
-			requestorShortNameText.setText(genlRequestPojo.requestorShortName);
-
-			formData = new FormData();
-			formData.top = new FormAttachment(inPrevGroup);
-			formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
-			requestorShortNameInfo.setLayoutData(formData);
-			inPrevGroup = requestorShortNameInfo;
-		}
+		//{
+		//	Group requestorShortNameInfo = new Group(itemContentGroup, SWT.LEFT);
+		//	requestorShortNameInfo.setText("RequestorShortName");
+		//	requestorShortNameInfo.setLayout(new FillLayout());
+		//	requestorShortNameText = new Text(requestorShortNameInfo, SWT.WRAP | SWT.CENTER | SWT.READ_ONLY);
+		//	requestorShortNameText.setText(genlRequestPojo.requestorShortName);
+		//
+		//	formData = new FormData();
+		//	formData.top = new FormAttachment(inPrevGroup);
+		//	formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
+		//	requestorShortNameInfo.setLayoutData(formData);
+		//	inPrevGroup = requestorShortNameInfo;
+		//}
 
 		{
 			Group requestCategoryInfo = new Group(itemContentGroup, SWT.LEFT);
@@ -217,7 +217,7 @@ public class GenlRequest extends GenericItemHandler {
 		//genlRequestPojo.requestFor = requestForText.getText();
 		genlRequestPojo.requestDesc = requestDescText.getText();
 		genlRequestPojo.requestCategory = requestCategoryText.getText();
-		genlRequestPojo.requestorShortName = requestorShortNameText.getText();
+		//genlRequestPojo.requestorShortName = requestorShortNameText.getText();
 		try {
 			genlRequestPojo.requestStartDate = commons.getDateStringFromDisplayDate(requestStartDateDisplay);
 			genlRequestPojo.requestEndDate = commons.getDateStringFromDisplayDate(requestEndDateDisplay);

@@ -87,16 +87,25 @@ public class ReviewHandler {
 										finalArtifactKeyPojo.artifactName,
 										finalArtifactKeyPojo.contentType);
 
+		//reviewFrameOutmostScroller = new Composite(wrappingExtlComposite,SWT.BORDER);
+		//GridData gridDataOuterScrl = new GridData(SWT.FILL, SWT.FILL, true, true);
+		//reviewFrameOutmostScroller.setLayoutData(gridDataOuterScrl);
+		//
+		//reviewFrameOutmostWrapper = new Composite(reviewFrameOutmostScroller, SWT.NONE);
+		//reviewFrameOutmostScroller.setLayout(new GridLayout());
+		//GridData gridDatagridDataOuterWrpr = new GridData(SWT.FILL, SWT.FILL, true, true);
+		//reviewFrameOutmostWrapper.setLayoutData(gridDatagridDataOuterWrpr);
+
 		reviewFrameOutmostScroller = new Composite(wrappingExtlComposite,SWT.BORDER);
-		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-
-		reviewFrameOutmostScroller.setLayoutData(gridData);
+		GridData gridDataOuterScrl = new GridData(SWT.FILL, SWT.FILL, true, true);
+		reviewFrameOutmostScroller.setLayoutData(gridDataOuterScrl);	// setting layout parameters for itself
+		reviewFrameOutmostScroller.setLayout(new GridLayout());			// setting layout to be used by children
+		
 		reviewFrameOutmostWrapper = new Composite(reviewFrameOutmostScroller, SWT.NONE);
-		reviewFrameOutmostScroller.setLayout(new GridLayout());
-
-		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		reviewFrameOutmostWrapper.setLayoutData(gridData);
+		GridData gridDatagridDataOuterWrpr = new GridData(SWT.FILL, SWT.FILL, true, true);
+		reviewFrameOutmostWrapper.setLayoutData(gridDatagridDataOuterWrpr);
 		reviewFrameOutmostWrapper.setLayout(new RowLayout());
+
 		hideReviewGrp = new Group(reviewFrameOutmostWrapper, SWT.NONE);		
 		hideReviewGrp.setLayoutData(new RowData());
 		hideReviewGrp.setLayout(new FillLayout(SWT.VERTICAL));
@@ -133,6 +142,7 @@ public class ReviewHandler {
 					reviewVisible = false;
 
 					hideReviewGrp.pack();
+					reviewFrameOutmostWrapper.pack();
 					reviewFrameOutmostScroller.pack();
 					wrappingExtlComposite.pack();
 					wrappingExtlComposite.layout(true);

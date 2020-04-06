@@ -164,7 +164,10 @@ public class ArtifactPrepper {
 				if (draftItemPojo!= null) {
 					uptoDateERLItemPojo = contentHandlerInterfaceOfParent.getUptoDateERLItem(draftItemPojo);
 				} else {
-					uptoDateERLItemPojo = contentHandlerInterfaceOfParent.getERLItemByChildArtifactName(targetArtifactKeyPojo.relevance,targetArtifactKeyPojo.artifactName);
+					uptoDateERLItemPojo = contentHandlerInterfaceOfParent.getERLItemByChildArtifactName
+																		(targetArtifactKeyPojo.relevance,
+																		targetArtifactKeyPojo.artifactName,
+																		targetArtifactKeyPojo.contentType);
 				}
 
 				if (uptoDateERLItemPojo!=null) {

@@ -48,13 +48,28 @@ public abstract class GenericGrouperDocPojo implements PrimerDocInterface{
 		return location;
 	}
 
-	public ItemPojo getItemByChildArtifactName(String inChildRelevance, String inChildArtifactName) {
+	//public ItemPojo getItemByChildArtifactName(String inChildRelevance, String inChildArtifactName) {
+	//	ItemPojo childItemPojo = null;
+	//	ArrayList<?> items = getItemList();
+	//	for (int itemLocation=0; itemLocation<items.size();itemLocation++) {
+	//		ItemPojo itemPojo = (ItemPojo) items.get(itemLocation);
+	//		if (itemPojo.artifactName.equals(inChildArtifactName) 
+	//				&& itemPojo.relevance.equals(inChildRelevance)) {
+	//			childItemPojo = itemPojo;
+	//			break;
+	//		}
+	//	}
+	//	return childItemPojo;
+	//}
+	
+	public ItemPojo getItemByChildArtifactName(String inChildRelevance, String inChildArtifactName, String inChildContentType) {
 		ItemPojo childItemPojo = null;
  		ArrayList<?> items = getItemList();
 		for (int itemLocation=0; itemLocation<items.size();itemLocation++) {
 			ItemPojo itemPojo = (ItemPojo) items.get(itemLocation);
 			if (itemPojo.artifactName.equals(inChildArtifactName) 
-					&& itemPojo.relevance.equals(inChildRelevance)) {
+					&& itemPojo.relevance.equals(inChildRelevance)
+					&& itemPojo.contentType.equals(inChildContentType)) {
 				childItemPojo = itemPojo;
 				break;
 			}

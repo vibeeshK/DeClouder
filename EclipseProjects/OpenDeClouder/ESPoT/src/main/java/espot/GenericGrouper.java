@@ -60,7 +60,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	
 	public ScrolledComposite ribbonScrollPane = null;	
 	public ScrolledComposite artifactRwScrollPane = null;
-	public ScrolledComposite scrolledComposite_main = null;
+	//public ScrolledComposite scrolledComposite_main = null;
 	public CommonData commonData = null;
 	public Commons commons = null;
 	public CatelogPersistenceManager catelogPersistenceManager = null;
@@ -99,11 +99,12 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	
 	protected Table table;
 	
-	public ItemPojo getERLItemByChildArtifactName(String inChildRelevance, String inChildArtifactName) {
+	public ItemPojo getERLItemByChildArtifactName(String inChildRelevance, String inChildArtifactName, String inChildContentType) {
 		ItemPojo existingItemPojo = null;
-		if (inChildRelevance != null && !inChildRelevance.equalsIgnoreCase("")
-			&& inChildArtifactName != null && !inChildArtifactName.equalsIgnoreCase("")) {
-			existingItemPojo = primerDoc.getItemByChildArtifactName(inChildRelevance, inChildArtifactName);
+		if (!inChildRelevance.isEmpty()
+			&& !inChildArtifactName.isEmpty()
+			&& !inChildContentType.isEmpty()) {
+			existingItemPojo = primerDoc.getItemByChildArtifactName(inChildRelevance, inChildArtifactName, inChildContentType);
 		}
 		return existingItemPojo;
 	}
@@ -607,18 +608,20 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		//}
 
 		////create pane for individual items start1
-		scrolledComposite_main = new ScrolledComposite(mainShell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		//scrolledComposite_main = new ScrolledComposite(mainShell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		//
+		//GridData gridData2 = new GridData(SWT.FILL, SWT.FILL, true, true);
+		//scrolledComposite_main.setLayoutData(gridData2);
+		//
+		//itemsMainCompositeInMultiConentView = new Composite(scrolledComposite_main, SWT.NONE); 
+		//scrolledComposite_main.setContent(itemsMainCompositeInMultiConentView);
 
-		GridData gridData2 = new GridData(SWT.FILL, SWT.FILL, true, true);
-		//gridData2.minimumHeight = 100;
-		scrolledComposite_main.setLayoutData(gridData2);
-
-		itemsMainCompositeInMultiConentView = new Composite(scrolledComposite_main, SWT.NONE); 
-		scrolledComposite_main.setContent(itemsMainCompositeInMultiConentView);
-		
-		itemsMainCompositeInMultiConentView.setLayout(new GridLayout(1,true));
+		itemsMainCompositeInMultiConentView = new Composite(mainShell, SWT.NONE); 		
 		itemsReviewGridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		itemsMainCompositeInMultiConentView.setLayoutData(itemsReviewGridData);
+		
+		itemsMainCompositeInMultiConentView.setLayout(new GridLayout(1,true));
+
 		itemsReviewGridData.exclude = true; // hide until any item invoked for review		
 		
 	    Image bg = new Image(((CommonUIData) commonData).getESPoTDisplay(), commonData.getCommons().backgroundImagePathFileName);
@@ -631,7 +634,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 
 		showArtifactReview();		
 		
-		scrolledComposite_main.pack();
+		itemsMainCompositeInMultiConentView.pack();
+		//scrolledComposite_main.pack();
 		mainShell.pack();		
 		mainShell.open();
 	}
@@ -809,7 +813,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 				}
 				
 				itemsMainCompositeInMultiConentView.pack();
-				scrolledComposite_main.pack();
+				//scrolledComposite_main.pack();
 				mainShell.pack();
 				
 				mainShell.layout(true);
@@ -888,6 +892,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 
 		itemContentGroup.pack();
 
+ 		//ReviewHandler reviewHander = new ReviewHandler((CommonUIData) commonData,reviewGrp, invokedArtifactPojo,reviewItemPojo.itemID,mainShell);
  		ReviewHandler reviewHander = new ReviewHandler((CommonUIData) commonData,reviewGrp, invokedArtifactPojo,reviewItemPojo.itemID,mainShell);
 		reviewHander.displayContent();
 		reviewGrp.pack();
@@ -1026,7 +1031,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 ///////////////////
 					ItemPojo itemPojoToUpdate = documentToUpdate.getItemByChildArtifactName(
 							inRequestProcesserPojo.requestPojo.relevance, 
-							inRequestProcesserPojo.requestPojo.artifactName);
+							inRequestProcesserPojo.requestPojo.artifactName,
+							inRequestProcesserPojo.requestPojo.contentType);
 
 					UserPojo requestAuthorsDetail = commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(inRequestProcesserPojo.requestPojo.requestor);
 
@@ -1271,7 +1277,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		}
 		childCompositeOfMultiView.dispose();
 		artifactRwScrollPane.dispose();	//artifact review pane dispose;
-		scrolledComposite_main.dispose();	// item review pane dispose
+		itemsMainCompositeInMultiConentView.dispose();
+		//scrolledComposite_main.dispose();	// item review pane dispose
 		displayMultiContent();	// redraw screen below ribbon
 	}
 

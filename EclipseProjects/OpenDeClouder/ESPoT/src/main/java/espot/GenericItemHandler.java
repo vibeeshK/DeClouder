@@ -348,22 +348,34 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 
 		//////////for real author starts
 		//////////
-		final Group authorInfo = new Group(itemContentGroup, SWT.LEFT);
-		authorInfo.setText("Author");
-		authorInfo.setLayout(new FillLayout());
+		//final Group authorInfo = new Group(itemContentGroup, SWT.LEFT);
+		//authorInfo.setText("Author");
+		//authorInfo.setLayout(new FillLayout());
+		//formData = new FormData();
+		//formData.top = new FormAttachment(lastGroup);
+		//formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
+		//authorInfo.setLayoutData(formData);
+		//
+		//Text authorText = new Text(authorInfo, SWT.MULTI | SWT.READ_ONLY | SWT.CENTER);
+		//if (primerDoc.getItem().author == null || primerDoc.getItem().author.equalsIgnoreCase("")) {
+		//	authorText.setText(invokedArtifactPojo.author);	//For single items always the wrapper UI's author goes to item as well.
+		//} else {
+		//	authorText.setText(primerDoc.getItem().author);
+		//}
+		//lastGroup = authorInfo;
+
+		// displayContent() - Users display starts
+		Group authorsGroup = new Group(itemContentGroup, SWT.LEFT);
+		authorsGroup.setLayout(new FillLayout());
+		UsersDisplay usersDisplay = new UsersDisplay(commonData.getUsersHandler(),
+											authorsGroup,primerDoc.getItem().author,
+											false,UsersDisplay.AUTHOR_LIT);
 		formData = new FormData();
-		formData.top = new FormAttachment(lastGroup);
+		formData.top = new FormAttachment(lastGroup,0,SWT.BOTTOM);
 		formData.width = PREFERED_ITEM_PANEL_WIDTH;	// this width setting is to show meaningful size for viewing
-		authorInfo.setLayoutData(formData);
-
-		Text authorText = new Text(authorInfo, SWT.MULTI | SWT.READ_ONLY | SWT.CENTER);
-		if (primerDoc.getItem().author == null || primerDoc.getItem().author.equalsIgnoreCase("")) {
-			authorText.setText(invokedArtifactPojo.author);	//For single items always the wrapper UI's author goes to item as well.
-		} else {
-			authorText.setText(primerDoc.getItem().author);
-		}
-		lastGroup = authorInfo;
-
+		authorsGroup.setLayoutData(formData);		
+		lastGroup = authorsGroup;
+		// displayContent() - Users display ends
 
 		final Group statusInfo = new Group(itemContentGroup, SWT.LEFT);
 		statusInfo.setText("Status");
@@ -381,7 +393,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		}
 		lastGroup = statusInfo;
 		//////////
-		//////////for real author ends
+		//////////for status ends
 		
 		////// author field show ends
 		
@@ -579,8 +591,15 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		}
 	}
 
-	public ItemPojo getERLItemByChildArtifactName(String inChildRelevance, String inChildArtifactName) {
+	public ItemPojo getERLItemByChildArtifactName(String inChildRelevance, String inChildArtifactName, String inChildContentType) {
 		//dummy method which is applicable only for grouper artifacts
+		// but still if its called anyway, then based on values passed respond with the current item
+		ItemPojo itemPojo = primerDoc.getItem();
+		if (itemPojo.artifactName.equals(inChildArtifactName) 
+				&& itemPojo.relevance.equals(inChildRelevance)
+				&& itemPojo.contentType.equals(inChildContentType)) {
+			return itemPojo;
+		}
 		return null;
 	}
 	

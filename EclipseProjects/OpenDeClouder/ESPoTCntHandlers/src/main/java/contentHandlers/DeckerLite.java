@@ -1050,7 +1050,10 @@ public class DeckerLite extends GenericGrouper {
 	public ArrayList<ERLDownload> getUnIncludedERLsOfGivenList(ArrayList<ERLDownload> inGivenERLs) {
 		ArrayList<ERLDownload> unIncludedERLs = new ArrayList<ERLDownload>();
 		for (ERLDownload erlDownload : inGivenERLs) {	// Though this looping is inefficient, its likely to be called only once
-			ItemPojo alreadyExistingItem = getERLItemByChildArtifactName(erlDownload.artifactKeyPojo.relevance,erlDownload.artifactKeyPojo.artifactName); 
+			ItemPojo alreadyExistingItem = getERLItemByChildArtifactName(
+											erlDownload.artifactKeyPojo.relevance,
+											erlDownload.artifactKeyPojo.artifactName,
+											erlDownload.artifactKeyPojo.contentType); 
 			if (alreadyExistingItem == null) {
 				unIncludedERLs.add(erlDownload);
 			}

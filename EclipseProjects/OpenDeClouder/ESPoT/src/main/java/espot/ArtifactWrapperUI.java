@@ -208,9 +208,13 @@ public class ArtifactWrapperUI {
 			}
 
 			//if (!commonUIData.getCommons().userName.equalsIgnoreCase(erlDownload.author)) {
-			if (!commonUIData.getUsersHandler().doesUserHaveRightsOverMember(
-					commonUIData.getCommons().userName, erlDownload.author)) {
-				authorCanEdit = false;
+			if (commonUIData.getUsersHandler().getCurrentUserPojo().hasAdminPrivilege() 
+				|| commonUIData.getUsersHandler().getCurrentUserPojo().hasTeamLeaderPrivilege() 
+				|| commonUIData.getUsersHandler().doesUserHaveRightsOverMember(
+						commonUIData.getCommons().userName, erlDownload.author)) {
+				authorCanEdit = true;
+			} else {
+				authorCanEdit = false;				
 			}
 
 			String fullPathReviewFileName = "";
@@ -229,8 +233,14 @@ public class ArtifactWrapperUI {
 			
 			System.out.println("within ArtifactWrapperUI startupWithArtifactKeyPojo erlDownload is null " + erlDownload);
 
+			
+			//if (inProgressSelfAuthoredArtifactpojo != null 
+			//		&& newestDBSelfAuthoredArtifactspojo.author.equalsIgnoreCase(commons.userName)) {
 			if (inProgressSelfAuthoredArtifactpojo != null 
-					&& newestDBSelfAuthoredArtifactspojo.author.equalsIgnoreCase(commons.userName)) {
+				&& (commonUIData.getUsersHandler().getCurrentUserPojo().hasAdminPrivilege() 
+					|| commonUIData.getUsersHandler().getCurrentUserPojo().hasTeamLeaderPrivilege() 
+					|| commonUIData.getUsersHandler().doesUserHaveRightsOverMember(
+						commonUIData.getCommons().userName, newestDBSelfAuthoredArtifactspojo.author))) {
 				authorCanEdit = true;
 			} else {
 				authorCanEdit = false;
@@ -925,7 +935,9 @@ public class ArtifactWrapperUI {
 
 		childCompositeOfRightView.setLayoutData(gridDataRight);		
 
-		if (!calledFor.equalsIgnoreCase(CALLED_For_NewDraftSetup) && !calledFor.equalsIgnoreCase(CALLED_ForCloning)) {
+		if (!calledFor.equalsIgnoreCase(CALLED_For_NewDraftSetup) 
+			&& !calledFor.equalsIgnoreCase(CALLED_ForCloning)
+			&& !contentHandlerSpecs.rollupAddupType) {	// rollAddType reviews should go inside the item level
 		
 			childCompositeOfRightView.setLayout(new GridLayout());
 			ReviewHandler reviewHander = new ReviewHandler(commonUIData, childCompositeOfRightView, invokedArtifactPojo, invokedArtifactPojo.artifactKeyPojo.artifactName, mainShell);
