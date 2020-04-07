@@ -10,11 +10,12 @@ public class CommonUIData extends CommonData{
 	 */
 
 	private boolean artifactDisplayOkayToContinue;
-
+	private UserPojo currentUserDetail = null;
 
 	private CommonUIData(Commons inCommons) {
 		super(inCommons);
 		setArtifactDisplayOkayToContinue(true);
+		currentUserDetail = getUsersHandler().getUserDetailsFromRootSysLoginID(inCommons.userName);
 	}
 
 	public static CommonUIData getUIInstance(Commons inCommons) {
@@ -33,5 +34,9 @@ public class CommonUIData extends CommonData{
 
 	public synchronized boolean getArtifactDisplayOkayToContinue() {
 		return artifactDisplayOkayToContinue;
+	}
+
+	public UserPojo getCurrentUserPojo(){
+		return currentUserDetail;
 	}
 }

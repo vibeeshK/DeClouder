@@ -191,3 +191,241 @@
 2020-Apr-07 03:41:00 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
 2020-Apr-07 03:41:00 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
 2020-Apr-07 03:41:00 AM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-07 19:04:38 PM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-07 19:04:38 PM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-07 19:04:38 PM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-07 19:09:03 PM [main] INFO  ESPoTLogger - ColbTrkServerOrchestrator starting up - logging set to info
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-07 19:09:04 PM [main] INFO  ESPoTLogger - ColbTrkServerOrchestrator started2 - logging set to info
+2020-Apr-07 20:25:36 PM [main] INFO  ESPoTLogger - ColbTrkServerOrchestrator starting up - logging set to info
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-07 20:25:37 PM [main] INFO  ESPoTLogger - ColbTrkServerOrchestrator started2 - logging set to info
+2020-Apr-07 20:25:40 PM [Thread-2] WARN  ESPoTLogger -  rootNick DemoWinContentRoot has 6 unfinished requests. e.g. espot.ReqTrackItem@1e1cd26e
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-07 20:26:03 PM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-07 20:26:03 PM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-07 20:26:03 PM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-07 22:34:14 PM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-07 22:34:14 PM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-07 22:34:14 PM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-08 01:12:53 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-08 01:12:53 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-08 01:12:53 AM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-08 01:18:00 AM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-08 01:18:00 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-08 01:18:01 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-08 01:18:01 AM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-08 01:19:56 AM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-08 01:19:56 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-08 01:19:56 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-08 01:19:57 AM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-08 01:21:02 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-08 01:21:02 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-08 01:21:02 AM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-08 01:24:05 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-08 01:24:05 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-08 01:24:05 AM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-08 01:24:17 AM [Thread-3] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newartifacts_Tm20200408012417
+2020-Apr-08 01:24:17 AM [Thread-3] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\newreviews_Tm20200408012417
+2020-Apr-08 01:24:17 AM [Thread-3] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\responsesfolderlocal_Tm20200408012417
+2020-Apr-08 01:24:18 AM [Thread-3] INFO  ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot from method run --- java.io.IOException: Unable to delete directory C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent\DemoWinContentRoot\MyOrg\Divisions\HR.
+2020-Apr-08 01:24:41 AM [Thread-3] ERROR ESPoTLogger - Error in ArchiverOfLocalESPoTArtifacts archiveLocalESPoTArtifacts of DemoWinContentRoot
+java.io.IOException: Unable to delete directory C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent\DemoWinContentRoot\MyOrg\Divisions\HR.
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1623) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:2391) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1721) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1617) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:2391) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1721) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1617) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:2391) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1721) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1617) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:2391) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1721) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1617) ~[commons-io-2.6.jar:2.6]
+	at org.apache.commons.io.FileUtils.moveDirectory(FileUtils.java:2931) ~[commons-io-2.6.jar:2.6]
+	at commonTechs.CommonTechs.moveFolderUsingApache(CommonTechs.java:176) ~[classes/:?]
+	at commonTechs.CommonTechs.moveFolderViaName(CommonTechs.java:171) ~[classes/:?]
+	at espot.Commons.archiveLocalFolder(Commons.java:1156) ~[classes/:?]
+	at espot.ArchiverOfLocalESPoTArtifacts.archiveLocalESPoTArtifacts(ArchiverOfLocalESPoTArtifacts.java:45) [classes/:?]
+	at espot.CatalogDisplay$4.widgetSelected(CatalogDisplay.java:175) [classes/:?]
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source) [org.eclipse.swt.win32.win32.x86_64-4.3.jar:?]
+	at espot.ArtifactsDisplay.shellDisposeHolder(ArtifactsDisplay.java:254) [classes/:?]
+	at espot.ArtifactsDisplay.displayArtifact(ArtifactsDisplay.java:79) [classes/:?]
+	at espot.CatalogDisplay.run(CatalogDisplay.java:425) [classes/:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_171]
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-08 01:24:50 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-08 01:24:50 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-08 01:24:50 AM [main] INFO  ESPoTLogger - Catalog Display Started 
+2020-Apr-08 01:24:58 AM [Thread-3] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newartifacts doesn't exist or Not a Folder
+2020-Apr-08 01:24:58 AM [Thread-3] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\newreviews doesn't exist or Not a Folder
+2020-Apr-08 01:24:58 AM [Thread-3] INFO  ESPoTLogger - Nothing to archive as the source Folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\responsesfolderlocal doesn't exist or Not a Folder
+2020-Apr-08 01:24:58 AM [Thread-3] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedcontent into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedcontent_Tm20200408012458
+2020-Apr-08 01:24:58 AM [Thread-3] INFO  ESPoTLogger - At Commons after Archiving the folder C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\downloadedreviews into C:\Users\kvasavaiah\OpenDeClouderUserArtifacts\clientMc\archive\downloadedreviews_Tm20200408012458
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  ClientOrchestrator Started 
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030716
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  source location: Templates\DefaultDocTestDownload.docx
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20170923030717
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  source location: Config\dynamicJars\TestDownload.jar
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180206010120
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  source location: SQLiteDB\SysDBDownloadFolder\sysdbfile
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  setLaterUpdateElements. uptd Tm: 20180207010119
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  current tm: Thu Jul 25 03:07:16 GMT+05:30 2019
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger -  source location: Templates\DeckerGrouperTemplate.zip
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger - ColbTrkClientOrchestrator starting up - logging set to info
+2020-Apr-08 01:25:42 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started0.2 - logging set to info
+2020-Apr-08 01:25:42 AM [Thread-2] INFO  ESPoTLogger - ColbTrkClientOrchestrator started2 - logging set to info
+2020-Apr-08 01:25:42 AM [main] INFO  ESPoTLogger - Catalog Display Started 

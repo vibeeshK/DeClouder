@@ -244,7 +244,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
  		((CommonUIData) commonData, 
  				childCompositOfSingleView2, 
  				invokedArtifactPojo,
- 				invokedArtifactPojo.artifactKeyPojo.artifactName, mainShell);
+ 				mainShell);
 		reviewHander.displayContent();
 
 		childCompositOfSingleView2.pack();
@@ -893,7 +893,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		itemContentGroup.pack();
 
  		//ReviewHandler reviewHander = new ReviewHandler((CommonUIData) commonData,reviewGrp, invokedArtifactPojo,reviewItemPojo.itemID,mainShell);
- 		ReviewHandler reviewHander = new ReviewHandler((CommonUIData) commonData,reviewGrp, invokedArtifactPojo,reviewItemPojo.itemID,mainShell);
+ 		ReviewHandler reviewHander = new ReviewHandler((CommonUIData) commonData,reviewGrp, invokedArtifactPojo,reviewItemPojo,mainShell);
 		reviewHander.displayContent();
 		reviewGrp.pack();
 		childCompositeOfSingleView.pack();

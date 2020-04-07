@@ -208,8 +208,8 @@ public class ArtifactWrapperUI {
 			}
 
 			//if (!commonUIData.getCommons().userName.equalsIgnoreCase(erlDownload.author)) {
-			if (commonUIData.getUsersHandler().getCurrentUserPojo().hasAdminPrivilege() 
-				|| commonUIData.getUsersHandler().getCurrentUserPojo().hasTeamLeaderPrivilege() 
+			if (commonUIData.getCurrentUserPojo().hasAdminPrivilege() 
+				|| commonUIData.getCurrentUserPojo().hasTeamLeaderPrivilege() 
 				|| commonUIData.getUsersHandler().doesUserHaveRightsOverMember(
 						commonUIData.getCommons().userName, erlDownload.author)) {
 				authorCanEdit = true;
@@ -237,8 +237,8 @@ public class ArtifactWrapperUI {
 			//if (inProgressSelfAuthoredArtifactpojo != null 
 			//		&& newestDBSelfAuthoredArtifactspojo.author.equalsIgnoreCase(commons.userName)) {
 			if (inProgressSelfAuthoredArtifactpojo != null 
-				&& (commonUIData.getUsersHandler().getCurrentUserPojo().hasAdminPrivilege() 
-					|| commonUIData.getUsersHandler().getCurrentUserPojo().hasTeamLeaderPrivilege() 
+				&& (commonUIData.getCurrentUserPojo().hasAdminPrivilege() 
+					|| commonUIData.getCurrentUserPojo().hasTeamLeaderPrivilege() 
 					|| commonUIData.getUsersHandler().doesUserHaveRightsOverMember(
 						commonUIData.getCommons().userName, newestDBSelfAuthoredArtifactspojo.author))) {
 				authorCanEdit = true;
@@ -940,11 +940,9 @@ public class ArtifactWrapperUI {
 			&& !contentHandlerSpecs.rollupAddupType) {	// rollAddType reviews should go inside the item level
 		
 			childCompositeOfRightView.setLayout(new GridLayout());
-			ReviewHandler reviewHander = new ReviewHandler(commonUIData, childCompositeOfRightView, invokedArtifactPojo, invokedArtifactPojo.artifactKeyPojo.artifactName, mainShell);
+			ReviewHandler reviewHander = new ReviewHandler(commonUIData, childCompositeOfRightView, invokedArtifactPojo, mainShell);
 			reviewHander.displayContent();
-			
-			
-	
+
 			childCompositeOfRightView.pack();
 			mainShell.layout(true);			
 		}
