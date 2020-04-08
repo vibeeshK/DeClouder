@@ -41,6 +41,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	 * Content handler abstraction for Grouping Types
 	 */
 	public final static String SCREENROWNUMLIT = "screenRowNum";
+	public final static String ItemOnRowHasALocalDraftLIT = "ItemOnRowHasALocalDraftFlag";
 	
 	public final static String ITEMNUMLIT = "ItemNumber";
 	public final static String COLFIELDLIT = "ColumnField";
@@ -345,11 +346,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		cloneRequested = true;
 		System.out.println("inside displayCloneCreateArtifactUI");
 	}
-
-	public void setDisplayCoreLeftFieldsInMultiDisplay(TableEditor inEditor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojoScrolled, Button inMaintenanceButton, int inScreenRowNum) {
-		// the reason the maintenanceButton is kept as argument is it would be referred for setting focus on specific record.
-		System.out.println("setDisplayCoreLeftFieldsInMultiDisplay");
-
+	
+	public void checkIfItemOnRowHasALocalDraft(ItemPojo inItemPojoScrolled, Button inMaintenanceButton){
 		boolean itemOnRowHasALocalDraft = false;
 		ArtifactKeyPojo artifactKeyPojoOnRow = new ArtifactKeyPojo(
 				invokedArtifactPojo.artifactKeyPojo.rootNick,
@@ -367,8 +365,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 				itemOnRowHasALocalDraft = true;				
 			}
 		}
-		TableEditor maintenanceButtonEditor = new TableEditor(inTable);
-
+		
 		if (itemOnRowHasALocalDraft){
 			inMaintenanceButton
 			.setText("*" + inItemPojoScrolled.artifactName);
@@ -378,14 +375,55 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 			.setText(inItemPojoScrolled.artifactName);			
 			inMaintenanceButton.setToolTipText("click for maintenance of: " + inItemPojoScrolled.title);
 		}		
+		inMaintenanceButton.setData(ItemOnRowHasALocalDraftLIT, itemOnRowHasALocalDraft);
+	}
+
+	public void setDisplayCoreLeftFieldsInMultiDisplay(TableEditor inEditor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojoScrolled, Button inMaintenanceButton, int inScreenRowNum) {
+		// the reason the maintenanceButton is kept as argument is it would be referred for setting focus on specific record.
+		System.out.println("setDisplayCoreLeftFieldsInMultiDisplay");
+
+		//boolean itemOnRowHasALocalDraft = false;
+		//ArtifactKeyPojo artifactKeyPojoOnRow = new ArtifactKeyPojo(
+		//		invokedArtifactPojo.artifactKeyPojo.rootNick,
+		//		inItemPojoScrolled.relevance,
+		//		inItemPojoScrolled.artifactName,
+		//		inItemPojoScrolled.contentType);
+		//SelfAuthoredArtifactpojo localDraft = catelogPersistenceManager.readSelfAuthoredArtifact(artifactKeyPojoOnRow);
+		//if (localDraft != null) {
+		//	System.out.println("at setFlags localDraft.draftingState is " + localDraft.draftingState);
+		//	System.out.println("at setFlags SelfAuthoredArtifactpojo.ArtifactStatusDraft is " + SelfAuthoredArtifactpojo.ArtifactStatusDraft);
+		//	System.out.println("at setFlags SelfAuthoredArtifactpojo.ArtifactStatusToBeBatchUploaded is " + SelfAuthoredArtifactpojo.ArtifactStatusToBeBatchUploaded);
+		//
+		//	if (!localDraft.draftingState.equalsIgnoreCase(SelfAuthoredArtifactpojo.ArtifactStatusProcessed)
+		//		&& !localDraft.draftingState.equalsIgnoreCase(SelfAuthoredArtifactpojo.ArtifactStatusOutdated)) {
+		//		itemOnRowHasALocalDraft = true;				
+		//	}
+		//}
+		
+		checkIfItemOnRowHasALocalDraft(inItemPojoScrolled,inMaintenanceButton);
+
+		//if (itemOnRowHasALocalDraft){
+		//	inMaintenanceButton
+		//	.setText("*" + inItemPojoScrolled.artifactName);
+		//	inMaintenanceButton.setToolTipText("click for maintenance of: " + inItemPojoScrolled.title + ". A draft is already available");
+		//} else {
+		//	inMaintenanceButton
+		//	.setText(inItemPojoScrolled.artifactName);			
+		//	inMaintenanceButton.setToolTipText("click for maintenance of: " + inItemPojoScrolled.title);
+		//}		
+		//inMaintenanceButton.setData(ItemOnRowHasALocalDraftLIT, true);
+		
 		inMaintenanceButton.setData(SCREENROWNUMLIT, inScreenRowNum);
 
+		
 		System.out.println("itemPojo.itemID:"+inItemPojoScrolled.itemID);
 		System.out.println("set data = "
 				+ inMaintenanceButton.getData("screenRowNum"));
 
 		maintenanceButtonProcess(inMaintenanceButton);
 		inMaintenanceButton.pack();
+		
+		TableEditor maintenanceButtonEditor = new TableEditor(inTable);
 		maintenanceButtonEditor.minimumWidth = inMaintenanceButton.getSize().x;
 		maintenanceButtonEditor.horizontalAlignment = SWT.LEFT;
 		maintenanceButtonEditor.setEditor(inMaintenanceButton, inTableItem,++inLastColLocation);
@@ -763,6 +801,17 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 				}
 				System.out.println("at3 maintenanceButtonProcess going to display the artifactWrapperUI for new artifact");
 				artifactWrapperUI.displayArtifactWrapperUI();
+
+				System.out.println("at4 maintenanceButtonProcess ItemOnRowHasALocalDraftLIT about to check");				
+				if (!(Boolean) eventButton.getData(ItemOnRowHasALocalDraftLIT)) {
+					System.out.println("at4 maintenanceButtonProcess ItemOnRowHasALocalDraftLIT not true to start with");
+					checkIfItemOnRowHasALocalDraft(selectedItemPojo, eventButton);
+					eventButton.redraw();
+					//mainShell.pack();					
+					//mainShell.layout(true);
+				} else {
+					System.out.println("at4 maintenanceButtonProcess ItemOnRowHasALocalDraftLIT true upfront");					
+				}
 			}
 		});
 	}
@@ -1164,42 +1213,83 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 
 	    filtersRibbonData = new GridData(SWT.FILL, SWT.FILL, true, true);
 	    filtersGroup.setLayoutData(filtersRibbonData);
+
+		//statusSelList = new List(filtersGroup, SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+
+	    statusSelList = createNewFilterListWidget();
+		initiateAdditionalFilters();
 		
-		
-		statusSelList = new List(filtersGroup, SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-		//statusSelList.setItems(new String[]{"zero","one","two"});
 		hideShowFilter = true;
 
 		//Capture the unique filter values
 		for (Object itemPojoObj : itemList ) {
 			ItemPojo itemPojo = (ItemPojo) itemPojoObj;
-			loadFilterList(statusSelList,((ItemPojo) itemPojo).status);
+			loadFilterList(statusSelList,itemPojo.status);
 			loadAdditionalFiltersList(itemPojo);
 		}
 		
-		//allSelectedStatusText = new Text(filtersRibbon, SWT.READ_ONLY);
+		setFilterAction(statusSelList);
+		setAdditionalFiltersSelectionAction();
 		
 		setFilterButtons(buttonRibbon);
-		setFilter(filtersGroup, statusSelList);
-		setAdditionalSelectionFilters(filtersGroup);
 
 		filtersGroup.pack();
 	}
 
-	private void loadFilterList(List inFilterList, String inFilterFieldValue) {
+	// Four methods to be overridden by contentHandlers that want to implement additionalFilters - starts
+	protected void initiateAdditionalFilters(){
+	// dummy method to be overridden as required
+
+		//sample code
+		//parameter1SelList = initiateFilterList(paramter1SelList);		
+		//parameter2SelList = initiateFilterList(paramter2SelList);		
+	}
+
+	public void setAdditionalFiltersSelectionAction(){		
+		// dummy method so only the handlers that need to add more filters need to override
+		//sample code
+		//setFilterAction(parameter1SelList);
+		//setFilterAction(parameter2SelList);
+	}
+	
+	public void loadAdditionalFiltersList(ItemPojo inItemPojo) {
+		// dummy method so only the handlers that need to add more filters need to override
+		//sample code
+		//loadFilterList(parameter1List,((GenlRequestPojo) inItemPojo).parameter1);
+		//loadFilterList(parameter2List,((GenlRequestPojo) inItemPojo).parameter2);
+	}
+
+	public boolean checkAdditionalFilters(ItemPojo inItemPojo){
+		// dummy method to be overridden
+
+		boolean filterResult = true;
+		// sample code for overriding
+	 	// this pattern can be repeated if more filters added
+		//if (filterResult
+		//	&& !checkFilter(parameter1SelList,((GenlRequestPojo) inItemPojo).parameter1)) {
+		//	filterResult = false;
+		//}
+		//if (filterResult
+		//	&& !checkFilter(parameter2SelList,((GenlRequestPojo) inItemPojo).parameter1)) {
+		//	filterResult = false;
+		//}
+		return filterResult;
+	}	
+	// Four methods to be overridden by contentHandlers that want to implement additionalFilters - ends	
+	
+	protected List createNewFilterListWidget(){
+		List newFilterListWidget = new List(filtersGroup, SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		newFilterListWidget.pack();
+		return newFilterListWidget;
+	}
+	
+	protected void loadFilterList(List inFilterList, String inFilterFieldValue) {
 		if (inFilterFieldValue == null) return;
 		if (inFilterList.indexOf(inFilterFieldValue) == -1) {
 			inFilterList.add(inFilterFieldValue);
 		}
 	}
 
-	public void loadAdditionalFiltersList(ItemPojo inItemPojo) {
-		// dummy method so only the handlers that need to add more filters need to override
-	}
-	
-	public void setAdditionalSelectionFilters(Composite buttonRibbon){		
-	}
-	
 	public void showAdditionalRibbonEditControls(Composite ribbon){
 	}
 
@@ -1294,8 +1384,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		return validateString;
 	}
 	
-	public void setFilter(Composite inButtonRibbon, List inList) {
-
+	public void setFilterAction(List inList) {
+	
 		inList.addSelectionListener(new SelectionAdapter() {
 			
 			public void widgetSelected(SelectionEvent e) {
@@ -1317,7 +1407,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		for (Object itemPojoObj : itemList ) {
 			ItemPojo itemPojo = (ItemPojo) itemPojoObj;
 			if (checkFilter(statusSelList,itemPojo.status)){
-				if (checkAddlFilters(itemPojo)){
+				if (checkAdditionalFilters(itemPojo)){
 					filteredItemlist.add(itemPojo);					
 				}
 			}
@@ -1331,10 +1421,6 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 			|| statusSelList.isSelected(statusSelList.indexOf(inFilterValue))) {
 			return true;
 		} else return false;
-	}
-
-	public boolean checkAddlFilters(ItemPojo inItemPojo){
-		return true;
 	}
 
 	public void setFilterButtons(Composite inRibbonComposite){
@@ -1377,11 +1463,13 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 					hideShowFilter = false;
 					filtersGroup.setVisible(false);
 					filtersRibbonData.exclude = true;
+					filtersGroup.pack();
 				} else {
 					((Button) event.getSource()).setText(hidefiltersLIT);
 					hideShowFilter = true;
 					filtersGroup.setVisible(true);
 					filtersRibbonData.exclude = false;
+					filtersGroup.pack();
 				}
 				buttonRibbon.pack();
 				filtersGroup.pack();

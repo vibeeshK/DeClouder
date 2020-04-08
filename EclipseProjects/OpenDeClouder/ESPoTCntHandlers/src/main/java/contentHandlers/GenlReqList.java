@@ -10,6 +10,7 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
@@ -35,6 +36,9 @@ public class GenlReqList extends GenericGrouper {
 	DateTime requestStartDateDisplay;
 	DateTime requestEndDateDisplay;
 
+	protected List categorySelList;
+	
+	
 	protected void setScreenTitle() {
 		mainShell.setText("GenlReqList: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 	}
@@ -244,6 +248,30 @@ public class GenlReqList extends GenericGrouper {
 
 		return inPrevGroup;
 	}
+	
+	// Extending the three methods to create a new filter on category - starts
+	protected void initiateAdditionalFilters(){
+		categorySelList = createNewFilterListWidget();
+	}
+	
+	public void loadAdditionalFiltersList(ItemPojo inItemPojo){
+		loadFilterList(categorySelList,((GenlRequestPojo) inItemPojo).requestCategory);
+	}
+	
+	public void setAdditionalFiltersSelectionAction(){
+		setFilterAction(categorySelList);
+	}
+	
+	public boolean checkAdditionalFilters(ItemPojo inItemPojo) {
+		boolean filterResult = true;
+		if (filterResult
+			&& !checkFilter(categorySelList,((GenlRequestPojo) inItemPojo).requestCategory)) {
+			filterResult = false;
+		}
+		return filterResult;
+	}
+
+	// Extending the three methods to create a new filter on category - ends
 	
 	public void getPrimerDocAddlFields() {
 		// from persistence to screen
