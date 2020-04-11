@@ -116,31 +116,35 @@ public class UserMaintReqListing extends GenericGrouper {
 		userShortID_Tx.setText(userMaintReqPojo.userPojo.rootSysLoginID);
 		editor.grabHorizontal = true;
 		editor.setEditor(userShortID_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, userShortID_Tx.getText());
 		
 		editor = new TableEditor(inTable);
 		Text userName_Tx = new Text(inTable, SWT.READ_ONLY);
 		userName_Tx.setText(userMaintReqPojo.userPojo.userName);
 		editor.grabHorizontal = true;
 		editor.setEditor(userName_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, userName_Tx.getText());
 	
 		editor = new TableEditor(inTable);
 		Text leadID_Tx = new Text(inTable, SWT.READ_ONLY);
 		leadID_Tx.setText(userMaintReqPojo.userPojo.leadID);
 		editor.grabHorizontal = true;
 		editor.setEditor(leadID_Tx, inTableItem, ++inLastColLocation);		
+		inTableItem.setText(inLastColLocation, leadID_Tx.getText());
 
 		editor = new TableEditor(inTable);
 		Text activeState_Tx = new Text(inTable, SWT.READ_ONLY);
 		activeState_Tx.setText(userMaintReqPojo.userPojo.activeStatus);
 		editor.grabHorizontal = true;
 		editor.setEditor(activeState_Tx, inTableItem, ++inLastColLocation);		
+		inTableItem.setText(inLastColLocation, activeState_Tx.getText());
 
 		editor = new TableEditor(inTable);
 		Text privilege_Tx = new Text(inTable, SWT.READ_ONLY);
 		privilege_Tx.setText(UserPojo.getPrivilegeLitOfLevel(userMaintReqPojo.userPojo.privilegeLevel));				
 		editor.grabHorizontal = true;
 		editor.setEditor(privilege_Tx, inTableItem, ++inLastColLocation);
-
+		inTableItem.setText(inLastColLocation, privilege_Tx.getText());
 	}
 
 	public Group setAddlFieldsForItemDisplay(Group itemContentGroup,Group inPrevGroup,FormData formData,ItemPojo itemPojo){
@@ -296,7 +300,7 @@ public class UserMaintReqListing extends GenericGrouper {
 	}
 
 	@Override
-	public void additionalRibbonButtons(Composite ribbon) {
+	public void additionalRibbonButtons() {
 	}
 
 	@Override

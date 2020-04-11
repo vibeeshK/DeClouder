@@ -510,9 +510,9 @@ public class RequestProcessor {
 
 			System.out.println("AB At RequestProcessor Check first time run for forceSetting reqProcTracking.dbTobeRenewed = " + reqProcTracking.dbTobeRenewed);
 
-			if (remoteAccesser.getRemoteList(catalogpublishFolder).isEmpty()) {
+			if (remoteAccesser.getRemoteList(catalogpublishFolder) == null) {
 				reqProcTracking.dbTobeRenewed = true;
-				// Force setting the 
+				// Force setting the renewal for initial run post installation
 				System.out.println("AC At RequestProcessor Check first time run for forceSetting reqProcTracking.dbTobeRenewed = " + reqProcTracking.dbTobeRenewed);
 
 			}
@@ -685,7 +685,7 @@ public class RequestProcessor {
 													rootPojo.rootString,
 													inRequestProcesserPojo.newERLPojo.artifactKeyPojo.relevance,
 													inRequestProcesserPojo.newERLPojo.artifactKeyPojo.artifactName);
-		if (prevReviewsRemoteLocation.isEmpty()){
+		if (prevReviewsRemoteLocation == null || prevReviewsRemoteLocation.isEmpty()){
 			//use the incoming xml reviews as base
 			try {
 				artifactAllReviewsPojo.initiateArtifactReviewsDoc();
@@ -747,9 +747,9 @@ public class RequestProcessor {
 
 		UserPojo requestAuthorsDetail = commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(inRequestProcesserPojo.requestPojo.requestor);
 
-		if (!incomingItemNewReviewPojo.reassignedRequestor.isEmpty() 
-			|| !incomingItemNewReviewPojo.reassignedAuthor.isEmpty()
-			|| !incomingItemNewReviewPojo.newERLStatus.isEmpty()) {
+		if ((incomingItemNewReviewPojo.reassignedRequestor!= null && !incomingItemNewReviewPojo.reassignedRequestor.isEmpty()) 
+			|| (incomingItemNewReviewPojo.reassignedAuthor != null && !incomingItemNewReviewPojo.reassignedAuthor.isEmpty())
+			|| (incomingItemNewReviewPojo.newERLStatus != null && !incomingItemNewReviewPojo.newERLStatus.isEmpty())) {
 
 			if (inRequestProcesserPojo.contentHandlerSpecs.rollupAddupType) {
 			// for rollAddTypes, this info is at item level
@@ -770,15 +770,15 @@ public class RequestProcessor {
 								|| commonData.getUsersHandler().doesUserHaveRightsOverMember(requestAuthorsDetail.rootSysLoginID, inRequestProcesserPojo.prevERLPojo.author)
 						))) {
 						
-						if (!incomingItemNewReviewPojo.reassignedRequestor.isEmpty()) {
+						if (incomingItemNewReviewPojo.reassignedRequestor != null && !incomingItemNewReviewPojo.reassignedRequestor.isEmpty()) {
 							System.out.println("reassignment processing for requestor change");
 							inRequestProcesserPojo.newERLPojo.requestor = incomingItemNewReviewPojo.reassignedRequestor;
 						}
-						if (!incomingItemNewReviewPojo.reassignedAuthor.isEmpty()) {
+						if (incomingItemNewReviewPojo.reassignedAuthor != null && !incomingItemNewReviewPojo.reassignedAuthor.isEmpty()) {
 							System.out.println("reassignment processing for Author change");						
 							inRequestProcesserPojo.newERLPojo.author = incomingItemNewReviewPojo.reassignedAuthor;
 						}
-						if (!incomingItemNewReviewPojo.reassignedAuthor.isEmpty()) {
+						if (incomingItemNewReviewPojo.newERLStatus != null && !incomingItemNewReviewPojo.newERLStatus.isEmpty()) {
 							System.out.println("erl status upgrades processing");
 							inRequestProcesserPojo.newERLPojo.erlStatus = incomingItemNewReviewPojo.newERLStatus;
 						}

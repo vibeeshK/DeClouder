@@ -110,30 +110,35 @@ public class IdeasGrouper extends GenericGrouper {
 		description_Tx.setText(ideaPojo.description);
 		editor.grabHorizontal = true;
 		editor.setEditor(description_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, description_Tx.getText());
 
 		editor = new TableEditor(inTable);
 		Text author_Tx = new Text(inTable, SWT.READ_ONLY);
 		author_Tx.setText(ideaPojo.author);
 		editor.grabHorizontal = true;
 		editor.setEditor(author_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, author_Tx.getText());
 	
 		editor = new TableEditor(inTable);
 		Text application_Tx = new Text(inTable, SWT.READ_ONLY);
 		application_Tx.setText(ideaPojo.application);
 		editor.grabHorizontal = true;
 		editor.setEditor(application_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, application_Tx.getText());
 	
 		editor = new TableEditor(inTable);
 		Text reviewer_Tx = new Text(inTable, SWT.READ_ONLY);
 		reviewer_Tx.setText(ideaPojo.reviewer);
 		editor.grabHorizontal = true;
 		editor.setEditor(reviewer_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, reviewer_Tx.getText());
 	
 		editor = new TableEditor(inTable);
 		Text status_Tx = new Text(inTable, SWT.READ_ONLY);
 		status_Tx.setText(ideaPojo.status);
 		editor.grabHorizontal = true;
 		editor.setEditor(status_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, status_Tx.getText());
 	}
 
 	public Group setAddlFieldsForItemDisplay(Group itemContentGroup, Group inPrevGroup,FormData formData, ItemPojo itemPojo){
@@ -252,7 +257,7 @@ public class IdeasGrouper extends GenericGrouper {
 	}
 
 	@Override
-	public void additionalRibbonButtons(Composite ribbon) {
+	public void additionalRibbonButtons() {
 	}
 
 	@Override

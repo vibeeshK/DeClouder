@@ -37,6 +37,8 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 
 	public static final int PREFERED_ITEM_PANEL_WIDTH = 600;
 	public ArtifactPojo invokedArtifactPojo = null;
+	DownloadedReviewsHandler downloadedReviewsHandler = null;
+	
 	public boolean invokedForEdit = false;
 
 	public Shell mainShell = null;
@@ -151,6 +153,7 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 		
 		doCommonInit(inCommonUIData, inArtifactPojo);
 
+		downloadedReviewsHandler = new DownloadedReviewsHandler(inCommonUIData, invokedArtifactPojo.artifactKeyPojo);
 	}
 
 	public void initializeContentHandlerForDraftArtifact(CommonUIData inCommonUIData, SelfAuthoredArtifactpojo inSelfAuthoredArtifactspojo) {
@@ -471,20 +474,23 @@ public abstract class GenericItemHandler extends SelectionAdapter implements
 			}
 		});
 		lastGroup = actionButtonGrp;
-		
-		Group reviewGrp = new Group(childCompositeOfSingleView, SWT.RIGHT | SWT.WRAP);
-		reviewGrp.setText("ReviewContent");
 
-		reviewGrp.setLayout(new GridLayout(1, false));
-		formData = new FormData();
-		formData.left = new FormAttachment(itemContentGroup, 0, SWT.RIGHT);
-		reviewGrp.setLayoutData(formData);
-
-		System.out.println("itemPojo.itemID=" + primerDoc.getItem().itemID);
+		if (downloadedReviewsHandler.canBeReviewed()) {
+			Group reviewGrp = new Group(childCompositeOfSingleView, SWT.RIGHT | SWT.WRAP);
+			reviewGrp.setText("ReviewContent");
+	
+			reviewGrp.setLayout(new GridLayout(1, false));
+			formData = new FormData();
+			formData.left = new FormAttachment(itemContentGroup, 0, SWT.RIGHT);
+			reviewGrp.setLayoutData(formData);
+	
+			System.out.println("itemPojo.itemID=" + primerDoc.getItem().itemID);
+			
+	 		ReviewHandler reviewHander = new ReviewHandler((CommonUIData) commonData,reviewGrp,invokedArtifactPojo,primerDoc.getItem(),mainShell);
+			reviewHander.displayContent();
+			reviewGrp.pack();
+		}
 		
- 		ReviewHandler reviewHander = new ReviewHandler((CommonUIData) commonData,reviewGrp,invokedArtifactPojo,primerDoc.getItem(),mainShell);
-		reviewHander.displayContent();
-		reviewGrp.pack();
 		itemContentGroup.pack();
 		childCompositeOfSingleView.pack();
 		scrolledComposite_1.pack();

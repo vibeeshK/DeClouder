@@ -65,18 +65,21 @@ public class DefectsList extends GenericGrouper {
 		description_Tx.setText(defectPojo.description);
 		editor.grabHorizontal = true;
 		editor.setEditor(description_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, description_Tx.getText());
 
 		editor = new TableEditor(table);
 		Text author_Tx = new Text(table, SWT.READ_ONLY);
 		author_Tx.setText(defectPojo.author);
 		editor.grabHorizontal = true;
 		editor.setEditor(author_Tx, tableItem, ++inLastColLocation);	
+		tableItem.setText(inLastColLocation, author_Tx.getText());
 
 		editor = new TableEditor(table);
 		Text status_Tx = new Text(table, SWT.READ_ONLY);
 		status_Tx.setText(defectPojo.status);
 		editor.grabHorizontal = true;
 		editor.setEditor(status_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, status_Tx.getText());
 	}
 
 	public Group setAddlFieldsForItemDisplay(Group itemContentGroup, Group inPrevGroup,FormData formData, ItemPojo itemPojo){
@@ -183,7 +186,7 @@ public class DefectsList extends GenericGrouper {
 	}
 
 	@Override
-	public void additionalRibbonButtons(Composite ribbon) {
+	public void additionalRibbonButtons() {
 	}
 
 	@Override

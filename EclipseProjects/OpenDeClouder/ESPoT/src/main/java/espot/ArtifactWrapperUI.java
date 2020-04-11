@@ -51,8 +51,10 @@ public class ArtifactWrapperUI {
 	ArtifactPojo invokedArtifactPojo = null;
 	ArtifactKeyPojo cloneToArtifactKeyPojo = null;
 	ItemPojo viewFocusItemPojo = null;
-	
 	SelfAuthoredArtifactpojo newestDBSelfAuthoredArtifactspojo = null;
+
+	DownloadedReviewsHandler downloadedReviewsHandler = null;
+	
 	CCombo artifactVersionsList = null;
 	ContentHandlerSpecs contentHandlerSpecs = null;
 	CatelogPersistenceManager catelogPersistenceManager = null;	
@@ -92,6 +94,7 @@ public class ArtifactWrapperUI {
 												invokedArtifactPojo.artifactKeyPojo);
 			startupWithArtifactKeyPojo();
 		}
+		downloadedReviewsHandler = new DownloadedReviewsHandler(inCommonUIData, invokedArtifactPojo.artifactKeyPojo);
 	}
 	
 
@@ -217,10 +220,10 @@ public class ArtifactWrapperUI {
 				authorCanEdit = false;				
 			}
 
-			String fullPathReviewFileName = "";
-			if (erlDownload.downLoadedReviewFile != null && !erlDownload.downLoadedReviewFile.equalsIgnoreCase("")) {
-				fullPathReviewFileName = commonUIData.getCommons().getFullLocalPathFileNameOfDownloadedReview(commonUIData.getCurrentRootNick(), erlDownload.artifactKeyPojo.relevance,erlDownload.downLoadedReviewFile);
-			}
+			//String fullPathReviewFileName = "";
+			//if (erlDownload.downLoadedReviewFile != null && !erlDownload.downLoadedReviewFile.equalsIgnoreCase("")) {
+			//	fullPathReviewFileName = commonUIData.getCommons().getFullLocalPathFileNameOfDownloadedReview(commonUIData.getCurrentRootNick(), erlDownload.artifactKeyPojo.relevance,erlDownload.downLoadedReviewFile);
+			//}
 			tempArtifactVersionPojo = new ArtifactVersionPojo(
 					erlDownload, true, 0, erlDownload.localCopyStatus, "");
 			
@@ -927,26 +930,27 @@ public class ArtifactWrapperUI {
 		artifactDetailGroup.pack();
 
 		//review group integration starts
-		//review group integration starts
-		Composite childCompositeOfRightView = new Composite(
-				childCompositeOfDuplexView, SWT.NONE | SWT.WRAP);
-
-		GridData gridDataRight = new GridData(SWT.FILL, SWT.FILL, true, true);
-
-		childCompositeOfRightView.setLayoutData(gridDataRight);		
-
-		if (!calledFor.equalsIgnoreCase(CALLED_For_NewDraftSetup) 
-			&& !calledFor.equalsIgnoreCase(CALLED_ForCloning)
-			&& !contentHandlerSpecs.rollupAddupType) {	// rollAddType reviews should go inside the item level
-		
-			childCompositeOfRightView.setLayout(new GridLayout());
-			ReviewHandler reviewHander = new ReviewHandler(commonUIData, childCompositeOfRightView, invokedArtifactPojo, mainShell);
-			reviewHander.displayContent();
-
-			childCompositeOfRightView.pack();
-			mainShell.layout(true);			
+		//review group integration starts		
+		if (downloadedReviewsHandler.canBeReviewed()) {		
+			Composite childCompositeOfRightView = new Composite(
+					childCompositeOfDuplexView, SWT.NONE | SWT.WRAP);
+	
+			GridData gridDataRight = new GridData(SWT.FILL, SWT.FILL, true, true);
+	
+			childCompositeOfRightView.setLayoutData(gridDataRight);		
+	
+			if (!calledFor.equalsIgnoreCase(CALLED_For_NewDraftSetup) 
+				&& !calledFor.equalsIgnoreCase(CALLED_ForCloning)
+				&& !contentHandlerSpecs.rollupAddupType) {	// rollAddType reviews should go inside the item level
+			
+				childCompositeOfRightView.setLayout(new GridLayout());
+				ReviewHandler reviewHander = new ReviewHandler(commonUIData, childCompositeOfRightView, invokedArtifactPojo, mainShell);
+				reviewHander.displayContent();
+	
+				childCompositeOfRightView.pack();
+				mainShell.layout(true);			
+			}
 		}
-
 		//review group integration ends
 		//review group integration ends
 

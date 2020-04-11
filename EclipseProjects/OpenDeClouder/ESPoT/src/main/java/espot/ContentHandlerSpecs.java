@@ -85,7 +85,7 @@ public class ContentHandlerSpecs {
 		//	rollupAddupType = true;			
 		//}		
 		
-		if (!rollupOrAddup.isEmpty() && !rollupOrAddup.equalsIgnoreCase(ROLLUP_ADDUP_TYPE_NONE)){
+		if (rollupOrAddup != null && !rollupOrAddup.isEmpty() && !rollupOrAddup.equalsIgnoreCase(ROLLUP_ADDUP_TYPE_NONE)){
 			rollupAddupType = true;
 		}
 

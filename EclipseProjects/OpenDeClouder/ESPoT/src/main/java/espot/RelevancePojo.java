@@ -16,7 +16,7 @@ public class RelevancePojo {
 		
 		rootNick = inRootNick;
 		relevance = inRelevance;
-		RelevancePicked = (!inPickedRelevance.isEmpty())? true : false;
+		RelevancePicked = (inPickedRelevance !=null && !inPickedRelevance.isEmpty())? true : false;
 		
 		System.out.println("RelevancePicked = " + RelevancePicked);
 	}

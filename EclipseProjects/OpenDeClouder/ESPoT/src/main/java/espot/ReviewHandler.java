@@ -42,9 +42,10 @@ public class ReviewHandler {
 	//String itemName = null;
 	private CommonUIData commonUIData;
 	private Document newCommentDoc = null;
-	private String finalReviewPathFileName = null;
-	private ArtifactAllReviewsPojo artifactAllReviewsPojo = null;
-	private Document allReviewsDoc = null;
+	//private String finalReviewPathFileName = null;
+	//private ArtifactAllReviewsPojo artifactAllReviewsPojo = null;
+	DownloadedReviewsHandler downloadedReviewsHandler = null;
+	//private Document allReviewsDoc = null;
 	private UsersDisplay authorsDisplay = null;
 	private UsersDisplay requestorDisplay = null;	
 	private Shell outerMainShell = null;
@@ -52,12 +53,16 @@ public class ReviewHandler {
 	private boolean reviewVisible = true;
 	private Group hideReviewGrp = null;	
 	private Text newCommentText = null;
-	private ContentHandlerSpecs contentHandlerSpecs = null;
+	//private ContentHandlerSpecs contentHandlerSpecs = null;
 
-	private ArtifactPojo artifactPojo = null;
+	//private ArtifactPojo reviewArtifactPojo = null;
+	private ArtifactKeyPojo reviewArtifactKeyPojo = null;
 	private ItemPojo reviewItemPojo = null;
 	private String reviewOf = "";	// this is artifactName for non-rollup artifacts and
 											// - itemID for rollup child.
+	private String reviewERLRelevance = "";
+	private String reviewERLContentType = "";
+
 	private String reviewERLStatus = "";
 	private String reviewERLRequestor = "";
 	private String reviewERLAuthor = "";
@@ -97,26 +102,53 @@ public class ReviewHandler {
 	{
 		commonUIData = inCommonUIData;
 		wrappingExtlComposite = inWrappingComposite;
-		artifactPojo = inArtifactPojo;
+		//reviewArtifactPojo = inArtifactPojo;		
 		//itemName = inItemName;	//itemName will be same as the artifact name for artifact reviews
 
 		if (inItemPojo!= null) {
-			reviewOf = inItemPojo.itemID;
-			reviewERLStatus = inItemPojo.status;
-			reviewERLRequestor = inItemPojo.requestor;
-			reviewERLAuthor = inItemPojo.author;			
-		} else{
-			reviewOf = artifactPojo.artifactKeyPojo.artifactName;
-			reviewERLStatus = artifactPojo.erlStatus;
-			reviewERLRequestor = artifactPojo.requestor;
-			reviewERLAuthor = artifactPojo.author;			
-		}
-		System.out.println("@ReviewHandler reviewOf= " + reviewOf);
-		System.out.println("@ReviewHandler reviewERLRequestor = " + reviewERLRequestor);
-		System.out.println("@ReviewHandler reviewERLStatus = " + reviewERLStatus);
-		System.out.println("@ReviewHandler reviewERLAuthor = " + reviewERLAuthor);
+			if (commonUIData.getContentHandlerSpecs(inItemPojo.contentType).rollupAddupType) {
+				reviewArtifactKeyPojo = inArtifactPojo.artifactKeyPojo;
+				reviewOf = inItemPojo.itemID;
+				reviewERLRelevance = inItemPojo.relevance;
+				reviewERLContentType = inItemPojo.contentType;
+				reviewERLStatus = inItemPojo.status;
+				reviewERLRequestor = inItemPojo.requestor;
+				reviewERLAuthor = inItemPojo.author;			
+			} else {
+			// for non rollup types use the item pojo's referred ERL for details
+				reviewArtifactKeyPojo = new ArtifactKeyPojo(inArtifactPojo.artifactKeyPojo.rootNick, 
+															inItemPojo.relevance,
+															inItemPojo.artifactName,
+															inItemPojo.contentType);
+				reviewOf = inItemPojo.artifactName;
+				reviewERLRelevance = inItemPojo.relevance;
+				reviewERLContentType = inItemPojo.contentType;
+				reviewERLStatus = inItemPojo.status;
+				reviewERLRequestor = inItemPojo.requestor;
+				reviewERLAuthor = inItemPojo.author;			
 
-		contentHandlerSpecs = commonUIData.getContentHandlerSpecs(artifactPojo.artifactKeyPojo.contentType);
+				ERLDownload erlDownLoad = commonUIData.getCatelogPersistenceManager().readERLDownLoad(
+																				reviewArtifactKeyPojo);
+				if (erlDownLoad!=null) {	
+					System.out.println("At initReviewHandler erlDownLoad of non-rollup individual item is " + erlDownLoad);						
+					reviewERLStatus = erlDownLoad.erlStatus;
+					reviewERLRequestor = erlDownLoad.requestor;
+					reviewERLAuthor = erlDownLoad.author;
+				}
+			}					
+		} else {
+			reviewArtifactKeyPojo = inArtifactPojo.artifactKeyPojo;
+			reviewOf = reviewArtifactKeyPojo.artifactName;
+			reviewERLRelevance = reviewArtifactKeyPojo.relevance;
+			reviewERLContentType = reviewArtifactKeyPojo.contentType;
+			reviewERLStatus = inArtifactPojo.erlStatus;
+			reviewERLRequestor = inArtifactPojo.requestor;
+			reviewERLAuthor = inArtifactPojo.author;			
+		}
+		
+		downloadedReviewsHandler = new DownloadedReviewsHandler(inCommonUIData, reviewArtifactKeyPojo);
+
+		//contentHandlerSpecs = commonUIData.getContentHandlerSpecs(artifactPojo.artifactKeyPojo.contentType);
 
 		UserPojo deskUserDetail = commonUIData.getUsersHandler().getUserDetailsFromRootSysLoginID(commonUIData.getCommons().userName);
 		
@@ -130,23 +162,26 @@ public class ReviewHandler {
 		}
 
 		outerMainShell = inMainShell;
-		System.out.println("@ReviewHandler inArtifactPojo = " + inArtifactPojo);
-		System.out.println("@ReviewHandler inArtifactPojo.artifactKeyPojo = " + inArtifactPojo.artifactKeyPojo);
-		System.out.println("@ReviewHandler inArtifactPojo.artifactKeyPojo.contentType = " + inArtifactPojo.artifactKeyPojo.contentType);
-		System.out.println("@ReviewHandler inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType) = " + inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType));
-		
-		ArtifactKeyPojo finalArtifactKeyPojo = inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType)
-												.getFinalArtifactKeyPojo(inArtifactPojo.artifactKeyPojo.rootNick, 
-													inArtifactPojo.artifactKeyPojo.relevance,
-													inArtifactPojo.artifactKeyPojo.artifactName,
-													inCommonUIData.getCurrentRootPojo().fileSeparator);
-						
-		finalReviewPathFileName = getParentRemarksFileIfAny(
-										finalArtifactKeyPojo.rootNick,
-										finalArtifactKeyPojo.relevance,
-										finalArtifactKeyPojo.artifactName,
-										finalArtifactKeyPojo.contentType);
+		System.out.println("@ReviewHandler reviewArtifactKeyPojo = " + reviewArtifactKeyPojo);
+		System.out.println("@ReviewHandler reviewOf = " + reviewOf);
+		System.out.println("@ReviewHandler reviewERLRelevance = " + reviewERLRelevance);
+		System.out.println("@ReviewHandler reviewERLContentType = " + reviewERLContentType);
+		System.out.println("@ReviewHandler reviewERLStatus = " + reviewERLStatus);
+		System.out.println("@ReviewHandler reviewERLRequestor = " + reviewERLRequestor);
+		System.out.println("@ReviewHandler reviewERLAuthor = " + reviewERLAuthor);
 
+		//ArtifactKeyPojo finalArtifactKeyPojo = inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType)
+		//										.getFinalArtifactKeyPojo(inArtifactPojo.artifactKeyPojo.rootNick, 
+		//											inArtifactPojo.artifactKeyPojo.relevance,
+		//											inArtifactPojo.artifactKeyPojo.artifactName,
+		//											inCommonUIData.getCurrentRootPojo().fileSeparator);
+		//				
+		//String finalReviewPathFileName = getParentRemarksFileIfAny(
+		//								finalArtifactKeyPojo.rootNick,
+		//								finalArtifactKeyPojo.relevance,
+		//								finalArtifactKeyPojo.artifactName,
+		//								finalArtifactKeyPojo.contentType);
+		//
 		//reviewFrameOutmostScroller = new Composite(wrappingExtlComposite,SWT.BORDER);
 		//GridData gridDataOuterScrl = new GridData(SWT.FILL, SWT.FILL, true, true);
 		//reviewFrameOutmostScroller.setLayoutData(gridDataOuterScrl);
@@ -218,20 +253,32 @@ public class ReviewHandler {
 		hideReviewButton.pack();
 		hideReviewGrp.pack();
 
-		try {
-			System.out.println("@ReviewHandler allReviewPathFileName = " + finalReviewPathFileName);
-			
-			if (finalReviewPathFileName == null || finalReviewPathFileName.equalsIgnoreCase("")) {
-			} else {
-				artifactAllReviewsPojo = new ArtifactAllReviewsPojo();
-				allReviewsDoc = commonUIData.getCommons().getDocumentFromXMLFile(finalReviewPathFileName);
-				artifactAllReviewsPojo.buildArtifactAllReviewsPojoFromFromDoc(allReviewsDoc);
-			}
-		} catch (SAXException | IOException | ParserConfigurationException e) {
-			e.printStackTrace();
-			ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), "Error in ReviewHandler constructor reviewOf " 
-			+ " " + reviewOf, e);
-		}
+		
+		//ArtifactKeyPojo finalArtifactKeyPojo = inCommonUIData.getContentHandlerSpecsMap().get(inArtifactPojo.artifactKeyPojo.contentType)
+		//		.getFinalArtifactKeyPojo(inArtifactPojo.artifactKeyPojo.rootNick, 
+		//			inArtifactPojo.artifactKeyPojo.relevance,
+		//			inArtifactPojo.artifactKeyPojo.artifactName,
+		//			inCommonUIData.getCurrentRootPojo().fileSeparator);
+		//
+		//String finalReviewPathFileName = getParentRemarksFileIfAny(
+		//			finalArtifactKeyPojo.rootNick,
+		//			finalArtifactKeyPojo.relevance,
+		//			finalArtifactKeyPojo.artifactName,
+		//			finalArtifactKeyPojo.contentType);
+		//try {
+		//	System.out.println("@ReviewHandler allReviewPathFileName = " + finalReviewPathFileName);
+		//	
+		//	if (!finalReviewPathFileName.isEmpty()) {
+		//	} else {
+		//		artifactAllReviewsPojo = new ArtifactAllReviewsPojo();
+		//		allReviewsDoc = commonUIData.getCommons().getDocumentFromXMLFile(finalReviewPathFileName);
+		//		artifactAllReviewsPojo.buildArtifactAllReviewsPojoFromFromDoc(allReviewsDoc);
+		//	}
+		//} catch (SAXException | IOException | ParserConfigurationException e) {
+		//	e.printStackTrace();
+		//	ErrorHandler.showErrorAndQuit(commonUIData.getCommons(), "Error in ReviewHandler constructor reviewOf " 
+		//	+ " " + reviewOf, e);
+		//}
 	}
 
 	public void displayContent() {
@@ -258,13 +305,13 @@ public class ReviewHandler {
 		System.out.println("22 y = " + prevCommentText.getSize().y);
 
 		int prevCommentHeight = 0;
-		if (artifactAllReviewsPojo != null &&  artifactAllReviewsPojo.itemsReviews.containsKey(reviewOf)) {
+		if (downloadedReviewsHandler.getArtifactAllReviewsPojo() != null &&  downloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(reviewOf) != null) {
 			System.out.println("prevCommentText = " + prevCommentText);
-			System.out.println("artifactAllReviewsPojo = " + artifactAllReviewsPojo);
-			System.out.println("artifactAllReviewsPojo.itemsReviews = " + artifactAllReviewsPojo.itemsReviews);
-			System.out.println("artifactPojo = " + artifactPojo);
+			System.out.println("artifactAllReviewsPojo = " + downloadedReviewsHandler.getArtifactAllReviewsPojo());
+			System.out.println("artifactAllReviewsPojo.itemsReviews = " + downloadedReviewsHandler.getArtifactAllReviewsPojo().itemsReviews);
+			System.out.println("reviewArtifactKeyPojo = " + reviewArtifactKeyPojo);
 			System.out.println("reviewOf = " + reviewOf);
-			prevCommentText.setText(artifactAllReviewsPojo.itemsReviews.get(reviewOf));
+			prevCommentText.setText(downloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(reviewOf));
 			prevCommentHeight = PREFERED_REVIEW_HEIGHT;
 		} else {
 			prevCommentText.setText("-None-");
@@ -290,30 +337,30 @@ public class ReviewHandler {
 
 		newCommentText = new Text(newCommentGrp, SWT.WRAP | SWT.LEFT | SWT.H_SCROLL | SWT.V_SCROLL);
 
-		ClientSideNew_ReviewPojo reviewPojo = null;
+		ClientSideNew_ReviewPojo newReviewPojo = null;
 		try {
-			reviewPojo = commonUIData.getCatelogPersistenceManager().readReview(artifactPojo.artifactKeyPojo,reviewOf);
+			newReviewPojo = commonUIData.getCatelogPersistenceManager().readReview(reviewArtifactKeyPojo,reviewOf);
 
-			System.out.println("@@2r4 artifactKeyPojo = " + reviewPojo);
+			System.out.println("@@2r4 artifactKeyPojo = " + newReviewPojo);
 			
-			if (reviewPojo == null) {
+			if (newReviewPojo == null) {
 				newCommentText.setText("");
 			} else {
-				System.out.println("@@2r4 artifactKeyPojo.artifactKeyPojo = " + reviewPojo.artifactKeyPojo);
-				System.out.println("new comment already exists at:" + reviewPojo.reviewFileName);
+				System.out.println("@@2r4 artifactKeyPojo.artifactKeyPojo = " + newReviewPojo.artifactKeyPojo);
+				System.out.println("new comment already exists at:" + newReviewPojo.reviewFileName);
 
 				System.out.println("commons:" + commonUIData.getCommons());
 				System.out.println("commons.defaultUIRootNick:" + commonUIData.getCommons().getCurrentRootNick());
-				System.out.println("reviewPojo" + reviewPojo);
-				System.out.println("reviewPojo.artifactKeyPojo" + reviewPojo.artifactKeyPojo);
-				System.out.println("reviewPojo.artifactKeyPojo.relevance" + reviewPojo.artifactKeyPojo.relevance);
-				System.out.println("reviewPojo.localFileName:" + reviewPojo.reviewFileName);
+				System.out.println("reviewPojo" + newReviewPojo);
+				System.out.println("reviewPojo.artifactKeyPojo" + newReviewPojo.artifactKeyPojo);
+				System.out.println("reviewPojo.artifactKeyPojo.relevance" + newReviewPojo.artifactKeyPojo.relevance);
+				System.out.println("reviewPojo.localFileName:" + newReviewPojo.reviewFileName);
 				
-				String localReviewFullPathFileName = commonUIData.getCommons().getFullLocalPathFileNameOfNewReview(commonUIData.getCommons().getCurrentRootNick(), reviewPojo.artifactKeyPojo.relevance, reviewPojo.reviewFileName);
+				String localReviewFullPathFileName = commonUIData.getCommons().getFullLocalPathFileNameOfNewReview(commonUIData.getCommons().getCurrentRootNick(), newReviewPojo.artifactKeyPojo.relevance, newReviewPojo.reviewFileName);
 
 				Document reviewXMLDocument = commonUIData.getCommons().getDocumentFromXMLFile(localReviewFullPathFileName);
-				reviewPojo.buildReviewPojoFromDocument(reviewXMLDocument);		
-				newCommentText.setText(reviewPojo.description);
+				newReviewPojo.buildReviewPojoFromDocument(reviewXMLDocument);		
+				newCommentText.setText(newReviewPojo.description);
 				newCommentText.setEditable(false);
 			}
 		} catch (SAXException | IOException | ParserConfigurationException e1) {
@@ -352,22 +399,22 @@ public class ReviewHandler {
 		////Only requestor can reassign. Later enhance to allow admins to change as well
 		if (doesUserHaveUpdateRights) {
 			
-			if (reviewPojo != null) {
-				if (reviewPojo.reassignedAuthor != null) {
-					System.out.println("before reassign display2: reviewPojo.reassignedAuthor is " + reviewPojo.reassignedAuthor);
-					authorsDisplay = new UsersDisplay(commonUIData.getUsersHandler(),reviewActionsGrp,reviewPojo.reassignedAuthor,false,UsersDisplay.AUTHOR_REASSIGN_TEXT);
+			if (newReviewPojo != null) {
+				if (newReviewPojo.reassignedAuthor != null) {
+					System.out.println("before reassign display2: reviewPojo.reassignedAuthor is " + newReviewPojo.reassignedAuthor);
+					authorsDisplay = new UsersDisplay(commonUIData.getUsersHandler(),reviewActionsGrp,newReviewPojo.reassignedAuthor,false,UsersDisplay.AUTHOR_REASSIGN_TEXT);
 				}
 			} else {
-				System.out.println("before reassign display2: artifactPojo.author is " + artifactPojo.author);
+				System.out.println("before reassign display2: reviewERLAuthor is " + reviewERLAuthor);
 				authorsDisplay = new UsersDisplay(commonUIData.getUsersHandler(),reviewActionsGrp,reviewERLAuthor,true,UsersDisplay.AUTHOR_REASSIGN_TEXT);
 			}
 		//}
 		//if (commonUIData.getCommons().userName.equalsIgnoreCase(artifactPojo.requestor) || deskUserDetail.hasAdminPrivilege() || deskUserDetail.hasTeamLeaderPrivilege()) {
 		//Only requestor can reassign. Later enhance to allow admins to change as well
-			if (reviewPojo != null) {
-				if (reviewPojo.reassignedRequestor != null) {
-					System.out.println("before reassign display2: reviewPojo.reassignedRequestor is " + reviewPojo.reassignedRequestor);
-					requestorDisplay = new UsersDisplay(commonUIData.getUsersHandler(),reviewActionsGrp,reviewPojo.reassignedRequestor,false,UsersDisplay.REQUESTOR_REASSIGN_TEXT);
+			if (newReviewPojo != null) {
+				if (newReviewPojo.reassignedRequestor != null) {
+					System.out.println("before reassign display2: reviewPojo.reassignedRequestor is " + newReviewPojo.reassignedRequestor);
+					requestorDisplay = new UsersDisplay(commonUIData.getUsersHandler(),reviewActionsGrp,newReviewPojo.reassignedRequestor,false,UsersDisplay.REQUESTOR_REASSIGN_TEXT);
 				}
 			} else {
 				System.out.println("before reassign display2: reviewERLRequestor is " + reviewERLRequestor);
@@ -396,9 +443,9 @@ public class ReviewHandler {
 		}
 
 		if (doesUserHaveUpdateRights) {
-			if (reviewPojo !=null) {
-				if (reviewPojo.newERLStatus != null) {
-					erlStatusDisplay = new ERLStatusDisplay(validActions, erlStatusGroup, reviewPojo.newERLStatus, false, ERLStatusDisplay.STATUS_ASSIGN_TEXT);
+			if (newReviewPojo !=null) {
+				if (newReviewPojo.newERLStatus != null) {
+					erlStatusDisplay = new ERLStatusDisplay(validActions, erlStatusGroup, newReviewPojo.newERLStatus, false, ERLStatusDisplay.STATUS_ASSIGN_TEXT);
 				}
 			} else {
 				erlStatusDisplay = new ERLStatusDisplay(validActions, erlStatusGroup, reviewERLStatus, true, ERLStatusDisplay.STATUS_ASSIGN_TEXT);
@@ -410,7 +457,7 @@ public class ReviewHandler {
 		submitReviewButton.setText("SubmitReview");
 		submitReviewButton.setToolTipText("Submit the review and any change to ownership and status.");
 		
-		if (reviewPojo != null) {
+		if (newReviewPojo != null) {
 			submitReviewButton.setEnabled(false);
 			submitReviewButton.setText("Submitted already");
 		} else {
@@ -422,7 +469,7 @@ public class ReviewHandler {
 						System.out.println("Saving Remarks");
 
 						ClientSideNew_ReviewPojo clientSideNew_ReviewPojo = new ClientSideNew_ReviewPojo(
-								commonUIData.getCommons(), artifactPojo.artifactKeyPojo,reviewOf,commonUIData.getCommons().userName,commonUIData.getCommons().getCurrentTimeStamp());
+								commonUIData.getCommons(), reviewArtifactKeyPojo,reviewOf,commonUIData.getCommons().userName,commonUIData.getCommons().getCurrentTimeStamp());
 						if (authorsDisplay!=null) {
 							System.out.println("Inside Author display reassign sel Auth is " + authorsDisplay.userText.getText());
 							clientSideNew_ReviewPojo.reassignedAuthor = authorsDisplay.userText.getText();
@@ -440,7 +487,7 @@ public class ReviewHandler {
 						System.out.println("new value of sel Auth is " + clientSideNew_ReviewPojo.reassignedAuthor);
 						System.out.println("new value of sel Req is " + clientSideNew_ReviewPojo.reassignedRequestor);
 						clientSideNew_ReviewPojo.captureNewComment(newCommentText.getText());
-						String localReviewPathFileName = commonUIData.getCommons().getFullLocalPathFileNameOfNewReview(commonUIData.getCommons().getCurrentRootNick(), artifactPojo.artifactKeyPojo.relevance, clientSideNew_ReviewPojo.reviewFileName);
+						String localReviewPathFileName = commonUIData.getCommons().getFullLocalPathFileNameOfNewReview(commonUIData.getCommons().getCurrentRootNick(), reviewArtifactKeyPojo.relevance, clientSideNew_ReviewPojo.reviewFileName);
 	
 						System.out.println("clientSideNew_ReviewPojo.newReviewDocument:" + clientSideNew_ReviewPojo.newReviewDocument);
 						System.out.println("reviewPathFileName to be saved:" + localReviewPathFileName);
@@ -466,25 +513,25 @@ public class ReviewHandler {
 		wrappingExtlComposite.pack();
 	}
 	
-	public String getParentRemarksFileIfAny(String inRootNick, String inRolledupRelevance, String inRolledupArtifactName, String inRolledupContentType) {
-		String finalRemarkPathFile = null;
-		
-		System.out.println("At getParentRemarksFileIfAny going to read the parent remarks  for inRootNick " + inRootNick + " for inRolledupRelevance,inRolledupArtifactName " + inRolledupRelevance + " , " + inRolledupArtifactName);
-		
-		ERLDownload erlDownLoad = commonUIData.getCatelogPersistenceManager().readERLDownLoad(new ArtifactKeyPojo(inRootNick, inRolledupRelevance,inRolledupArtifactName,inRolledupContentType));
-		
-		System.out.println("At getParentRemarksFileIfAny erlDownLoad is " + erlDownLoad + " for inRolledupRelevance,inRolledupArtifactName " + inRolledupRelevance + " , " + inRolledupArtifactName);
-		if (erlDownLoad != null) {
-			String finalRemrkFilename = erlDownLoad.downLoadedReviewFile;
-			
-			System.out.println(" at getParentRemarksFileIfAny here we go..... downLoadedReviewFile loaded with ERLDownload is "  + erlDownLoad.downLoadedReviewFile);
-						
-			
-			System.out.println("At getParentRemarksFileIfAny finalRemrkFilename is " + finalRemrkFilename);
-			if (finalRemrkFilename != null && !finalRemrkFilename.equalsIgnoreCase("")) {
-				finalRemarkPathFile = commonUIData.getCommons().getFullLocalPathFileNameOfDownloadedReview(commonUIData.getCurrentRootNick(), inRolledupRelevance, finalRemrkFilename);
-			}
-		}
-		return finalRemarkPathFile;
-	}
+	//public String getParentRemarksFileIfAny(String inRootNick, String inRolledupRelevance, String inRolledupArtifactName, String inRolledupContentType) {
+	//	String finalRemarkPathFile = null;
+	//	
+	//	System.out.println("At getParentRemarksFileIfAny going to read the parent remarks  for inRootNick " + inRootNick + " for inRolledupRelevance,inRolledupArtifactName " + inRolledupRelevance + " , " + inRolledupArtifactName);
+	//	
+	//	ERLDownload erlDownLoad = commonUIData.getCatelogPersistenceManager().readERLDownLoad(new ArtifactKeyPojo(inRootNick, inRolledupRelevance,inRolledupArtifactName,inRolledupContentType));
+	//	
+	//	System.out.println("At getParentRemarksFileIfAny erlDownLoad is " + erlDownLoad + " for inRolledupRelevance,inRolledupArtifactName " + inRolledupRelevance + " , " + inRolledupArtifactName);
+	//	if (erlDownLoad != null) {
+	//		String finalRemrkFilename = erlDownLoad.downLoadedReviewFile;
+	//		
+	//		System.out.println(" at getParentRemarksFileIfAny here we go..... downLoadedReviewFile loaded with ERLDownload is "  + erlDownLoad.downLoadedReviewFile);
+	//					
+	//		
+	//		System.out.println("At getParentRemarksFileIfAny finalRemrkFilename is " + finalRemrkFilename);
+	//		if (!finalRemrkFilename.isEmpty()) {
+	//			finalRemarkPathFile = commonUIData.getCommons().getFullLocalPathFileNameOfDownloadedReview(commonUIData.getCurrentRootNick(), inRolledupRelevance, finalRemrkFilename);
+	//		}
+	//	}
+	//	return finalRemarkPathFile;
+	//}
 }

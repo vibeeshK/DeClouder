@@ -37,8 +37,7 @@ public class GenlReqList extends GenericGrouper {
 	DateTime requestEndDateDisplay;
 
 	protected List categorySelList;
-	
-	
+
 	protected void setScreenTitle() {
 		mainShell.setText("GenlReqList: <viewContentsAtDesk> on " + invokedArtifactPojo.artifactKeyPojo.artifactName);
 	}
@@ -73,48 +72,56 @@ public class GenlReqList extends GenericGrouper {
 		requestedByShortName_Tx.setText(genlRequestPojo.author);
 		editor.grabHorizontal = true;
 		editor.setEditor(requestedByShortName_Tx, inTableItem, ++inLastColLocation);
-
+		inTableItem.setText(inLastColLocation, requestedByShortName_Tx.getText());
+		
 		editor = new TableEditor(inTable);
 		Text requestedByFullName_Tx = new Text(inTable, SWT.READ_ONLY);
 		requestedByFullName_Tx.setText(commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(genlRequestPojo.author).userName);
 		editor.grabHorizontal = true;
 		editor.setEditor(requestedByFullName_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, requestedByFullName_Tx.getText());
 
 		editor = new TableEditor(inTable);
 		Text requestFor_Tx = new Text(inTable, SWT.READ_ONLY);
 		requestFor_Tx.setText(genlRequestPojo.title);
 		editor.grabHorizontal = true;
 		editor.setEditor(requestFor_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, requestFor_Tx.getText());
 	
 		editor = new TableEditor(inTable);
 		Text requestDesc_Tx = new Text(inTable, SWT.READ_ONLY);
 		requestDesc_Tx.setText(genlRequestPojo.requestDesc);
 		editor.grabHorizontal = true;
 		editor.setEditor(requestDesc_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, requestDesc_Tx.getText());
 	
 		editor = new TableEditor(inTable);
 		Text requestCategory_Tx = new Text(inTable, SWT.READ_ONLY);
 		requestCategory_Tx.setText(genlRequestPojo.requestCategory);
 		editor.grabHorizontal = true;
 		editor.setEditor(requestCategory_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, requestCategory_Tx.getText());
 
 		editor = new TableEditor(inTable);
 		Text requestStartDate_Tx = new Text(inTable, SWT.READ_ONLY);
 		requestStartDate_Tx.setText(genlRequestPojo.requestStartDate);
 		editor.grabHorizontal = true;
 		editor.setEditor(requestStartDate_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, requestStartDate_Tx.getText());
 
 		editor = new TableEditor(inTable);
 		Text requestEndDate_Tx = new Text(inTable, SWT.READ_ONLY);
 		requestEndDate_Tx.setText(genlRequestPojo.requestEndDate);
 		editor.grabHorizontal = true;
 		editor.setEditor(requestEndDate_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, requestEndDate_Tx.getText());
 		
 		editor = new TableEditor(inTable);
 		Text status_Tx = new Text(inTable, SWT.READ_ONLY);
 		status_Tx.setText(genlRequestPojo.status);
 		editor.grabHorizontal = true;
 		editor.setEditor(status_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, status_Tx.getText());
 	}
 
 	public Group setAddlFieldsForItemDisplay(Group itemContentGroup, Group inPrevGroup,FormData formData, ItemPojo itemPojo){
@@ -326,7 +333,7 @@ public class GenlReqList extends GenericGrouper {
 	}
 
 	@Override
-	public void additionalRibbonButtons(Composite ribbon) {
+	public void additionalRibbonButtons() {
 	}
 
 	@Override

@@ -57,30 +57,35 @@ public class ToDoLister extends GenericGrouper {
 		author_Tx.setText(toDoPojo.author);
 		editor.grabHorizontal = true;
 		editor.setEditor(author_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, author_Tx.getText());
 		
 		editor = new TableEditor(table);
 		Text status_Tx = new Text(table, SWT.READ_ONLY);
 		status_Tx.setText(toDoPojo.status);
 		editor.grabHorizontal = true;
 		editor.setEditor(status_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, status_Tx.getText());
 		
 		editor = new TableEditor(table);
 		Text cloneFromArtifactName_Tx = new Text(table, SWT.READ_ONLY);
 		cloneFromArtifactName_Tx.setText(toDoPojo.cloneFromArtifactName);
 		editor.grabHorizontal = true;
 		editor.setEditor(cloneFromArtifactName_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, cloneFromArtifactName_Tx.getText());
 
 		editor = new TableEditor(table);
 		Text cloneFromRelevance_Tx = new Text(table, SWT.READ_ONLY);
 		cloneFromRelevance_Tx.setText(toDoPojo.cloneFromRelevance);
 		editor.grabHorizontal = true;
 		editor.setEditor(cloneFromRelevance_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, cloneFromRelevance_Tx.getText());
 
 		editor = new TableEditor(table);
 		Text cloneFromContentType_Tx = new Text(table, SWT.READ_ONLY);
 		cloneFromContentType_Tx.setText(toDoPojo.cloneFromContentType);
 		editor.grabHorizontal = true;
 		editor.setEditor(cloneFromContentType_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, cloneFromContentType_Tx.getText());
 	}
 	
 	@Override
@@ -157,7 +162,7 @@ public class ToDoLister extends GenericGrouper {
 	}
 
 	@Override
-	public void additionalRibbonButtons(Composite ribbon) {
+	public void additionalRibbonButtons() {
 	}
 
 	@Override

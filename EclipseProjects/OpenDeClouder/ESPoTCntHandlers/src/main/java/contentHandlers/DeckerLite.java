@@ -162,24 +162,22 @@ public class DeckerLite extends GenericGrouper {
 		return; // suppressing the default displays on this core area
 	}
 
-
 	public void setDisplayCoreLeftFieldsInMultiDisplay(TableEditor inEditor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojoScrolled, Button inMaintenanceButton, int inScreenRowNum) {
 		System.out.println("setDisplayCoreLeftFieldsInMultiDisplay");
-		TableEditor maintenanceButtonEditor = new TableEditor(inTable);
-		inMaintenanceButton
-				.setText(inItemPojoScrolled.artifactName);
-		inMaintenanceButton.setToolTipText("click for maintenance of: " + inItemPojoScrolled.title);
 		inMaintenanceButton.setData(SCREENROWNUMLIT, inScreenRowNum);
 
 		System.out.println("itemPojo.itemID:"+inItemPojoScrolled.itemID);
-		System.out.println("set data = "
-				+ inMaintenanceButton.getData("screenRowNum"));
+		System.out.println("set data = " + inMaintenanceButton.getData("screenRowNum"));
 
+		checkIfItemOnRowHasALocalDraft(inItemPojoScrolled,inMaintenanceButton);
 		maintenanceButtonProcess(inMaintenanceButton);
 		inMaintenanceButton.pack();
+
+		TableEditor maintenanceButtonEditor = new TableEditor(inTable);
 		maintenanceButtonEditor.minimumWidth = inMaintenanceButton.getSize().x;
 		maintenanceButtonEditor.horizontalAlignment = SWT.LEFT;
 		maintenanceButtonEditor.setEditor(inMaintenanceButton, inTableItem,++inLastColLocation);
+		inTableItem.setText(inLastColLocation, inItemPojoScrolled.artifactName);
 
 		System.out.println("maintenanceButton cellEditor.minimumWidth = " + maintenanceButtonEditor.minimumWidth);
 		System.out.println("maintenanceButton text = " + inMaintenanceButton.getText());
@@ -258,7 +256,7 @@ public class DeckerLite extends GenericGrouper {
 				relevance_Tx.setText(extendedItemPojo.relevance);
 				inEditor.grabHorizontal = true;
 				inEditor.setEditor(relevance_Tx, inTableItem, absoluteColumnPosition);
-				
+				inTableItem.setText(absoluteColumnPosition, relevance_Tx.getText());				
 			}
 			//setting relevance ends
 			//setting relevance ends
@@ -311,78 +309,81 @@ public class DeckerLite extends GenericGrouper {
 
 			//setting deckingState starts
 			//setting deckingState starts
-		{
-			inEditor = new TableEditor(inTable);
-			inEditor.grabHorizontal = true;
-			if (centerBaseColHeaders[centerBaseColCount].equalsIgnoreCase(DECKING_STATEHDR)) {
-				Text freeFormText = new Text(inTable, SWT.READ_ONLY);
-				if (extendedItemPojo.deckingCompletedAt != null) {
-					ArtifactKeyPojo rowArtifactKeyPojo = new ArtifactKeyPojo(
-								invokedArtifactPojo.artifactKeyPojo.rootNick,
-								extendedItemPojo.relevance,
-								extendedItemPojo.artifactName,
-								extendedItemPojo.contentType);
-					ArtifactPrepper artifactPrepper = new ArtifactPrepper(rowArtifactKeyPojo,commonData);
-					if (artifactPrepper.errorEncountered) {
-						return;
-					}
-					try {
-						if (commons.isThisLeftDateLater(extendedItemPojo.deckingCompletedAt, 
-								commons.getDateFromString(artifactPrepper.erlDownload.uploadedTimeStamp))){
-							freeFormText.setText(DECKINGSTAT_DECKED);
-						} else {
-							freeFormText.setText(DECKINGSTAT_YETTOBEDECKED);	
-						}
-					} catch (ParseException e) {
-						e.printStackTrace();
-						ErrorHandler.showErrorAndQuit(commons, 
-							"Error in DeckerLite setDisplayItemsCenterBaseFieldsInMultiDisplay date parsing on last update time of " 
-							+ rowArtifactKeyPojo.artifactName, e);
-					}
-
-				} else {
-					freeFormText.setText(DECKINGSTAT_YETTOBEDECKED);					
-				}
-				inEditor.setEditor(freeFormText, inTableItem, absoluteColumnPosition);
-				freeFormText.pack();
-				freeFormText.setEnabled(false);
-			}	
-		}
-			//setting deckingState ends
-			//setting deckingState ends
-		{
-			inEditor = new TableEditor(inTable);
-			inEditor.grabHorizontal = true;
-			if (centerBaseColHeaders[centerBaseColCount].equalsIgnoreCase(DECKEDAT)) {
-				Text freeFormText = new Text(inTable, SWT.READ_ONLY);
-				if (extendedItemPojo.deckingCompletedAt != null) {
-					freeFormText.setText(commons.getTimeStamp(extendedItemPojo.deckingCompletedAt));
-				} else {
-					freeFormText.setText("");
-				}
-				inEditor.setEditor(freeFormText, inTableItem, absoluteColumnPosition);
-				freeFormText.pack();
-				freeFormText.setEnabled(false);
-			}	
-		}
-
-			//setting recsCombined starts
-			//setting recsCombined starts
 			{
 				inEditor = new TableEditor(inTable);
 				inEditor.grabHorizontal = true;
-				if (centerBaseColHeaders[centerBaseColCount].equalsIgnoreCase(RECORDS_COMBINEDHDR)) {
+				if (centerBaseColHeaders[centerBaseColCount].equalsIgnoreCase(DECKING_STATEHDR)) {
 					Text freeFormText = new Text(inTable, SWT.READ_ONLY);
-					freeFormText.setText(commons.convertIntToString(extendedItemPojo.numberOfRecsCombined));
+					if (extendedItemPojo.deckingCompletedAt != null) {
+						ArtifactKeyPojo rowArtifactKeyPojo = new ArtifactKeyPojo(
+									invokedArtifactPojo.artifactKeyPojo.rootNick,
+									extendedItemPojo.relevance,
+									extendedItemPojo.artifactName,
+									extendedItemPojo.contentType);
+						ArtifactPrepper artifactPrepper = new ArtifactPrepper(rowArtifactKeyPojo,commonData);
+						if (artifactPrepper.errorEncountered) {
+							return;
+						}
+						try {
+							if (commons.isThisLeftDateLater(extendedItemPojo.deckingCompletedAt, 
+									commons.getDateFromString(artifactPrepper.erlDownload.uploadedTimeStamp))){
+								freeFormText.setText(DECKINGSTAT_DECKED);
+							} else {
+								freeFormText.setText(DECKINGSTAT_YETTOBEDECKED);	
+							}
+						} catch (ParseException e) {
+							e.printStackTrace();
+							ErrorHandler.showErrorAndQuit(commons, 
+								"Error in DeckerLite setDisplayItemsCenterBaseFieldsInMultiDisplay date parsing on last update time of " 
+								+ rowArtifactKeyPojo.artifactName, e);
+						}
+	
+					} else {
+						freeFormText.setText(DECKINGSTAT_YETTOBEDECKED);					
+					}
 					inEditor.setEditor(freeFormText, inTableItem, absoluteColumnPosition);
+					inTableItem.setText(absoluteColumnPosition, freeFormText.getText());					
 					freeFormText.pack();
 					freeFormText.setEnabled(false);
+				}	
+			}
+				//setting deckingState ends
+				//setting deckingState ends
+			{
+				inEditor = new TableEditor(inTable);
+				inEditor.grabHorizontal = true;
+				if (centerBaseColHeaders[centerBaseColCount].equalsIgnoreCase(DECKEDAT)) {
+					Text freeFormText = new Text(inTable, SWT.READ_ONLY);
+					if (extendedItemPojo.deckingCompletedAt != null) {
+						freeFormText.setText(commons.getTimeStamp(extendedItemPojo.deckingCompletedAt));
+					} else {
+						freeFormText.setText("");
+					}
+					inEditor.setEditor(freeFormText, inTableItem, absoluteColumnPosition);
+					inTableItem.setText(absoluteColumnPosition, freeFormText.getText());										
+					freeFormText.pack();
+					freeFormText.setEnabled(false);
+				}	
+			}
+			
+			{
+				//setting recsCombined starts
+				//setting recsCombined starts
+				{
+					inEditor = new TableEditor(inTable);
+					inEditor.grabHorizontal = true;
+					if (centerBaseColHeaders[centerBaseColCount].equalsIgnoreCase(RECORDS_COMBINEDHDR)) {
+						Text freeFormText = new Text(inTable, SWT.READ_ONLY);
+						freeFormText.setText(commons.convertIntToString(extendedItemPojo.numberOfRecsCombined));
+						inEditor.setEditor(freeFormText, inTableItem, absoluteColumnPosition);
+						inTableItem.setText(absoluteColumnPosition, freeFormText.getText());					
+						freeFormText.pack();
+						freeFormText.setEnabled(false);
+					}
 				}
 			}
-
-			//setting recsCombined ends
-			//setting recsCombined ends
-
+				//setting recsCombined ends
+				//setting recsCombined ends
 		}
 	}
 	
@@ -415,6 +416,7 @@ public class DeckerLite extends GenericGrouper {
 					dropDownList.setItems(((DeckerLiteDocPojo) primerDoc).screenAddlFieldPattern.get(centerAddlColFileFields[centerAddlColCount]).validValues);
 					if (extendedItemPojo!=null && !extendedItemPojo.addlFieldValues.get(centerAddlColFileFields[centerAddlColCount]).equalsIgnoreCase("")) {
 						dropDownList.select(dropDownList.indexOf(extendedItemPojo.addlFieldValues.get(centerAddlColFileFields[centerAddlColCount])));
+						inTableItem.setText(absoluteColumnPosition, extendedItemPojo.addlFieldValues.get(centerAddlColFileFields[centerAddlColCount]));					
 					} else {
 						dropDownList.select(0);
 						extendedItemPojo.addlFieldValues.put(centerAddlColFileFields[centerAddlColCount], dropDownList.getItem((dropDownList.getSelectionIndex())));
@@ -447,6 +449,7 @@ public class DeckerLite extends GenericGrouper {
 					}
 				}
 				cellEditor.setEditor(dropDownList, inTableItem, absoluteColumnPosition);
+				
 				dropDownList.pack();
 //			} else if (centerAddlColInteractions[centerAddlColCount].equalsIgnoreCase(FILE_LINK_BUTTON)) {
 //
@@ -513,6 +516,7 @@ public class DeckerLite extends GenericGrouper {
 				}
 				freeFormText.setText(extendedItemPojo.addlFieldValues.get(centerAddlColFileFields[centerAddlColCount]));
 				cellEditor.setEditor(freeFormText, inTableItem, absoluteColumnPosition);
+				inTableItem.setText(absoluteColumnPosition, freeFormText.getText());				
 				freeFormText.pack();
 
 				if (invokedForEdit) {
@@ -552,6 +556,7 @@ public class DeckerLite extends GenericGrouper {
 				cellEditor.minimumWidth = freeFormText.getSize().x;
 				cellEditor.horizontalAlignment = SWT.LEFT;
 				cellEditor.setEditor(freeFormText, inTableItem, absoluteColumnPosition);
+				inTableItem.setText(absoluteColumnPosition, freeFormText.getText());					
 			}
 		}
 	}
@@ -623,11 +628,11 @@ public class DeckerLite extends GenericGrouper {
 	//	DeckerLiteItemPojo extendedItemPojo = (DeckerLiteItemPojo) inItemPojo;
 	//}
 
-	public void additionalRibbonButtons(Composite inRibbon) {
+	public void additionalRibbonButtons() {
 		DeckerLiteDocPojo deckerLiteDocPojo = (DeckerLiteDocPojo) primerDoc;
 
 		if (deckerLiteDocPojo.combinedFileName != null && !deckerLiteDocPojo.combinedFileName.equalsIgnoreCase("")) {
-			Button viewSummaryBtn = new Button(inRibbon, SWT.NONE);
+			Button viewSummaryBtn = new Button(buttonRibbon, SWT.NONE);
 			viewSummaryBtn.addSelectionListener(new SelectionAdapter() {
 				public void widgetSelected(SelectionEvent e) {
 					System.out.println("Summary view ");
@@ -1087,8 +1092,9 @@ public class DeckerLite extends GenericGrouper {
 	public void loadERLIntoItemsList(ERLDownload inERLDownload) {
 		DeckerLiteDocPojo deckerLiteDocPojo = (DeckerLiteDocPojo) getPrimerDoc();
 		DeckerLiteItemPojo deckerLiteItemPojo = (DeckerLiteItemPojo) createItemPojo(inERLDownload.artifactKeyPojo.contentType, inERLDownload.artifactKeyPojo.relevance, inERLDownload.artifactKeyPojo.artifactName);	
-		deckerLiteItemPojo.status = inERLDownload.erlStatus;
-		deckerLiteItemPojo.author = inERLDownload.author;		
+		//deckerLiteItemPojo.status = inERLDownload.erlStatus;	// these may quickly go out of sync with the referred artifact
+		//deckerLiteItemPojo.author = inERLDownload.author;
+		//deckerLiteItemPojo.requestor = inERLDownload.requestor;
 		deckerLiteItemPojo.absorbScreenFieldValues(deckerLiteDocPojo.screenFieldDefaults);
 
 		deckerLiteDocPojo.absorbIncomingItemPojo(deckerLiteItemPojo);

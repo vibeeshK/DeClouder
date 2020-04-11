@@ -210,7 +210,7 @@ public class UserMaintReq extends GenericItemHandler {
 		if (userMaintReqPojo.itemNumber == -1 && invokedForEdit) {
 			
 			String enteredRootSysLoginID = rootSysLoginIDText.getText();
-			if (enteredRootSysLoginID.isEmpty() || enteredRootSysLoginID.contains(" ")) {
+			if (enteredRootSysLoginID == null || enteredRootSysLoginID.isEmpty() || enteredRootSysLoginID.contains(" ")) {
 				validationPassFlag = false;
 				scrMsg = "LoginID shouldn't be blank or contain space";
 			} else if (!enteredRootSysLoginID.toUpperCase().equals(enteredRootSysLoginID)) {
@@ -223,8 +223,7 @@ public class UserMaintReq extends GenericItemHandler {
 			} else if (commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(enteredRootSysLoginID) != null) {
 				validationPassFlag = false;
 				scrMsg = "LoginID " + enteredRootSysLoginID + " already exists in the root";				
-			}
-			
+			}			
 		}
 		
 		//if (validationPassFlag && invokedForEdit) {

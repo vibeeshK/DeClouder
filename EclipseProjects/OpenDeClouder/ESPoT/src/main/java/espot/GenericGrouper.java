@@ -1,6 +1,7 @@
 package espot;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -26,6 +28,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.MessageBox;
@@ -34,6 +37,8 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+
+import commonTechs.ExportSWTTableToExcel;
 
 public abstract class GenericGrouper extends SelectionAdapter implements
 		ContentHandlerInterface {
@@ -49,6 +54,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	public static final int PREFERED_ITEM_PANEL_WIDTH = 600;
 	
 	public ArtifactPojo invokedArtifactPojo = null;
+	DownloadedReviewsHandler downloadedReviewsHandler = null;
+	
 	public boolean invokedForEdit = false;
 	protected HashMap <Integer, ArrayList> displayedItemMap = null;
 	
@@ -102,9 +109,9 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	
 	public ItemPojo getERLItemByChildArtifactName(String inChildRelevance, String inChildArtifactName, String inChildContentType) {
 		ItemPojo existingItemPojo = null;
-		if (!inChildRelevance.isEmpty()
-			&& !inChildArtifactName.isEmpty()
-			&& !inChildContentType.isEmpty()) {
+		if (inChildRelevance != null && !inChildRelevance.isEmpty()
+			&& inChildArtifactName != null && !inChildArtifactName.isEmpty()
+			&& inChildContentType != null && !inChildContentType.isEmpty()) {
 			existingItemPojo = primerDoc.getItemByChildArtifactName(inChildRelevance, inChildArtifactName, inChildContentType);
 		}
 		return existingItemPojo;
@@ -208,6 +215,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		System.out.println("At doCommonUIInit mainShell = " + mainShell);
 		doCommonInit(inCommonUIData, inArtifactPojo);
 
+		downloadedReviewsHandler = new DownloadedReviewsHandler(inCommonUIData, invokedArtifactPojo.artifactKeyPojo);
+		
 		///////////
 		///////////
 		////create pane for control ribbon starts
@@ -225,9 +234,11 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		//create pane for control ribbon ends		
 		///////////
 		///////////
-		setSelectionFilters(buttonRibbon);
+		setSelectionFilters();
 
-		additionalRibbonButtons(buttonRibbon);
+		additionalRibbonButtons();
+		setExportButton();
+		
 		buttonRibbon.pack();
 	}
 
@@ -381,45 +392,12 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 	public void setDisplayCoreLeftFieldsInMultiDisplay(TableEditor inEditor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo inItemPojoScrolled, Button inMaintenanceButton, int inScreenRowNum) {
 		// the reason the maintenanceButton is kept as argument is it would be referred for setting focus on specific record.
 		System.out.println("setDisplayCoreLeftFieldsInMultiDisplay");
-
-		//boolean itemOnRowHasALocalDraft = false;
-		//ArtifactKeyPojo artifactKeyPojoOnRow = new ArtifactKeyPojo(
-		//		invokedArtifactPojo.artifactKeyPojo.rootNick,
-		//		inItemPojoScrolled.relevance,
-		//		inItemPojoScrolled.artifactName,
-		//		inItemPojoScrolled.contentType);
-		//SelfAuthoredArtifactpojo localDraft = catelogPersistenceManager.readSelfAuthoredArtifact(artifactKeyPojoOnRow);
-		//if (localDraft != null) {
-		//	System.out.println("at setFlags localDraft.draftingState is " + localDraft.draftingState);
-		//	System.out.println("at setFlags SelfAuthoredArtifactpojo.ArtifactStatusDraft is " + SelfAuthoredArtifactpojo.ArtifactStatusDraft);
-		//	System.out.println("at setFlags SelfAuthoredArtifactpojo.ArtifactStatusToBeBatchUploaded is " + SelfAuthoredArtifactpojo.ArtifactStatusToBeBatchUploaded);
-		//
-		//	if (!localDraft.draftingState.equalsIgnoreCase(SelfAuthoredArtifactpojo.ArtifactStatusProcessed)
-		//		&& !localDraft.draftingState.equalsIgnoreCase(SelfAuthoredArtifactpojo.ArtifactStatusOutdated)) {
-		//		itemOnRowHasALocalDraft = true;				
-		//	}
-		//}
-		
-		checkIfItemOnRowHasALocalDraft(inItemPojoScrolled,inMaintenanceButton);
-
-		//if (itemOnRowHasALocalDraft){
-		//	inMaintenanceButton
-		//	.setText("*" + inItemPojoScrolled.artifactName);
-		//	inMaintenanceButton.setToolTipText("click for maintenance of: " + inItemPojoScrolled.title + ". A draft is already available");
-		//} else {
-		//	inMaintenanceButton
-		//	.setText(inItemPojoScrolled.artifactName);			
-		//	inMaintenanceButton.setToolTipText("click for maintenance of: " + inItemPojoScrolled.title);
-		//}		
-		//inMaintenanceButton.setData(ItemOnRowHasALocalDraftLIT, true);
-		
 		inMaintenanceButton.setData(SCREENROWNUMLIT, inScreenRowNum);
 
-		
 		System.out.println("itemPojo.itemID:"+inItemPojoScrolled.itemID);
-		System.out.println("set data = "
-				+ inMaintenanceButton.getData("screenRowNum"));
+		System.out.println("set data = " + inMaintenanceButton.getData("screenRowNum"));
 
+		checkIfItemOnRowHasALocalDraft(inItemPojoScrolled,inMaintenanceButton);
 		maintenanceButtonProcess(inMaintenanceButton);
 		inMaintenanceButton.pack();
 		
@@ -427,7 +405,8 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		maintenanceButtonEditor.minimumWidth = inMaintenanceButton.getSize().x;
 		maintenanceButtonEditor.horizontalAlignment = SWT.LEFT;
 		maintenanceButtonEditor.setEditor(inMaintenanceButton, inTableItem,++inLastColLocation);
-
+		inTableItem.setText(inLastColLocation, inItemPojoScrolled.artifactName);
+		
 		System.out.println("maintenanceButton cellEditor.minimumWidth = " + maintenanceButtonEditor.minimumWidth);
 		System.out.println("maintenanceButton text = " + inMaintenanceButton.getText());
 		System.out.println("linkTextButton cellEditor.horizontalAlignment = " + maintenanceButtonEditor.horizontalAlignment);
@@ -438,6 +417,7 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		title_Tx.setText(inItemPojoScrolled.title);
 		inEditor.grabHorizontal = true;
 		inEditor.setEditor(title_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, inItemPojoScrolled.title);
 	}
 
 	public void setDisplayItemscoreRightFieldsInMultiDisplay(TableEditor inEditor, Table inTable, TableItem inTableItem, int inLastColLocation, ItemPojo itemPojoScrolled, int screenRowNum) {
@@ -488,8 +468,22 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		reviewButtonEditor.minimumWidth = reviewButton.getSize().x;
 		reviewButtonEditor.horizontalAlignment = SWT.LEFT;
 		reviewButtonEditor.setEditor(reviewButton, inTableItem,++inLastColLocation);
+		if (commonData.getContentHandlerSpecsMap().get(itemPojoScrolled.contentType).rollupAddupType){
+			inTableItem.setText(inLastColLocation,downloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(itemPojoScrolled.itemID));
+		} else {
+			ArtifactKeyPojo itemArtifactKeyPojo = new ArtifactKeyPojo(invokedArtifactPojo.artifactKeyPojo.rootNick, 
+														itemPojoScrolled.relevance,
+														itemPojoScrolled.artifactName,
+														itemPojoScrolled.contentType);
+					
+			DownloadedReviewsHandler itemDownloadedReviewsHandler = new DownloadedReviewsHandler((CommonUIData) commonData, itemArtifactKeyPojo);
+			inTableItem.setText(inLastColLocation,itemDownloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(itemPojoScrolled.itemID));
+		}
+		
 		System.out.println("xxx reviewButton button rightColumnStartLocation = " + inLastColLocation);
-
+		System.out.println("xxx reviewButton button reviews for itemPojoScrolled.itemID below " + itemPojoScrolled.itemID);
+		System.out.println("xxx reviewButton button reviews = " + downloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(itemPojoScrolled.itemID));
+		
 		System.out.println("reviewButtonEditor.minimumWidth = " + reviewButtonEditor.minimumWidth);
 		System.out.println("reviewButton text = " + reviewButton.getText());
 		System.out.println("reviewButton reviewButton.horizontalAlignment = " + reviewButtonEditor.horizontalAlignment);
@@ -670,8 +664,10 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		
 		//childCompositeOfMultiView.pack();
 
-		showArtifactReview();		
-		
+	    if (downloadedReviewsHandler.canBeReviewed()){
+	    	showArtifactReview();
+	    }
+
 		itemsMainCompositeInMultiConentView.pack();
 		//scrolledComposite_main.pack();
 		mainShell.pack();		
@@ -732,7 +728,6 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		System.out.println("GenericGrouper maintenanceButtonProcess");
 		System.out.println("Adding maintenanceButton event for Generic Grouper item");
 
-		
 		inMaintenanceButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -1085,23 +1080,23 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 
 					UserPojo requestAuthorsDetail = commonData.getUsersHandler().getUserDetailsFromRootSysLoginID(inRequestProcesserPojo.requestPojo.requestor);
 
-					if (!inRequestProcesserPojo.itemReassignedRequestor.isEmpty() 
-						|| !inRequestProcesserPojo.itemReassignedAuthor.isEmpty()
-						|| !inRequestProcesserPojo.itemNewERLStatus.isEmpty()) {
+					if ((inRequestProcesserPojo.itemReassignedRequestor!= null && !inRequestProcesserPojo.itemReassignedRequestor.isEmpty()) 
+						|| (inRequestProcesserPojo.itemReassignedAuthor != null && !inRequestProcesserPojo.itemReassignedAuthor.isEmpty())
+						|| (inRequestProcesserPojo.itemNewERLStatus != null && !inRequestProcesserPojo.itemNewERLStatus.isEmpty())) {
 
 						if (requestAuthorsDetail.hasAdminPrivilege() 
 							|| requestAuthorsDetail.hasTeamLeaderPrivilege() 
 							|| ((requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(itemPojoToUpdate.author)
-									|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(itemPojoToUpdate.requestor)
-									|| commonData.getUsersHandler().doesUserHaveRightsOverMember(requestAuthorsDetail.rootSysLoginID, itemPojoToUpdate.author)
+								|| requestAuthorsDetail.rootSysLoginID.equalsIgnoreCase(itemPojoToUpdate.requestor)
+								|| commonData.getUsersHandler().doesUserHaveRightsOverMember(requestAuthorsDetail.rootSysLoginID, itemPojoToUpdate.author)
 							))) {
-							if (!inRequestProcesserPojo.itemReassignedRequestor.isEmpty()){
+							if (inRequestProcesserPojo.itemReassignedRequestor != null && !inRequestProcesserPojo.itemReassignedRequestor.isEmpty()){
 								itemPojoToUpdate.requestor = inRequestProcesserPojo.itemReassignedRequestor;
 							}
-							if (!inRequestProcesserPojo.itemReassignedAuthor.isEmpty()){
+							if (inRequestProcesserPojo.itemReassignedAuthor != null && !inRequestProcesserPojo.itemReassignedAuthor.isEmpty()){
 								itemPojoToUpdate.author = inRequestProcesserPojo.itemReassignedAuthor;
 							}
-							if (!inRequestProcesserPojo.itemNewERLStatus.isEmpty()){
+							if (inRequestProcesserPojo.itemNewERLStatus != null && !inRequestProcesserPojo.itemNewERLStatus.isEmpty()){
 								itemPojoToUpdate.status = inRequestProcesserPojo.itemNewERLStatus;
 							}
 						}
@@ -1203,10 +1198,61 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		btnSaveDraft.setText("Save Draft");
 		btnSaveDraft.pack();
 	}
+
+	public void setExportButton() {
+		Button btnExportToSpreadSh = new Button(buttonRibbon, SWT.NONE);
+		btnExportToSpreadSh.setToolTipText("Export to Excel");
+
+		btnExportToSpreadSh.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				System.out.println("Export to Excel selected");
+
+				String filename = null;
+				
+				FileDialog dialog = new FileDialog(mainShell, SWT.SAVE);
+				dialog.setFilterExtensions(new String[]{ "*.xlsx" });
+				filename = dialog.open();
+				
+				if (filename == null) return;
+
+		    	if (commons.doesFileExist(filename)){
+					MessageBox fileOverwriteMsgBox = new MessageBox(mainShell, SWT.YES | SWT.NO);
+					fileOverwriteMsgBox.setMessage("file exists. overwrite? " + filename);
+					int fileOverwriteMsgBoxRC = fileOverwriteMsgBox.open();
+					if (fileOverwriteMsgBoxRC != SWT.YES) {
+						return;
+					}
+		    	}
+		    	
+				System.out.println("Export to Excel file name " + filename);				
+				XSSFWorkbook wb = ExportSWTTableToExcel.createWorkbookFromTable(table);
+
+			    try {
+			    	
+			        FileOutputStream fos = new FileOutputStream(filename);
+			        wb.write(fos);
+			        fos.close();
+					MessageBox testMessageBox = new MessageBox(mainShell, SWT.OK);
+					testMessageBox.setMessage("Workbook saved to the file:\n\n" + filename);
+					int erlViewIssueMessageBoxRC = testMessageBox.open();
+			    } catch (IOException ioe) {
+			        ioe.printStackTrace();
+			        String msg = ioe.getMessage();
+					MessageBox testMessageBox = new MessageBox(mainShell, SWT.OK);
+					testMessageBox.setMessage("Save Workbook FAILED!! \n" +
+				            "Writing NOT ALLOWED to the file: \n" + filename);
+					int erlViewIssueMessageBoxRC = testMessageBox.open();			        
+			    }
+			}
+		});
+		btnExportToSpreadSh.setText("ExportToExcel");
+		btnExportToSpreadSh.pack();	
+	}
 	
-	public abstract void additionalRibbonButtons(Composite ribbon);
+	public abstract void additionalRibbonButtons();
 	
-	public void setSelectionFilters(Composite buttonRibbon) {
+	public void setSelectionFilters() {
 
 		filtersGroup = new Composite(buttonRibbon, SWT.NONE);
 		filtersGroup.setLayout(new GridLayout(3, false));
@@ -1365,8 +1411,12 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 			control2.dispose();
 			displayedItemMap.remove(reviewItemNo);
 		}
-		childCompositeOfMultiView.dispose();
-		artifactRwScrollPane.dispose();	//artifact review pane dispose;
+		if (childCompositeOfMultiView != null) {
+			childCompositeOfMultiView.dispose();
+		}
+		if (artifactRwScrollPane != null) {
+			artifactRwScrollPane.dispose();	//artifact review pane dispose;
+		}
 		itemsMainCompositeInMultiConentView.dispose();
 		//scrolledComposite_main.dispose();	// item review pane dispose
 		displayMultiContent();	// redraw screen below ribbon
@@ -1479,5 +1529,5 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		});
 		showOrHideFiltersButton.pack();
 		inRibbonComposite.pack();
-	}	
+	}
 }

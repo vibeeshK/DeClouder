@@ -54,24 +54,28 @@ public class TimeShRollup extends GenericGrouper {
 		description_Tx.setText(timeSheetPojo.description);
 		editor.grabHorizontal = true;
 		editor.setEditor(description_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, description_Tx.getText());
 
 		editor = new TableEditor(table);
 		Text author_Tx = new Text(table, SWT.READ_ONLY);
 		author_Tx.setText(timeSheetPojo.author);
 		editor.grabHorizontal = true;
 		editor.setEditor(author_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, author_Tx.getText());
 
 		editor = new TableEditor(table);
 		Text reviewer_Tx = new Text(table, SWT.READ_ONLY);
 		reviewer_Tx.setText(timeSheetPojo.reviewer);
 		editor.grabHorizontal = true;
 		editor.setEditor(reviewer_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, reviewer_Tx.getText());
 	
 		editor = new TableEditor(table);
 		Text status_Tx = new Text(table, SWT.READ_ONLY);
 		status_Tx.setText(timeSheetPojo.status);
 		editor.grabHorizontal = true;
 		editor.setEditor(status_Tx, tableItem, ++inLastColLocation);
+		tableItem.setText(inLastColLocation, status_Tx.getText());
 	}
 
 	public Group setAddlFieldsForItemDisplay(Group itemContentGroup, Group inPrevGroup,FormData formData, ItemPojo itemPojo){
@@ -182,7 +186,7 @@ public class TimeShRollup extends GenericGrouper {
 	}
 
 	@Override
-	public void additionalRibbonButtons(Composite ribbon) {
+	public void additionalRibbonButtons() {
 	}
 
 	@Override

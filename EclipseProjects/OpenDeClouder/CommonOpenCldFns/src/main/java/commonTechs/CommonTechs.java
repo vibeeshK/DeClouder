@@ -761,7 +761,6 @@ public class CommonTechs {
 		File fXmlFile = new File(inFileName);
 		System.out.println("@getDocumentFromXMLFile fXmlFile.exists() = " + fXmlFile.exists());
 
-	
 		if (!fXmlFile.exists()) return null;
 
 		System.out.println("@getDocumentFromXMLFile fXmlFile.exists() crossed " + fXmlFile.exists());
@@ -907,11 +906,13 @@ public class CommonTechs {
 	
 	public int getIndexOfStringInArray(String inSearchString, String[] inStringArray) {
 		int indexOfString = -1;
-		for (int stringCount = 0; stringCount < inStringArray.length; stringCount++) {
+		if (inSearchString != null || inStringArray == null) {
+			for (int stringCount = 0; stringCount < inStringArray.length; stringCount++) {
 			if (inSearchString.equals(inStringArray[stringCount])) {
 				indexOfString = stringCount;
 				break;
 			}
+		}
 		}
 		return indexOfString;
 	}

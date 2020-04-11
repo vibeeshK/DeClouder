@@ -162,18 +162,21 @@ public class ProjTasksList extends GenericGrouper {
 		description_Tx.setText(projTaskPojo.description);
 		inEditor.grabHorizontal = true;
 		inEditor.setEditor(description_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, description_Tx.getText());
 
 		inEditor = new TableEditor(inTable);
 		Text author_Tx = new Text(inTable, SWT.READ_ONLY);
 		author_Tx.setText(projTaskPojo.author);
 		inEditor.grabHorizontal = true;
 		inEditor.setEditor(author_Tx, inTableItem, ++inLastColLocation);	
+		inTableItem.setText(inLastColLocation, author_Tx.getText());
 
 		inEditor = new TableEditor(inTable);
 		Text status_Tx = new Text(inTable, SWT.READ_ONLY);
 		status_Tx.setText(projTaskPojo.status);
 		inEditor.grabHorizontal = true;
 		inEditor.setEditor(status_Tx, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, status_Tx.getText());
 	}
 
 	public Group setAddlFieldsForItemDisplay(Group itemContentGroup, Group inPrevGroup,
@@ -277,7 +280,7 @@ public class ProjTasksList extends GenericGrouper {
 	}
 
 	@Override
-	public void additionalRibbonButtons(Composite ribbon) {
+	public void additionalRibbonButtons() {
 	}
 
 	@Override
@@ -324,6 +327,7 @@ public class ProjTasksList extends GenericGrouper {
 		}
 		
 		inEditor.setEditor(linkTextButton, inTableItem, ++inLastColLocation);
+		inTableItem.setText(inLastColLocation, linkTextButton.getText());
 
 		linkTextButton.setToolTipText("Dare to join the party on : " + projTaskPojo.description);
 		

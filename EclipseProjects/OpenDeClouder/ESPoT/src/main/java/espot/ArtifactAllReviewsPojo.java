@@ -13,7 +13,7 @@ import org.w3c.dom.NodeList;
 
 public class ArtifactAllReviewsPojo {
 	/*
-	 * Provides an object view of all reviews of an item
+	 * Provides an object view of the reviews of an artifact's items
 	 */
 	final static String ItemRejected = "Rejected";
 	final static String ItemApproved = "Approved";
@@ -24,7 +24,7 @@ public class ArtifactAllReviewsPojo {
 	String relevance = null;
 	String contentName = null;
 
-	HashMap<String,String> itemsReviews = null;
+	public HashMap<String,String> itemsReviews = null;
 	
 	public Document artifactAllReviewsDocument = null;
 	Element artifactItemReviewsElement = null;
@@ -139,7 +139,7 @@ public class ArtifactAllReviewsPojo {
 	public String getItemAllReviews(String inItemID){
 		String itemAllReviews = "";
 		if (itemsReviews != null && itemsReviews.containsKey(inItemID)) {
-			itemsReviews.get(inItemID);
+			itemAllReviews = itemsReviews.get(inItemID);
 		}
 		return itemAllReviews;
 	}
