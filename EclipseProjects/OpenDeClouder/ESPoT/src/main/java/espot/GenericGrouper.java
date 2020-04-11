@@ -469,7 +469,9 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 		reviewButtonEditor.horizontalAlignment = SWT.LEFT;
 		reviewButtonEditor.setEditor(reviewButton, inTableItem,++inLastColLocation);
 		if (commonData.getContentHandlerSpecsMap().get(itemPojoScrolled.contentType).rollupAddupType){
-			inTableItem.setText(inLastColLocation,downloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(itemPojoScrolled.itemID));
+			if (downloadedReviewsHandler.getArtifactAllReviewsPojo()!=null){
+				inTableItem.setText(inLastColLocation,downloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(itemPojoScrolled.itemID));
+			}
 		} else {
 			ArtifactKeyPojo itemArtifactKeyPojo = new ArtifactKeyPojo(invokedArtifactPojo.artifactKeyPojo.rootNick, 
 														itemPojoScrolled.relevance,
@@ -477,12 +479,14 @@ public abstract class GenericGrouper extends SelectionAdapter implements
 														itemPojoScrolled.contentType);
 					
 			DownloadedReviewsHandler itemDownloadedReviewsHandler = new DownloadedReviewsHandler((CommonUIData) commonData, itemArtifactKeyPojo);
-			inTableItem.setText(inLastColLocation,itemDownloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(itemPojoScrolled.itemID));
+			if (downloadedReviewsHandler.getArtifactAllReviewsPojo()!=null){
+				inTableItem.setText(inLastColLocation,itemDownloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(itemPojoScrolled.itemID));
+			}
 		}
 		
 		System.out.println("xxx reviewButton button rightColumnStartLocation = " + inLastColLocation);
 		System.out.println("xxx reviewButton button reviews for itemPojoScrolled.itemID below " + itemPojoScrolled.itemID);
-		System.out.println("xxx reviewButton button reviews = " + downloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(itemPojoScrolled.itemID));
+		//System.out.println("xxx reviewButton button reviews = " + downloadedReviewsHandler.getArtifactAllReviewsPojo().getItemAllReviews(itemPojoScrolled.itemID));
 		
 		System.out.println("reviewButtonEditor.minimumWidth = " + reviewButtonEditor.minimumWidth);
 		System.out.println("reviewButton text = " + reviewButton.getText());

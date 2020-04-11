@@ -93,8 +93,8 @@ public class ArtifactWrapperUI {
 										getMaxDBVersionNumberOfSelfAuthoredArtifact(
 												invokedArtifactPojo.artifactKeyPojo);
 			startupWithArtifactKeyPojo();
+			downloadedReviewsHandler = new DownloadedReviewsHandler(inCommonUIData, invokedArtifactPojo.artifactKeyPojo);
 		}
-		downloadedReviewsHandler = new DownloadedReviewsHandler(inCommonUIData, invokedArtifactPojo.artifactKeyPojo);
 	}
 	
 
@@ -931,7 +931,7 @@ public class ArtifactWrapperUI {
 
 		//review group integration starts
 		//review group integration starts		
-		if (downloadedReviewsHandler.canBeReviewed()) {		
+		if (downloadedReviewsHandler != null && downloadedReviewsHandler.canBeReviewed()) {		
 			Composite childCompositeOfRightView = new Composite(
 					childCompositeOfDuplexView, SWT.NONE | SWT.WRAP);
 	
